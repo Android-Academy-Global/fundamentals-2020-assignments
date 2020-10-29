@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--
+     This "res-solution" folder is a synthetic
+     It can't be created with Android Studio tools.
+     It's also ignored during compile time.
+     This isn't counts as a resource.
+
+     It's a wrong naming.
+     It's created only to show a TODOs result.
+      -->
+
+    <!-- TODO 3: Landscape layout creation -->
+    <!-- TODO 3: Create a folder with qualifier "-land" -->
+
+    <!-- TODO 4: Do not translate String res for a Land orientation -->
+    <!-- TODO 4: see also "values -> strings -> id:land_hello_world -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/land_hello_world"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

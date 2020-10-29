@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+     This "res-solution" folder is a synthetic
+     It can't be created with Android Studio tools.
+     It's also ignored during compile time.
+     This isn't counts as a resource.
+
+     It's a wrong naming.
+     It's created only to show a TODOs result.
+      -->
+
+    <!-- TODO 5: Auto create "strings" res in a "values-ru-lang" folder -->
+    <!-- TODO 5: Manually create <string></string tag> -->
+    <!-- TODO 5: Manually add name="land_hello_world" parameter -->
+    <!-- TODO 5: Manually add value "Привет горизонтальному миру!" -->
+    <string name="land_hello_world">Привет горизонтальному миру!</string>
+
+</resources>
