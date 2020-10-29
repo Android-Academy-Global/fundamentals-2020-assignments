@@ -2,6 +2,18 @@
 <resources>
 
     <string name="app_name">2020-fundamentals-new-project-setup</string>
+
+    <!--
+     This "res-solution" folder is a synthetic
+     It can't be created with Android Studio tools.
+     It's also ignored during compile time.
+     This isn't counts as a resource.
+
+     It's a wrong naming.
+     It's created only to show a TODOs result.
+      -->
+
+    <!-- TODO 2: Translate the resource -->
     <string name="hello_world">Привет Мир!</string>
 
 </resources>

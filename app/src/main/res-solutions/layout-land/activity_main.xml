@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--
+     This "res-solution" folder is a synthetic
+     It can't be created with Android Studio tools.
+     It's also ignored during compile time.
+     This isn't counts as a resource.
+
+     It's a wrong naming.
+     It's created only to show a TODOs result.
+      -->
+
+    <!-- TODO 3: Landscape layout creation -->
+    <!-- TODO 3: Create a folder with qualifier "-land" -->
+
+    <!-- TODO 4: Do not translate String res for a Land orientation -->
+    <!-- TODO 4: see also "values -> strings -> id:hello_land_world -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
