@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name" translatable="false">2020-fundamentals-new-project-setup</string>
+
+    <string name="hello_world">Hello World!</string>
+    <string name="hello_land_world" translatable="false">Land Hello World!</string>
+
+</resources>
