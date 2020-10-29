@@ -2,21 +2,7 @@
 
     <string name="app_name" translatable="false">2020-fundamentals-new-project-setup</string>
 
-    <!--
-     This "res-solution" folder is a synthetic
-     It can't be created with Android Studio tools.
-     It's also ignored during compile time.
-     This isn't counts as a resource.
-
-     It's a wrong naming.
-     It's created only to show a TODOs result.
-      -->
-
-    <!-- TODO 1: Extract to resources -->
-    <!-- TODO 1: see also "layout -> activity_main -> TextView -->
     <string name="hello_world">Hello World!</string>
-
-    <!-- TODO 4: Do not translate String res for a Land orientation -->
-    <string name="land_hello_world" translatable="false">Land Hello World!</string>
+    <string name="hello_land_world" translatable="false">Land Hello World!</string>
 
 </resources>
