@@ -19,6 +19,7 @@
 
     <!-- TODO 1: Extract to resources -->
     <!-- TODO 1: see also "values -> strings -> id:hello_world -->
+    <!-- TODO 4: add id "first_activity_text_view" for the view -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
