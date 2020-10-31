@@ -12,8 +12,8 @@
      It's created only to show a TODOs result.
       -->
 
-    <!-- TODO 1: Extract to resources -->
-    <!-- TODO 1: see also "layout -> activity_main -> TextView -->
+    <!-- TODO 3: Extract to resources -->
+    <!-- TODO 3: see also "layout -> activity_main -> TextView -->
     <string name="hello_world">Hello World!</string>
 
     <!-- TODO 4: Do not translate String res for a Land orientation -->

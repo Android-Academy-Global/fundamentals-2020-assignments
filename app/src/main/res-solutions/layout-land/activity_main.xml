@@ -17,8 +17,8 @@
      It's created only to show a TODOs result.
       -->
 
-    <!-- TODO 3: Landscape layout creation -->
-    <!-- TODO 3: Create a folder with qualifier "-land" -->
+    <!-- TODO 4: Landscape layout creation -->
+    <!-- TODO 4: Create a folder with qualifier "-land" -->
 
     <!-- TODO 4: Do not translate String res for a Land orientation -->
     <!-- TODO 4: see also "values -> strings -> id:hello_land_world -->

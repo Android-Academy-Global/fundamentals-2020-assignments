@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">FundamentalsAssignments</string>
-
-    <string name="first_activity_text">Это первый экран</string>
 </resources>

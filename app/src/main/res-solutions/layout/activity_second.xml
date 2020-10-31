@@ -4,12 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".solutions.SecondActivity">
+    tools:context=".SecondActivity">
 
+    <!--
+        This "res-solution" folder is synthetic.
+        It can not be created with Android Studio tools.
+        It's also ignored during the compile time.
+        This isn't counted as a resource.
+
+        It's a wrong naming.
+        It's created only to show a TODOs result.
+    -->
+
+    <!-- TODO 5: Add second activity -->
     <TextView
         android:id="@+id/second_activity_text_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
