@@ -13,7 +13,7 @@
      It's created only to show a TODOs result.
       -->
 
-    <!-- TODO 2: Translate the resource -->
+    <!-- TODO 3: Translate the resource -->
     <string name="hello_world">Привет Мир!</string>
 
 </resources>

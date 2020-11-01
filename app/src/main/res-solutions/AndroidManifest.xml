@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.academy.fundamentals">
 
+    <!--
+        This "res-solution" folder is synthetic.
+        It can not be created with Android Studio tools.
+        It's also ignored during the compile time.
+        This isn't counted as a resource.
+
+        It's a wrong naming.
+        It's created only to show a TODOs result.
+    -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +19,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FundamentalsAssignments">
-        <activity android:name=".MainActivity">
+
+        <!-- TODO 5: Add second activity -->
+        <activity android:name=".solutions.SecondActivity_Solution" />
+        <activity android:name=".solutions.MainActivity_Solution">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
