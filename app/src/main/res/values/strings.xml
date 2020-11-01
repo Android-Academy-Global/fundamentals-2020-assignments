@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">View and ViewGroup</string>
+
+    <string name="solutions_hello_world">Hello World!</string>
+    <string name="solutions_box_one_text">Box One</string>
+    <string name="solutions_box_two_text">Box Two</string>
+    <string name="solutions_box_three_text">Box Three</string>
+    <string name="solutions_box_four_text">Box Four</string>
+    <string name="solutions_box_five_text">Box Five</string>
+    <string name="solutions_button_red_text">Red</string>
+    <string name="solutions_button_yellow_text">Yellow</string>
+    <string name="solutions_button_green_text">Green</string>
+
+</resources>

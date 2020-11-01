@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ To Run this layout:
+ MainActivity -> onCreate() -> setContentView() -> replace: R.layout.activity_main with R.layout.layout_solution_w2
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:orientation="vertical"
+    android:background="@color/backgroundContainer"
+    tools:context=".MainActivity"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:padding="16dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="@string/solutions_box_one_text"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorMyGray"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:layout_gravity="end"
+            android:gravity="top"
+            android:text="@string/solutions_box_three_text"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorMyRed"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="@string/solutions_box_four_text"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorMyYellow"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:layout_gravity="start"
+            android:gravity="bottom"
+            android:text="@string/solutions_box_five_text"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorMyGreen"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:layout_gravity="bottom"
+            android:gravity="start"
+            android:text="@string/solutions_button_red_text"
+            android:background="@color/colorLightGray"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/solutions_button_yellow_text"
+            android:background="@color/colorLightGray"
+            />
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:layout_gravity="top"
+            android:gravity="end"
+            android:text="@string/solutions_button_green_text"
+            android:background="@color/colorLightGray"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
