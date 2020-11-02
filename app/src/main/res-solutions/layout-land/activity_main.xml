@@ -17,11 +17,8 @@
      It's created only to show a TODOs result.
       -->
 
-    <!-- TODO 4: Landscape layout creation -->
-    <!-- TODO 4: Create a folder with qualifier "-land" -->
-
-    <!-- TODO 4: Do not translate String res for a Land orientation -->
-    <!-- TODO 4: see also "values -> strings -> id:hello_land_world -->
+    <!-- TODO: Create a "layout-land" folder with with this layout -->
+    <!-- TODO: Assign "hello_land_world" string resource -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

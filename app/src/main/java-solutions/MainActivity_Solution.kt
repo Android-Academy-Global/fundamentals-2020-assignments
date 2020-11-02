@@ -1,23 +1,21 @@
-package com.android.academy.fundamentals.solutions
+package com.android.academy.fundamentals
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.android.academy.fundamentals.R
-import com.android.academy.fundamentals.SecondActivity
-import com.android.academy.fundamentals.solutions.SecondActivity_Solution.Companion.TRANSMITTED_BOOLEAN
-import com.android.academy.fundamentals.solutions.SecondActivity_Solution.Companion.TRANSMITTED_INT
-import com.android.academy.fundamentals.solutions.SecondActivity_Solution.Companion.TRANSMITTED_STRING
+import com.android.academy.fundamentals.SecondActivity_Solution.Companion.TRANSMITTED_BOOLEAN
+import com.android.academy.fundamentals.SecondActivity_Solution.Companion.TRANSMITTED_INT
+import com.android.academy.fundamentals.SecondActivity_Solution.Companion.TRANSMITTED_STRING
 
 class MainActivity_Solution : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_solution)
 
         // Инициализация переменной кнопки перехода
-        val textView: TextView = findViewById(R.id.first_activity_text_view)
+        val textView: TextView = findViewById(R.id.main_activity_text_view)
         // Добавление обработчика нажатия кнопки
         textView.setOnClickListener { moveToNextScreen() }
     }
@@ -25,7 +23,7 @@ class MainActivity_Solution : AppCompatActivity() {
     // Переход на следующий экран
     private fun moveToNextScreen() {
         // Создание интента перехода
-        val intent = Intent(this, SecondActivity::class.java)
+        val intent = Intent(this, SecondActivity_Solution::class.java)
 
         // Добавление extra данных в интент
         val transmittedString = "string to transmit"

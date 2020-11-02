@@ -5,12 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity_Solution">
 
+    <!--
+        This "res-solution" folder is synthetic.
+        It can not be created with Android Studio tools.
+        It's also ignored during the compile time.
+        This isn't counted as a resource.
+
+        It's a wrong naming.
+        It's created only to show a TODOs result.
+    -->
+
+
+    <!-- TODO: Add id "main_activity_text_view" for the TextView -->
+    <!-- TODO: Set click listener to start a SecondActivity -->
     <TextView
+        android:id="@+id/main_activity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/hello_world"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
