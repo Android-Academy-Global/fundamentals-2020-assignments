@@ -18,8 +18,12 @@
     -->
 
     <!-- TODO: Extract to resources -->
-    <!-- TODO: see also "values -> strings -> id:hello_world -->
+    <!-- TODO: See also "values -> strings -> id:hello_world -->
+
+    <!-- TODO: Add id "main_activity_text_view" for the TextView -->
+    <!-- TODO: Set click listener to start a SecondActivity -->
     <TextView
+        android:id="@+id/main_activity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world"

@@ -12,7 +12,7 @@ class MainActivity_Solution : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_solution)
+        setContentView(R.layout.activity_main)
 
         // Инициализация переменной кнопки перехода
         val textView: TextView = findViewById(R.id.main_activity_text_view)
