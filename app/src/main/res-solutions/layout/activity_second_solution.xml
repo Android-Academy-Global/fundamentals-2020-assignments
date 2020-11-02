@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity">
+    tools:context=".SecondActivity_Solution">
 
     <!--
         This "res-solution" folder is synthetic.
@@ -16,7 +17,8 @@
         It's created only to show a TODOs result.
     -->
 
-    <!-- TODO 5: Add second activity -->
+    <!-- TODO: Set this layout to the SecondActivity -->
+    <!-- TODO: Add click listener to show the data received from the MainActivity -->
     <TextView
         android:id="@+id/second_activity_text_view"
         android:layout_width="wrap_content"

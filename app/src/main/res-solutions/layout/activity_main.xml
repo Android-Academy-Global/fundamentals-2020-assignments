@@ -17,12 +17,13 @@
         It's created only to show a TODOs result.
     -->
 
-    <!-- TODO 3: Extract to resources -->
-    <!-- TODO 3: see also "values -> strings -> id:hello_world -->
-    <!-- TODO 5: add id "first_activity_text_view" for the TextView -->
+    <!-- TODO: Extract to resources -->
+    <!-- TODO: See also "values -> strings -> id:hello_world -->
 
+    <!-- TODO: Add id "main_activity_text_view" for the TextView -->
+    <!-- TODO: Set click listener to start a SecondActivity -->
     <TextView
-        android:id="@+id/first_activity_text_view"
+        android:id="@+id/main_activity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world"

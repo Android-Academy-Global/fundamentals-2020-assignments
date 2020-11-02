@@ -1,15 +1,14 @@
-package com.android.academy.fundamentals.solutions
+package com.android.academy.fundamentals
 
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.android.academy.fundamentals.R
 
 class SecondActivity_Solution : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second)
+        setContentView(R.layout.activity_second_solution)
 
         val transmittedString = intent.getStringExtra(TRANSMITTED_STRING)
         val transmittedInt = intent.getIntExtra(TRANSMITTED_INT, -1)
