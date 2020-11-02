@@ -88,7 +88,7 @@
             android:gravity="start"
             android:text="@string/solutions_button_red_text"
             android:background="@color/colorLightGray"
-            tools:ignore="NestedWeights" />
+            />
 
         <TextView
             android:layout_weight="1"
