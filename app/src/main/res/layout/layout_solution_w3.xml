@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
  To Run this layout:
  MainActivity -> onCreate() -> setContentView() -> replace: R.layout.activity_main with R.layout.layout_solution_w3
@@ -10,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    android:background="@color/backgroundContainer"
+    android:background="@color/colorBackgroundContainer"
     tools:context=".MainActivity">
 
     <TextView
@@ -26,6 +27,7 @@
         android:textColor="@color/colorWhite"
         android:background="@color/colorMyGray"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontalBoxTwoTop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
@@ -38,6 +40,14 @@
         app:layout_constraintGuide_percent="0.5"
         />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierHorizontalBoxTwoTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvBoxOne"
+        />
+
     <TextView
         android:id="@+id/tvBoxTwo"
         android:layout_width="0dp"
@@ -47,11 +57,11 @@
         android:gravity="center"
         android:text="@string/solutions_box_two_text"
         android:textColor="@color/colorWhite"
-        android:background="@color/colorMyRed"
-        app:layout_constraintTop_toBottomOf="@+id/tvBoxOne"
-        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/guideVerticalMiddle"
+        android:background="@color/colorMyYellow"
+        app:layout_constraintTop_toBottomOf="@+id/barrierHorizontalBoxTwoTop"
+        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontalBoxTwoBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideVerticalMiddle"
         />
 
     <TextView
@@ -64,9 +74,10 @@
         android:text="@string/solutions_box_three_text"
         android:textColor="@color/colorWhite"
         android:background="@color/colorMyRed"
-        app:layout_constraintTop_toBottomOf="@+id/tvBoxOne"
-        app:layout_constraintLeft_toRightOf="@+id/guideVerticalMiddle"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barrierHorizontalBoxTwoTop"
+        app:layout_constraintBottom_toTopOf="@+id/tvBoxFour"
+        app:layout_constraintStart_toEndOf="@+id/guideVerticalMiddle"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <TextView
@@ -78,10 +89,11 @@
         android:gravity="center_vertical"
         android:text="@string/solutions_box_four_text"
         android:textColor="@color/colorWhite"
-        android:background="@color/colorMyYellow"
+        android:background="@color/colorMyGreen"
         app:layout_constraintTop_toBottomOf="@+id/tvBoxThree"
-        app:layout_constraintLeft_toRightOf="@+id/guideVerticalMiddle"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvBoxFive"
+        app:layout_constraintStart_toEndOf="@+id/guideVerticalMiddle"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <TextView
@@ -93,15 +105,15 @@
         android:gravity="center_vertical"
         android:text="@string/solutions_box_five_text"
         android:textColor="@color/colorWhite"
-        android:background="@color/colorMyGreen"
+        android:background="@color/colorMyBlue"
         app:layout_constraintTop_toBottomOf="@+id/tvBoxFour"
-        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontal"
-        app:layout_constraintLeft_toRightOf="@+id/guideVerticalMiddle"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontalBoxTwoBottom"
+        app:layout_constraintStart_toEndOf="@+id/guideVerticalMiddle"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrierHorizontal"
+        android:id="@+id/barrierHorizontalBoxTwoBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
@@ -118,8 +130,8 @@
         android:text="@string/solutions_button_red_text"
         android:background="@color/colorLightGray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/tvYellow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvYellow"
         />
 
     <TextView
@@ -132,8 +144,8 @@
         android:text="@string/solutions_button_yellow_text"
         android:background="@color/colorLightGray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tvRed"
-        app:layout_constraintRight_toLeftOf="@+id/tvGreen"
+        app:layout_constraintStart_toEndOf="@+id/tvRed"
+        app:layout_constraintEnd_toStartOf="@+id/tvGreen"
         />
 
     <TextView
@@ -146,8 +158,8 @@
         android:text="@string/solutions_button_green_text"
         android:background="@color/colorLightGray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tvYellow"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvYellow"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

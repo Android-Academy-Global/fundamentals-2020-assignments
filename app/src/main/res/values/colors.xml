@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="backgroundContainer">@color/colorMoonYellow</color>
+    <color name="colorBackgroundContainer">@color/colorMoonYellow</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -15,8 +15,9 @@
 
     <color name="colorMyGray">#444444</color>
     <color name="colorLightGray">#D6D7D7</color>
-    <color name="colorMyGreen">#12C700</color>
     <color name="colorMyRed">#E54304</color>
+    <color name="colorMyGreen">#12C700</color>
+    <color name="colorMyBlue">#425A73</color>
     <color name="colorMyYellow">#FFC107</color>
     <color name="colorMoonYellow">#FDF8DF</color>
 

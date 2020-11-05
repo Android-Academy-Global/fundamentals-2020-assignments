@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
  To Run this layout:
  MainActivity -> onCreate() -> setContentView() -> replace: R.layout.activity_main with R.layout.layout_solution_w2
@@ -10,13 +11,13 @@
     android:layout_height="match_parent"
     android:padding="8dp"
     android:orientation="vertical"
-    android:background="@color/backgroundContainer"
+    android:background="@color/colorBackgroundContainer"
     tools:context=".MainActivity"
     >
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:padding="16dp"
         android:gravity="center_vertical|center_horizontal"
@@ -41,7 +42,7 @@
             android:padding="8dp"
             android:layout_gravity="end"
             android:gravity="top"
-            android:text="@string/solutions_box_three_text"
+            android:text="@string/solutions_box_two_text"
             android:textColor="@color/colorWhite"
             android:background="@color/colorMyRed"
             />
@@ -53,7 +54,7 @@
             android:padding="8dp"
             android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:text="@string/solutions_box_four_text"
+            android:text="@string/solutions_box_three_text"
             android:textColor="@color/colorWhite"
             android:background="@color/colorMyYellow"
             />
@@ -61,20 +62,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="64dp"
-            android:layout_margin="8dp"
-            android:padding="8dp"
             android:layout_gravity="start"
-            android:gravity="bottom"
-            android:text="@string/solutions_box_five_text"
-            android:textColor="@color/colorWhite"
+            android:layout_margin="8dp"
             android:background="@color/colorMyGreen"
-            />
+            android:gravity="bottom"
+            android:padding="8dp"
+            android:text="@string/solutions_box_three_text"
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="96dp"
         android:orientation="horizontal"
         >
 
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:padding="8dp"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
             android:gravity="start"
             android:text="@string/solutions_button_red_text"
             android:background="@color/colorLightGray"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:padding="8dp"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="top"
             android:gravity="center"
             android:text="@string/solutions_button_yellow_text"
             android:background="@color/colorLightGray"
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:padding="8dp"
-            android:layout_gravity="top"
+            android:layout_gravity="center_vertical"
             android:gravity="end"
             android:text="@string/solutions_button_green_text"
             android:background="@color/colorLightGray"
