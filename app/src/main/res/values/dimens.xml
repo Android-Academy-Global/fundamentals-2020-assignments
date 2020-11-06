@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="general_space_epic">48dp</dimen>
+    <dimen name="general_space_huge">40dp</dimen>
+    <dimen name="general_space_giant">36dp</dimen>
+    <dimen name="general_space_xxxlarge">32dp</dimen>
+    <dimen name="general_space_xxlarge">30dp</dimen>
+    <dimen name="general_space_xlarge">24dp</dimen>
+    <dimen name="general_space_large">20dp</dimen>
+    <dimen name="general_space_normal">16dp</dimen>
+    <dimen name="general_space_small">12dp</dimen>
+    <dimen name="general_space_xsmall">10dp</dimen>
+    <dimen name="general_space_xxsmall">8dp</dimen>
+    <dimen name="general_space_xxxsmall">6dp</dimen>
+    <dimen name="general_space_tiny">4dp</dimen>
+    <dimen name="general_space_micro">2dp</dimen>
+    <dimen name="general_space_nano">1dp</dimen>
+
+    <!-- SolutionTwoScreen -->
+    <dimen name="solution_two_bottom_menu_height">96dp</dimen>
+    <dimen name="solution_two_content_box_height">64dp</dimen>
+    <!-- SolutionTwoScreen -->
+
+    <!-- SolutionThreeScreen -->
+    <dimen name="solution_three_title_height">64dp</dimen>
+    <!-- SolutionThreeScreen -->
+
+</resources>

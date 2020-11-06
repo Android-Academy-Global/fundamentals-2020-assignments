@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+    android:padding="@dimen/general_space_small"
     android:orientation="vertical"
     android:background="@color/colorBackgroundContainer"
     tools:context=".MainActivity"
@@ -18,13 +18,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:padding="16dp"
+        android:layout_margin="@dimen/general_space_small"
+        android:padding="@dimen/general_space_normal"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="@string/solutions_box_one_text"
         android:textColor="@color/colorWhite"
+        android:text="@string/solutions_box_one_text"
         android:background="@color/colorMyGray"
         />
 
@@ -35,79 +35,58 @@
         android:orientation="vertical"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="64dp"
-            android:layout_margin="8dp"
-            android:padding="8dp"
+        <TextView style="@style/View.ContentBox.Tall"
             android:layout_gravity="end"
             android:gravity="top"
             android:text="@string/solutions_box_two_text"
-            android:textColor="@color/colorWhite"
             android:background="@color/colorMyRed"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="64dp"
-            android:layout_margin="8dp"
-            android:padding="8dp"
+        <TextView style="@style/View.ContentBox.Tall"
             android:layout_gravity="center"
             android:gravity="center_vertical"
             android:text="@string/solutions_box_three_text"
-            android:textColor="@color/colorWhite"
             android:background="@color/colorMyYellow"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="64dp"
+        <TextView style="@style/View.ContentBox.Tall"
             android:layout_gravity="start"
-            android:layout_margin="8dp"
-            android:background="@color/colorMyGreen"
             android:gravity="bottom"
-            android:padding="8dp"
             android:text="@string/solutions_box_three_text"
-            android:textColor="@color/colorWhite" />
+            android:background="@color/colorMyGreen"
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="@dimen/solution_two_bottom_menu_height"
         android:orientation="horizontal"
         >
 
-        <TextView
+        <TextView style="@style/View.TextButton"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
+            android:layout_margin="@dimen/general_space_small"
             android:layout_gravity="center_vertical"
             android:gravity="start"
             android:text="@string/solutions_button_red_text"
             android:background="@color/colorLightGray"
             />
 
-        <TextView
+        <TextView style="@style/View.TextButton"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
+            android:layout_margin="@dimen/general_space_small"
+            android:padding="@dimen/general_space_small"
             android:layout_gravity="top"
             android:gravity="center"
             android:text="@string/solutions_button_yellow_text"
             android:background="@color/colorLightGray"
             />
 
-        <TextView
+        <TextView style="@style/View.TextButton"
             android:layout_weight="2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
+            android:layout_margin="@dimen/general_space_small"
+            android:padding="@dimen/general_space_small"
             android:layout_gravity="center_vertical"
             android:gravity="end"
             android:text="@string/solutions_button_green_text"
