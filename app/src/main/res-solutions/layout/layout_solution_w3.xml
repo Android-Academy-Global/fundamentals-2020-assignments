@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ To Run this layout:
+ MainActivity -> onCreate() -> setContentView() -> replace: R.layout.activity_main with R.layout.layout_solution_w3
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:background="@color/backgroundContainer"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvBoxOne"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:padding="16dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="@string/solutions_box_one_text"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorMyGray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideVerticalMiddle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        />
+
+    <TextView
+        android:id="@+id/tvBoxTwo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:gravity="center"
+        android:text="@string/solutions_box_two_text"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorMyRed"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoxOne"
+        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideVerticalMiddle"
+        />
+
+    <TextView
+        android:id="@+id/tvBoxThree"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:text="@string/solutions_box_three_text"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorMyRed"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoxOne"
+        app:layout_constraintLeft_toRightOf="@+id/guideVerticalMiddle"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvBoxFour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:text="@string/solutions_box_four_text"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorMyYellow"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoxThree"
+        app:layout_constraintLeft_toRightOf="@+id/guideVerticalMiddle"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvBoxFive"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:text="@string/solutions_box_five_text"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorMyGreen"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoxFour"
+        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontal"
+        app:layout_constraintLeft_toRightOf="@+id/guideVerticalMiddle"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvBoxTwo, tvBoxFive"
+        />
+
+    <TextView
+        android:id="@+id/tvRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:gravity="center"
+        android:text="@string/solutions_button_red_text"
+        android:background="@color/colorLightGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tvYellow"
+        />
+
+    <TextView
+        android:id="@+id/tvYellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:gravity="center"
+        android:text="@string/solutions_button_yellow_text"
+        android:background="@color/colorLightGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tvRed"
+        app:layout_constraintRight_toLeftOf="@+id/tvGreen"
+        />
+
+    <TextView
+        android:id="@+id/tvGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:gravity="center"
+        android:text="@string/solutions_button_green_text"
+        android:background="@color/colorLightGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tvYellow"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
