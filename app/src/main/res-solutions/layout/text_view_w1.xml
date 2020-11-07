@@ -2,10 +2,9 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="5dp"
-    android:background="@drawable/ic_android_studio"
-    android:text="@string/app_name"
-    android:textColor="@color/colorMyGreen">
-
-</TextView>
+    android:layout_marginStart="24dp"
+    android:layout_marginTop="16dp"
+    android:background="#12C700"
+    android:text="This is my first\nTextView"
+    android:textColor="#FFFFFF"
+    android:textSize="24sp"/>

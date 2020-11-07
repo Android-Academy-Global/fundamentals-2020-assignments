@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <EditText xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</EditText>
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp"
+    android:background="#FFC107"
+    android:hint="mail@mail.com"
+    android:padding="16dp"
+    android:textColorHint="#FF2344"
+    android:inputType="textEmailAddress" />
