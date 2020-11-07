@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/general_space_small"
+    android:padding="@dimen/space_3x"
     android:orientation="vertical"
     android:background="@color/colorBackgroundContainer"
     tools:context=".MainActivity"
@@ -18,8 +18,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/general_space_small"
-        android:padding="@dimen/general_space_normal"
+        android:layout_margin="@dimen/space_3x"
+        android:padding="@dimen/space_4x"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -35,23 +35,38 @@
         android:orientation="vertical"
         >
 
-        <TextView style="@style/View.ContentBox.Tall"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/solution_two_content_box_height"
+            android:layout_margin="@dimen/space_3x"
+            android:padding="@dimen/space_3x"
             android:layout_gravity="end"
             android:gravity="top"
+            android:textColor="@color/colorWhite"
             android:text="@string/solutions_box_two_text"
             android:background="@color/colorMyRed"
             />
 
-        <TextView style="@style/View.ContentBox.Tall"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/solution_two_content_box_height"
+            android:layout_margin="@dimen/space_3x"
+            android:padding="@dimen/space_3x"
             android:layout_gravity="center"
             android:gravity="center_vertical"
+            android:textColor="@color/colorWhite"
             android:text="@string/solutions_box_three_text"
             android:background="@color/colorMyYellow"
             />
 
-        <TextView style="@style/View.ContentBox.Tall"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/solution_two_content_box_height"
+            android:layout_margin="@dimen/space_3x"
+            android:padding="@dimen/space_3x"
             android:layout_gravity="start"
             android:gravity="bottom"
+            android:textColor="@color/colorWhite"
             android:text="@string/solutions_box_three_text"
             android:background="@color/colorMyGreen"
             />
@@ -64,29 +79,36 @@
         android:orientation="horizontal"
         >
 
-        <TextView style="@style/View.TextButton"
+        <TextView
             android:layout_weight="1"
-            android:layout_margin="@dimen/general_space_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_3x"
+            android:padding="@dimen/space_3x"
             android:layout_gravity="center_vertical"
             android:gravity="start"
             android:text="@string/solutions_button_red_text"
             android:background="@color/colorLightGray"
             />
 
-        <TextView style="@style/View.TextButton"
+        <TextView
             android:layout_weight="1"
-            android:layout_margin="@dimen/general_space_small"
-            android:padding="@dimen/general_space_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_3x"
+            android:padding="@dimen/space_3x"
             android:layout_gravity="top"
             android:gravity="center"
             android:text="@string/solutions_button_yellow_text"
             android:background="@color/colorLightGray"
             />
 
-        <TextView style="@style/View.TextButton"
+        <TextView
             android:layout_weight="2"
-            android:layout_margin="@dimen/general_space_small"
-            android:padding="@dimen/general_space_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_3x"
+            android:padding="@dimen/space_3x"
             android:layout_gravity="center_vertical"
             android:gravity="end"
             android:text="@string/solutions_button_green_text"
