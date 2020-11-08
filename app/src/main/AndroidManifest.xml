@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.fundamentals">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+        <activity android:name=".task_two.WS2TaskFirstActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+
+            android:name=".task_two.WS2TaskSecondActivity"
+            android:launchMode="singleInstance">
+
+        </activity>
+
+        <activity
+            android:name=".task_two.WS2TaskThirdActivity"
+            android:taskAffinity="ru.ermolnik.ui_components.task_2" />
+
+        <activity
+            android:name=".task_two.WS2TaskFourthActivity"
+            android:launchMode="singleInstance"
+            android:taskAffinity="ru.ermolnik.ui_components.task_4" />
+
+    </application>
+
+</manifest>
