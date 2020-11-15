@@ -1,5 +1,16 @@
 <resources>
-    <string name="app_name">My Application</string>
+
+    <string name="app_name">UI Components</string>
+
+    <!-- WS01 -->
+    <string name="ws01_step01_activity_title">Screen rotation</string>
+    <string name="ws01_step01_activity_counter_text">The value is: %d</string>
+    <string name="ws01_step01_activity_button_text">Increment</string>
+
+    <string name="ws01_step02_activity_default_title">Default activity</string>
+    <string name="ws01_step03_activity_outer_title">Outer activity</string>
+    <!-- WS01 -->
+
     <string name="root_fragment">Root fragment</string>
     <string name="increment_value">Increment value</string>
     <string name="change_background">Change background</string>
@@ -9,4 +20,5 @@
     <string name="replace_with_green_fragment">Replace with green fragment</string>
     <string name="remove_last_fragment">Remove last fragment</string>
     <string name="add_to_back_stack">Add to back stack</string>
+
 </resources>
