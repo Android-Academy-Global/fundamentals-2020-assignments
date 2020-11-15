@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".workshop01.task.WS01Step01AssignmentActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_incrementer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -13,10 +13,11 @@
         >
 
         <activity
-            android:name=".workshop01.done.WS01Step01SolutionActivity"
+            android:name=".workshop01.task.WS01Step01AssignmentActivity"
             android:label="@string/ws01_step01_activity_title"
             android:icon="@mipmap/ic_launcher_ws01_step01"
             android:roundIcon="@mipmap/ic_launcher_ws01_step01_round"
+            android:taskAffinity="com.android.fundamentals.workshop01.WS01Step01.ScreenRotationActivity"
             >
 
             <intent-filter>
@@ -26,10 +27,11 @@
         </activity>
 
         <activity
-            android:name=".workshop01.done.WS01Step02SolutionDefaultMainActivity"
-            android:label="@string/ws01_step02_activity_default_title"
+            android:name=".workshop01.WS01Step02ActivityA"
+            android:label="@string/ws01_step02_activity_a_title"
             android:icon="@mipmap/ic_launcher_ws01_step02"
             android:roundIcon="@mipmap/ic_launcher_ws01_step02_round"
+            android:launchMode="standard"
             >
 
             <intent-filter>
@@ -39,11 +41,29 @@
         </activity>
 
         <activity
-            android:name=".workshop01.WS01Step03SolutionOuterActivity"
+            android:name=".workshop01.WS01Step02ActivityB"
+            android:label="@string/ws01_step02_activity_b_title"
+            android:launchMode="standard"
+            />
+
+        <activity
+            android:name=".workshop01.WS01Step02ActivityC"
+            android:label="@string/ws01_step02_activity_c_title"
+            android:launchMode="standard"
+            />
+
+        <activity
+            android:name=".workshop01.WS01Step02ActivityD"
+            android:label="@string/ws01_step02_activity_d_title"
+            android:launchMode="standard"
+            />
+
+        <activity
+            android:name=".workshop01.WS01Step03OuterActivity"
             android:label="@string/ws01_step03_activity_outer_title"
             android:icon="@mipmap/ic_launcher_ws01_step03"
             android:roundIcon="@mipmap/ic_launcher_ws01_step03_round"
-            android:taskAffinity="com.android.fundamentals.workshop01.WS01Step03SolutionOuterActivity.uniqueTask"
+            android:taskAffinity="com.android.fundamentals.workshop01.WS01Step03.OuterActivity"
             >
 
             <intent-filter>

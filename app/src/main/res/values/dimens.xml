@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- WS01 -->
+    <!-- Sizes -->
+    <dimen name="ws01_step02_activity_title_size">280dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="ws01_step02_activity_title_sp">40sp</dimen>
+    <!-- WS01 -->
+
+</resources>
