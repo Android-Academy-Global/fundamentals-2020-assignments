@@ -1,14 +1,12 @@
-package com.android.fundamentals.task_fragments
+package com.android.fundamentals.task_three
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import com.android.fundamentals.R
 
 class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFragmentClicks {
 
     private val rootFragment = RootFragmentWS3().apply { setClickListener(this@ActivityFragmentWSD3) }
-    private val fragmentManager = supportFragmentManager
     private var countId: Int = 0
     private var addBackStack:Boolean = false
 
@@ -32,9 +30,9 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
     //TODO(W3:5) add addToBackStack check
     override fun addRedFragment() {
         countId++
-        fragmentManager.beginTransaction().apply {
-            add(R.id.fragments_container ,SecondFragmentWS3.newInstance(countId, R.color.red))
-            if(addBackStack) addToBackStack(null)
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.fragments_container, SecondFragmentWS3.newInstance(countId, R.color.red))
+            if (addBackStack) addToBackStack(null)
             commit()
         }
     }
@@ -43,9 +41,9 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
     //TODO(W3:5) add addToBackStack check
     override fun addBlueFragment() {
         countId++
-        fragmentManager.beginTransaction().apply {
-            add(R.id.fragments_container ,SecondFragmentWS3.newInstance(countId, R.color.blue))
-            if(addBackStack) addToBackStack(null)
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.fragments_container, SecondFragmentWS3.newInstance(countId, R.color.blue))
+            if (addBackStack) addToBackStack(null)
             commit()
         }
     }
@@ -53,11 +51,11 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
     //TODO(W3:3) Remove fragment
     //TODO(W3:5) add addToBackStack check
     override fun removeLast() {
-        if (fragmentManager.fragments.size > 1) {
-            val lastFragment = fragmentManager.fragments.last()
-            fragmentManager.beginTransaction().apply {
+        if (supportFragmentManager.fragments.size > 1) {
+            val lastFragment = supportFragmentManager.fragments.last()
+            supportFragmentManager.beginTransaction().apply {
                 remove(lastFragment)
-                if(addBackStack) addToBackStack(null)
+                if (addBackStack) addToBackStack(null)
                 commit()
             }
         }
@@ -67,9 +65,12 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
     //TODO(W3:5) add addToBackStack check
     override fun replaceFragment() {
         countId++
-        fragmentManager.beginTransaction().apply {
-            replace(R.id.fragments_container ,SecondFragmentWS3.newInstance(countId, R.color.green))
-            if(addBackStack) addToBackStack(null)
+        supportFragmentManager.beginTransaction().apply {
+            replace(
+                R.id.fragments_container,
+                SecondFragmentWS3.newInstance(countId, R.color.green)
+            )
+            if (addBackStack) addToBackStack(null)
             commit()
         }
     }

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".task_four.task.WS4TaskMainActvity">
+        <activity android:name=".task_four.task.WS4TaskMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,30 +18,14 @@
         </activity>
 
 
-        <activity
-
-            android:name=".task_two.WS2TaskSecondActivity"
-            android:launchMode="singleInstance">
-
-        </activity>
-
-        <activity
-            android:name=".task_two.WS2TaskThirdActivity"
-            android:taskAffinity="ru.ermolnik.ui_components.task_2" />
-
-        <activity
-            android:name=".task_two.WS2TaskFourthActivity"
-            android:launchMode="singleInstance"
-            android:taskAffinity="ru.ermolnik.ui_components.task_4" />
-
-        <activity android:name=".task_fragments.ActivityFragmentWS2">
+        <activity android:name=".task_two.ActivityFragmentWS2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".task_fragments.ActivityFragmentWS3">
+        <activity android:name=".task_three.ActivityFragmentWS3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

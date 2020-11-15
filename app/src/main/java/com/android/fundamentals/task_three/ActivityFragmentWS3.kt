@@ -1,14 +1,12 @@
-package com.android.fundamentals.task_fragments
+package com.android.fundamentals.task_three
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import com.android.fundamentals.R
 
 class ActivityFragmentWS3 : AppCompatActivity(), RootFragmentWS3.TransactionsFragmentClicks {
 
     private val rootFragment = RootFragmentWS3().apply { setClickListener(this@ActivityFragmentWS3) }
-    private val fragmentManager = supportFragmentManager
     private var countId: Int = 0
     private var addBackStack:Boolean = false
 
@@ -44,7 +42,7 @@ class ActivityFragmentWS3 : AppCompatActivity(), RootFragmentWS3.TransactionsFra
 
 
     override fun removeLast() {
-        if (fragmentManager.fragments.size > 1) {
+        if (supportFragmentManager.fragments.size > 1) {
             //TODO(W3:3) Remove fragment
             //TODO(W3:5) add addToBackStack check
         }

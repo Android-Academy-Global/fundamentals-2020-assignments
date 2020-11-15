@@ -3,18 +3,16 @@ package com.android.fundamentals.task_four.done
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.DatePicker
-import android.widget.TimePicker
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
 import com.android.fundamentals.task_four.SampleBottomSheet
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
-class WS4DoneMainActvity : AppCompatActivity() {
+class WS4DoneMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ws4)
@@ -62,13 +60,13 @@ class WS4DoneMainActvity : AppCompatActivity() {
                 val minute = c.get(Calendar.MINUTE)
 
                 val timePickerDialog = TimePickerDialog(
-                    this@WS4DoneMainActvity,
-                    object : TimePickerDialog.OnTimeSetListener {
-                        override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
-
-                            Snackbar.make(rootView, "you choosed $p1:$p2", Snackbar.LENGTH_SHORT).show()
-
-                        }
+                    this@WS4DoneMainActivity,
+                    { p0, p1, p2 ->
+                        Snackbar.make(
+                            rootView,
+                            "you choosed $p1:$p2",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
                     },
                     hour,
                     minute,
@@ -87,13 +85,13 @@ class WS4DoneMainActvity : AppCompatActivity() {
                 val day = c.get(Calendar.DAY_OF_MONTH)
 
                 val datePickerDialog = DatePickerDialog(
-                    this@WS4DoneMainActvity,
-                    object : DatePickerDialog.OnDateSetListener {
-                        override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
-
-                            Snackbar.make(rootView, "you choosed $p3/$p2/$p1", Snackbar.LENGTH_SHORT).show()
-
-                        }
+                    this@WS4DoneMainActivity,
+                    { p0, p1, p2, p3 ->
+                        Snackbar.make(
+                            rootView,
+                            "you choosed $p3/$p2/$p1",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
                     },
                     year,
                     month,

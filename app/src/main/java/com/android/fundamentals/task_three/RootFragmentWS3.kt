@@ -1,4 +1,4 @@
-package com.android.fundamentals.task_fragments
+package com.android.fundamentals.task_three
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import com.android.fundamentals.R
 
 class RootFragmentWS3 : Fragment() {
-
 
     private var btnAddNewRedFragment: Button? = null
     private var btnAddNewBlueFragment: Button? = null
@@ -47,7 +46,7 @@ class RootFragmentWS3 : Fragment() {
 
     }
 
-    fun setClickListener(l: TransactionsFragmentClicks?){
+    fun setClickListener(l: TransactionsFragmentClicks?) {
         listener = l
     }
 

@@ -1,13 +1,13 @@
-package com.android.fundamentals.task_fragments
+package com.android.fundamentals.task_two
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
 
 //TODO(W2:9) Implement interface in Activity
-class ActivityFragmentWS2 : AppCompatActivity() {
+class ActivityFragmentWSD2 : AppCompatActivity(), RootFragmentWSD2.ClickListener {
 
-    //TODO(W2:9) Create root fragment and set listener
+    private val rootFragment = RootFragmentWSD2().apply { setListener(this@ActivityFragmentWSD2) }
     private val secondFragment = SecondFragmentWS2()
 
 
@@ -21,14 +21,20 @@ class ActivityFragmentWS2 : AppCompatActivity() {
 
 
         fragmentTransaction.apply {
-            //TODO(W2:3) Add the Fragment to the R.id.persistent_container FrameLayout
-            //add(R.id.persistent_container, rootFragment)
+            //TODO(W2:3) Add the Fragment to the FrameLayout
+            add(R.id.persistent_container, rootFragment)
             add(R.id.fragments_container, secondFragment)
             commit()
         }
     }
 
     //TODO(W2:10) Change the text in secondFragment
-    //TODO(W2:11) Change fragment text background in secondFragment
+    override fun increaseValue() {
+        secondFragment.increaseValue()
+    }
 
+    //TODO(W2:11) Change fragment text background in secondFragment
+    override fun changeBackground() {
+        secondFragment.changeBackground()
+    }
 }
