@@ -1,8 +1,10 @@
-package com.android.fundamentals.task_three
+package com.android.fundamentals.task_three.done
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
+import com.android.fundamentals.task_three.RootFragmentWS3
+import com.android.fundamentals.task_three.SecondFragmentWS3
 
 class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFragmentClicks {
 
@@ -21,13 +23,10 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
         }
     }
 
-    //TODO(W3:5) add addToBackStack check
     override fun addToBackStack(value: Boolean) {
         addBackStack = value
     }
 
-    //TODO(W3:1) Add red fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
-    //TODO(W3:5) add addToBackStack check
     override fun addRedFragment() {
         countId++
         supportFragmentManager.beginTransaction().apply {
@@ -37,8 +36,6 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
         }
     }
 
-    //TODO(W3:2) Add blue fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
-    //TODO(W3:5) add addToBackStack check
     override fun addBlueFragment() {
         countId++
         supportFragmentManager.beginTransaction().apply {
@@ -48,8 +45,6 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
         }
     }
 
-    //TODO(W3:3) Remove fragment
-    //TODO(W3:5) add addToBackStack check
     override fun removeLast() {
         if (supportFragmentManager.fragments.size > 1) {
             val lastFragment = supportFragmentManager.fragments.last()
@@ -61,8 +56,6 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
         }
     }
 
-    //TODO(W3:4) Replace current fragment green fragment SecondFragmentWS3.newInstance(countId, R.color.green)
-    //TODO(W3:5) add addToBackStack check
     override fun replaceFragment() {
         countId++
         supportFragmentManager.beginTransaction().apply {
@@ -74,6 +67,5 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
             commit()
         }
     }
-
 
 }

@@ -1,8 +1,9 @@
-package com.android.fundamentals.task_three
+package com.android.fundamentals.task_three.task
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
+import com.android.fundamentals.task_three.RootFragmentWS3
 
 class ActivityFragmentWS3 : AppCompatActivity(), RootFragmentWS3.TransactionsFragmentClicks {
 
