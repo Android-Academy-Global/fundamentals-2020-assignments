@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="root_fragment">Root fragment</string>
+    <string name="increment_value">Increment value</string>
+    <string name="change_background">Change background</string>
+    <string name="second_fragment">Second fragment</string>
+    <string name="add_red_fragment">Add red fragment</string>
+    <string name="add_blue_fragment">Add blue fragment</string>
+    <string name="replace_with_green_fragment">Replace with green fragment</string>
+    <string name="remove_last_fragment">Remove last fragment</string>
+    <string name="add_to_back_stack">Add to back stack</string>
 </resources>
