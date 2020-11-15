@@ -1,37 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.fundamentals">
 
     <application
+        android:theme="@style/Theme.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
-        <activity android:name=".task_four.task.WS4TaskMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".workshop01.done.WS01Step01SolutionActivity"
+            android:label="@string/ws01_step01_activity_title"
+            android:icon="@mipmap/ic_launcher_ws01_step01"
+            android:roundIcon="@mipmap/ic_launcher_ws01_step01_round"
+            >
 
-
-        <activity android:name=".task_two.task.ActivityFragmentWS2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".task_three.task.ActivityFragmentWS3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".workshop01.done.WS01Step02SolutionDefaultMainActivity"
+            android:label="@string/ws01_step02_activity_default_title"
+            android:icon="@mipmap/ic_launcher_ws01_step02"
+            android:roundIcon="@mipmap/ic_launcher_ws01_step02_round"
+            >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".workshop01.WS01Step03SolutionOuterActivity"
+            android:label="@string/ws01_step03_activity_outer_title"
+            android:icon="@mipmap/ic_launcher_ws01_step03"
+            android:roundIcon="@mipmap/ic_launcher_ws01_step03_round"
+            android:taskAffinity="com.android.fundamentals.workshop01.WS01Step03SolutionOuterActivity.uniqueTask"
+            >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".workshop02.task.ActivityFragmentWS2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".workshop03.task.ActivityFragmentWS3">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".workshop04.task.WS4TaskMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 

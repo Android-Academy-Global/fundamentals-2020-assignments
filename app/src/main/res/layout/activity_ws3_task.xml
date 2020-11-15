@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".task_one.task.WS1TaskMainActivity">
+    tools:context=".workshop01.task.WS01Step01AssignmentActivity">
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
