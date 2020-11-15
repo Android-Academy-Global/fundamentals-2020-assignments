@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".task_two.WS2TaskFirstActivity">
+        <activity android:name=".task_four.task.WS4TaskMainActvity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

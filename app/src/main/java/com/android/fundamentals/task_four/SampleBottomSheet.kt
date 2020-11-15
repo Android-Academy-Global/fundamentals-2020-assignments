@@ -20,11 +20,4 @@ class SampleBottomSheet : BottomSheetDialogFragment() {
             )
         )
     }
-
-    override fun onStart() {
-        super.onStart()
-        val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
-        val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
-        dialog?.window?.setLayout(width, height)
-    }
 }
