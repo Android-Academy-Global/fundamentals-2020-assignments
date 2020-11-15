@@ -4,6 +4,7 @@
 
     <!-- WS01 -->
     <string name="ws01_step01_activity_title">Screen rotation</string>
+    <string name="ws01_step01_activity_counter_text">The value is: %d</string>
     <string name="ws01_step01_activity_button_text">Increment</string>
 
     <string name="ws01_step02_activity_default_title">Default activity</string>

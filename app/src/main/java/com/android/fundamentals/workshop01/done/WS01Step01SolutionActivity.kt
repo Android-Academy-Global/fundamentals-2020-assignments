@@ -20,7 +20,7 @@ class WS01Step01SolutionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ws01_step01)
 
         setupUi()
-        savedInstanceState.ifNull {
+        if (savedInstanceState == null) {
             updateData(counter)
         }
     }
@@ -56,14 +56,8 @@ class WS01Step01SolutionActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateData(counter: Int) {
-        tvValue?.text = "The value is: $counter"
-    }
-}
-
-private fun <T> T?.ifNull(block: () -> Unit) {
-    if (this == null) {
-        block()
+    private fun updateData(value: Int) {
+        tvValue?.text = getString(R.string.ws01_step01_activity_counter_text, value)
     }
 }
 

@@ -25,7 +25,7 @@ class WS01Step01AssignmentActivity : AppCompatActivity() {
         // Find view in layout by id and init view property
         tvValue = findViewById<TextView>(R.id.tv_value).apply {
             // Set initial text
-            text = "The value is: $counter"
+            text = getString(R.string.ws01_step01_activity_counter_text, counter)
         }
 
         // Find view in layout by id and init button property
@@ -35,7 +35,7 @@ class WS01Step01AssignmentActivity : AppCompatActivity() {
                 // It will increment click counter
                 counter++
                 // And update text value on screen
-                tvValue?.text = "The value is $counter"
+                tvValue?.text = getString(R.string.ws01_step01_activity_counter_text, counter)
             }
         }
     }
