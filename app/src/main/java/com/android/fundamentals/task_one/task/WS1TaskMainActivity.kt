@@ -28,5 +28,4 @@ class WS1TaskMainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

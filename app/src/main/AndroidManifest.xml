@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.fundamentals">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.fundamentals" >
 
     <application
         android:allowBackup="true"
@@ -9,21 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity android:name=".task_two.WS2TaskFirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".task_one.done.WS1DoneMainActivity"
+            >
+        </activity>
 
         <activity
-
             android:name=".task_two.WS2TaskSecondActivity"
-            android:launchMode="singleInstance">
-
-        </activity>
+            android:launchMode="singleInstance" />
 
         <activity
             android:name=".task_two.WS2TaskThirdActivity"
