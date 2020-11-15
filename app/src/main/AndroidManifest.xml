@@ -52,21 +52,36 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".workshop02.task.ActivityFragmentWS2">
+        <activity
+            android:name=".workshop02.task.ActivityFragmentWS2"
+            android:icon="@mipmap/ic_launcher_ws02_step01"
+            android:roundIcon="@mipmap/ic_launcher_ws02_step01_round"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".workshop03.task.ActivityFragmentWS3">
+        <activity
+            android:name=".workshop03.task.ActivityFragmentWS3"
+            android:icon="@mipmap/ic_launcher_ws03_step01"
+            android:roundIcon="@mipmap/ic_launcher_ws03_step01_round"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".workshop04.task.WS4TaskMainActivity">
+        <activity
+            android:name=".workshop04.task.WS4TaskMainActivity"
+            android:icon="@mipmap/ic_launcher_ws04_step01"
+            android:roundIcon="@mipmap/ic_launcher_ws04_step01_round"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
