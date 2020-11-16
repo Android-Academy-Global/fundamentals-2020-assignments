@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".workshop01.WS01Step02SolutionActivityD">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="@dimen/ws01_step02_activity_title_size"
+        android:layout_height="@dimen/ws01_step02_activity_title_size"
+        android:gravity="center"
+        android:textSize="@dimen/ws01_step02_activity_title_sp"
+        android:text="@string/ws01_step02_activity_d_title"
+        android:textColor="@color/white"
+        android:background="@color/colorColdYellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_d_start_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/ws01_step02_activity_d_button_a_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_d_start_b"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_d_start_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/ws01_step02_activity_d_button_b_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_d_start_a"
+        app:layout_constraintEnd_toStartOf="@+id/btn_d_start_c"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_d_start_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/ws01_step02_activity_d_button_c_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_d_start_b"
+        app:layout_constraintEnd_toStartOf="@+id/btn_d_start_d"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_d_start_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/ws01_step02_activity_d_button_d_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_d_start_c"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,17 +2,17 @@ package com.android.fundamentals.workshop01.done
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
 import com.android.fundamentals.R
 
 class WS01Step01SolutionActivity : AppCompatActivity() {
 
     private var counter = 0
 
-    private var tvValue: TextView? = null
-    private var btnIncrementer: Button? = null
+    private var tvValue: AppCompatTextView? = null
+    private var btnIncrementer: AppCompatButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "$LOG_PREFIX::onCreate")
@@ -48,7 +48,7 @@ class WS01Step01SolutionActivity : AppCompatActivity() {
     private fun setupUi() {
         tvValue = findViewById(R.id.tv_value)
 
-        btnIncrementer = findViewById<Button>(R.id.btn_incrementer).apply {
+        btnIncrementer = findViewById<AppCompatButton>(R.id.btn_incrementer).apply {
             setOnClickListener {
                 counter++
                 updateData(counter)
@@ -62,5 +62,5 @@ class WS01Step01SolutionActivity : AppCompatActivity() {
 }
 
 private const val KEY_COUNT_ARGUMENT = "KEY_COUNT_ARGUMENT"
-private const val TAG = "WS01Step01SolutionActivity"
+private const val TAG = "WS01Step01Activity"
 private const val LOG_PREFIX = "WS01ST01"

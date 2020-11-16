@@ -2,9 +2,9 @@ package com.android.fundamentals.workshop01.task
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
 import com.android.fundamentals.R
 
 class WS01Step01AssignmentActivity : AppCompatActivity() {
@@ -13,8 +13,8 @@ class WS01Step01AssignmentActivity : AppCompatActivity() {
     private var counter = 0
 
     // These are views
-    private var tvValue: TextView? = null
-    private var btnIncrementer: Button? = null
+    private var tvValue: AppCompatTextView? = null
+    private var btnIncrementer: AppCompatButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Logging onCreate()
@@ -23,13 +23,13 @@ class WS01Step01AssignmentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ws01_step01)
 
         // Find view in layout by id and init view property
-        tvValue = findViewById<TextView>(R.id.tv_value).apply {
+        tvValue = findViewById<AppCompatTextView>(R.id.tv_value).apply {
             // Set initial text
             text = getString(R.string.ws01_step01_activity_counter_text, counter)
         }
 
         // Find view in layout by id and init button property
-        btnIncrementer = findViewById<Button>(R.id.btn_incrementer).apply {
+        btnIncrementer = findViewById<AppCompatButton>(R.id.btn_incrementer).apply {
             // Set click listener
             setOnClickListener {
                 // It will increment click counter
@@ -61,5 +61,5 @@ class WS01Step01AssignmentActivity : AppCompatActivity() {
 }
 
 private const val KEY_COUNT_ARGUMENT = "KEY_COUNT_ARGUMENT"
-private const val TAG = "WS01Step01SolutionActivity"
+private const val TAG = "WS01Step01Activity"
 private const val LOG_PREFIX = "WS01ST01"
