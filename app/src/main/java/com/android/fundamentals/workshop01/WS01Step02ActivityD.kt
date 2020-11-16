@@ -39,22 +39,22 @@ class WS01Step02ActivityD : WS01BaseActivity() {
     private fun setupUi() {
         btnDStartA = findViewById<AppCompatButton>(R.id.btn_d_start_a).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityA::class.java)
+                startActivity(Intent(this@WS01Step02ActivityD, WS01Step02ActivityA::class.java))
             }
         }
         btnDStartB = findViewById<AppCompatButton>(R.id.btn_d_start_b).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityB::class.java)
+                startActivity(Intent(this@WS01Step02ActivityD, WS01Step02ActivityB::class.java))
             }
         }
         btnDStartC = findViewById<AppCompatButton>(R.id.btn_d_start_c).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityC::class.java)
+                startActivity(Intent(this@WS01Step02ActivityD, WS01Step02ActivityC::class.java))
             }
         }
         btnDStartD = findViewById<AppCompatButton>(R.id.btn_d_start_d).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityD::class.java)
+                startActivity(Intent(this@WS01Step02ActivityD, WS01Step02ActivityD::class.java))
             }
         }
     }
@@ -68,7 +68,10 @@ class WS01Step02ActivityD : WS01BaseActivity() {
         """.trimIndent()
         Log.d(TAG, info)
     }
+
+    companion object {
+        private const val TAG = "WS01Step02ActivityD"
+        private const val LOG_PREFIX = "WS01ST02"
+    }
 }
 
-private const val TAG = "WS01Step02ActivityD"
-private const val LOG_PREFIX = "WS01ST02"

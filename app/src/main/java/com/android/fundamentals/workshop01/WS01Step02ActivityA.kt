@@ -21,6 +21,7 @@ class WS01Step02ActivityA : WS01BaseActivity() {
     override fun onNewIntent(intent: Intent?) {
         Log.d(TAG, "$LOG_PREFIX::onNewIntent")
         super.onNewIntent(intent)
+
     }
 
     override fun onResume() {
@@ -36,7 +37,7 @@ class WS01Step02ActivityA : WS01BaseActivity() {
     private fun setupUi() {
         btnAStartB = findViewById<AppCompatButton>(R.id.btn_a_start_b).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityB::class.java)
+                startActivity(Intent(this@WS01Step02ActivityA, WS01Step02ActivityB::class.java))
             }
         }
     }
@@ -48,7 +49,10 @@ class WS01Step02ActivityA : WS01BaseActivity() {
         """.trimIndent()
         Log.d(TAG, info)
     }
+
+    companion object {
+        private const val TAG = "WS01Step02ActivityA"
+        private const val LOG_PREFIX = "WS01ST02"
+    }
 }
 
-private const val TAG = "WS01Step02ActivityA"
-private const val LOG_PREFIX = "WS01ST02"

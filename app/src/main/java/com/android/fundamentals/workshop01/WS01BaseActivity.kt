@@ -33,10 +33,6 @@ open class WS01BaseActivity : AppCompatActivity() {
         am = null
     }
 
-    fun routeTo(cls: Class<out AppCompatActivity>) {
-        startActivity(Intent(this, cls))
-    }
-
     private fun updateInfo() {
         taskLog = "taskId:${this.taskId}, isTaskRoot:${this.isTaskRoot}"
     }

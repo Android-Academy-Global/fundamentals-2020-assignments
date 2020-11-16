@@ -30,30 +30,29 @@ class WS01Step03OuterActivity : AppCompatActivity() {
     private fun setupUi() {
         btnStartA = findViewById<AppCompatButton>(R.id.btn_start_a).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityA::class.java)
+                startActivity(Intent(this@WS01Step03OuterActivity, WS01Step02ActivityA::class.java))
             }
         }
         btnStartB = findViewById<AppCompatButton>(R.id.btn_start_b).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityB::class.java)
+                startActivity(Intent(this@WS01Step03OuterActivity, WS01Step02ActivityB::class.java))
             }
         }
         btnStartC = findViewById<AppCompatButton>(R.id.btn_start_c).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityC::class.java)
+                startActivity(Intent(this@WS01Step03OuterActivity, WS01Step02ActivityC::class.java))
             }
         }
         btnStartD = findViewById<AppCompatButton>(R.id.btn_start_d).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityD::class.java)
+                startActivity(Intent(this@WS01Step03OuterActivity, WS01Step02ActivityD::class.java))
             }
         }
     }
 
-    private fun routeTo(cls: Class<out AppCompatActivity>) {
-        startActivity(Intent(this, cls))
+    companion object {
+        private const val TAG = "WS01Step03OuterActivity"
+        private const val LOG_PREFIX = "WS01ST03"
     }
 }
 
-private const val TAG = "WS01Step03OuterActivity"
-private const val LOG_PREFIX = "WS01ST03"

@@ -59,8 +59,10 @@ class WS01Step01SolutionActivity : AppCompatActivity() {
     private fun updateData(value: Int) {
         tvValue?.text = getString(R.string.ws01_step01_activity_counter_text, value)
     }
-}
 
-private const val KEY_COUNT_ARGUMENT = "KEY_COUNT_ARGUMENT"
-private const val TAG = "WS01Step01Activity"
-private const val LOG_PREFIX = "WS01ST01"
+    companion object {
+        private const val KEY_COUNT_ARGUMENT = "KEY_COUNT_ARGUMENT"
+        private const val TAG = "WS01Step01Activity"
+        private const val LOG_PREFIX = "WS01ST01"
+    }
+}

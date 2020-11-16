@@ -36,7 +36,7 @@ class WS01Step02ActivityC : WS01BaseActivity() {
     private fun setupUi() {
         btnCStartD = findViewById<AppCompatButton>(R.id.btn_c_start_d).apply {
             setOnClickListener {
-                routeTo(WS01Step02ActivityD::class.java)
+                startActivity(Intent(this@WS01Step02ActivityC, WS01Step02ActivityD::class.java))
             }
         }
     }
@@ -50,7 +50,10 @@ class WS01Step02ActivityC : WS01BaseActivity() {
         """.trimIndent()
         Log.d(TAG, info)
     }
+
+    companion object {
+        private const val TAG = "WS01Step02ActivityC"
+        private const val LOG_PREFIX = "WS01ST02"
+    }
 }
 
-private const val TAG = "WS01Step02ActivityC"
-private const val LOG_PREFIX = "WS01ST02"
