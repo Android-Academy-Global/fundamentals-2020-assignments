@@ -10,8 +10,7 @@ import com.android.fundamentals.R
 
 
 //TODO(W2:1) Create fragment class, extend Fragment
-class RootFragmentWS2 : Fragment() {
-
+class WS02AssignmentFragment : Fragment() {
 
     private var btnIncrement: Button? = null
     private var btnChangeBackground: Button? = null

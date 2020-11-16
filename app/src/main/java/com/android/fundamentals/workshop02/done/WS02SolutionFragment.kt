@@ -10,8 +10,7 @@ import com.android.fundamentals.R
 
 
 
-class RootFragmentWSD2 : Fragment() {
-
+class WS02SolutionFragment : Fragment() {
 
     private var btnIncrement: Button? = null
     private var btnChangeBackground: Button? = null

@@ -43,7 +43,7 @@
         -->
         <activity
             android:name=".workshop01.WS01Step02ActivityA"
-            android:label="@string/ws01_step02_activity_a_title"
+            android:label="@string/ws01_step02_activity_title"
             android:icon="@mipmap/ic_launcher_ws01_step02"
             android:roundIcon="@mipmap/ic_launcher_ws01_step02_round"
             android:launchMode="standard"
@@ -77,10 +77,10 @@
             />
 
         <activity
-            android:name=".workshop02.task.ActivityFragmentWS2"
+            android:name=".workshop02.done.WS02SolutionActivity"
+            android:label="@string/ws02_activity_title"
             android:icon="@mipmap/ic_launcher_ws02_step01"
-            android:roundIcon="@mipmap/ic_launcher_ws02_step01_round"
-            >
+            android:roundIcon="@mipmap/ic_launcher_ws02_step01_round">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -89,10 +89,10 @@
         </activity>
 
         <activity
-            android:name=".workshop03.task.ActivityFragmentWS3"
+            android:name=".workshop03.task.WS03AssignmentActivity"
+            android:label="@string/ws03_activity_title"
             android:icon="@mipmap/ic_launcher_ws03_step01"
-            android:roundIcon="@mipmap/ic_launcher_ws03_step01_round"
-            >
+            android:roundIcon="@mipmap/ic_launcher_ws03_step01_round">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -101,8 +101,9 @@
         </activity>
 
         <activity
-            android:name=".workshop04.task.WS4TaskMainActivity"
+            android:name=".workshop04.task.WS04AssignmentActivity"
             android:icon="@mipmap/ic_launcher_ws04_step01"
+            android:label="@string/ws04_activity_title"
             android:roundIcon="@mipmap/ic_launcher_ws04_step01_round"
             >
 

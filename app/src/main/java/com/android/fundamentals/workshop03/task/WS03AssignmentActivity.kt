@@ -3,14 +3,14 @@ package com.android.fundamentals.workshop03.task
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
-import com.android.fundamentals.workshop03.RootFragmentWS3
+import com.android.fundamentals.workshop03.WS03RootFragment
 
-class ActivityFragmentWS3 : AppCompatActivity(), RootFragmentWS3.TransactionsFragmentClicks {
+class WS03AssignmentActivity : AppCompatActivity(), WS03RootFragment.TransactionsFragmentClicks {
 
-    private val rootFragment = RootFragmentWS3().apply { setClickListener(this@ActivityFragmentWS3) }
+    private val rootFragment =
+        WS03RootFragment().apply { setClickListener(this@WS03AssignmentActivity) }
     private var countId: Int = 0
-    private var addBackStack:Boolean = false
-
+    private var addBackStack: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

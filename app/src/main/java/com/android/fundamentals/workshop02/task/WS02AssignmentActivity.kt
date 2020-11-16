@@ -3,14 +3,13 @@ package com.android.fundamentals.workshop02.task
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
-import com.android.fundamentals.workshop02.SecondFragmentWS2
+import com.android.fundamentals.workshop02.WS02SecondFragment
 
 //TODO(W2:9) Implement interface in Activity
-class ActivityFragmentWS2 : AppCompatActivity() {
+class WS02AssignmentActivity : AppCompatActivity() {
 
     //TODO(W2:9) Create root fragment and set listener
-    private val secondFragment = SecondFragmentWS2()
-
+    private val secondFragment = WS02SecondFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

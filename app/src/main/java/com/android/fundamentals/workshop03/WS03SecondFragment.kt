@@ -9,8 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.android.fundamentals.R
 
-class SecondFragmentWS3 : Fragment() {
-
+class WS03SecondFragment : Fragment() {
 
     private var tvValue: TextView? = null
     private var fragmentId: Int = 0
@@ -43,8 +42,11 @@ class SecondFragmentWS3 : Fragment() {
         private const val PARAM_ID = "fragment_id"
         private const val PARAM_COLOR = "fragment_color"
 
-        fun newInstance(id: Int, color: Int): SecondFragmentWS3 {
-            val fragment = SecondFragmentWS3()
+        fun newInstance(
+            id: Int,
+            color: Int
+        ): WS03SecondFragment {
+            val fragment = WS03SecondFragment()
             val args = Bundle()
             args.putInt(PARAM_ID, id)
             args.putInt(PARAM_COLOR, color)

@@ -9,8 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.android.fundamentals.R
 
-class SecondFragmentWS2 : Fragment() {
-
+class WS02SecondFragment : Fragment() {
 
     private var count = 0
     private var tvValue: TextView? = null

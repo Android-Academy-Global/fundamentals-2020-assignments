@@ -9,7 +9,7 @@ import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import com.android.fundamentals.R
 
-class RootFragmentWS3 : Fragment() {
+class WS03RootFragment : Fragment() {
 
     private var btnAddNewRedFragment: Button? = null
     private var btnAddNewBlueFragment: Button? = null

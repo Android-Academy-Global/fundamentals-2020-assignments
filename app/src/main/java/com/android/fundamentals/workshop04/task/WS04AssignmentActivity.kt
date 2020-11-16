@@ -1,6 +1,5 @@
 package com.android.fundamentals.workshop04.task
 
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -9,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
 import com.google.android.material.snackbar.Snackbar
 
-class WS4TaskMainActivity : AppCompatActivity() {
+class WS04AssignmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ws4)
@@ -20,8 +19,8 @@ class WS4TaskMainActivity : AppCompatActivity() {
                 //  Make it show Toast when pressing button and show in toast what button was pressed
                 //  * Make it show Toast about cancelling dialog only when it is closed by tapping outside
                 //  * Make dialog not to be closed when tapped outside of fragment
-                AlertDialog.Builder(context)
-                    .show()
+                //  AlertDialog.Builder(context)
+                //  .show()
             }
         }
 
@@ -38,7 +37,7 @@ class WS4TaskMainActivity : AppCompatActivity() {
                 // TODO make timePickerDialog to start with current time
                 //  Show Snackbar with selected time
                 val timePickerDialog = TimePickerDialog(
-                    this@WS4TaskMainActivity,
+                    this@WS04AssignmentActivity,
                     { p1, p2, p3 -> },
                     0,
                     0,
@@ -55,13 +54,14 @@ class WS4TaskMainActivity : AppCompatActivity() {
                 // TODO make timePickerDialog to start with today date
                 //  Show Snackbar with selected date
                 val datePickerDialog = DatePickerDialog(
-                    this@WS4TaskMainActivity,
+                    this@WS04AssignmentActivity,
                     { p0, p1, p2, p3 ->
                         Snackbar.make(
                             rootView,
                             "you choosed $p3/$p2/$p1",
                             Snackbar.LENGTH_LONG
-                        ).show()
+                        )
+                            .show()
                     },
                     0,
                     0,

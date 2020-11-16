@@ -3,7 +3,11 @@
     <string name="app_name">UI Components</string>
 
     <!-- WS01 -->
-    <string name="ws01_step01_activity_title">Step01</string>
+    <string name="ws01_step01_activity_title">WS1 Step 1</string>
+    <string name="ws01_step02_activity_title">WS1 Step 2</string>
+    <string name="ws02_activity_title">WS2</string>
+    <string name="ws03_activity_title">WS3</string>
+    <string name="ws04_activity_title">WS4</string>
     <string name="ws01_step01_activity_counter_text">The value is: %d</string>
     <string name="ws01_step01_activity_button_text">Increment</string>
 

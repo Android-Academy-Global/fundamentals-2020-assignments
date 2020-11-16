@@ -3,15 +3,15 @@ package com.android.fundamentals.workshop03.done
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
-import com.android.fundamentals.workshop03.RootFragmentWS3
-import com.android.fundamentals.workshop03.SecondFragmentWS3
+import com.android.fundamentals.workshop03.WS03RootFragment
+import com.android.fundamentals.workshop03.WS03SecondFragment
 
-class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFragmentClicks {
+class WS03SolutionActivity : AppCompatActivity(), WS03RootFragment.TransactionsFragmentClicks {
 
-    private val rootFragment = RootFragmentWS3().apply { setClickListener(this@ActivityFragmentWSD3) }
+    private val rootFragment =
+        WS03RootFragment().apply { setClickListener(this@WS03SolutionActivity) }
     private var countId: Int = 0
-    private var addBackStack:Boolean = false
-
+    private var addBackStack: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
     override fun addRedFragment() {
         countId++
         supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragments_container, SecondFragmentWS3.newInstance(countId, R.color.red))
+            add(R.id.fragments_container, WS03SecondFragment.newInstance(countId, R.color.red))
             if (addBackStack) addToBackStack(null)
             commit()
         }
@@ -39,7 +39,7 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
     override fun addBlueFragment() {
         countId++
         supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragments_container, SecondFragmentWS3.newInstance(countId, R.color.blue))
+            add(R.id.fragments_container, WS03SecondFragment.newInstance(countId, R.color.blue))
             if (addBackStack) addToBackStack(null)
             commit()
         }
@@ -61,7 +61,7 @@ class ActivityFragmentWSD3 : AppCompatActivity(), RootFragmentWS3.TransactionsFr
         supportFragmentManager.beginTransaction().apply {
             replace(
                 R.id.fragments_container,
-                SecondFragmentWS3.newInstance(countId, R.color.green)
+                WS03SecondFragment.newInstance(countId, R.color.green)
             )
             if (addBackStack) addToBackStack(null)
             commit()

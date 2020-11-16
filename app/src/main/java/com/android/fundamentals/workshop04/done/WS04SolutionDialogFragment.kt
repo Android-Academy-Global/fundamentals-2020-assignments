@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.android.fundamentals.R
 
-class SampleDialogFragment : DialogFragment() {
+class WS04SolutionDialogFragment : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +20,10 @@ class SampleDialogFragment : DialogFragment() {
         return inflater.inflate(R.layout.dialog_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.btn_ok)?.apply {

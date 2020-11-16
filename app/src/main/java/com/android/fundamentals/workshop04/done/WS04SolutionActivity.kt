@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
 import com.android.fundamentals.workshop04.SampleBottomSheet
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
+import java.util.Calendar
 
-class WS4DoneMainActivity : AppCompatActivity() {
+class WS04SolutionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ws4)
@@ -22,7 +22,8 @@ class WS4DoneMainActivity : AppCompatActivity() {
                 AlertDialog.Builder(context)
                     .setTitle("Alert!!")
                     .setPositiveButton("ok") { _, _ ->
-                        Toast.makeText(context, "you called ok", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "you called ok", Toast.LENGTH_SHORT)
+                            .show()
                     }
                     .setNegativeButton("cancel") { _, _ ->
                         Toast.makeText(context, "you called cancel", Toast.LENGTH_SHORT).show()
@@ -39,7 +40,7 @@ class WS4DoneMainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_show_dialog_fragment)?.apply {
             setOnClickListener {
-                val dialog = SampleDialogFragment()
+                val dialog = WS04SolutionDialogFragment()
 
                 dialog.show(supportFragmentManager, "dialogFragment")
             }
@@ -47,7 +48,7 @@ class WS4DoneMainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_show_dialog_fragment)?.apply {
             setOnClickListener {
-                val dialog = SampleDialogFragment()
+                val dialog = WS04SolutionDialogFragment()
 
                 dialog.show(supportFragmentManager, "dialogFragment")
             }
@@ -60,13 +61,14 @@ class WS4DoneMainActivity : AppCompatActivity() {
                 val minute = c.get(Calendar.MINUTE)
 
                 val timePickerDialog = TimePickerDialog(
-                    this@WS4DoneMainActivity,
+                    this@WS04SolutionActivity,
                     { p0, p1, p2 ->
                         Snackbar.make(
                             rootView,
                             "you choosed $p1:$p2",
                             Snackbar.LENGTH_SHORT
-                        ).show()
+                        )
+                            .show()
                     },
                     hour,
                     minute,
@@ -85,13 +87,14 @@ class WS4DoneMainActivity : AppCompatActivity() {
                 val day = c.get(Calendar.DAY_OF_MONTH)
 
                 val datePickerDialog = DatePickerDialog(
-                    this@WS4DoneMainActivity,
+                    this@WS04SolutionActivity,
                     { p0, p1, p2, p3 ->
                         Snackbar.make(
                             rootView,
                             "you choosed $p3/$p2/$p1",
                             Snackbar.LENGTH_SHORT
-                        ).show()
+                        )
+                            .show()
                     },
                     year,
                     month,

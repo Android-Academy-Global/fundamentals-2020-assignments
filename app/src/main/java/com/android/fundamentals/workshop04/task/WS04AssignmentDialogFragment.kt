@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.android.fundamentals.R
 
-class SampleDialogFragment : DialogFragment() {
+class WS04AssignmentDialogFragment : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
