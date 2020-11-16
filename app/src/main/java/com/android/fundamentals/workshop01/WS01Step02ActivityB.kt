@@ -3,12 +3,16 @@ package com.android.fundamentals.workshop01
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.android.fundamentals.R
 
-class WS01Step02ActivityB : WS01BaseActivity() {
+class WS01Step02ActivityB : AppCompatActivity() {
 
-    private var btnBStartC: AppCompatButton? = null
+    private var btnStartA: AppCompatButton? = null
+    private var btnStartB: AppCompatButton? = null
+    private var btnStartC: AppCompatButton? = null
+    private var btnStartD: AppCompatButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "$LOG_PREFIX::onCreate")
@@ -34,19 +38,33 @@ class WS01Step02ActivityB : WS01BaseActivity() {
     }
 
     private fun setupUi() {
-        btnBStartC = findViewById<AppCompatButton>(R.id.btn_b_start_c).apply {
+        btnStartA = findViewById<AppCompatButton>(R.id.btn_start_a).apply {
+            setOnClickListener {
+                startActivity(Intent(this@WS01Step02ActivityB, WS01Step02ActivityA::class.java))
+            }
+        }
+        btnStartB = findViewById<AppCompatButton>(R.id.btn_start_b).apply {
+            setOnClickListener {
+                startActivity(Intent(this@WS01Step02ActivityB, WS01Step02ActivityB::class.java))
+            }
+        }
+        btnStartC = findViewById<AppCompatButton>(R.id.btn_start_c).apply {
             setOnClickListener {
                 startActivity(Intent(this@WS01Step02ActivityB, WS01Step02ActivityC::class.java))
             }
         }
+        btnStartD = findViewById<AppCompatButton>(R.id.btn_start_d).apply {
+            setOnClickListener {
+                startActivity(Intent(this@WS01Step02ActivityB, WS01Step02ActivityD::class.java))
+            }
+        }
     }
 
+    // For some reason, taskId and isTaskRoot may not appear in during standard launch mode.
     private fun printInfo() {
         val info = """
             | $LOG_PREFIX::printInfo
-            | $taskLog
-            | $stackLog
-            | $infoLog
+            | taskId:${this.taskId}, isTaskRoot:${this.isTaskRoot}
         """.trimIndent()
         Log.d(TAG, info)
     }

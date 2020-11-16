@@ -7,26 +7,14 @@
     <string name="ws01_step01_activity_counter_text">The value is: %d</string>
     <string name="ws01_step01_activity_button_text">Increment</string>
 
-    <string name="ws01_step02_activity_a_title">Step02</string>
-    <string name="ws01_step02_activity_a_button_text">Start B</string>
-
+    <string name="ws01_step02_activity_a_title">Activity A</string>
     <string name="ws01_step02_activity_b_title">Activity B</string>
-    <string name="ws01_step02_activity_b_button_text">Start C</string>
-
     <string name="ws01_step02_activity_c_title">Activity C</string>
-    <string name="ws01_step02_activity_c_button_text">Start D</string>
-
     <string name="ws01_step02_activity_d_title">Activity D</string>
-    <string name="ws01_step02_activity_d_button_a_text">Start A</string>
-    <string name="ws01_step02_activity_d_button_b_text">Start B</string>
-    <string name="ws01_step02_activity_d_button_c_text">Start C</string>
-    <string name="ws01_step02_activity_d_button_d_text">Start D</string>
-
-    <string name="ws01_step03_activity_outer_title">Step03</string>
-    <string name="ws01_step03_activity_button_a_text">Start A</string>
-    <string name="ws01_step03_activity_button_b_text">Start B</string>
-    <string name="ws01_step03_activity_button_c_text">Start C</string>
-    <string name="ws01_step03_activity_button_d_text">Start D</string>
+    <string name="ws01_step02_activity_button_a_text">Start A</string>
+    <string name="ws01_step02_activity_button_b_text">Start B</string>
+    <string name="ws01_step02_activity_button_c_text">Start C</string>
+    <string name="ws01_step02_activity_button_d_text">Start D</string>
     <!-- WS01 -->
 
     <string name="root_fragment">Root fragment</string>
