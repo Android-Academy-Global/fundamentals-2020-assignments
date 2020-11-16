@@ -21,7 +21,7 @@ class WS02AssignmentFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_root_ws_2, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_root_ws_02, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -13,7 +13,7 @@
         >
 
         <activity
-            android:name=".workshop01.task.WS01Step01AssignmentActivity"
+            android:name="com.android.fundamentals.workshop01.step01.task.WS01Step01AssignmentActivity"
             android:label="@string/ws01_step01_activity_title"
             android:icon="@mipmap/ic_launcher_ws01_step01"
             android:roundIcon="@mipmap/ic_launcher_ws01_step01_round"
@@ -42,7 +42,7 @@
          Back stack order is changed according to launch modes you choose.
         -->
         <activity
-            android:name=".workshop01.WS01Step02ActivityA"
+            android:name=".workshop01.step02.WS01Step02ActivityA"
             android:label="@string/ws01_step02_activity_title"
             android:icon="@mipmap/ic_launcher_ws01_step02"
             android:roundIcon="@mipmap/ic_launcher_ws01_step02_round"
@@ -57,27 +57,27 @@
 
         <!-- TODO(WS01:ST02) -->
         <activity
-            android:name=".workshop01.WS01Step02ActivityB"
+            android:name=".workshop01.step02.WS01Step02ActivityB"
             android:label="@string/ws01_step02_activity_b_title"
             android:launchMode="standard"
             />
 
         <!-- TODO(WS01:ST02) -->
         <activity
-            android:name=".workshop01.WS01Step02ActivityC"
+            android:name=".workshop01.step02.WS01Step02ActivityC"
             android:label="@string/ws01_step02_activity_c_title"
             android:launchMode="standard"
             />
 
         <!-- TODO(WS01:ST02) -->
         <activity
-            android:name=".workshop01.WS01Step02ActivityD"
+            android:name=".workshop01.step02.WS01Step02ActivityD"
             android:label="@string/ws01_step02_activity_d_title"
             android:launchMode="standard"
             />
 
         <activity
-            android:name=".workshop02.done.WS02SolutionActivity"
+            android:name=".workshop02.task.WS02AssignmentActivity"
             android:label="@string/ws02_activity_title"
             android:icon="@mipmap/ic_launcher_ws02_step01"
             android:roundIcon="@mipmap/ic_launcher_ws02_step01_round">

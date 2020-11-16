@@ -13,7 +13,7 @@ class WS02AssignmentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fragment_comunications)
+        setContentView(R.layout.activity_ws02_ws03)
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager

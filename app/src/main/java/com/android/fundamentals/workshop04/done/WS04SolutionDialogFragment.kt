@@ -17,7 +17,7 @@ class WS04SolutionDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_fragment, container, false)
+        return inflater.inflate(R.layout.dialog_fragment_ws04, container, false)
     }
 
     override fun onViewCreated(

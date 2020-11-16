@@ -13,7 +13,7 @@ class SampleBottomSheet : BottomSheetDialogFragment() {
         style: Int
     ) {
         val contentView =
-            View.inflate(context, R.layout.dialog_fragment, null)
+            View.inflate(context, R.layout.dialog_fragment_ws04, null)
         dialog.setContentView(contentView)
         (contentView.parent as View).setBackgroundColor(
             ContextCompat.getColor(

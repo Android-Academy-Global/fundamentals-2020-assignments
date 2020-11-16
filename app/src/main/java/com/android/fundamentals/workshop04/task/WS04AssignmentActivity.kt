@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 class WS04AssignmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ws4)
+        setContentView(R.layout.activity_ws04)
 
         findViewById<Button>(R.id.btn_show_alert_dialog)?.apply {
             setOnClickListener {

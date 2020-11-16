@@ -1,4 +1,4 @@
-package com.android.fundamentals.workshop01.task
+package com.android.fundamentals.workshop01.step01.task
 
 import android.os.Bundle
 import android.util.Log

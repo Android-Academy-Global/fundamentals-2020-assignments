@@ -14,7 +14,7 @@ class WS03AssignmentActivity : AppCompatActivity(), WS03RootFragment.Transaction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fragment_comunications)
+        setContentView(R.layout.activity_ws02_ws03)
 
         supportFragmentManager.beginTransaction().apply {
             add(R.id.persistent_container, rootFragment)

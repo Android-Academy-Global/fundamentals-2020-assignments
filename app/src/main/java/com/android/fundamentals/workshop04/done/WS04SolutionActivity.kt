@@ -10,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
 import com.android.fundamentals.workshop04.SampleBottomSheet
 import com.google.android.material.snackbar.Snackbar
-import java.util.Calendar
+import java.util.*
 
 class WS04SolutionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ws4)
+        setContentView(R.layout.activity_ws04)
 
         findViewById<Button>(R.id.btn_show_alert_dialog)?.apply {
             setOnClickListener {

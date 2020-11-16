@@ -1,4 +1,4 @@
-package com.android.fundamentals.workshop01
+package com.android.fundamentals.workshop01.step02
 
 import android.content.Intent
 import android.os.Bundle
