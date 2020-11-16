@@ -26,14 +26,9 @@
             </intent-filter>
         </activity>
 
+
         <!--
-         TODO(WS01:ST02:01) Build and Run app.
-          Collapse application on the device and start app again, by clicking on WS01 Step02 icon.
-          Start several activities, then press device's "Back" button and see how activities are closing in a reverse order.
-          This is how the "android:launchMode="standard"" works.
-        -->
-        <!--
-        TODO(WS01:ST02:02) With activities from WS01 Step02:
+        TODO(WS01:ST02:01) With activities from WS01 Step02:
          WS01Step02ActivityA, WS01Step02ActivityB, WS01Step02ActivityC, WS01Step02ActivityD.
          Change "launchMode" attribute values with one of the following: standard, singleTop, singleTask, singleInstance.
          Rebuild and Run app.
