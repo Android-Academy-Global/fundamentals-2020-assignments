@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".workshop01.WS01Step02SolutionActivityA">
+    android:padding="8dp"
+    tools:context=".workshop01.WS01Step02ActivityA">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="@dimen/ws01_step02_activity_title_size"
@@ -20,14 +21,49 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_a_start_b"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_start_a"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/ws01_step02_activity_a_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:text="@string/ws01_step02_activity_button_a_text"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start_c"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_start_b"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_start_b"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/ws01_step02_activity_button_b_text"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start_c"
+        app:layout_constraintStart_toEndOf="@+id/btn_start_a"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_start_c"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/ws01_step02_activity_button_c_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_start_d"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_start_d"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/ws01_step02_activity_button_d_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_start_c"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
