@@ -44,9 +44,9 @@ class WS01Step01AssignmentActivity : AppCompatActivity() {
     // In the existed app, click several times on a button. Rotate the emulator's screen and apply rotation.
     // Check that the counter resets to the initial value.
 
-    //TODO(WS01:ST01:02) Override Save Instance State and Restore Instance State functions.
+    //TODO(WS01:ST01:02) Override onSavedInstanceState and onRestoreInstanceState functions.
 
-    //TODO(WS01:ST01:03) Inside the Save Instant State function,
+    //TODO(WS01:ST01:03) Inside the onSavedInstanceState function,
     // put the Int "counter" value into the "outState" bundle, use "KEY_COUNT_ARGUMENT" as a key.
 
     //TODO(WS01:ST01:04) Inside the Restore Instant State function,
@@ -60,6 +60,7 @@ class WS01Step01AssignmentActivity : AppCompatActivity() {
     }
 
     companion object {
+
         private const val KEY_COUNT_ARGUMENT = "KEY_COUNT_ARGUMENT"
         private const val TAG = "WS01Step01Activity"
         private const val LOG_PREFIX = "WS01ST01"

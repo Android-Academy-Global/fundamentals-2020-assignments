@@ -14,6 +14,7 @@ class WS01Step02ActivityA : AppCompatActivity() {
     private var btnStartC: AppCompatButton? = null
     private var btnStartD: AppCompatButton? = null
 
+    //region lifecycle callbacks
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "$LOG_PREFIX::onCreate")
         super.onCreate(savedInstanceState)
@@ -22,14 +23,27 @@ class WS01Step02ActivityA : AppCompatActivity() {
         setupUi()
     }
 
-    override fun onNewIntent(intent: Intent?) {
-        Log.d(TAG, "$LOG_PREFIX::onNewIntent")
-        super.onNewIntent(intent)
-
+    override fun onStart() {
+        Log.d(TAG, "$LOG_PREFIX::onStart")
+        super.onStart()
+        printInfo()
     }
 
     override fun onResume() {
+        Log.d(TAG, "$LOG_PREFIX::onResume")
         super.onResume()
+        printInfo()
+    }
+
+    override fun onPause() {
+        Log.d(TAG, "$LOG_PREFIX::onPause")
+        super.onPause()
+        printInfo()
+    }
+
+    override fun onStop() {
+        Log.d(TAG, "$LOG_PREFIX::onStop")
+        super.onStop()
         printInfo()
     }
 
@@ -37,6 +51,12 @@ class WS01Step02ActivityA : AppCompatActivity() {
         Log.d(TAG, "$LOG_PREFIX::onDestroy")
         super.onDestroy()
     }
+
+    override fun onNewIntent(intent: Intent?) {
+        Log.d(TAG, "$LOG_PREFIX::onNewIntent")
+        super.onNewIntent(intent)
+    }
+    //endregion
 
     private fun setupUi() {
         btnStartA = findViewById<AppCompatButton>(R.id.btn_start_a).apply {

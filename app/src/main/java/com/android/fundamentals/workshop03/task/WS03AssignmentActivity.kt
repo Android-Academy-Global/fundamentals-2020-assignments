@@ -9,7 +9,7 @@ class WS03AssignmentActivity : AppCompatActivity(), WS03RootFragment.Transaction
 
     private val rootFragment =
         WS03RootFragment().apply { setClickListener(this@WS03AssignmentActivity) }
-    private var countId: Int = 0
+    private var count: Int = 0
     private var addBackStack: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,36 +24,36 @@ class WS03AssignmentActivity : AppCompatActivity(), WS03RootFragment.Transaction
 
 
     override fun addToBackStack(value: Boolean) {
-        //TODO(W3:5) add addToBackStack check
+        //TODO(WS3:5) add addToBackStack check
     }
 
 
     override fun addRedFragment() {
-        countId++
-        //TODO(W3:1) Add red fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
-        //TODO(W3:5) add addToBackStack check
+        count++
+        //TODO(WS3:1) Add red fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
+        //TODO(WS3:5) add addToBackStack check
     }
 
 
     override fun addBlueFragment() {
-        countId++
-        //TODO(W3:2) Add blue fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
-        //TODO(W3:5) add addToBackStack check
+        count++
+        //TODO(WS3:2) Add blue fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
+        //TODO(WS3:5) add addToBackStack check
     }
 
 
     override fun removeLast() {
         if (supportFragmentManager.fragments.size > 1) {
-            //TODO(W3:3) Remove fragment
-            //TODO(W3:5) add addToBackStack check
+            //TODO(WS3:3) Remove fragment
+            //TODO(WS3:5) add addToBackStack check
         }
     }
 
 
     override fun replaceFragment() {
-        countId++
-        //TODO(W3:4) Replace current fragment green fragment SecondFragmentWS3.newInstance(countId, R.color.green)
-        //TODO(W3:5) add addToBackStack check
+        count++
+        //TODO(WS3:4) Replace current fragment green fragment SecondFragmentWS3.newInstance(countId, R.color.green)
+        //TODO(WS3:5) add addToBackStack check
     }
 
 

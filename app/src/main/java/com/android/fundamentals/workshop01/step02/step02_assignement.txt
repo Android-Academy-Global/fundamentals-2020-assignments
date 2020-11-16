@@ -1,0 +1,28 @@
+Try to use different launch modes for four presented activities:
+WS01Step02ActivityA, WS01Step02ActivityB, WS01Step02ActivityC and WS01Step02ActivityD
+
+For change launch mode of activity you can change tag "launchMode" in the AndroidManifest.xml
+as shown below
+
+<activity
+     android:name=".workshop01.step02.WS01Step02ActivityD"
+     android:label="@string/ws01_step02_activity_d_title"
+     android:launchMode="standard"/>
+
+In tag key "launchMode" you can set:
+- "standard"
+- "singleTop"
+- "singleTask"
+- "singleInstance"
+
+Try to use each of it and analyze lifecycle of Activities. Logs for lifecycle has been already added :)
+
+Also for the launchMode "singleInstance" try to add tag "taskAffinity" like shown below and open the
+task manager (Recent launched apps) in your phone
+
+<activity
+     android:name=".workshop01.step02.WS01Step02ActivityD"
+     android:label="@string/ws01_step02_activity_d_title"
+     android:taskAffinity=".workshop01.step02.WS01Step02ActivityD_task"
+     android:launchMode="standard"/>
+
