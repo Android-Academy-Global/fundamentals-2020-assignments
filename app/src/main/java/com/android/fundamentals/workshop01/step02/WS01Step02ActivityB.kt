@@ -81,7 +81,7 @@ class WS01Step02ActivityB : AppCompatActivity() {
         }
     }
 
-    // For some reason, taskId and isTaskRoot may not appear in during standard launch mode.
+    // For some reason, taskId and isTaskRoot may not appear during standard launch mode.
     private fun printInfo() {
         val info = """
             | $LOG_PREFIX::printInfo
