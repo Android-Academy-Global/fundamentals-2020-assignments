@@ -3,58 +3,32 @@ package com.android.fundamentals.workshop03.task
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.fundamentals.R
-import com.android.fundamentals.workshop03.WS03RootFragment
+import com.android.fundamentals.workshop03.WS03SecondFragment
 
-class WS03AssignmentActivity : AppCompatActivity(), WS03RootFragment.TransactionsFragmentClicks {
+//TODO(WS2:9) Implement interface in Activity
+class WS03AssignmentActivity : AppCompatActivity() {
 
-    private val rootFragment =
-        WS03RootFragment().apply { setClickListener(this@WS03AssignmentActivity) }
-    private var count: Int = 0
-    private var addBackStack: Boolean = false
+    //TODO(WS2:9) Create root fragment and set listener
+    private val secondFragment = WS03SecondFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ws02_ws03)
 
-        supportFragmentManager.beginTransaction().apply {
-            add(R.id.persistent_container, rootFragment)
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager
+            .beginTransaction()
+
+
+        fragmentTransaction.apply {
+            //TODO(WS2:3) Add the Fragment to the R.id.persistent_container FrameLayout
+            //add(R.id.persistent_container, rootFragment)
+            add(R.id.fragments_container, secondFragment)
             commit()
         }
     }
 
-
-    override fun addToBackStack(value: Boolean) {
-        //TODO(WS3:5) add addToBackStack check
-    }
-
-
-    override fun addRedFragment() {
-        count++
-        //TODO(WS3:1) Add red fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
-        //TODO(WS3:5) add addToBackStack check
-    }
-
-
-    override fun addBlueFragment() {
-        count++
-        //TODO(WS3:2) Add blue fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
-        //TODO(WS3:5) add addToBackStack check
-    }
-
-
-    override fun removeLast() {
-        if (supportFragmentManager.fragments.size > 1) {
-            //TODO(WS3:3) Remove fragment
-            //TODO(WS3:5) add addToBackStack check
-        }
-    }
-
-
-    override fun replaceFragment() {
-        count++
-        //TODO(WS3:4) Replace current fragment green fragment SecondFragmentWS3.newInstance(countId, R.color.green)
-        //TODO(WS3:5) add addToBackStack check
-    }
-
+    //TODO(WS2:10) Change the text in secondFragment
+    //TODO(WS2:11) Change fragment text background in secondFragment
 
 }

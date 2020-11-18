@@ -17,35 +17,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_increment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/increment_value"
-        tools:ignore="MissingConstraints" />
+  <CheckBox
+      android:id="@+id/cb_add_to_back_stack"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/add_to_back_stack" />
 
-    <Button
-        android:id="@+id/btn_change_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/change_background"
-        tools:ignore="MissingConstraints" />
+  <Button
+      android:id="@+id/btn_add_red"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/add_red_fragment"
+      tools:ignore="MissingConstraints" />
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flow"
-        android:layout_marginTop="24dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        app:flow_verticalGap="16dp"
-        android:orientation="vertical"
-        app:constraint_referenced_ids="btn_increment, btn_change_background"
-        app:flow_horizontalAlign="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_fragment_name" />
+  <Button
+      android:id="@+id/btn_add_blue"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/add_blue_fragment"
+      tools:ignore="MissingConstraints" />
+
+  <Button
+      android:id="@+id/btn_replace_green"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/replace_with_green_fragment"
+      tools:ignore="MissingConstraints" />
+
+  <Button
+      android:id="@+id/btn_remove_last"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/remove_last_fragment"
+      tools:ignore="MissingConstraints" />
+
+  <androidx.constraintlayout.helper.widget.Flow
+      android:id="@+id/flow"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24dp"
+      android:orientation="vertical"
+      android:paddingTop="16dp"
+      android:paddingBottom="16dp"
+      app:constraint_referenced_ids="cb_add_to_back_stack, btn_add_red, btn_add_blue,btn_remove_last, btn_replace_green"
+      app:flow_horizontalAlign="center"
+      app:flow_verticalGap="16dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tv_fragment_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

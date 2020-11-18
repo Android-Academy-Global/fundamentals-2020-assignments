@@ -1,4 +1,4 @@
-package com.android.fundamentals.workshop02.done
+package com.android.fundamentals.workshop03.done
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.android.fundamentals.R
 
-
-
-class WS02SolutionFragment : Fragment() {
+class WS03SolutionFragment : Fragment() {
 
     private var btnIncrement: Button? = null
     private var btnChangeBackground: Button? = null
@@ -20,7 +18,7 @@ class WS02SolutionFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_root_ws_02, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_root_ws_03, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

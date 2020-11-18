@@ -13,7 +13,7 @@
         >
 
         <activity
-            android:name="com.android.fundamentals.workshop01.step01.task.WS01Step01AssignmentActivity"
+            android:name=".workshop01.step01.task.WS01Step01AssignmentActivity"
             android:label="@string/ws01_step01_activity_title"
             android:icon="@mipmap/ic_launcher_ws01_step01"
             android:roundIcon="@mipmap/ic_launcher_ws01_step01_round"
@@ -72,7 +72,7 @@
             />
 
         <activity
-            android:name=".workshop02.task.WS02AssignmentActivity"
+            android:name=".workshop03.done.WS03SolutionActivity"
             android:label="@string/ws02_activity_title"
             android:icon="@mipmap/ic_launcher_ws02_step01"
             android:roundIcon="@mipmap/ic_launcher_ws02_step01_round">
@@ -84,7 +84,7 @@
         </activity>
 
         <activity
-            android:name=".workshop03.task.WS03AssignmentActivity"
+            android:name=".workshop02.done.WS02SolutionActivity"
             android:label="@string/ws03_activity_title"
             android:icon="@mipmap/ic_launcher_ws03_step01"
             android:roundIcon="@mipmap/ic_launcher_ws03_step01_round">

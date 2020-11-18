@@ -1,4 +1,4 @@
-package com.android.fundamentals.workshop02.task
+package com.android.fundamentals.workshop03.task
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.android.fundamentals.R
 
-
 //TODO(WS2:1) Create fragment class, extend Fragment
-class WS02AssignmentFragment : Fragment() {
+class WS03AssignmentFragment : Fragment() {
 
     private var btnIncrement: Button? = null
     private var btnChangeBackground: Button? = null
@@ -21,7 +20,7 @@ class WS02AssignmentFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_root_ws_02, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_root_ws_03, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
