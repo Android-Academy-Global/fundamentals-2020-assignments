@@ -17,11 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-  <CheckBox
-      android:id="@+id/cb_add_to_back_stack"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/add_to_back_stack" />
 
   <Button
       android:id="@+id/btn_add_red"
@@ -59,7 +54,7 @@
       android:orientation="vertical"
       android:paddingTop="16dp"
       android:paddingBottom="16dp"
-      app:constraint_referenced_ids="cb_add_to_back_stack, btn_add_red, btn_add_blue,btn_remove_last, btn_replace_green"
+      app:constraint_referenced_ids="btn_add_red, btn_add_blue,btn_remove_last, btn_replace_green"
       app:flow_horizontalAlign="center"
       app:flow_verticalGap="16dp"
       app:layout_constraintBottom_toBottomOf="parent"

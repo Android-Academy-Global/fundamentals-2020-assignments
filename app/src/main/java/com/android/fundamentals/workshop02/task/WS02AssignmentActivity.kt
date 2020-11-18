@@ -10,7 +10,6 @@ class WS02AssignmentActivity : AppCompatActivity(), WS02RootFragment.Transaction
     private val rootFragment =
         WS02RootFragment().apply { setClickListener(this@WS02AssignmentActivity) }
     private var count: Int = 0
-    private var addBackStack: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,33 +22,27 @@ class WS02AssignmentActivity : AppCompatActivity(), WS02RootFragment.Transaction
             }
     }
 
-    override fun addToBackStack(value: Boolean) {
-        //TODO(WS3:5) add addToBackStack check
-    }
 
     override fun addRedFragment() {
         count++
         //TODO(WS3:1) Add red fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
-        //TODO(WS3:5) add addToBackStack check
     }
 
     override fun addBlueFragment() {
         count++
-        //TODO(WS3:2) Add blue fragment like SecondFragmentWS3.newInstance(countId, R.color.red)
-        //TODO(WS3:5) add addToBackStack check
+        //TODO(WS3:2) Add blue fragment like SecondFragmentWS3.newInstance(countId, R.color.blue)
     }
 
     override fun removeLast() {
         if (supportFragmentManager.fragments.size > 1) {
+            count--
             //TODO(WS3:3) Remove fragment
-            //TODO(WS3:5) add addToBackStack check
         }
     }
 
     override fun replaceFragment() {
-        count++
+        count = 1
         //TODO(WS3:4) Replace current fragment green fragment SecondFragmentWS3.newInstance(countId, R.color.green)
-        //TODO(WS3:5) add addToBackStack check
     }
 
 }
