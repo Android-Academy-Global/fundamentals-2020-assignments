@@ -26,7 +26,6 @@
             </intent-filter>
         </activity>
 
-
         <!--
         TODO(WS01:ST02:01) With activities from WS01 Step02:
          WS01Step02ActivityA, WS01Step02ActivityB, WS01Step02ActivityC, WS01Step02ActivityD.
@@ -82,7 +81,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <activity
             android:name=".workshop03.task.WS03AssignmentActivity"
