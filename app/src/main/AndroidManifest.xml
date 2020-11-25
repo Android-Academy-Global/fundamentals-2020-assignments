@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.fundamentals">
+    package="com.android.fundamentals"
+    >
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:theme="@style/Theme.MyApplication"
+        android:theme="@style/Theme.MyApp"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:label="@string/app_name"
@@ -12,98 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         >
 
-        <activity
-            android:name=".workshop01.step01.task.WS01Step01AssignmentActivity"
-            android:label="@string/ws01_step01_activity_title"
-            android:icon="@mipmap/ic_launcher_ws01_step01"
-            android:roundIcon="@mipmap/ic_launcher_ws01_step01_round"
-            android:taskAffinity="com.android.fundamentals.workshop01.WS01Step01.ScreenRotationActivity"
-            >
+        <activity android:name=".MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
-        <!--
-        TODO(WS01:ST02:01) With activities from WS01 Step02:
-         WS01Step02ActivityA, WS01Step02ActivityB, WS01Step02ActivityC, WS01Step02ActivityD.
-         Change "launchMode" attribute values with one of the following: standard, singleTop, singleTask, singleInstance.
-         Rebuild and Run app.
-         Again, collapse application on the device and start app by clicking on WS01 Step02 icon.
-         Start several activities, then press device's "Back" button and see how activities are closing in a reverse order.
-         Back stack order is changed according to launch modes you choose.
-        -->
-        <activity
-            android:name=".workshop01.step02.WS01Step02ActivityA"
-            android:label="@string/ws01_step02_activity_title"
-            android:icon="@mipmap/ic_launcher_ws01_step02"
-            android:roundIcon="@mipmap/ic_launcher_ws01_step02_round"
-            android:launchMode="standard"
-            >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!-- TODO(WS01:ST02) -->
-        <activity
-            android:name=".workshop01.step02.WS01Step02ActivityB"
-            android:label="@string/ws01_step02_activity_b_title"
-            android:launchMode="standard"
-            />
-
-        <!-- TODO(WS01:ST02) -->
-        <activity
-            android:name=".workshop01.step02.WS01Step02ActivityC"
-            android:label="@string/ws01_step02_activity_c_title"
-            android:launchMode="standard"
-            />
-
-        <!-- TODO(WS01:ST02) -->
-        <activity
-            android:name=".workshop01.step02.WS01Step02ActivityD"
-            android:label="@string/ws01_step02_activity_d_title"
-            android:launchMode="standard"
-            />
-
-        <activity
-            android:name=".workshop02.task.WS02AssignmentActivity"
-            android:icon="@mipmap/ic_launcher_ws02_step01"
-            android:label="@string/ws02_activity_title"
-            android:roundIcon="@mipmap/ic_launcher_ws02_step01_round">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".workshop03.task.WS03AssignmentActivity"
-            android:icon="@mipmap/ic_launcher_ws03_step01"
-            android:label="@string/ws03_activity_title"
-            android:roundIcon="@mipmap/ic_launcher_ws03_step01_round">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".workshop04.task.WS04AssignmentActivity"
-            android:icon="@mipmap/ic_launcher_ws04_step01"
-            android:label="@string/ws04_activity_title"
-            android:roundIcon="@mipmap/ic_launcher_ws04_step01_round">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>

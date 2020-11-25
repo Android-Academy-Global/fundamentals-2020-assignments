@@ -1,35 +1,12 @@
 <resources>
 
-    <string name="app_name">UI Components</string>
+    <string name="app_name">Lists</string>
 
-    <!-- WS01 -->
-    <string name="ws01_step01_activity_title">WS1 Step 1</string>
-    <string name="ws01_step01_activity_counter_text">The value is: %d</string>
-    <string name="ws01_step01_activity_button_text">Increment</string>
-
-    <string name="ws01_step02_activity_title">WS1 Step 2</string>
-    <string name="ws01_step02_activity_a_title">Activity A</string>
-    <string name="ws01_step02_activity_b_title">Activity B</string>
-    <string name="ws01_step02_activity_c_title">Activity C</string>
-    <string name="ws01_step02_activity_d_title">Activity D</string>
-    <string name="ws01_step02_activity_button_a_text">Start A</string>
-    <string name="ws01_step02_activity_button_b_text">Start B</string>
-    <string name="ws01_step02_activity_button_c_text">Start C</string>
-    <string name="ws01_step02_activity_button_d_text">Start D</string>
-    <!-- WS01 -->
-
-    <string name="ws02_activity_title">WS2</string>
-    <string name="ws03_activity_title">WS3</string>
-    <string name="ws04_activity_title">WS4</string>
-
-    <string name="root_fragment">Root fragment</string>
-    <string name="increment_value">Increment value</string>
-    <string name="change_background">Change background</string>
-    <string name="second_fragment">Second fragment</string>
-    <string name="add_red_fragment">Add red fragment</string>
-    <string name="add_blue_fragment">Add blue fragment</string>
-    <string name="replace_with_green_fragment">Replace with green fragment</string>
-    <string name="remove_last_fragment">Remove last fragment</string>
-    <string name="add_to_back_stack">Add to back stack</string>
+    <!-- FragmentActors -->
+    <string name="fragment_actors_header">Actors</string>
+    <string name="fragment_actors_empty_text">There are no actors right now</string>
+    <string name="fragment_actors_avatar_content_description">Actor avatar</string>
+    <string name="fragment_actors_avatar_oscar_state_text">oscar: %1$s</string>
+    <!-- FragmentActors -->
 
 </resources>

@@ -9,19 +9,4 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="red">#FF0000</color>
-    <color name="blue">#304FFE</color>
-    <color name="green">#00C853</color>
-
-    <!-- WS01 -->
-    <color name="colorPastelDarkBlue">#425A73</color>
-    <color name="colorColdPink">#D6B7E6</color>
-    <color name="colorWarmPink">#E7B6BF</color>
-    <color name="colorColdYellow">#EBDDC5</color>
-    <!-- WS01 -->
-
-    <!-- Launcher icon color -->
-    <color name="ic_launcher_background">#BB86FC</color>
-    <!-- Launcher icon color -->
-
 </resources>

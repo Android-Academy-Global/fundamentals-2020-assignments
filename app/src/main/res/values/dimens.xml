@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- WS01 -->
-    <!-- Sizes -->
-    <dimen name="ws01_step02_activity_title_size">280dp</dimen>
+    <dimen name="space_x1">8dp</dimen>
 
-    <!-- Text sizes -->
-    <dimen name="ws01_step02_activity_title_sp">40sp</dimen>
-    <!-- WS01 -->
+    <!-- FragmentActors -->
+    <dimen name="fragment_actors_avatar_space">48dp</dimen>
+    <!-- FragmentActors -->
 
 </resources>
