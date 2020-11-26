@@ -33,12 +33,6 @@ class WS01ActorsFragment : Fragment() {
         updateData()
     }
 
-    override fun onDetach() {
-        recycler = null
-
-        super.onDetach()
-    }
-
     private fun updateData() {
         (recycler?.adapter as? WS01ActorsAdapter)?.apply {
             bindActors(ActorsDataSource().getActors())
