@@ -1,8 +1,8 @@
 package com.android.fundamentals
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.android.fundamentals.workshop01_02.solution.WS01ActorsFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.android.fundamentals.workshop04.WS04DiffUtilsFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, WS01ActorsFragment.newInstance())
+                    .replace(R.id.container, WS04DiffUtilsFragment.newInstance())
                     .commit()
         }
     }
