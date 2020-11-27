@@ -55,6 +55,7 @@ class WS03ActorsAdapter(
 
     fun bindActors(newActors: List<Actor>) {
         actors = newActors.toMutableList()
+        notifyDataSetChanged()
     }
 }
 

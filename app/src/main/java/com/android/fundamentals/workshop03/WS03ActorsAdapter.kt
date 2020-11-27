@@ -51,6 +51,7 @@ class WS03ActorsAdapter: RecyclerView.Adapter<ActorsViewHolder>() {
 
     fun bindActors(newActors: List<Actor>) {
         actors = newActors.toMutableList()
+        notifyDataSetChanged()
     }
 }
 

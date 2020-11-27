@@ -45,7 +45,6 @@ class WS03ActorsFragmentSolution : Fragment() {
     private fun updateData() {
         (recycler?.adapter as? WS03ActorsAdapter)?.apply {
             bindActors(ActorsDataSource().getActors())
-            notifyDataSetChanged()
         }
     }
 
