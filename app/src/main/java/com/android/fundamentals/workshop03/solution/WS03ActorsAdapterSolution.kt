@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.fundamentals.R
 import com.android.fundamentals.data.models.Actor
-import com.android.fundamentals.workshop03.ActorsViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -16,10 +15,6 @@ class WS03ActorsAdapter(
     private val clickListener: OnRecyclerItemClicked
 ) : RecyclerView.Adapter<ActorsViewHolder>() {
 
-    private val imageOption = RequestOptions()
-        .placeholder(R.drawable.ic_avatar_placeholder)
-        .fallback(R.drawable.ic_avatar_placeholder)
-        .circleCrop()
 
     private var actors = mutableListOf<Actor>()
 
@@ -47,7 +42,7 @@ class WS03ActorsAdapter(
     override fun onBindViewHolder(holder: ActorsViewHolder, position: Int) {
         when (holder) {
             is DataViewHolder -> {
-                holder.onBind(imageOption, actors[position])
+                holder.onBind(actors[position])
                 holder.itemView.setOnClickListener {
                     clickListener.onClick(actors[position])
                 }
@@ -68,19 +63,24 @@ abstract class ActorsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
 private class EmptyViewHolder(itemView: View) : ActorsViewHolder(itemView)
 private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
 
-    val avatar: ImageView? = itemView.findViewById(R.id.iv_actor_avatar)
-    val name: TextView? = itemView.findViewById(R.id.tv_actor_name)
-    val oscarState: TextView? = itemView.findViewById(R.id.tv_actor_oscar_state)
+    private val imageOption = RequestOptions()
+            .placeholder(R.drawable.ic_avatar_placeholder)
+            .fallback(R.drawable.ic_avatar_placeholder)
+            .circleCrop()
 
-    fun onBind(options: RequestOptions, actor: Actor) {
+    private val avatar: ImageView = itemView.findViewById(R.id.iv_actor_avatar)
+    private val name: TextView = itemView.findViewById(R.id.tv_actor_name)
+    private val oscarState: TextView = itemView.findViewById(R.id.tv_actor_oscar_state)
+
+    fun onBind(actor: Actor) {
         Glide.with(context)
             .load(actor.avatar)
-            .apply(options)
+            .apply(imageOption)
             .into(avatar)
 
-        name?.text = actor.name
+        name.text = actor.name
 
-        oscarState?.text = context.getString(
+        oscarState.text = context.getString(
             R.string.fragment_actors_avatar_oscar_state_text,
             actor.hasOscar.toString()
         )

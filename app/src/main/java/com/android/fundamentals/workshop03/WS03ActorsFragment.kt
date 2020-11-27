@@ -13,7 +13,7 @@ import com.android.fundamentals.domain.ActorsDataSource
 import com.google.android.material.snackbar.Snackbar
 
 
-class WS03ActorsFragmentSolution : Fragment() {
+class WS03ActorsFragment : Fragment() {
 
     private var recycler: RecyclerView? = null
 
@@ -53,8 +53,10 @@ class WS03ActorsFragmentSolution : Fragment() {
 
     private fun doOnClick(actor: Actor) {
         recycler?.let { rv ->
-            Snackbar
-                .make(rv, "You chose ${actor.name}", Snackbar.LENGTH_SHORT)
+            Snackbar.make(
+                        rv,
+                        rv.context.getString(R.string.fragment_actors_chosen_text, actor.name),
+                        Snackbar.LENGTH_SHORT)
                 .show()
         }
     }
@@ -66,6 +68,6 @@ class WS03ActorsFragmentSolution : Fragment() {
 //    private val clickListener
 
     companion object {
-        fun newInstance() = WS03ActorsFragmentSolution()
+        fun newInstance() = WS03ActorsFragment()
     }
 }

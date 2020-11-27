@@ -51,9 +51,11 @@ class WS03ActorsFragmentSolution : Fragment() {
 
     private fun doOnClick(actor: Actor) {
         recycler?.let { rv ->
-            Snackbar
-                .make(rv, "You chose ${actor.name}", Snackbar.LENGTH_SHORT)
-                .show()
+            Snackbar.make(
+                            rv,
+                            rv.context.getString(R.string.fragment_actors_chosen_text, actor.name),
+                            Snackbar.LENGTH_SHORT)
+                    .show()
         }
     }
 
