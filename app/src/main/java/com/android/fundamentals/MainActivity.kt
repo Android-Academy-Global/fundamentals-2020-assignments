@@ -2,7 +2,7 @@ package com.android.fundamentals
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.android.fundamentals.workshop01.solution.WS01ActorsFragment
+import com.android.fundamentals.workshop01.WS01ActorsFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
+                    // TODO: Change fragment according to the workshop #
                     .replace(R.id.container, WS01ActorsFragment.newInstance())
                     .commit()
         }

@@ -1,4 +1,4 @@
-package com.android.fundamentals.workshop01.solution
+package com.android.fundamentals.workshop02.solution
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import com.android.fundamentals.data.models.Actor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class WS01ActorsAdapter : RecyclerView.Adapter<ActorsViewHolder>() {
+class WS02ActorsAdapterSolution : RecyclerView.Adapter<ActorsViewHolder>() {
 
     private val imageOption = RequestOptions()
         .placeholder(R.drawable.ic_avatar_placeholder)

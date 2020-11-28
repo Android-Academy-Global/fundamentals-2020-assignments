@@ -1,4 +1,4 @@
-package com.android.fundamentals.workshop01.solution
+package com.android.fundamentals.workshop02
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.fundamentals.R
 import com.android.fundamentals.domain.ActorsDataSource
 
-class WS01ActorsFragment : Fragment() {
+class WS02ActorsFragment : Fragment() {
 
     private var recycler: RecyclerView? = null
 
@@ -24,7 +24,7 @@ class WS01ActorsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recycler = view.findViewById(R.id.rv_actors)
-        recycler?.adapter = WS01ActorsAdapter()
+        recycler?.adapter = WS02ActorsAdapter()
     }
 
     override fun onStart() {
@@ -34,13 +34,12 @@ class WS01ActorsFragment : Fragment() {
     }
 
     private fun updateData() {
-        (recycler?.adapter as? WS01ActorsAdapter)?.apply {
+        (recycler?.adapter as? WS02ActorsAdapter)?.apply {
             bindActors(ActorsDataSource().getActors())
-            notifyDataSetChanged()
         }
     }
 
     companion object {
-        fun newInstance() = WS01ActorsFragment()
+        fun newInstance() = WS02ActorsFragment()
     }
 }
