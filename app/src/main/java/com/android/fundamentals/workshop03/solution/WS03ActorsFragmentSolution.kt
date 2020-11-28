@@ -52,7 +52,7 @@ class WS03ActorsFragmentSolution : Fragment() {
         recycler?.let { rv ->
             Snackbar.make(
                             rv,
-                            rv.context.getString(R.string.fragment_actors_chosen_text, actor.name),
+                            getString(R.string.fragment_actors_chosen_text, actor.name),
                             Snackbar.LENGTH_SHORT)
                     .show()
         }

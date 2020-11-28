@@ -64,11 +64,6 @@ abstract class ActorsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
 private class EmptyViewHolder(itemView: View) : ActorsViewHolder(itemView)
 private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
 
-    private val imageOption = RequestOptions()
-            .placeholder(R.drawable.ic_avatar_placeholder)
-            .fallback(R.drawable.ic_avatar_placeholder)
-            .circleCrop()
-
     private val avatar: ImageView = itemView.findViewById(R.id.iv_actor_avatar)
     private val name: TextView = itemView.findViewById(R.id.tv_actor_name)
     private val oscarState: TextView = itemView.findViewById(R.id.tv_actor_oscar_state)
@@ -85,6 +80,13 @@ private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
             R.string.fragment_actors_avatar_oscar_state_text,
             actor.hasOscar.toString()
         )
+    }
+
+    companion object {
+        private val imageOption = RequestOptions()
+                .placeholder(R.drawable.ic_avatar_placeholder)
+                .fallback(R.drawable.ic_avatar_placeholder)
+                .circleCrop()
     }
 }
 
