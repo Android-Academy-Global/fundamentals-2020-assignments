@@ -1,4 +1,4 @@
-package com.android.fundamentals.workshop01_02.solution
+package com.android.fundamentals.workshop01.solution
 
 import android.view.LayoutInflater
 import android.view.View
