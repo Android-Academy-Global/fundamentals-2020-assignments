@@ -13,44 +13,45 @@ import com.bumptech.glide.request.RequestOptions
 
 class WS04ActorsAdapter : RecyclerView.Adapter<DataViewHolder>() {
 
-    private val imageOption = RequestOptions()
-        .placeholder(R.drawable.ic_avatar_placeholder)
-        .fallback(R.drawable.ic_avatar_placeholder)
-        .circleCrop()
-
-    private var actors = mutableListOf<Actor>()
+    private var actors: List<Actor> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        return DataViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_actors_data, parent, false))
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_actors_data, parent, false)
+        return DataViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.onBind(imageOption, actors[position])
+        holder.onBind(actors[position])
     }
 
     override fun getItemCount(): Int = actors.size
 
     fun bindActors(newActors: List<Actor>) {
-        actors = newActors.toMutableList()
+        actors = newActors
     }
 }
 
 class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    val avatar: ImageView? = itemView.findViewById(R.id.iv_actor_avatar)
-    val name: TextView? = itemView.findViewById(R.id.tv_actor_name)
-    val oscarState: TextView? = itemView.findViewById(R.id.tv_actor_oscar_state)
+    companion object {
+        private val imageOption = RequestOptions()
+            .placeholder(R.drawable.ic_avatar_placeholder)
+            .fallback(R.drawable.ic_avatar_placeholder)
+            .circleCrop()
+    }
 
-    fun onBind(options: RequestOptions, actor: Actor) {
+    private val avatar: ImageView = itemView.findViewById(R.id.iv_actor_avatar)
+    private val name: TextView = itemView.findViewById(R.id.tv_actor_name)
+    private val oscarState: TextView = itemView.findViewById(R.id.tv_actor_oscar_state)
+
+    fun onBind(actor: Actor) {
         Glide.with(context)
             .load(actor.avatar)
-            .apply(options)
+            .apply(imageOption)
             .into(avatar)
-
-        name?.text = actor.name
-
-        oscarState?.text = context.getString(
+        name.text = actor.name
+        oscarState.text = context.getString(
             R.string.fragment_actors_avatar_oscar_state_text,
             actor.hasOscar.toString()
         )

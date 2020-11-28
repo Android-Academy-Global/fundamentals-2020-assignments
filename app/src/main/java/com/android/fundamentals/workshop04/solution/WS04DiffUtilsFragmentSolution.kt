@@ -12,8 +12,6 @@ import com.android.fundamentals.R
 import com.android.fundamentals.data.models.Actor
 import com.android.fundamentals.domain.ActorsDataSource
 import com.android.fundamentals.workshop04.WS04ActorsAdapter
-import java.util.*
-import kotlin.random.Random
 
 class WS04DiffUtilsFragmentSolution : Fragment() {
 
@@ -49,24 +47,12 @@ class WS04DiffUtilsFragmentSolution : Fragment() {
 
     private fun shuffleActors() {
         val originalData: List<Actor> = ActorsDataSource().getActors()
-        val shuffledList: List<Actor> = getShuffledActors()
+        val shuffledList: List<Actor> = ActorsDataSource().getActors().shuffled()
         adapter.bindActors(shuffledList)
+        /* Update adapter */
         val diffCallback = ActorDiffUtilCallbackSolution(originalData, shuffledList)
         val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffCallback)
         diffResult.dispatchUpdatesTo(adapter)
-    }
-
-    private fun getShuffledActors(): List<Actor> {
-        val actors: List<Actor> = ActorsDataSource().getActors()
-        for (i in 0..5) {
-            val from: Int = Random.nextInt(0, actors.size - 1)
-            val to: Int = Random.nextInt(0, actors.size - 1)
-            if (from == to) {
-                continue
-            }
-            Collections.swap(actors, from, to)
-        }
-        return actors
     }
 
     companion object {

@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.fundamentals.R
 import com.android.fundamentals.data.models.Actor
 import com.android.fundamentals.domain.ActorsDataSource
-import java.util.*
-import kotlin.random.Random
 
 class WS04DiffUtilsFragment : Fragment() {
 
@@ -46,23 +44,10 @@ class WS04DiffUtilsFragment : Fragment() {
     }
 
     private fun shuffleActors() {
-        val shuffledList: List<Actor> = getShuffledActors()
+        val shuffledList: List<Actor> = ActorsDataSource().getActors().shuffled()
         adapter.bindActors(shuffledList)
         // TODO: Replace notifyDataSetChanged for updating the recyclerView to DiffUtil.Callback.
         adapter.notifyDataSetChanged()
-    }
-
-    private fun getShuffledActors(): List<Actor> {
-        val actors: List<Actor> = ActorsDataSource().getActors()
-        for (i in 0..5) {
-            val from: Int = Random.nextInt(0, actors.size - 1)
-            val to: Int = Random.nextInt(0, actors.size - 1)
-            if (from == to) {
-                continue
-            }
-            Collections.swap(actors, from, to)
-        }
-        return actors
     }
 
     companion object {
