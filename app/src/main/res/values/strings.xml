@@ -8,5 +8,7 @@
     <string name="fragment_actors_avatar_content_description">Actor avatar</string>
     <string name="fragment_actors_avatar_oscar_state_text">oscar: %1$s</string>
     <!-- FragmentActors -->
+    <string name="fragment_actors_chosen_text">You chose: %1$s</string>
+
 
 </resources>
