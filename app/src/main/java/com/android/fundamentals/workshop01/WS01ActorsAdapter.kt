@@ -11,10 +11,10 @@ import com.android.fundamentals.data.models.Actor
 //  Place a cursor on the WS01ActorsAdapter name, press "Alt+Enter", implement all three methods.
 class WS01ActorsAdapter {
 
-    private var actors = mutableListOf<Actor>()
+    private var actors = listOf<Actor>()
 
     fun bindActors(newActors: List<Actor>) {
-        actors = newActors.toMutableList()
+        actors = newActors
 
         // TODO 09: uncomment.
         // notifyDataSetChanged()

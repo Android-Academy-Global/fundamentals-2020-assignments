@@ -21,7 +21,7 @@ class WS02ActorsAdapter : RecyclerView.Adapter<ActorsViewHolder>() {
         .fallback(R.drawable.ic_avatar_placeholder)
         .circleCrop()
 
-    private var actors = mutableListOf<Actor>()
+    private var actors = listOf<Actor>()
 
     override fun getItemViewType(position: Int): Int {
         // TODO 05: Change the default return result, and return constant from the previous step.
@@ -49,7 +49,7 @@ class WS02ActorsAdapter : RecyclerView.Adapter<ActorsViewHolder>() {
     override fun getItemCount(): Int = actors.size
 
     fun bindActors(newActors: List<Actor>) {
-        actors = newActors.toMutableList()
+        actors = newActors
         notifyDataSetChanged()
     }
 }
@@ -63,9 +63,9 @@ private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
     //  You have to update these view's content in runtime.
     //  First of all, find these views inside the "itemView" and store to variables.
     //  This "itemView" is a single recycler's item which is currently updating.
-    val avatar: ImageView? = null
-    val name: TextView? = null
-    val oscarState: TextView? = null
+    private val avatar: ImageView? = null
+    private val name: TextView? = null
+    private val oscarState: TextView? = null
 
     // TODO 02: Rename this public method. Provide some data class into this method's parameters.
     //  This data class should contains actor's avatar url, name and if actor has oscar or not.

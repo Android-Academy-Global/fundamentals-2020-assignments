@@ -18,7 +18,7 @@ class WS02ActorsAdapterSolution : RecyclerView.Adapter<ActorsViewHolder>() {
         .fallback(R.drawable.ic_avatar_placeholder)
         .circleCrop()
 
-    private var actors = mutableListOf<Actor>()
+    private var actors = listOf<Actor>()
 
     override fun getItemViewType(position: Int): Int {
         return when (actors.size) {
@@ -44,7 +44,7 @@ class WS02ActorsAdapterSolution : RecyclerView.Adapter<ActorsViewHolder>() {
     override fun getItemCount(): Int = actors.size
 
     fun bindActors(newActors: List<Actor>) {
-        actors = newActors.toMutableList()
+        actors = newActors
     }
 }
 
@@ -52,10 +52,9 @@ abstract class ActorsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
 
 private class EmptyViewHolder(itemView: View) : ActorsViewHolder(itemView)
 private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
-
-    val avatar: ImageView? = itemView.findViewById(R.id.iv_actor_avatar)
-    val name: TextView? = itemView.findViewById(R.id.tv_actor_name)
-    val oscarState: TextView? = itemView.findViewById(R.id.tv_actor_oscar_state)
+    private val avatar: ImageView? = itemView.findViewById(R.id.iv_actor_avatar)
+    private val name: TextView? = itemView.findViewById(R.id.tv_actor_name)
+    private val oscarState: TextView? = itemView.findViewById(R.id.tv_actor_oscar_state)
 
     fun onBind(options: RequestOptions, actor: Actor) {
         Glide.with(context)
