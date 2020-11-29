@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 //TODO 2: make listener constructor parameter
 class WS03ActorsAdapter: RecyclerView.Adapter<ActorsViewHolder>() {
 
-    private var actors = mutableListOf<Actor>()
+    private var actors = listOf<Actor>()
 
     override fun getItemViewType(position: Int): Int {
         return when (actors.size) {
@@ -50,7 +50,7 @@ class WS03ActorsAdapter: RecyclerView.Adapter<ActorsViewHolder>() {
     override fun getItemCount(): Int = actors.size
 
     fun bindActors(newActors: List<Actor>) {
-        actors = newActors.toMutableList()
+        actors = newActors
         notifyDataSetChanged()
     }
 }

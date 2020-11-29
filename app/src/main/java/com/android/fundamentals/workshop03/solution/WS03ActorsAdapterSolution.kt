@@ -15,8 +15,7 @@ class WS03ActorsAdapter(
     private val clickListener: OnRecyclerItemClicked
 ) : RecyclerView.Adapter<ActorsViewHolder>() {
 
-
-    private var actors = mutableListOf<Actor>()
+    private var actors = listOf<Actor>()
 
     override fun getItemViewType(position: Int): Int {
         return when (actors.size) {
@@ -54,7 +53,7 @@ class WS03ActorsAdapter(
     override fun getItemCount(): Int = actors.size
 
     fun bindActors(newActors: List<Actor>) {
-        actors = newActors.toMutableList()
+        actors = newActors
         notifyDataSetChanged()
     }
 }
