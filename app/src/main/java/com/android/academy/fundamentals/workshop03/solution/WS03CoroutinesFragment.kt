@@ -11,6 +11,6 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
     private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        val i = 0
     }
 }

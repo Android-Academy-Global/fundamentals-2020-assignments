@@ -9,4 +9,8 @@
     <string name="wait">Wait</string>
     <string name="start_coroutines">Start Coroutines</string>
     <string name="stop_coroutines">Stop Coroutines</string>
+    <string name="first_coroutine_label">Coroutine #1:</string>
+    <string name="second_coroutine_label">Coroutine #2:</string>
+    <string name="fourth_coroutine_label">Coroutine #4:</string>
+    <string name="third_coroutine_label">Coroutine #3:</string>
 </resources>
