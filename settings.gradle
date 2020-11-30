@@ -1,0 +1,3 @@
+rootProject.name = 'FundamentalsAssignments'
+
+include ':app'
