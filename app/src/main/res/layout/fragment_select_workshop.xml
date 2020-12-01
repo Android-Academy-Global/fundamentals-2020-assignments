@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/fragment_select_workshop_open_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/workshop_1" />
+
+    <Button
+        android:id="@+id/fragment_select_workshop_open_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/workshop_2" />
+
+    <Button
+        android:id="@+id/fragment_select_workshop_open_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/workshop_3" />
+
+    <Button
+        android:id="@+id/fragment_select_workshop_open_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/workshop_4" />
+
+</LinearLayout>

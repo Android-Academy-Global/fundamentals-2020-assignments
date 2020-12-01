@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="space_x1">8dp</dimen>
-
-    <!-- FragmentActors -->
-    <dimen name="fragment_actors_avatar_space">48dp</dimen>
-    <!-- FragmentActors -->
-
 </resources>

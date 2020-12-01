@@ -1,14 +1,17 @@
 <resources>
 
-    <string name="app_name">Lists</string>
+    <string name="app_name">Architecture</string>
 
-    <!-- FragmentActors -->
-    <string name="fragment_actors_header">Actors</string>
-    <string name="fragment_actors_empty_text">There are no actors right now</string>
-    <string name="fragment_actors_avatar_content_description">Actor avatar</string>
-    <string name="fragment_actors_avatar_oscar_state_text">oscar: %1$s</string>
-    <!-- FragmentActors -->
+    <string name="workshop_1">Workshop 1</string>
+    <string name="workshop_2">Workshop 2</string>
+    <string name="workshop_3">Workshop 3</string>
+    <string name="workshop_4">Workshop 4</string>
 
-    <string name="fragment_actors_chosen_text">You chose: %1$s</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="user_name_error">User name error</string>
+    <string name="password_error">Password error</string>
+    <string name="login_success">Login success!!!</string>
 
 </resources>
