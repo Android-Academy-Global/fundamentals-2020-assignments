@@ -9,7 +9,11 @@ import com.android.academy.fundamentals.R
 import kotlinx.coroutines.*
 
 class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cancel) {
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+        println("CoroutineExceptionHandler got $exception")
+    }
+
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)
 
     private var startButton: Button? = null
     private var stopButton: Button? = null
@@ -99,7 +103,7 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
 
     private suspend fun runFourthCoroutine() {
         delay(1_000)
-        // throw IllegalStateException("Some exception")
+        throw IllegalStateException("Some exception")
     }
 
     private suspend fun showResult(text: String, resultView: TextView?) {
