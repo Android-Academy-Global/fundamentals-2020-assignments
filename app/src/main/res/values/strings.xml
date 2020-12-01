@@ -13,4 +13,6 @@
     <string name="second_coroutine_label">Coroutine #2:</string>
     <string name="fourth_coroutine_label">Coroutine #4:</string>
     <string name="third_coroutine_label">Coroutine #3:</string>
+    <string name="done">Done</string>
+    <string name="finally_done">Finally Done</string>
 </resources>
