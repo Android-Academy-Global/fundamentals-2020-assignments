@@ -9,11 +9,14 @@ import com.android.academy.fundamentals.R
 import kotlinx.coroutines.*
 
 class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cancel) {
-    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
-        println("CoroutineExceptionHandler got $exception")
+    private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, exception ->
+        println("CoroutineExceptionHandler got $exception in $coroutineContext")
     }
-
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)
+    private var scope = CoroutineScope(
+        SupervisorJob() +
+                Dispatchers.Default +
+                exceptionHandler
+    )
 
     private var startButton: Button? = null
     private var stopButton: Button? = null
@@ -45,6 +48,7 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
 
     private fun cancelCoroutines() {
         scope.cancel()
+        scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)
 
         firstCoroutineResultView?.text = getString(R.string.done)
         secondCoroutineResultView?.text = getString(R.string.done)
@@ -60,48 +64,49 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
         stopButton?.isEnabled = true
 
         scope.launch {
-            runFirstCoroutine()
+            runOddsCoroutine()
         }
         scope.launch {
-            runSecondCoroutine()
+            runNegativesCoroutine()
         }
         GlobalScope.launch {
-            runThirdCoroutine()
+            runModByTwoCoroutine()
         }
         scope.launch {
-            runFourthCoroutine()
+            runCoroutineThatFails()
         }
     }
 
-    private suspend fun runFirstCoroutine() {
-        var count = 0
+    private suspend fun runOddsCoroutine() {
+        var count = 1
         while (true) {
-            count++
+            count += 2
             showResult(count.toString(), firstCoroutineResultView)
             delay(1_000)
         }
     }
 
-    private suspend fun runSecondCoroutine() {
+    private suspend fun runNegativesCoroutine() {
         var count = 0
         while (true) {
-            count += 5
+            count--
             showResult(count.toString(), secondCoroutineResultView)
-            delay(1_000)
+            delay(1_500)
         }
     }
 
-    private suspend fun runThirdCoroutine() {
-        var count = 0
+    private suspend fun runModByTwoCoroutine() {
+        var count = 1
         while (count < 100) {
-            count += 13
-            showResult(count.toString(), thirdCoroutineResultView)
-            delay(1_000)
+            count++
+            val modByTwo = count % 2
+            showResult(modByTwo.toString(), thirdCoroutineResultView)
+            delay(500)
         }
         showResult(getString(R.string.finally_done), thirdCoroutineResultView)
     }
 
-    private suspend fun runFourthCoroutine() {
+    private suspend fun runCoroutineThatFails() {
         delay(1_000)
         throw IllegalStateException("Some exception")
     }
