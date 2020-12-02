@@ -45,20 +45,26 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
     private fun startCoroutines() {
         toggleButtons(true)
 
+        // Run odd number producing coroutine
         scope.launch {
             runOddsCoroutine()
         }
+        // Run negatives number producing coroutine
         scope.launch {
             runNegativesCoroutine()
         }
+        // Run mod by two result from number coroutine
+        // Run it with GlobalScope to observe cancellation ignorance
         GlobalScope.launch {
             runModByTwoCoroutine()
         }
+        // Run coroutine that fails after a second
         scope.launch {
             runCoroutineThatFails()
         }
     }
 
+    // Coroutine that produces odd numbers every second
     private suspend fun runOddsCoroutine() {
         var count = 1
         while (true) {
@@ -68,6 +74,7 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
         }
     }
 
+    // Coroutine that produces next negative numbers every 1.5 second
     private suspend fun runNegativesCoroutine() {
         var count = 0
         while (true) {
@@ -77,6 +84,7 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
         }
     }
 
+    // Coroutine that produces next mod by 2 result every half second
     private suspend fun runModByTwoCoroutine() {
         var count = 1
         while (count < 100) {
@@ -88,6 +96,7 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
         showResult(getString(R.string.finally_done), thirdCoroutineResultView)
     }
 
+    // Coroutine that fails after one second
     private suspend fun runCoroutineThatFails() {
         delay(1_000)
         throw IllegalStateException("Some exception")
@@ -100,7 +109,9 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
     }
 
     private fun cancelCoroutines() {
+        // Cancel all current jobs via parent job
         scope.cancel()
+        // Set new scope with fresh SupervisorJob after cancel
         scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)
 
         firstCoroutineResultView?.text = getString(R.string.done)
@@ -127,6 +138,7 @@ class WS03CoroutinesFragment : Fragment(R.layout.fragment_coroutines_scope_cance
 
     override fun onDestroyView() {
         clearCachedViews()
+
         super.onDestroyView()
     }
 
