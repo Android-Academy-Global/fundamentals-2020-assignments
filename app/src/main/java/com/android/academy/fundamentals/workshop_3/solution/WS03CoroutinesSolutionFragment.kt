@@ -1,6 +1,4 @@
-@file:Suppress("unused")
-
-package com.android.academy.fundamentals.workshop03
+package com.android.academy.fundamentals.workshop_3.solution
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 import kotlinx.coroutines.*
 
-class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scope_cancel) {
+class WS03CoroutinesSolutionFragment : Fragment(R.layout.fragment_coroutines_scope_cancel) {
     // This is exception handler that will print caught errors to log
     private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, exception ->
         println("CoroutineExceptionHandler got $exception in $coroutineContext")
@@ -47,13 +45,23 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
     private fun startCoroutines() {
         toggleButtons(true)
 
-        // Add run odd number producing coroutine via launch in scope
-
-        // Add run negatives number producing coroutine via launch in scope
-
-        // Add run mod by two result from number coroutine via launch in GlobalScope
-
-        // Add run coroutine that fails after a second
+        // Run odd number producing coroutine
+        scope.launch {
+            runOddsCoroutine()
+        }
+        // Run negatives number producing coroutine
+        scope.launch {
+            runNegativesCoroutine()
+        }
+        // Run mod by two result from number coroutine
+        // Run it with GlobalScope to observe cancellation ignorance
+        GlobalScope.launch {
+            runModByTwoCoroutine()
+        }
+        // Run coroutine that fails after a second
+        scope.launch {
+            runCoroutineThatFails()
+        }
     }
 
     // Coroutine that produces odd numbers every second
@@ -94,15 +102,15 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
         throw IllegalStateException("Some exception")
     }
 
-    private fun showResult(text: String, resultView: TextView?) {
-        // Fix access of UI component from main dispatcher
-        // Don't forget about suspend keyword
-        resultView?.text = text
+    private suspend fun showResult(text: String, resultView: TextView?) {
+        withContext(Dispatchers.Main) {
+            resultView?.text = text
+        }
     }
 
     private fun cancelCoroutines() {
-        // Add cancellation of all current jobs via parent job
-
+        // Cancel all current jobs via parent job
+        scope.cancel()
         // Set new scope with fresh SupervisorJob after cancel
         scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)
 
