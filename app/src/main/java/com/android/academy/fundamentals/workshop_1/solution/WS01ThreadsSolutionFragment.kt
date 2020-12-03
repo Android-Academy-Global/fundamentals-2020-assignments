@@ -14,14 +14,18 @@ class WS01ThreadsSolutionFragment: Fragment(R.layout.fragment_theads) {
 
     private val handler = MyHandler()
 
-    private val MESSAGE_KEY = "key"
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         findViews(view)
         threadButton?.setOnClickListener {
             startThread()
             startRunnable()
         }
+    }
+
+    override fun onDestroyView() {
+        threadButton = null
+        threadTextView = null
+        super.onDestroyView()
     }
 
     private fun findViews(view: View) {
@@ -73,4 +77,7 @@ class WS01ThreadsSolutionFragment: Fragment(R.layout.fragment_theads) {
         }
     }
 
+    companion object {
+        private const val MESSAGE_KEY = "key"
+    }
 }

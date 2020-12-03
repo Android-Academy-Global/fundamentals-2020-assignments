@@ -12,8 +12,6 @@ class WS01ThreadsProblemFragment: Fragment(R.layout.fragment_theads) {
     private var threadButton : Button? = null
     private var threadTextView : TextView? = null
 
-    private val MESSAGE_KEY = "key"
-
     //TODO 2 Create a private val handler and set yours
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,6 +20,12 @@ class WS01ThreadsProblemFragment: Fragment(R.layout.fragment_theads) {
             startThread()
             startRunnable()
         }
+    }
+
+    override fun onDestroyView() {
+        threadButton = null
+        threadTextView = null
+        super.onDestroyView()
     }
 
     private fun findViews(view: View) {
@@ -36,7 +40,7 @@ class WS01ThreadsProblemFragment: Fragment(R.layout.fragment_theads) {
 
     private fun startRunnable() {
         printMessage(getString(R.string.wait))
-        //TODO 8 create your thread and start it
+        //TODO 8 create your runnable and start it
     }
 
     private fun printMessage(mes: String){
@@ -66,4 +70,7 @@ class WS01ThreadsProblemFragment: Fragment(R.layout.fragment_theads) {
     // create Message, put string to the message.data with MESSAGE_KEY
     // send message to the handler handler.sendMessage(mes)
 
+    companion object {
+        private const val MESSAGE_KEY = "key"
+    }
 }
