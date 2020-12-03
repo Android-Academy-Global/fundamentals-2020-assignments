@@ -49,20 +49,20 @@ class WS03CoroutinesSolutionFragment : Fragment(R.layout.fragment_coroutines_sco
     private fun startCoroutines() {
         toggleButtons(true)
 
-        // Run odd number producing coroutine
+        // TODO: WS_5_03_1 - Run odd number producing coroutine
         scope.launch {
             runOddsCoroutine()
         }
-        // Run negatives number producing coroutine
+        // TODO: WS_5_03_2 - Run negatives number producing coroutine
         scope.launch {
             runNegativesCoroutine()
         }
         // Run mod by two result from number coroutine
-        // Run it with GlobalScope to observe cancellation ignorance
+        // TODO: WS_5_03_7 - Run it with GlobalScope to observe cancellation ignorance
         globalScopeJob = GlobalScope.launch {
             runModByTwoCoroutine()
         }
-        // Run coroutine that fails after a second
+        // TODO: WS_5_03_4 -Run coroutine that fails after a second
         scope.launch {
             runCoroutineThatFails()
         }
@@ -107,13 +107,14 @@ class WS03CoroutinesSolutionFragment : Fragment(R.layout.fragment_coroutines_sco
     }
 
     private suspend fun showResult(text: String, resultView: TextView?) {
+        // TODO: WS_5_03_6 - Use main dispatcher to manipulate view
         withContext(Dispatchers.Main) {
             resultView?.text = text
         }
     }
 
     private fun cancelCoroutines() {
-        // Cancel all current jobs via parent job
+        // TODO: WS_5_03_5 - Cancel all current jobs via parent job
         scope.cancel()
         // Set new scope with fresh SupervisorJob after cancel
         scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)
@@ -141,10 +142,10 @@ class WS03CoroutinesSolutionFragment : Fragment(R.layout.fragment_coroutines_sco
     }
 
     override fun onDestroyView() {
-        // Stop work to avoid leaks
-        cancelCoroutines()
-        // Let's clean up global scope job here
+        // TODO: WS_5_03_8 - Let's clean up global scope job here
         globalScopeJob?.cancel()
+        // TODO: WS_5_03_11 - Stop work to avoid leaks
+        cancelCoroutines()
         // Clear views to avoid leaks
         clearCachedViews()
 

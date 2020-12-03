@@ -19,13 +19,15 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
     // This coroutines scope we run
     // it is variable, because Job can not be restarted after cancellation and
     // we have to create new one
+    // TODO: WS_5_03_9 - Remove exception handler
+    // TODO: WS_5_03_10 - Replace SupervisorJob with just Job
     private var scope = CoroutineScope(
         SupervisorJob() +
                 Dispatchers.Default +
                 exceptionHandler
     )
 
-    // This is job that will be run in Global Scope
+    // This is job that will be run in Global Scope it
     private var globalScopeJob: Job? = null
 
     private var startButton: Button? = null
@@ -51,14 +53,15 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
     private fun startCoroutines() {
         toggleButtons(true)
 
-        // TODO: Add run odd number producing coroutine via launch in scope
+        // TODO: WS_5_03_1 - Add run odd number producing coroutine via launch in scope
 
-        // TODO: Add run negatives number producing coroutine via launch in scope
+        // TODO: WS_5_03_2 - Add run negatives number producing coroutine via launch in scope
 
-        // TODO: Add run mod by two result from number coroutine via launch in GlobalScope
+        // TODO: WS_5_03_3 - Add run mod by two result from number coroutine via launch in scope
+        // TODO: WS_5_03_7 - Add run mod by two result from number coroutine via launch in GlobalScope
         // TODO: Don't forget to save job for the future cancellation
 
-        // TODO: Add run coroutine that fails after a second
+        // TODO: WS_5_03_4 - Add run coroutine that fails after a second
     }
 
     // Coroutine that produces odd numbers every second
@@ -100,13 +103,13 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
     }
 
     private fun showResult(text: String, resultView: TextView?) {
-        // TODO: Fix access of UI component from main dispatcher
+        // TODO: WS_5_03_6 - Fix access of UI component from main dispatcher
         // TODO: Don't forget about suspend keyword
         resultView?.text = text
     }
 
     private fun cancelCoroutines() {
-        // Add cancellation of all current jobs via parent job
+        // TODO: WS_5_03_5 - Add cancellation of all current jobs via parent job
 
         // Set new scope with fresh SupervisorJob after cancel
         scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)
@@ -134,10 +137,10 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
     }
 
     override fun onDestroyView() {
-        // Stop work to avoid leaks
-        cancelCoroutines()
+        // TODO: WS_5_03_8 - Add Global Scope job cancelling to avoid leaks
+        // TODO: use WS03CoroutinesProblemFragment#globalScopeJob
 
-        // TODO: Add Global Scope job cancelling to avoid leaks
+        // TODO: WS_5_03_11 - Stop jobs to avoid leaks
 
         // Clear views to avoid leaks
         clearCachedViews()
@@ -152,5 +155,9 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
         secondCoroutineResultView = null
         thirdCoroutineResultView = null
         fourthCoroutineResultView = null
+    }
+
+    companion object {
+        // TODO: WS_5_03_12 - How can I keep jobs simple while activity is rotating?
     }
 }
