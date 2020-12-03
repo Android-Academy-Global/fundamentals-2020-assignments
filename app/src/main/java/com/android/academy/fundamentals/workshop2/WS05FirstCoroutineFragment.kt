@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
-import kotlinx.coroutines.delay
 
 class WS05FirstCoroutineFragment: Fragment(R.layout.coroutines_workshop_02) {
 
@@ -24,39 +23,34 @@ class WS05FirstCoroutineFragment: Fragment(R.layout.coroutines_workshop_02) {
         button = view.findViewById(R.id.button)
 
         button?.setOnClickListener {
-            // TODO: WS05_2 создай корутину - вызови readFromFile из scope используя launch
+            // TODO: WS05_2 создай корутину - вызови readFromFile из scope используя launch и запусти приложение
         }
     }
 
-    // TODO: WS05_4 добави delay(100) в readFromFile
-    // delay является suspendable функцией, поэтому сделаем readFromFile suspendable
-    // добавь "suspend" к функции readFromFile
-    // запусти приложение, нажми на кнопку, чтобы загрузить текст, нажми несколько раз на экран
-    // и посмотри, что произойдет
-    // (появился ли ANR диалог?)
+    // TODO: WS05_3 чтение из файла - тяжелая операция, которая не должна делаться в главном потоке
+    //  поэтому нужно добавить отдельный контекст - Dispatcher ко всей функции readFromFile
 
-    // TODO: WS05_5 чтениие из файла - тяжелая операция, которая не должна делаться в главном потоке
-    // поэтому нужно добавить отдельный контекст - Dispatcher ко всей функции
-    // но какой выбрать? т.к. чтение из файла это Input/output операция - нужно добавить Dispatchers.IO
-    // затем запусти приложение и посмотри, что произойдет
+    // TODO: WS05_4 сделаей readFromFile suspended.
+    //  Для этого нужно добавить ключевое слово в сингатуру метода - suspend.
+    //  затем запусти приложение
     private fun readFromFile() {
         val file = context?.resources?.openRawResource(R.raw.alice);
         file?.bufferedReader()
             ?.useLines { lines ->
                 lines.forEach {
                     updateTextView(it)
-                    // TODO: WS05_3 добавь delay(100)
-                } }
+                }
+            }
     }
 
-    // TODO: WS05_6 приложение падает, потому что textView обновляется не из главного потока (UI потока)
-    // нужно добавить контекст Dispatchers.Main к этой фунции, чтобы обновление вью происходило из главного потока
-    // после этого запусти приложение и посмотри, все ли работает в этот раз
+    // TODO: WS05_5 приложение падает, потому что textView обновляется не из главного потока (UI потока)
+    //  нужно добавить контекст Dispatchers.Main и suspend к этой фунции, чтобы обновление вью происходило из главного потока
+    //  после этого запусти приложение и посмотри, все ли работает в этот раз
     private fun updateTextView(text: String) {
         textView?.append("\n$text")
     }
 
-    // TODO: WS05_7* обнови scope с Dispatchers.Main на Dispatchers.Default
-    // затем подумай и обсуди с группой и ментором, какие контексты должны быть у
-    // readFromFile и updateTextView после изменения контекста у scope
+    // TODO: WS05_6* обнови scope с Dispatchers.Main на Dispatchers.Default
+    //  затем подумай и обсуди с группой и ментором, какие контексты должны быть у
+    //  readFromFile и updateTextView после изменения контекста у scope
 }
