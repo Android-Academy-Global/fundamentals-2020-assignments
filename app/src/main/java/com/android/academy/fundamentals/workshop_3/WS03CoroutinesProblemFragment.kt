@@ -25,12 +25,16 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
                 exceptionHandler
     )
 
+    // This is job that will be run in Global Scope
+    private var globalScopeJob: Job? = null
+
     private var startButton: Button? = null
     private var stopButton: Button? = null
     private var firstCoroutineResultView: TextView? = null
     private var secondCoroutineResultView: TextView? = null
     private var thirdCoroutineResultView: TextView? = null
     private var fourthCoroutineResultView: TextView? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         cacheViews(view)
@@ -47,13 +51,14 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
     private fun startCoroutines() {
         toggleButtons(true)
 
-        // Add run odd number producing coroutine via launch in scope
+        // TODO: Add run odd number producing coroutine via launch in scope
 
-        // Add run negatives number producing coroutine via launch in scope
+        // TODO: Add run negatives number producing coroutine via launch in scope
 
-        // Add run mod by two result from number coroutine via launch in GlobalScope
+        // TODO: Add run mod by two result from number coroutine via launch in GlobalScope
+        // TODO: Don't forget to save job for the future cancellation
 
-        // Add run coroutine that fails after a second
+        // TODO: Add run coroutine that fails after a second
     }
 
     // Coroutine that produces odd numbers every second
@@ -95,8 +100,8 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
     }
 
     private fun showResult(text: String, resultView: TextView?) {
-        // Fix access of UI component from main dispatcher
-        // Don't forget about suspend keyword
+        // TODO: Fix access of UI component from main dispatcher
+        // TODO: Don't forget about suspend keyword
         resultView?.text = text
     }
 
@@ -131,6 +136,9 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scop
     override fun onDestroyView() {
         // Stop work to avoid leaks
         cancelCoroutines()
+
+        // TODO: Add Global Scope job cancelling to avoid leaks
+
         // Clear views to avoid leaks
         clearCachedViews()
 

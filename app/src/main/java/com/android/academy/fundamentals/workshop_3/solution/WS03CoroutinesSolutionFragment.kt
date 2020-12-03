@@ -23,6 +23,9 @@ class WS03CoroutinesSolutionFragment : Fragment(R.layout.fragment_coroutines_sco
                 exceptionHandler
     )
 
+    // This is job that will be run in Global Scope
+    private var globalScopeJob: Job? = null
+
     private var startButton: Button? = null
     private var stopButton: Button? = null
     private var firstCoroutineResultView: TextView? = null
@@ -55,7 +58,7 @@ class WS03CoroutinesSolutionFragment : Fragment(R.layout.fragment_coroutines_sco
         }
         // Run mod by two result from number coroutine
         // Run it with GlobalScope to observe cancellation ignorance
-        GlobalScope.launch {
+        globalScopeJob = GlobalScope.launch {
             runModByTwoCoroutine()
         }
         // Run coroutine that fails after a second
@@ -139,6 +142,8 @@ class WS03CoroutinesSolutionFragment : Fragment(R.layout.fragment_coroutines_sco
     override fun onDestroyView() {
         // Stop work to avoid leaks
         cancelCoroutines()
+        // Let's clean up global scope job here
+        globalScopeJob?.cancel()
         // Clear views to avoid leaks
         clearCachedViews()
 
