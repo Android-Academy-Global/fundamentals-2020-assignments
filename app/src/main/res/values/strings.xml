@@ -2,4 +2,5 @@
     <string name="app_name">ThreadApplication</string>
     <string name="start_loading_text">Start loading text</string>
     <string name="start_hint">Click the button to start loading text</string>
+    <string name="click_me">Try to click me!</string>
 </resources>
