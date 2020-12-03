@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ThreadApplication</string>
+    <string name="start_thread_text">Push the button, start your thread</string>
+    <string name="thread_worked">Thread work has done</string>
+    <string name="runnable_worked">Runnable work has done</string>
+    <string name="wait">Wait</string>
 </resources>
