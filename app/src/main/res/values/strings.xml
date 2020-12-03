@@ -2,14 +2,10 @@
 
     <string name="app_name">Coroutines Application</string>
 
-    <string name="start_coroutines">Start</string>
-    <string name="stop_coroutines">Stop</string>
-    <string name="first_coroutine_label">Coroutine #1:</string>
-    <string name="second_coroutine_label">Coroutine #2:</string>
-    <string name="fourth_coroutine_label">Coroutine #4:</string>
-    <string name="third_coroutine_label">Coroutine #3:</string>
-    <string name="done">Done</string>
-    <string name="finally_done">Finally Done</string>
+    <string name="start_thread_text">Push the button, start your thread</string>
+    <string name="thread_worked">Thread work has done</string>
+    <string name="runnable_worked">Runnable work has done</string>
+    <string name="wait">Wait</string>
 
     <!-- Workshop04 -->
     <string name="ws04_button_fall_by_launch_text">Fall by launch</string>
