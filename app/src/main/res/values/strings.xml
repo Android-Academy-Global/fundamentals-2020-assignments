@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">ThreadApplication</string>
+
+    <string name="app_name">Coroutines Application</string>
+
+    <string name="start_coroutines">Start</string>
+    <string name="stop_coroutines">Stop</string>
+    <string name="first_coroutine_label">Coroutine #1:</string>
+    <string name="second_coroutine_label">Coroutine #2:</string>
+    <string name="fourth_coroutine_label">Coroutine #4:</string>
+    <string name="third_coroutine_label">Coroutine #3:</string>
+    <string name="done">Done</string>
+    <string name="finally_done">Finally Done</string>
+
+    <!-- Workshop04 -->
+    <string name="ws04_button_fall_by_launch_text">Fall by launch</string>
+    <string name="ws04_button_fall_by_await_text">Fall by await</string>
+    <string name="ws04_button_handle_with_try_catch">Catch them all</string>
+    <string name="ws04_button_handle_async_with_try_catch">Catch them async</string>
+    <string name="ws04_button_handle_with_handler">Catch with Handler</string>
+    <string name="ws04_button_handle_with_super_handler">Catch with super Handler</string>
+    <string name="ws04_exception_log_label">Handled exception:</string>
+    <string name="ws04_exception_log_text">%s\n%s</string>
+    <!-- Workshop04 -->
+
 </resources>
