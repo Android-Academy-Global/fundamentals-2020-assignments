@@ -137,6 +137,9 @@ class WS03CoroutinesSolutionFragment : Fragment(R.layout.fragment_coroutines_sco
     }
 
     override fun onDestroyView() {
+        // Stop work to avoid leaks
+        cancelCoroutines()
+        // Clear views to avoid leaks
         clearCachedViews()
 
         super.onDestroyView()
