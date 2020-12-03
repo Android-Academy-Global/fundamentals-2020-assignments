@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals.workshop2.solution
+package com.android.academy.fundamentals.workshop_2.solution
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 import kotlinx.coroutines.*
 
-class WS05FirstCoroutineFragmentSolution : Fragment(R.layout.coroutines_workshop_02) {
+class WS02FirstCoroutineSolutionFragment : Fragment(R.layout.fragment_ws_02) {
 
     private val scope = CoroutineScope(Dispatchers.Main)
 

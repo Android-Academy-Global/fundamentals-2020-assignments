@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 
-class WS01ThreadsSolutionFragment: Fragment(R.layout.fragment_theads) {
+class WS01ThreadsSolutionFragment: Fragment(R.layout.fragment_ws_01) {
 
     private var threadButton : Button? = null
     private var threadTextView : TextView? = null

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
-    tools:context=".workshop2.WS05FirstCoroutineFragment">
+    tools:context=".workshop_2.WS02FirstCoroutineTaskFragment">
 
     <TextView
         android:id="@+id/tv"

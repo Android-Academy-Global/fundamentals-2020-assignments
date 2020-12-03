@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals.workshop2
+package com.android.academy.fundamentals.workshop_2
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 
-class WS05FirstCoroutineFragment: Fragment(R.layout.coroutines_workshop_02) {
+class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
 
-    // TODO: WS05_1 создай scope (CoroutineScope) для будущих корутин с контекстом Dispatchers.Main
+    // TODO(WS2:1) создай scope (CoroutineScope) для будущих корутин с контекстом Dispatchers.Main
     // private val scope = ...
 
     private var textView: TextView? = null;
@@ -23,14 +23,14 @@ class WS05FirstCoroutineFragment: Fragment(R.layout.coroutines_workshop_02) {
         button = view.findViewById(R.id.button)
 
         button?.setOnClickListener {
-            // TODO: WS05_2 создай корутину - вызови readFromFile из scope используя launch и запусти приложение
+            // TODO(WS2:2) создай корутину - вызови readFromFile из scope используя launch и запусти приложение
         }
     }
 
-    // TODO: WS05_3 чтение из файла - тяжелая операция, которая не должна делаться в главном потоке
+    // TODO: TODO(WS2:3) чтение из файла - тяжелая операция, которая не должна делаться в главном потоке
     //  поэтому нужно добавить отдельный контекст - Dispatcher ко всей функции readFromFile
 
-    // TODO: WS05_4 сделаей readFromFile suspended.
+    // TODO(WS2:4) сделаей readFromFile suspended.
     //  Для этого нужно добавить ключевое слово в сингатуру метода - suspend.
     //  затем запусти приложение
     private fun readFromFile() {
@@ -43,14 +43,14 @@ class WS05FirstCoroutineFragment: Fragment(R.layout.coroutines_workshop_02) {
             }
     }
 
-    // TODO: WS05_5 приложение падает, потому что textView обновляется не из главного потока (UI потока)
+    // TODO(WS2:5) приложение падает, потому что textView обновляется не из главного потока (UI потока)
     //  нужно добавить контекст Dispatchers.Main и suspend к этой фунции, чтобы обновление вью происходило из главного потока
     //  после этого запусти приложение и посмотри, все ли работает в этот раз
     private fun updateTextView(text: String) {
         textView?.append("\n$text")
     }
 
-    // TODO: WS05_6* обнови scope с Dispatchers.Main на Dispatchers.Default
+    // TODO(WS2:6)* обнови scope с Dispatchers.Main на Dispatchers.Default
     //  затем подумай и обсуди с группой и ментором, какие контексты должны быть у
     //  readFromFile и updateTextView после изменения контекста у scope
 }
