@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 import kotlinx.coroutines.*
 
+@Suppress("unused")
 class WS02FirstCoroutineSolutionFragment : Fragment(R.layout.fragment_ws_02) {
 
     private val scope = CoroutineScope(Dispatchers.Main)
 
-    private var textView: TextView? = null;
-    private var button: Button? = null;
+    private var textView: TextView? = null
+    private var button: Button? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,7 +27,7 @@ class WS02FirstCoroutineSolutionFragment : Fragment(R.layout.fragment_ws_02) {
     }
 
     private suspend fun readFromFile() = withContext(Dispatchers.IO) {
-        val file = context?.resources?.openRawResource(R.raw.alice);
+        val file = context?.resources?.openRawResource(R.raw.alice)
         file?.bufferedReader()
             ?.useLines { lines ->
                 lines.forEach {
