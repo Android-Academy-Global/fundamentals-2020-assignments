@@ -11,7 +11,7 @@ import kotlinx.coroutines.*
 import java.io.IOException
 import java.lang.StringBuilder
 
-class WS04ErrorHandlingProblemFragment : Fragment() {
+class WS04ErrorHandlingProblemFragment : Fragment(R.layout.fragment_ws_04) {
 
     private var fallByLaunchButton: Button? = null
     private var fallByAwaitButton: Button? = null
