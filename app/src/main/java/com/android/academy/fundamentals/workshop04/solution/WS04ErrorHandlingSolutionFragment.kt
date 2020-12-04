@@ -33,28 +33,28 @@ class WS04ErrorHandlingSolutionFragment : Fragment(R.layout.fragment_coroutines_
     }
 
     private val superExceptionHandler = CoroutineExceptionHandler { canceledContext, exception ->
-        val isActive = coroutineSuperScope.isActive
+        val isActive = coroutineSupervisorScope.isActive
         Log.e(TAG, "SuperExceptionHandler [Scope active:$isActive, canceledContext:$canceledContext]")
-        coroutineSuperScope.launch {
+        coroutineSupervisorScope.launch {
             sb.append("superExceptionHandler scope active:$isActive\n")
             logExceptionSuspend("superExceptionHandler", exception)
         }
     }
 
     // TODO 01
-    private fun createScope(): CoroutineScope = CoroutineScope(Dispatchers.Default + Job())
+    private fun createScope() = CoroutineScope(Dispatchers.Default + Job())
 
     // TODO 02
-    private fun createSuperScope(): CoroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+    private fun createSuperScope() = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
     private var coroutineScope = createScope()
-    private var coroutineSuperScope = createSuperScope()
+    private var coroutineSupervisorScope = createSuperScope()
     private val sb: StringBuilder = StringBuilder()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi(view)
+        setupViews(view)
         setupListeners()
     }
 
@@ -62,7 +62,7 @@ class WS04ErrorHandlingSolutionFragment : Fragment(R.layout.fragment_coroutines_
         super.onDestroyView()
 
         cancelCoroutines()
-        clearUi()
+        clearViews()
     }
 
     // TODO 03
@@ -133,7 +133,7 @@ class WS04ErrorHandlingSolutionFragment : Fragment(R.layout.fragment_coroutines_
 
     // TODO 08
     private fun superWorkWithExceptionHandler() {
-        coroutineSuperScope.launch(superExceptionHandler) {
+        coroutineSupervisorScope.launch(superExceptionHandler) {
             methodWithException("superWorkWithExceptionHandler", coroutineScope.isActive)
         }
     }
@@ -161,7 +161,7 @@ class WS04ErrorHandlingSolutionFragment : Fragment(R.layout.fragment_coroutines_
         )
     }
 
-    private fun setupUi(view: View) {
+    private fun setupViews(view: View) {
         fallByLaunchButton = view.findViewById(R.id.btnFallByLaunch)
         fallByAwaitButton = view.findViewById(R.id.btnFallByAwait)
         handleWithTryCatchButton = view.findViewById(R.id.btnHandleWithTryCatch)
@@ -171,7 +171,7 @@ class WS04ErrorHandlingSolutionFragment : Fragment(R.layout.fragment_coroutines_
         exceptionLogView = view.findViewById(R.id.tvExceptionLogText)
     }
 
-    private fun clearUi() {
+    private fun clearViews() {
         fallByLaunchButton = null
         fallByAwaitButton = null
         handleWithTryCatchButton = null
@@ -192,8 +192,8 @@ class WS04ErrorHandlingSolutionFragment : Fragment(R.layout.fragment_coroutines_
 
     private fun cancelCoroutines() {
         coroutineScope.cancel("It's time")
-        coroutineSuperScope.cancel("It's time")
+        coroutineSupervisorScope.cancel("It's time")
     }
 }
 
-private const val TAG = "TAG"
+private const val TAG = "WS04"

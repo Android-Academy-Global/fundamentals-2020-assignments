@@ -33,9 +33,9 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
     }
 
     private val superExceptionHandler = CoroutineExceptionHandler { canceledContext, exception ->
-        val isActive = coroutineSuperScope.isActive
+        val isActive = coroutineSupervisorScope.isActive
         Log.e(TAG, "SuperExceptionHandler [Scope active:$isActive, canceledContext:$canceledContext]")
-        coroutineSuperScope.launch {
+        coroutineSupervisorScope.launch {
             sb.append("superExceptionHandler scope active:$isActive\n")
             logExceptionSuspend("superExceptionHandler", exception)
         }
@@ -48,13 +48,13 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
     private fun createSuperScope(): CoroutineScope = TODO()
 
     private var coroutineScope = createScope()
-    private var coroutineSuperScope = createSuperScope()
+    private var coroutineSupervisorScope = createSuperScope()
     private val sb: StringBuilder = StringBuilder()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi(view)
+        setupViews(view)
         setupListeners()
     }
 
@@ -62,7 +62,7 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
         super.onDestroyView()
 
         cancelCoroutines()
-        clearUi()
+        clearViews()
     }
 
     // TODO: UI thread logger SAMPLE.
@@ -163,7 +163,7 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
         )
     }
 
-    private fun setupUi(view: View) {
+    private fun setupViews(view: View) {
         fallByLaunchButton = view.findViewById(R.id.btnFallByLaunch)
         fallByAwaitButton = view.findViewById(R.id.btnFallByAwait)
         handleWithTryCatchButton = view.findViewById(R.id.btnHandleWithTryCatch)
@@ -173,7 +173,7 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
         exceptionLogView = view.findViewById(R.id.tvExceptionLogText)
     }
 
-    private fun clearUi() {
+    private fun clearViews() {
         fallByLaunchButton = null
         fallByAwaitButton = null
         handleWithTryCatchButton = null
@@ -194,8 +194,8 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
 
     private fun cancelCoroutines() {
         coroutineScope.cancel("It's time")
-        coroutineSuperScope.cancel("It's time")
+        coroutineSupervisorScope.cancel("It's time")
     }
 }
 
-private const val TAG = "TAG"
+private const val TAG = "WS04"
