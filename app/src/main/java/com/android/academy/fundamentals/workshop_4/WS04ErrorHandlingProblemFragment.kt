@@ -68,6 +68,7 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
     // TODO: UI thread logger SAMPLE.
     private fun loggerSample() {
         try {
+            coroutineScope.launch {  }
 
         } catch (throwable: Throwable) {
             logException("loggerSample", throwable)
