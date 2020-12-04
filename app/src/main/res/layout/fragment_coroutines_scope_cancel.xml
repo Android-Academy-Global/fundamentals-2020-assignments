@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/start_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:text="@string/start_coroutines"
+        app:layout_constraintEnd_toStartOf="@id/stop_button"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/stop_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:enabled="false"
+        android:text="@string/stop_coroutines"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/start_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/first_coroutine_label"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:text="@string/first_coroutine_label"
+        app:layout_constraintBottom_toTopOf="@id/first_coroutine_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/start_button" />
+
+    <TextView
+        android:id="@+id/first_coroutine_value"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        app:layout_constraintBottom_toTopOf="@id/second_coroutine_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/first_coroutine_label"
+        tools:text="First coroutine results" />
+
+    <TextView
+        android:id="@+id/second_coroutine_label"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:text="@string/second_coroutine_label"
+        app:layout_constraintBottom_toTopOf="@id/second_coroutine_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/first_coroutine_value" />
+
+    <TextView
+        android:id="@+id/second_coroutine_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        app:layout_constraintBottom_toTopOf="@id/third_coroutine_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/second_coroutine_label"
+        tools:text="Second coroutine results" />
+
+    <TextView
+        android:id="@+id/third_coroutine_label"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:text="@string/third_coroutine_label"
+        app:layout_constraintBottom_toTopOf="@id/third_coroutine_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/second_coroutine_value" />
+
+    <TextView
+        android:id="@+id/third_coroutine_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        app:layout_constraintBottom_toTopOf="@id/fourth_coroutine_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/third_coroutine_label"
+        tools:text="Third coroutine results" />
+
+    <TextView
+        android:id="@+id/fourth_coroutine_label"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:text="@string/fourth_coroutine_label"
+        app:layout_constraintBottom_toTopOf="@id/fourth_coroutine_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/third_coroutine_value" />
+
+    <TextView
+        android:id="@+id/fourth_coroutine_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginTop="@dimen/value_4dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/third_coroutine_value"
+        tools:text="Fourth coroutine results" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

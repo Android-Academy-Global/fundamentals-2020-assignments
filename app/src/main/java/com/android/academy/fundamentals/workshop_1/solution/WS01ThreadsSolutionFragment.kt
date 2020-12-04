@@ -1,13 +1,17 @@
 package com.android.academy.fundamentals.workshop_1.solution
 
-import android.os.*
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 
-class WS01ThreadsSolutionFragment: Fragment(R.layout.fragment_theads) {
+@Suppress("unused")
+class WS01ThreadsSolutionFragment: Fragment(R.layout.fragment_ws_01) {
 
     private var threadButton : Button? = null
     private var threadTextView : TextView? = null
