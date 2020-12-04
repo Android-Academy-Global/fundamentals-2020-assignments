@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFallByLaunch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_16dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginEnd="@dimen/value_8dp"
+        android:padding="@dimen/value_8dp"
+        android:text="@string/ws04_button_fall_by_launch_text"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnFallByAwait"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFallByAwait"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_16dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginStart="@dimen/value_8dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:padding="@dimen/value_8dp"
+        android:text="@string/ws04_button_fall_by_await_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnFallByLaunch"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHandleWithTryCatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_8dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:padding="@dimen/value_8dp"
+        android:text="@string/ws04_button_handle_with_try_catch"
+        app:layout_constraintTop_toBottomOf="@+id/btnFallByLaunch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHandleAwaitWithTryCatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_8dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:padding="@dimen/value_8dp"
+        android:text="@string/ws04_button_handle_async_with_try_catch"
+        app:layout_constraintTop_toBottomOf="@+id/btnHandleWithTryCatch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHandleWithHandler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_8dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:padding="@dimen/value_8dp"
+        android:text="@string/ws04_button_handle_with_handler"
+        app:layout_constraintTop_toBottomOf="@+id/btnHandleAwaitWithTryCatch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHandleWithSuperHandler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_8dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:padding="@dimen/value_8dp"
+        android:text="@string/ws04_button_handle_with_super_handler"
+        app:layout_constraintTop_toBottomOf="@+id/btnHandleWithHandler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView style="@style/TextAppearance.AppCompat.Title"
+        android:id="@+id/tvExceptionLogLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_8dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:padding="@dimen/value_8dp"
+        android:text="@string/ws04_exception_log_label"
+        app:layout_constraintTop_toBottomOf="@+id/btnHandleWithSuperHandler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView style="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/tvExceptionLogText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_8dp"
+        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:layout_marginEnd="@dimen/value_16dp"
+        android:padding="@dimen/value_8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvExceptionLogLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="java.io.IOException"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
