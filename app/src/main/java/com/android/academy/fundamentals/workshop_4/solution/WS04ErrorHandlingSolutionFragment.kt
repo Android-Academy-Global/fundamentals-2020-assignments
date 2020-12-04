@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals.workshop04
+package com.android.academy.fundamentals.workshop_4.solution
 
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +11,7 @@ import kotlinx.coroutines.*
 import java.io.IOException
 import java.lang.StringBuilder
 
-class WS04ErrorHandlingProblemFragment : Fragment() {
+class WS04ErrorHandlingSolutionFragment : Fragment(R.layout.fragment_ws_04) {
 
     private var fallByLaunchButton: Button? = null
     private var fallByAwaitButton: Button? = null
@@ -41,11 +41,11 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
         }
     }
 
-    // TODO 01: Create the CoroutineScope from Default dispatchers and common Job.
-    private fun createScope(): CoroutineScope = TODO()
+    // TODO 01
+    private fun createScope() = CoroutineScope(Dispatchers.Default + Job())
 
-    // TODO 02: Create the CoroutineScope from Default dispatchers and Supervisor job.
-    private fun createSuperScope(): CoroutineScope = TODO()
+    // TODO 02
+    private fun createSuperScope() = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
     private var coroutineScope = createScope()
     private var coroutineSupervisorScope = createSuperScope()
@@ -65,79 +65,77 @@ class WS04ErrorHandlingProblemFragment : Fragment() {
         clearViews()
     }
 
-    // TODO: UI thread logger SAMPLE.
-    private fun loggerSample() {
+    // TODO 03
+    private fun failLaunchWithException() {
         try {
+            coroutineScope.launch {
+                // Will fail on Dispatchers.Default, not Dispatchers.IO
+                methodWithException("failLaunchWithException", coroutineScope.isActive)
+            }
 
         } catch (throwable: Throwable) {
-            logException("loggerSample", throwable)
+            // Will not catch this. See logcat.
+            logException("failLaunchWithException::Recovered", throwable)
         }
     }
 
-    // TODO: Coroutine-To-UI thread logger SAMPLE.
-    private fun suspendLoggerSample() {
+    // TODO 04
+    private fun workWithHandledException() {
         coroutineScope.launch {
             try {
+                methodWithException("workWithHandledException", coroutineScope.isActive)
 
             } catch (throwable: Throwable) {
-                logExceptionSuspend("suspendLoggerSample", throwable)
+                logExceptionSuspend("workWithHandledException", throwable)
             }
         }
     }
 
-    // TODO 03: Run "methodWithException("failLaunchWithException")" inside a coroutine:
-    //  Try to launch the coroutine from regular "coroutineScope".
-    //  This will fail coroutine with Exception and close Application.
-    //  Catch and Log exception with proper Logger method (you can't).
-    private fun failLaunchWithException() {
-        methodWithException("failLaunchWithException", coroutineScope.isActive)
-    }
-
-    // TODO 04: Run "methodWithException("workWithHandledException")" inside a coroutine:
-    //  Launch coroutine from regular "coroutineScope".
-    //  Try to run the method and Catch exception.
-    //  Log exception with proper Logger method.
-    private fun workWithHandledException() {
-        methodWithException("workWithHandledException", coroutineScope.isActive)
-    }
-
-    // TODO 05: Create "val deferred" with "methodWithException("failAwaitWithException")" inside a deferred:
-    //  Try to launch coroutine from regular "coroutineScope".
-    //  Inside that coroutine:
-    //  - create the deferred from regular "coroutineScope" and async builder.
-    //  - await result.
-    //  This will fail coroutine with Exception and close Application.
-    //  Catch and Log exception with proper Logger method (you can't).
+    // TODO 05
     private fun failAwaitWithException() {
-        methodWithException("failAwaitWithException", coroutineScope.isActive)
+        try {
+            coroutineScope.launch {
+                val deferred = coroutineScope.async {
+                    methodWithException("failAwaitWithException", coroutineScope.isActive)
+                }
+
+                deferred.await()
+            }
+
+        } catch (throwable: Throwable) {
+            // Will not catch this. See logcat.
+            logException("failAwaitWithException::Recovered", throwable)
+        }
     }
 
-    // TODO 06: Create "val deferred" with "methodWithException("awaitWorkWithHandledException")" inside a deferred:
-    //  Create the deferred from regular "coroutineScope" and async builder.
-    //  Try to run the method and Catch exception inside a deferred.
-    //  Log exception with proper Logger method.
-    //  Launch coroutine from regular "coroutineScope".
-    //  Await result inside.
+    // TODO 06
     private fun awaitWorkWithHandledException() {
-        methodWithException("awaitWorkWithHandledException", coroutineScope.isActive)
+        val deferred = coroutineScope.async {
+            try {
+                methodWithException("awaitWorkWithHandledException", coroutineScope.isActive)
+
+            } catch (throwable: Throwable) {
+                logExceptionSuspend("awaitWorkWithHandledException", throwable)
+            }
+        }
+
+        coroutineScope.launch {
+            deferred.await()
+        }
     }
 
-    // TODO 07: Run "methodWithException("workWithExceptionHandler")" inside a coroutine:
-    //  Launch coroutine from regular "coroutineScope".
-    //  Add the "exceptionHandler" to the launch builder's coroutine context.
-    //  Inspect the realization of the "exceptionHandler".
-    //  Why we have to create another scope?
+    // TODO 07
     private fun workWithExceptionHandler() {
-        methodWithException("workWithExceptionHandler", coroutineScope.isActive)
+        coroutineScope.launch(exceptionHandler) {
+            methodWithException("workWithExceptionHandler", coroutineScope.isActive)
+        }
     }
 
-    // TODO 08: Run "methodWithException("superWorkWithExceptionHandler")" inside a coroutine:
-    //  Launch coroutine from regular "coroutineSuperScope".
-    //  Add the "superExceptionHandler" to the launch builder's coroutine context.
-    //  Inspect the realization of the "superExceptionHandler".
-    //  Why we don't have to create another scope?
+    // TODO 08
     private fun superWorkWithExceptionHandler() {
-        methodWithException("superWorkWithExceptionHandler", coroutineScope.isActive)
+        coroutineSupervisorScope.launch(superExceptionHandler) {
+            methodWithException("superWorkWithExceptionHandler", coroutineScope.isActive)
+        }
     }
 
     private fun methodWithException(who: String, isActive: Boolean) {

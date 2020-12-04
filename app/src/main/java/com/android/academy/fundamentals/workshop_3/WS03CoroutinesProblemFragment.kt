@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 import kotlinx.coroutines.*
 
-class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_coroutines_scope_cancel) {
+class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // This is exception handler that will print caught errors to log
     private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, exception ->
         println("CoroutineExceptionHandler got $exception in $coroutineContext")
