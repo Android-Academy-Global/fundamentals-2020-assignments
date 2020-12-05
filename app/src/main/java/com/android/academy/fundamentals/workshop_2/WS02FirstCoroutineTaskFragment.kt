@@ -4,53 +4,57 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Button
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 
 class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
 
-    // TODO(WS2:1) создай scope (CoroutineScope) для будущих корутин с контекстом Dispatchers.Main
+    // TODO(WS2:1) create scope (CoroutineScope) for future coroutines with context Dispatchers.Main
     // private val scope = ...
 
     private var textView: TextView? = null;
     private var button: Button? = null;
+    private var scrollView: ScrollView? = null;
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         textView = view.findViewById(R.id.tv)
         textView?.movementMethod = ScrollingMovementMethod()
         button = view.findViewById(R.id.button)
+        scrollView = view.findViewById(R.id.scrollView)
 
         button?.setOnClickListener {
-            // TODO(WS2:2) создай корутину - вызови readFromFile из scope используя launch и запусти приложение
+            // TODO(WS2:2) create coroutine - call readFromFile from scope using launch and launch the app
         }
     }
 
-    // TODO: TODO(WS2:3) чтение из файла - тяжелая операция, которая не должна делаться в главном потоке
-    //  поэтому нужно добавить отдельный контекст - Dispatcher ко всей функции readFromFile
+    // TODO(WS2:3) reading from file is a heavy work, it should not be done from the main thread
+    //  let's add a context - Dispatcher to readFromFile
 
-    // TODO(WS2:4) сделаей readFromFile suspended.
-    //  Для этого нужно добавить ключевое слово в сингатуру метода - suspend.
-    //  затем запусти приложение
+    // TODO(WS2:4) make readFromFile suspended.
+    //  Add a keyword - suspend - to readFromFile function.
+    //  Then launch the app
     private fun readFromFile() {
         val file = context?.resources?.openRawResource(R.raw.alice);
         file?.bufferedReader()
-            ?.useLines { lines ->
-                lines.forEach {
-                    updateTextView(it)
+                ?.useLines { lines ->
+                    lines.forEach {
+                        updateTextView(it)
+                    }
                 }
-            }
     }
 
-    // TODO(WS2:5) приложение падает, потому что textView обновляется не из главного потока (UI потока)
-    //  нужно добавить контекст Dispatchers.Main и suspend к этой фунции, чтобы обновление вью происходило из главного потока
-    //  после этого запусти приложение и посмотри, все ли работает в этот раз
+    // TODO(WS2:5) the app crashes because textView is updated not from the main thread (UI thread)
+    //  you need to add context - Dispatchers.Main - and suspend to updateTextView so the view is updated from the main thread
+    //  launch the app and check if the app works correctly
     private fun updateTextView(text: String) {
         textView?.append("\n$text")
+        scrollView?.fullScroll(View.FOCUS_DOWN)
     }
 
-    // TODO(WS2:6)* обнови scope с Dispatchers.Main на Dispatchers.Default
-    //  затем подумай и обсуди с группой и ментором, какие контексты должны быть у
-    //  readFromFile и updateTextView после изменения контекста у scope
+    // TODO(WS2:6)* update class variable 'scope' from Dispatchers.Main to Dispatchers.Default
+    //  then think and discuss with the team and your mentor what context readFromFile
+    //  and updateTextView should have after the change
 }
