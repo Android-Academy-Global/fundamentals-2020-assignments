@@ -3,44 +3,31 @@ package com.android.fundamentals.workshop03.solution
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android.fundamentals.domain.LoginInteractor
+import androidx.lifecycle.viewModelScope
+import com.android.fundamentals.domain.location.Location
+import com.android.fundamentals.domain.location.LocationGenerator
+import kotlinx.coroutines.launch
 
 class Workshop3SolutionViewModel(
-    private val interactor: LoginInteractor
+    private val generator: LocationGenerator
 ) : ViewModel() {
 
-    private val _mutableState = MutableLiveData<State>(State.Init())
+    private val _mutableLocationsList = MutableLiveData<List<Location>>(emptyList())
+    private val _mutableLoadingState = MutableLiveData<Boolean>(false)
 
-    val state: LiveData<State> get() = _mutableState
+    val locationsList: LiveData<List<Location>> get() = _mutableLocationsList
+    val loadingState: LiveData<Boolean> get() = _mutableLoadingState
 
-    override fun onCleared() =
-        interactor.cancelLogin()
+    fun addNew() {
+        viewModelScope.launch {
+            _mutableLoadingState.setValue(true)
 
-    fun login(userName: String, password: String) {
-        _mutableState.postValue(State.Loading())
+            val newLocation = generator.generateNewLocation()
 
-        interactor.login(
-            userName = userName,
-            password = password,
-            listener = object : LoginInteractor.LoginListener {
+            val updatedLocationsList = _mutableLocationsList.value?.plus(newLocation).orEmpty()
+            _mutableLocationsList.setValue(updatedLocationsList)
 
-                override fun onUserNameError() =
-                    _mutableState.postValue(State.UserNameError())
-
-                override fun onPasswordError() =
-                    _mutableState.postValue(State.PasswordError())
-
-                override fun onSuccess() =
-                    _mutableState.postValue(State.Success())
-            }
-        )
-    }
-
-    sealed class State {
-        class Init : State()
-        class Loading : State()
-        class UserNameError : State()
-        class PasswordError : State()
-        class Success : State()
+            _mutableLoadingState.setValue(false)
+        }
     }
 }

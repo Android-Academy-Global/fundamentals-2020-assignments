@@ -1,10 +1,16 @@
 package com.android.fundamentals.workshop01.solution
 
-import com.android.fundamentals.domain.LoginInteractor
+import com.android.fundamentals.domain.login.LoginInteractor
+import com.android.fundamentals.domain.login.LoginResult
+import kotlinx.coroutines.*
 
 class Workshop1SolutionPresenter(
-    private val interactor: LoginInteractor
+    private val interactor: LoginInteractor,
+    private val mainDispatcher: CoroutineDispatcher
 ) {
+
+    private val presenterScope: CoroutineScope =
+        CoroutineScope(SupervisorJob() + mainDispatcher)
 
     private var view: Workshop1SolutionView? = null
 
@@ -13,32 +19,22 @@ class Workshop1SolutionPresenter(
     }
 
     fun detachView() {
-        interactor.cancelLogin()
+        presenterScope.cancel()
         this.view = null
     }
 
     fun login(userName: String, password: String) {
-        view?.setLoading(loading = true)
+        presenterScope.launch {
+            view?.setLoading(loading = true)
 
-        interactor.login(
-            userName = userName,
-            password = password,
-            listener = object : LoginInteractor.LoginListener {
-                override fun onUserNameError() {
-                    view?.showUserNameError()
-                    view?.setLoading(loading = false)
-                }
-
-                override fun onPasswordError() {
-                    view?.showPasswordError()
-                    view?.setLoading(loading = false)
-                }
-
-                override fun onSuccess() {
-                    view?.showSuccess()
-                    view?.setLoading(loading = false)
-                }
+            val loginResult = interactor.login(userName = userName, password = password)
+            when (loginResult) {
+                is LoginResult.Error.UserName -> view?.showUserNameError()
+                is LoginResult.Error.Password -> view?.showPasswordError()
+                is LoginResult.Success -> view?.showSuccess()
             }
-        )
+
+            view?.setLoading(loading = false)
+        }
     }
 }

@@ -22,10 +22,4 @@
         android:layout_height="wrap_content"
         android:text="@string/workshop_3" />
 
-    <Button
-        android:id="@+id/fragment_select_workshop_open_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/workshop_4" />
-
 </LinearLayout>

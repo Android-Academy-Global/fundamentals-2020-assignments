@@ -5,7 +5,6 @@
     <string name="workshop_1">Workshop 1</string>
     <string name="workshop_2">Workshop 2</string>
     <string name="workshop_3">Workshop 3</string>
-    <string name="workshop_4">Workshop 4</string>
 
     <string name="user_name">User name</string>
     <string name="password">Password</string>
@@ -13,5 +12,7 @@
     <string name="user_name_error">User name error</string>
     <string name="password_error">Password error</string>
     <string name="login_success">Login success!!!</string>
+
+    <string name="add_new_location">Add New Location</string>
 
 </resources>
