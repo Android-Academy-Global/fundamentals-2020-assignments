@@ -1,20 +1,16 @@
-package com.android.fundamentals.workshop01.solution
+package com.android.fundamentals.workshop02.solution
 
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.android.fundamentals.R
-import com.android.fundamentals.domain.login.LoginInteractor
-import kotlinx.coroutines.Dispatchers
 
-class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Workshop1SolutionView {
+class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_1) {
 
-    private val presenter = Workshop1SolutionPresenter(
-        interactor = LoginInteractor(dispatcher = Dispatchers.Default),
-        mainDispatcher = Dispatchers.Main.immediate
-    )
+    private val viewModel: Workshop2SolutionViewModel by viewModels { Workshop2SolutionViewModelFactory() }
 
     private var userNameInput: EditText? = null
     private var passwordInput: EditText? = null
@@ -28,12 +24,10 @@ class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Worksh
         initViews(view)
         setUpListeners()
 
-        presenter.attachView(this)
+        viewModel.state.observe(this.viewLifecycleOwner, this::setState)
     }
 
     override fun onDestroyView() {
-        presenter.detachView()
-
         userNameInput = null
         passwordInput = null
         loginBtn = null
@@ -43,26 +37,42 @@ class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Worksh
         super.onDestroyView()
     }
 
-    override fun onDestroy() {
-        presenter.onDestroy()
+    private fun setState(state: Workshop2SolutionViewModel.State) =
+        when (state) {
+            is Workshop2SolutionViewModel.State.Init -> {
+                setLoading(loading = false)
+            }
+            is Workshop2SolutionViewModel.State.Loading -> {
+                setLoading(loading = true)
+            }
+            is Workshop2SolutionViewModel.State.UserNameError -> {
+                setLoading(loading = false)
+                showUserNameError()
+            }
+            is Workshop2SolutionViewModel.State.PasswordError -> {
+                setLoading(loading = false)
+                showPasswordError()
+            }
+            is Workshop2SolutionViewModel.State.Success -> {
+                setLoading(loading = false)
+                showSuccess()
+            }
+        }
 
-        super.onDestroy()
-    }
-
-    override fun setLoading(loading: Boolean) {
+    private fun setLoading(loading: Boolean) {
         loginBtn?.isEnabled = !loading
         loader?.isVisible = loading
     }
 
-    override fun showUserNameError() {
+    private fun showUserNameError() {
         userNameInput?.error = getString(R.string.user_name_error)
     }
 
-    override fun showPasswordError() {
+    private fun showPasswordError() {
         passwordInput?.error = getString(R.string.password_error)
     }
 
-    override fun showSuccess() {
+    private fun showSuccess() {
         loginBtn?.isVisible = false
         loginSuccess?.isVisible = true
     }
@@ -85,10 +95,10 @@ class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Worksh
         val inputUserName = userNameInput?.text?.toString().orEmpty()
         val inputPassword = passwordInput?.text?.toString().orEmpty()
 
-        presenter.login(userName = inputUserName, password = inputPassword)
+        viewModel.login(userName = inputUserName, password = inputPassword)
     }
 
     companion object {
-        fun newInstance(): Workshop1SolutionFragment = Workshop1SolutionFragment()
+        fun newInstance(): Workshop2SolutionFragment = Workshop2SolutionFragment()
     }
 }

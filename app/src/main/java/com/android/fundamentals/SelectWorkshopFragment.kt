@@ -22,10 +22,6 @@ class SelectWorkshopFragment : Fragment(R.layout.fragment_select_workshop) {
         view.findViewById<View>(R.id.fragment_select_workshop_open_3).setOnClickListener {
             parentRouter?.openWorkshop3()
         }
-
-        view.findViewById<View>(R.id.fragment_select_workshop_open_4).setOnClickListener {
-            parentRouter?.openWorkshop4()
-        }
     }
 
     companion object {

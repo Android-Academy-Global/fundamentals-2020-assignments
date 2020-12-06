@@ -7,6 +7,4 @@ interface Router {
     fun openWorkshop2()
 
     fun openWorkshop3()
-
-    fun openWorkshop4()
 }
