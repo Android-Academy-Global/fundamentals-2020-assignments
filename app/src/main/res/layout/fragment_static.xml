@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/static_result_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
