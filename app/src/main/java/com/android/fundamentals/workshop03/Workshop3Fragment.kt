@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class Workshop3Fragment : Fragment(R.layout.fragment_workshop_3) {
 
-    // TODO 03: Remove generator, location and mainScope
+    // TODO 07: Remove generator, location and mainScope
     private val generator = LocationGenerator(Dispatchers.Default)
     private val locations = mutableListOf<Location>()
     private val mainScope = CoroutineScope(Dispatchers.Main)
@@ -36,7 +36,7 @@ class Workshop3Fragment : Fragment(R.layout.fragment_workshop_3) {
         setUpLocationsAdapter()
         setUpListeners()
 
-        // TODO 07: subscribe on location list and loading state from viewModel
+        // TODO 08: subscribe on location list and loading state from viewModel
         // Use this.viewLifecycleOwner for LifecycleOwner.
     }
 
@@ -71,15 +71,15 @@ class Workshop3Fragment : Fragment(R.layout.fragment_workshop_3) {
         }
     }
 
-    // TODO 03: Move logic to Workshop3ViewModel, remove this method
+    // TODO 06: Remove this method
     private fun addNew() {
         mainScope.launch {
             setLoading(loading = true)
 
             val newLocation = generator.generateNewLocation()
 
-            val updatedLocationsList = locations.plus(newLocation)
-            locationsAdapter.submitList(updatedLocationsList)
+            locations.add(newLocation)
+            locationsAdapter.submitList(locations.toList())
 
             setLoading(loading = false)
         }
