@@ -17,6 +17,6 @@ class LoginInteractor(private val dispatcher: CoroutineDispatcher) {
         }
 
     companion object {
-        const val DELAY_MILLIS: Long = 5_000
+        const val DELAY_MILLIS: Long = 3_000
     }
 }

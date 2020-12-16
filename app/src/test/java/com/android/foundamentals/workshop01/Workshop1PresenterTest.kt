@@ -42,7 +42,7 @@ internal class Workshop1PresenterTest {
             expectedSuccessShownTimes = 0
         )
 
-        // Call presenter method to attach view
+        // Call presenter method login
         // TODO 10: Uncomment this code and run the test
         //presenter.login(userName = "", password = "")
 

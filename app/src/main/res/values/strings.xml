@@ -10,6 +10,10 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="user_name_error">User name error</string>
+
+    <string name="ws01_password_error">Password error</string>
+    <string name="ws01_login_success">Login success!!!</string>
+
     <string name="password_error">Password error</string>
     <string name="login_success">Login success!!!</string>
 

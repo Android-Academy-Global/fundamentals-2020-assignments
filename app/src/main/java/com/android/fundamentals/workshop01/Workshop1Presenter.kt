@@ -28,14 +28,14 @@ class Workshop1Presenter(
 
     fun login(userName: String, password: String) {
         presenterScope.launch {
-            //TODO 06: Set loading to true
+            //TODO 06: Set loading to true (using view method)
 
             val loginResult = interactor.login(userName = userName, password = password)
-            //TODO 07: Handle loginResult and show success or error depend on it
+            //TODO 07: Handle loginResult and show success or error depend on it (using view methods)
             /*when (loginResult) {
             }*/
 
-            //TODO 08: Set loading to false
+            //TODO 08: Set loading to false (using view method)
         }
     }
 }
