@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.fundamentals.R
+import com.android.fundamentals.workshop03.LocationsAdapter
 
 class Workshop3SolutionFragment : Fragment(R.layout.fragment_workshop_3) {
 
