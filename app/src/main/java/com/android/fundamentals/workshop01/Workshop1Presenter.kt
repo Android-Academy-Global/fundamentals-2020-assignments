@@ -22,6 +22,10 @@ class Workshop1Presenter(
         this.view = null
     }
 
+    fun onDestroy() {
+        presenterScope.cancel()
+    }
+
     fun login(userName: String, password: String) {
         presenterScope.launch {
             //TODO 06: Set loading to true
