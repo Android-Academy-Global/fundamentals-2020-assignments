@@ -23,6 +23,10 @@ class Workshop1SolutionPresenter(
         this.view = null
     }
 
+    fun onDestroy() {
+        presenterScope.cancel()
+    }
+
     fun login(userName: String, password: String) {
         presenterScope.launch {
             view?.setLoading(loading = true)

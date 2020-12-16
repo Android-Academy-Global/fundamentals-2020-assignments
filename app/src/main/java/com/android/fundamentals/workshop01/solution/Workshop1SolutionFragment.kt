@@ -43,6 +43,12 @@ class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Worksh
         super.onDestroyView()
     }
 
+    override fun onDestroy() {
+        presenter.onDestroy()
+
+        super.onDestroy()
+    }
+
     override fun setLoading(loading: Boolean) {
         loginBtn?.isEnabled = !loading
         loader?.isVisible = loading
