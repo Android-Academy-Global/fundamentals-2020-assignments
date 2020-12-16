@@ -50,15 +50,15 @@ class Workshop1Fragment : Fragment(R.layout.fragment_workshop_1), Workshop1View 
     }
 
     override fun showUserNameError() {
-        //TODO 02: Set error for userNameInput from strings resources
+        //TODO 02: Set error for userNameInput from strings resources (user_name_error)
     }
 
     override fun showPasswordError() {
-        //TODO 03: Set error for passwordInput from strings resources
+        //TODO 03: Set error for passwordInput from strings resources (password_error)
     }
 
     override fun showSuccess() {
-        //TODO 04: Hide logicBtn and show loginSuccess
+        //TODO 04: Hide loginBtn and show loginSuccess
     }
 
     private fun initViews(view: View) {
@@ -79,7 +79,7 @@ class Workshop1Fragment : Fragment(R.layout.fragment_workshop_1), Workshop1View 
         val inputUserName = userNameInput?.text?.toString().orEmpty()
         val inputPassword = passwordInput?.text?.toString().orEmpty()
 
-        //TODO 04: Call presenter login method
+        //TODO 05: Call presenter login method
     }
 
     companion object {
