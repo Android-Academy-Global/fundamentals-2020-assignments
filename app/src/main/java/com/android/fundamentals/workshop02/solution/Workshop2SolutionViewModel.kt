@@ -12,7 +12,7 @@ class Workshop2SolutionViewModel(
     private val interactor: LoginInteractor
 ) : ViewModel() {
 
-    private val _mutableState = MutableLiveData<State>(State.Init())
+    private val _mutableState = MutableLiveData<State>(State.Default())
 
     val state: LiveData<State> get() = _mutableState
 
@@ -30,9 +30,9 @@ class Workshop2SolutionViewModel(
             _mutableState.setValue(newViewState)
         }
     }
-
+    
     sealed class State {
-        class Init : State()
+        class Default : State()
         class Loading : State()
         class UserNameError : State()
         class PasswordError : State()

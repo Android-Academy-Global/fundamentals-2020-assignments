@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/fragment_workshop_1_user_name_input"
+        android:id="@+id/fragment_workshop_2_user_name_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/ws01_ws02_user_name"
@@ -17,38 +17,38 @@
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/fragment_workshop_1_password_input"
+        android:id="@+id/fragment_workshop_2_password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/ws01_ws02_password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_workshop_1_user_name_input"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_workshop_2_user_name_input"
         tools:ignore="Autofill" />
 
     <Button
-        android:id="@+id/fragment_workshop_1_login_btn"
+        android:id="@+id/fragment_workshop_2_login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ws01_ws02_login"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_workshop_1_password_input" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_workshop_2_password_input" />
 
     <ProgressBar
-        android:id="@+id/fragment_workshop_1_loader"
+        android:id="@+id/fragment_workshop_2_loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_workshop_1_login_btn"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_workshop_2_login_btn"
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/fragment_workshop_1_login_success"
+        android:id="@+id/fragment_workshop_2_login_success"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ws01_ws02_login_success"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_workshop_1_loader"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_workshop_2_loader"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

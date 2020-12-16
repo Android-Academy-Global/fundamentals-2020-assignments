@@ -7,9 +7,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.android.fundamentals.R
 import com.android.fundamentals.domain.login.LoginInteractor
+import com.android.fundamentals.workshop01.Workshop1View
 import kotlinx.coroutines.Dispatchers
 
-class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Workshop1SolutionView {
+class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Workshop1View {
 
     private val presenter = Workshop1SolutionPresenter(
         interactor = LoginInteractor(dispatcher = Dispatchers.Default),
@@ -55,11 +56,11 @@ class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Worksh
     }
 
     override fun showUserNameError() {
-        userNameInput?.error = getString(R.string.user_name_error)
+        userNameInput?.error = getString(R.string.ws01_ws02_user_name_error)
     }
 
     override fun showPasswordError() {
-        passwordInput?.error = getString(R.string.password_error)
+        passwordInput?.error = getString(R.string.ws01_ws02_password_error)
     }
 
     override fun showSuccess() {

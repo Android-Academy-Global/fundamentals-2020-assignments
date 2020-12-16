@@ -18,7 +18,6 @@ class Workshop1Presenter(
     }
 
     fun detachView() {
-        presenterScope.cancel()
         this.view = null
     }
 
@@ -28,14 +27,16 @@ class Workshop1Presenter(
 
     fun login(userName: String, password: String) {
         presenterScope.launch {
-            //TODO 06: Set loading to true (using view method)
+            //TODO 06: On "view" instance, set loading to true
 
             val loginResult = interactor.login(userName = userName, password = password)
-            //TODO 07: Handle loginResult and show success or error depend on it (using view methods)
-            /*when (loginResult) {
-            }*/
+            //TODO 07: Uncomment and Handle "loginResult".
+            // On "view" instance, show success or errors depending on result.
+            // To autocomplete, place cursor on "when" word, press "Alt+Enter", remaining branches.
+//            when (loginResult) {
+//            }
 
-            //TODO 08: Set loading to false (using view method)
+            //TODO 08: On "view" instance, set loading to false
         }
     }
 }

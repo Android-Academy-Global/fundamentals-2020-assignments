@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.android.fundamentals.R
 
-class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_1) {
+class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_2) {
 
     private val viewModel: Workshop2SolutionViewModel by viewModels { Workshop2SolutionViewModelFactory() }
 
@@ -39,7 +39,7 @@ class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_1) {
 
     private fun setState(state: Workshop2SolutionViewModel.State) =
         when (state) {
-            is Workshop2SolutionViewModel.State.Init -> {
+            is Workshop2SolutionViewModel.State.Default -> {
                 setLoading(loading = false)
             }
             is Workshop2SolutionViewModel.State.Loading -> {
@@ -65,11 +65,11 @@ class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_1) {
     }
 
     private fun showUserNameError() {
-        userNameInput?.error = getString(R.string.user_name_error)
+        userNameInput?.error = getString(R.string.ws01_ws02_user_name_error)
     }
 
     private fun showPasswordError() {
-        passwordInput?.error = getString(R.string.password_error)
+        passwordInput?.error = getString(R.string.ws01_ws02_password_error)
     }
 
     private fun showSuccess() {
@@ -78,11 +78,11 @@ class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_1) {
     }
 
     private fun initViews(view: View) {
-        userNameInput = view.findViewById(R.id.fragment_workshop_1_user_name_input)
-        passwordInput = view.findViewById(R.id.fragment_workshop_1_password_input)
-        loginBtn = view.findViewById(R.id.fragment_workshop_1_login_btn)
-        loader = view.findViewById(R.id.fragment_workshop_1_loader)
-        loginSuccess = view.findViewById(R.id.fragment_workshop_1_login_success)
+        userNameInput = view.findViewById(R.id.fragment_workshop_2_user_name_input)
+        passwordInput = view.findViewById(R.id.fragment_workshop_2_password_input)
+        loginBtn = view.findViewById(R.id.fragment_workshop_2_login_btn)
+        loader = view.findViewById(R.id.fragment_workshop_2_loader)
+        loginSuccess = view.findViewById(R.id.fragment_workshop_2_login_success)
     }
 
     private fun setUpListeners() {
