@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.android.fundamentals.R
 
-class Workshop2Fragment : Fragment(R.layout.fragment_workshop_2) {
+class Workshop2Fragment : Fragment(R.layout.fragment_workshop_1_workshop_2) {
 
     private val viewModel: Workshop2ViewModel by viewModels { Workshop2ViewModelFactory() }
 
@@ -23,7 +23,7 @@ class Workshop2Fragment : Fragment(R.layout.fragment_workshop_2) {
         initViews(view)
         setUpListeners()
 
-        // TODO 11: Subscribe on public LiveData with "Workshop2ViewModel.State" from viewModel.
+        // TODO 10: Subscribe on public LiveData with "Workshop2ViewModel.State" from viewModel.
         //  Use observe() method of LiveData.
         //  Pass "this.viewLifecycleOwner" as LifecycleOwner
         //  and { ... } lambda as lifecycle.Observer in parameters.
@@ -81,11 +81,11 @@ class Workshop2Fragment : Fragment(R.layout.fragment_workshop_2) {
     }
 
     private fun initViews(view: View) {
-        userNameInput = view.findViewById(R.id.fragment_workshop_2_user_name_input)
-        passwordInput = view.findViewById(R.id.fragment_workshop_2_password_input)
-        loginBtn = view.findViewById(R.id.fragment_workshop_2_login_btn)
-        loader = view.findViewById(R.id.fragment_workshop_2_loader)
-        loginSuccess = view.findViewById(R.id.fragment_workshop_2_login_success)
+        userNameInput = view.findViewById(R.id.fragment_workshop_1_workshop_2_user_name_input)
+        passwordInput = view.findViewById(R.id.fragment_workshop_1_workshop_2_password_input)
+        loginBtn = view.findViewById(R.id.fragment_workshop_1_workshop_2_login_btn)
+        loader = view.findViewById(R.id.fragment_workshop_1_workshop_2_loader)
+        loginSuccess = view.findViewById(R.id.fragment_workshop_1_workshop_2_login_success)
     }
 
     private fun setUpListeners() {

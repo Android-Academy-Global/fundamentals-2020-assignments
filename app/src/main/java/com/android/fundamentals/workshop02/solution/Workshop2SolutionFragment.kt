@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.android.fundamentals.R
 
-class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_2) {
+class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_1_workshop_2) {
 
     private val viewModel: Workshop2SolutionViewModel by viewModels { Workshop2SolutionViewModelFactory() }
 
@@ -78,11 +78,11 @@ class Workshop2SolutionFragment : Fragment(R.layout.fragment_workshop_2) {
     }
 
     private fun initViews(view: View) {
-        userNameInput = view.findViewById(R.id.fragment_workshop_2_user_name_input)
-        passwordInput = view.findViewById(R.id.fragment_workshop_2_password_input)
-        loginBtn = view.findViewById(R.id.fragment_workshop_2_login_btn)
-        loader = view.findViewById(R.id.fragment_workshop_2_loader)
-        loginSuccess = view.findViewById(R.id.fragment_workshop_2_login_success)
+        userNameInput = view.findViewById(R.id.fragment_workshop_1_workshop_2_user_name_input)
+        passwordInput = view.findViewById(R.id.fragment_workshop_1_workshop_2_password_input)
+        loginBtn = view.findViewById(R.id.fragment_workshop_1_workshop_2_login_btn)
+        loader = view.findViewById(R.id.fragment_workshop_1_workshop_2_loader)
+        loginSuccess = view.findViewById(R.id.fragment_workshop_1_workshop_2_login_success)
     }
 
     private fun setUpListeners() {

@@ -10,7 +10,7 @@ class Workshop2ViewModel(
 ) : ViewModel() {
 
     //TODO 06: Create private property MutableLiveData for state storing.
-    // Pass initial value "State.Init" in constructor: MutableLiveData(State.Init()).
+    // Pass initial value "State.Default" in constructor: MutableLiveData(State.Default()).
 
     //TODO 07: Create public property LiveData as a getter to provide state outside.
     // Init this public getter with your private MutableLiveData.
@@ -23,8 +23,6 @@ class Workshop2ViewModel(
 
             //TODO 09: Handle "loginResult" with "when()".
             // Set actual "State. ...()" to the private liveData's value (success, errors).
-
-            //TODO 10: Set "State.Default()" to the private liveData's value.
         }
     }
 

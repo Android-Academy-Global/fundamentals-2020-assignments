@@ -33,8 +33,8 @@ class Workshop1Presenter(
             //TODO 07: Uncomment and Handle "loginResult".
             // On "view" instance, show success or errors depending on result.
             // To autocomplete, place cursor on "when" word, press "Alt+Enter", remaining branches.
-//            when (loginResult) {
-//            }
+            // when (loginResult) {
+            // }
 
             //TODO 08: On "view" instance, set loading to false
         }

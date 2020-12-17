@@ -8,7 +8,7 @@ import com.android.fundamentals.R
 import com.android.fundamentals.domain.login.LoginInteractor
 import kotlinx.coroutines.Dispatchers
 
-class Workshop1Fragment : Fragment(R.layout.fragment_workshop_1), Workshop1View {
+class Workshop1Fragment : Fragment(R.layout.fragment_workshop_1_workshop_2), Workshop1View {
 
     // Creating presenter instance
     private val presenter = Workshop1Presenter(
@@ -69,11 +69,11 @@ class Workshop1Fragment : Fragment(R.layout.fragment_workshop_1), Workshop1View 
     }
 
     private fun initViews(view: View) {
-        userNameInput = view.findViewById(R.id.fragment_workshop_1_user_name_input)
-        passwordInput = view.findViewById(R.id.fragment_workshop_1_password_input)
-        loginBtn = view.findViewById(R.id.fragment_workshop_1_login_btn)
-        loader = view.findViewById(R.id.fragment_workshop_1_loader)
-        loginSuccess = view.findViewById(R.id.fragment_workshop_1_login_success)
+        userNameInput = view.findViewById(R.id.fragment_workshop_1_workshop_2_user_name_input)
+        passwordInput = view.findViewById(R.id.fragment_workshop_1_workshop_2_password_input)
+        loginBtn = view.findViewById(R.id.fragment_workshop_1_workshop_2_login_btn)
+        loader = view.findViewById(R.id.fragment_workshop_1_workshop_2_loader)
+        loginSuccess = view.findViewById(R.id.fragment_workshop_1_workshop_2_login_success)
     }
 
     private fun setUpListeners() {
