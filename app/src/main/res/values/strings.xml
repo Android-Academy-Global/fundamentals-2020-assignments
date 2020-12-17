@@ -6,17 +6,17 @@
     <string name="workshop_2">Workshop 2</string>
     <string name="workshop_3">Workshop 3</string>
 
-    <string name="user_name">User name</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="user_name_error">User name error</string>
+    <!-- WS01-WS02 -->
+    <string name="ws01_ws02_user_name">User name</string>
+    <string name="ws01_ws02_password">Password</string>
+    <string name="ws01_ws02_login">Login</string>
+    <string name="ws01_ws02_user_name_error">User name error</string>
+    <string name="ws01_ws02_password_error">Password error</string>
+    <string name="ws01_ws02_login_success">Login success!!!</string>
+    <!-- WS01-WS02 -->
 
-    <string name="ws01_password_error">Password error</string>
-    <string name="ws01_login_success">Login success!!!</string>
-
-    <string name="password_error">Password error</string>
-    <string name="login_success">Login success!!!</string>
-
+    <!-- WS03 -->
     <string name="add_new_location">Add New Location</string>
+    <!-- WS03 -->
 
 </resources>

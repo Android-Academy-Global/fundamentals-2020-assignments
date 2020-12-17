@@ -1,8 +1,8 @@
 package com.android.foundamentals.workshop01.solution
 
-import com.android.fundamentals.workshop01.solution.Workshop1SolutionView
+import com.android.fundamentals.workshop01.Workshop1View
 
-internal class Workshop1SolutionViewMock : Workshop1SolutionView {
+internal class Workshop1SolutionViewMock : Workshop1View {
 
     var isLoading: Boolean = false
         private set

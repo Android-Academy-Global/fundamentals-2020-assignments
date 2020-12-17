@@ -2,6 +2,7 @@ package com.android.fundamentals.workshop01.solution
 
 import com.android.fundamentals.domain.login.LoginInteractor
 import com.android.fundamentals.domain.login.LoginResult
+import com.android.fundamentals.workshop01.Workshop1View
 import kotlinx.coroutines.*
 
 class Workshop1SolutionPresenter(
@@ -12,14 +13,13 @@ class Workshop1SolutionPresenter(
     private val presenterScope: CoroutineScope =
         CoroutineScope(SupervisorJob() + mainDispatcher)
 
-    private var view: Workshop1SolutionView? = null
+    private var view: Workshop1View? = null
 
-    fun attachView(view: Workshop1SolutionView) {
+    fun attachView(view: Workshop1View) {
         this.view = view
     }
 
     fun detachView() {
-        presenterScope.cancel()
         this.view = null
     }
 

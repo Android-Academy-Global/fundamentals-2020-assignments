@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.fundamentals.R
+import com.android.fundamentals.domain.location.Location
 import com.android.fundamentals.workshop03.LocationsAdapter
 
 class Workshop3SolutionFragment : Fragment(R.layout.fragment_workshop_3) {
@@ -28,7 +29,7 @@ class Workshop3SolutionFragment : Fragment(R.layout.fragment_workshop_3) {
         setUpLocationsAdapter()
         setUpListeners()
 
-        viewModel.locationsList.observe(this.viewLifecycleOwner, locationsAdapter::submitList)
+        viewModel.locationsList.observe(this.viewLifecycleOwner, this::updateAdapter)
         viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
     }
 
@@ -61,6 +62,10 @@ class Workshop3SolutionFragment : Fragment(R.layout.fragment_workshop_3) {
         addBtn?.setOnClickListener {
             viewModel.addNew()
         }
+    }
+    
+    private fun updateAdapter(locations: List<Location>) {
+        locationsAdapter.submitList(locations)
     }
 
     companion object {
