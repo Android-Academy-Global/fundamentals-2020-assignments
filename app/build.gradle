@@ -16,9 +16,19 @@ android {
     }
 
     buildTypes {
+        debug {
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "serverType"
+    productFlavors {
+        prod {
+            dimension "serverType"
+            buildConfigField "String", "BASE_URL", "\"https://api.thecatapi.com/v1/\""
         }
     }
 

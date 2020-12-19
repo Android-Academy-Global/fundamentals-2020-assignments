@@ -14,7 +14,7 @@ class WS01SolutionFragment : Fragment() {
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
-		
+
 		return inflater.inflate(R.layout.fragment_ws01, container, false)
 	}
 	
