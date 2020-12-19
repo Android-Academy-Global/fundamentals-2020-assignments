@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="space_16dp">16dp</dimen>
+    <dimen name="space_8dp">8dp</dimen>
+    <dimen name="space_4dp">4dp</dimen>
+
+    <!-- Workshop01 -->
+    <dimen name="ws01_"></dimen>
+    <!-- Workshop01 -->
+
+    <!-- Workshop02 -->
+    <dimen name="ws02_"></dimen>
+    <!-- Workshop02 -->
+
+    <!-- Workshop03 -->
+    <dimen name="ws03_"></dimen>
+    <!-- Workshop03 -->
+
+</resources>

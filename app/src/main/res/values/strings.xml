@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">ThreadApplication</string>
+
+    <string name="app_name">Network App</string>
+
+    <!-- Workshop01 -->
+    <string name="ws01_hello_world_text">Hello world!</string>
+    <!-- Workshop01 -->
+
+    <!-- Workshop02 -->
+    <string name="ws02_hello_world_text">Hello world!</string>
+    <!-- Workshop02 -->
+
+    <!-- Workshop03 -->
+    <string name="ws03_hello_world_text">Hello world!</string>
+    <!-- Workshop03 -->
+
 </resources>
