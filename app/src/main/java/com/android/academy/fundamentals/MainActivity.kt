@@ -17,36 +17,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     
         if (savedInstanceState == null) {
-            routeToWorkshop(Workshops.WS01)
+            routeToWorkshop(Workshops.WS01) // <--- change fragment here
         }
     }
     
     private fun routeToWorkshop(wsNum: Workshops) {
         when (wsNum) {
             Workshops.WS01 -> {
-                startFragment(WS01Fragment.create(), WS01Fragment::class.java.simpleName)
+                startFragment(WS01Fragment.create())
             }
             Workshops.WS02 -> {
-                startFragment(WS02Fragment.create(), WS02Fragment::class.java.simpleName)
+                startFragment(WS02Fragment.create())
             }
             Workshops.WS03 -> {
-                startFragment(WS03Fragment.create(), WS03Fragment::class.java.simpleName)
+                startFragment(WS03Fragment.create())
             }
             Workshops.WS01_SOL -> {
-                startFragment(WS01SolutionFragment.create(), WS01SolutionFragment::class.java.simpleName)
+                startFragment(WS01SolutionFragment.create())
             }
             Workshops.WS02_SOL -> {
-                startFragment(WS02SolutionFragment.create(), WS02SolutionFragment::class.java.simpleName)
+                startFragment(WS02SolutionFragment.create())
             }
             Workshops.WS03_SOL -> {
-                startFragment(WS03SolutionFragment.create(), WS03SolutionFragment::class.java.simpleName)
+                startFragment(WS03SolutionFragment.create())
             }
         }
     }
     
-    private fun startFragment(fragment: Fragment, tag: String) {
+    private fun startFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container, fragment, tag)
+            .replace(R.id.container, fragment, fragment::class.java.simpleName)
             .commit()
     }
 }

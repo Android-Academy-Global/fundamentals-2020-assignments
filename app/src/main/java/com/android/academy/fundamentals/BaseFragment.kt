@@ -1,6 +1,5 @@
 package com.android.academy.fundamentals
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,13 +11,10 @@ open class BaseFragment : Fragment() {
 	
 	fun getBaseUrl(): String = BuildConfig.BASE_URL
 	
-	fun getApiKey(): String =
-		(context?.applicationContext as? KeyStore)?.getApiKey() ?: logInvalidApiKey()
+	fun getApiKey(): String = apiKey
+	
 	
 	fun createCoroutineScope() = CoroutineScope(Job() + Dispatchers.IO)
-	
-	private fun logInvalidApiKey(): String {
-		Log.e("API:", "", IllegalArgumentException("Invalid api key error"))
-		return "invalid api key"
-	}
 }
+
+private const val apiKey = "753009e5-1ad5-44dc-9cc0-ae43b4c6f8ce"

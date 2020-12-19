@@ -7,7 +7,6 @@
 
     <application
         android:theme="@style/Theme.Fundamentals2020assignments"
-        android:name=".MyApp"
         android:label="@string/app_name"
         android:allowBackup="true"
         android:supportsRtl="true"
