@@ -2,6 +2,8 @@
 
     <string name="app_name">Architecture</string>
 
+    <!-- Main Screen -->
+    <string name="welcome_msg">Welcome to Lecture #6:\nArchitecture of Presentation Layer</string>
     <string name="workshop_1">Workshop 1</string>
     <string name="workshop_2">Workshop 2</string>
     <string name="workshop_3">Workshop 3</string>
