@@ -3,7 +3,17 @@
     <string name="app_name">Network App</string>
 
     <!-- Workshop01 -->
-    <string name="ws01_hello_world_text">Hello world!</string>
+    <string name="ws01_start_sync_button_text">Download sync</string>
+    <string name="ws01_start_async_button_text">Download async</string>
+    <string name="ws01_results_title">Results:</string>
+    <string name="ws01_results_default_text">There will be images.</string>
+    <string name="ws01_results_internet_connection_error_text">Internet connection error. Try next time.</string>
+    <string name="ws01_results_bad_response_error_text">Failed download images. Try next time.</string>
+    <string name="ws01_results_wrong_arguments_error_text">Wrong arguments error.</string>
+    <string name="ws01_results_parsing_error_text">Unknown arguments error.</string>
+    <string name="ws01_results_unknown_error_text">Download images error.</string>
+    <string name="ws01_results_empty_success_text">No images available now. Try next time.</string>
+    <string name="ws01_results_success_text">Cat ids: %s</string>
     <!-- Workshop01 -->
 
     <!-- Workshop02 -->
