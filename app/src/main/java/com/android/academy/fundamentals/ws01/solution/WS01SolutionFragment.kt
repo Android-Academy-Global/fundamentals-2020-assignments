@@ -13,9 +13,7 @@ import com.android.academy.fundamentals.BaseFragment
 import com.android.academy.fundamentals.R
 import com.android.academy.fundamentals.ws01.CatImage
 import com.android.academy.fundamentals.ws01.CatImageResult
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONException
@@ -28,6 +26,11 @@ class WS01SolutionFragment : BaseFragment() {
 	private lateinit var tvDownloadAsyncButton: TextView
 	private lateinit var ivAvatar: ImageView
 	private lateinit var tvResults: TextView
+	
+	private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+		Log.e(TAG, "Coroutine exception, scope active:${coroutineScope.isActive}", throwable)
+		coroutineScope = createCoroutineScope()
+	}
 	
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -46,7 +49,7 @@ class WS01SolutionFragment : BaseFragment() {
 	
 	private fun getImageSync() {
 		Log.d(TAG, "getImageSync")
-		coroutineScope.launch {
+		coroutineScope.launch(exceptionHandler) {
 			createGetImageCall().runCatching {
 				var catImageResult = CatImageResult()
 				this.execute().use { response ->
@@ -72,14 +75,14 @@ class WS01SolutionFragment : BaseFragment() {
 	
 	private fun getImageAsync() {
 		Log.d(TAG, "getImageAsync")
-		coroutineScope.launch {
+		coroutineScope.launch(exceptionHandler) {
 			createGetImageCall().enqueue(object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
-					coroutineScope.launch { handleCallError(e) }
+					coroutineScope.launch(exceptionHandler) { handleCallError(e) }
 				}
 				
 				override fun onResponse(call: Call, response: Response) {
-					coroutineScope.launch {
+					coroutineScope.launch(exceptionHandler) {
 						var catImageResult = CatImageResult()
 						response.use {
 							catImageResult = catImageResult.copy(
