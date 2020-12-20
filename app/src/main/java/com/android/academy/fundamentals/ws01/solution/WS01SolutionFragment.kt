@@ -146,14 +146,13 @@ class WS01SolutionFragment : BaseFragment() {
 					)
 				)
 			}
+			bindViews(catsImages)
 			
 		} catch (exception: JSONException) {
 			// Show empty result UI
 			val message = getString(R.string.ws01_results_parsing_error_text)
 			showError(message, exception)
 		}
-		
-		bindViews(catsImages)
 	}
 	
 	private suspend fun bindViews(catsImages: List<CatImage>) = withContext(Dispatchers.Main) {
@@ -169,7 +168,7 @@ class WS01SolutionFragment : BaseFragment() {
 		}
 		tvResults.text = getString(
 			R.string.ws01_results_success_text,
-			catsImages.map { id }.joinToString(", ")
+			catsImages.joinToString(", ") { it.id }
 		)
 	}
 	
@@ -194,7 +193,7 @@ class WS01SolutionFragment : BaseFragment() {
 		.url(getPath())
 		.build()
 	
-	private fun getPath(): String = "${getBaseUrl()}${GET_IMAGES_END_POINT_WISH_QUERY}"
+	private fun getPath(): String = "${getBaseUrl()}${GET_IMAGES_END_POINT_WITH_QUERY}"
 	
 	private fun createOkHttpClient() = OkHttpClient()
 	
@@ -212,7 +211,7 @@ class WS01SolutionFragment : BaseFragment() {
 	companion object {
 		private val TAG = WS01SolutionFragment::class.java.simpleName
 		private const val API_KEY_HEADER = "x-api-key"
-		private const val GET_IMAGES_END_POINT_WISH_QUERY = "images/search?size=small&order=RANDOM&limit=5&format=json"
+		private const val GET_IMAGES_END_POINT_WITH_QUERY = "images/search?size=small&order=RANDOM&limit=5&format=json"
 		
 		fun create() = WS01SolutionFragment()
 	}

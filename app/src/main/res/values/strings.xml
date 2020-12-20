@@ -13,7 +13,7 @@
     <string name="ws01_results_parsing_error_text">Unknown arguments error.</string>
     <string name="ws01_results_unknown_error_text">Download images error.</string>
     <string name="ws01_results_empty_success_text">No images available now. Try next time.</string>
-    <string name="ws01_results_success_text">Cat ids: %s</string>
+    <string name="ws01_results_success_text">Cats ids: %s</string>
     <!-- Workshop01 -->
 
     <!-- Workshop02 -->
