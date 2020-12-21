@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import coil.api.load
+import coil.load
 import coil.transform.CircleCropTransformation
 import com.android.academy.fundamentals.BaseFragment
 import com.android.academy.fundamentals.R
@@ -57,7 +57,7 @@ class WS01SolutionFragment : BaseFragment() {
 						headers = response.headers,
 						message = response.message,
 						jsonResponse = response.body?.string()
-					).apply {
+					).also {
 						Log.d(TAG, "getImageSync catImageResult:$this")
 					}
 				}
@@ -182,10 +182,8 @@ class WS01SolutionFragment : BaseFragment() {
 	private fun createGetImageRequest() = Request.Builder()
 		.get()
 		.addHeader(API_KEY_HEADER, getApiKey())
-		.url(getPath())
+		.url("${getBaseUrl()}images/search?size=small&order=RANDOM&limit=5&format=json")
 		.build()
-	
-	private fun getPath(): String = "${getBaseUrl()}${GET_IMAGES_END_POINT_WITH_QUERY}"
 	
 	private fun createOkHttpClient() = OkHttpClient()
 	
@@ -203,7 +201,6 @@ class WS01SolutionFragment : BaseFragment() {
 	companion object {
 		private val TAG = WS01SolutionFragment::class.java.simpleName
 		private const val API_KEY_HEADER = "x-api-key"
-		private const val GET_IMAGES_END_POINT_WITH_QUERY = "images/search?size=small&order=RANDOM&limit=5&format=json"
 		
 		fun create() = WS01SolutionFragment()
 	}
