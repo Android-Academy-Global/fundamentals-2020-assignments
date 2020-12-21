@@ -51,18 +51,16 @@ class WS01SolutionFragment : BaseFragment() {
 		Log.d(TAG, "getImageSync")
 		coroutineScope.launch(exceptionHandler) {
 			createGetImageCall().runCatching {
-				var catImageResult = CatImageResult()
 				this.execute().use { response ->
-					catImageResult = catImageResult.copy(
+					CatImageResult(
 						statusCode = response.code,
 						headers = response.headers,
 						message = response.message,
 						jsonResponse = response.body?.string()
-					)
-
-					Log.d(TAG, "getImageSync catImageResult:$catImageResult")
+					).apply {
+						Log.d(TAG, "getImageSync catImageResult:$this")
+					}
 				}
-				catImageResult
 				
 			}.onFailure {
 				handleCallError(it)
@@ -83,18 +81,17 @@ class WS01SolutionFragment : BaseFragment() {
 				
 				override fun onResponse(call: Call, response: Response) {
 					coroutineScope.launch(exceptionHandler) {
-						var catImageResult = CatImageResult()
 						response.use {
-							catImageResult = catImageResult.copy(
+							CatImageResult(
 								statusCode = response.code,
 								headers = response.headers,
 								message = response.message,
 								jsonResponse = response.body?.string()
-							)
+							).apply {
+								Log.d(TAG, "getImageAsync catImageResult:$this")
+								handleCallSuccess(this)
+							}
 						}
-						
-						Log.d(TAG, "getImageAsync catImageResult:$catImageResult")
-						handleCallSuccess(catImageResult)
 					}
 				}
 			})
@@ -104,14 +101,11 @@ class WS01SolutionFragment : BaseFragment() {
 	private suspend fun handleCallError(throwable: Throwable) {
 		val message = when (throwable) {
 			is IOException -> {
-				// Show no internet connection UI
 				getString(R.string.ws01_results_internet_connection_error_text)
 			}
 			is IllegalStateException -> {
-				// Show wrong input data UI
 				getString(R.string.ws01_results_wrong_arguments_error_text)
 			}
-			// Show something-wrong dialog
 			else -> getString(R.string.ws01_results_unknown_error_text)
 		}
 		showError(message, throwable)
@@ -119,11 +113,10 @@ class WS01SolutionFragment : BaseFragment() {
 	
 	private suspend fun handleCallSuccess(catImageResult: CatImageResult) {
 		if (catImageResult.hasBadResult()) {
-			// Show empty result UI
 			showEmptyResult(getString(R.string.ws01_results_parsing_error_text))
 			
 		} else {
-			catImageResult.jsonResponse?.let { parseResponse(it) }
+			catImageResult.jsonResponse?.let { handleResponse(it) }
 		}
 	}
 	
@@ -133,7 +126,7 @@ class WS01SolutionFragment : BaseFragment() {
 	 * JSON parsing StackOverflow
 	 * [sample](https://stackoverflow.com/questions/28736419/parsing-json-array-and-object-in-android)
 	 */
-	private suspend fun parseResponse(jsonResponse: String) {
+	private suspend fun handleResponse(jsonResponse: String) {
 		Log.d(TAG, "parseResponse")
 		
 		var catsImages = mutableListOf<CatImage>()
@@ -141,18 +134,14 @@ class WS01SolutionFragment : BaseFragment() {
 			val jsonArray = JSONArray(jsonResponse)
 			for (i in 0 until jsonArray.length()) {
 				val jsonObject = jsonArray.getJSONObject(i)
-				catsImages.add(
-					i,
-					CatImage(
-						id = jsonObject.getString("id"),
-						imageUrl = jsonObject.getString("url"),
-					)
-				)
+				catsImages.add(CatImage(
+					id = jsonObject.getString("id"),
+					imageUrl = jsonObject.getString("url")
+				))
 			}
 			bindViews(catsImages)
 			
 		} catch (exception: JSONException) {
-			// Show empty result UI
 			val message = getString(R.string.ws01_results_parsing_error_text)
 			showError(message, exception)
 		}
