@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="space_32dp">32dp</dimen>
     <dimen name="space_16dp">16dp</dimen>
     <dimen name="space_8dp">8dp</dimen>
     <dimen name="space_4dp">4dp</dimen>
 
     <!-- Workshop01 -->
-    <dimen name="ws01_"></dimen>
+    <dimen name="ws01_avatar_space">288dp</dimen>
     <!-- Workshop01 -->
 
     <!-- Workshop02 -->

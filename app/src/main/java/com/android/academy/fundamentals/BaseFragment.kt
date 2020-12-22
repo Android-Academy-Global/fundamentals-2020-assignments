@@ -13,7 +13,6 @@ open class BaseFragment : Fragment() {
 	
 	fun getApiKey(): String = apiKey
 	
-	
 	fun createCoroutineScope() = CoroutineScope(Job() + Dispatchers.IO)
 }
 
