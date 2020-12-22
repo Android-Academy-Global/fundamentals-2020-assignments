@@ -22,6 +22,8 @@
 
     <!-- Workshop03 -->
     <string name="ws03_hello_world_text">Hello world!</string>
+    <string name="load_cat_images">Load cat images</string>
+    <string name="cat_image">Cat image</string>
     <!-- Workshop03 -->
 
 </resources>
