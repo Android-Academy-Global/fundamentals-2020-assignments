@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.Fundamentals2020assignments" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Theme.Fundamentals2020assignments" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
