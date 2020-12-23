@@ -20,6 +20,7 @@ import org.json.JSONException
 import java.io.IOException
 import kotlin.random.Random
 
+// Some common things are moved out in the BaseFragment.
 class WS01SolutionFragment : BaseFragment() {
 	
 	private lateinit var tvDownloadSyncButton: TextView
@@ -32,6 +33,7 @@ class WS01SolutionFragment : BaseFragment() {
 		coroutineScope = createCoroutineScope()
 	}
 	
+	// region init fragment
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -46,20 +48,28 @@ class WS01SolutionFragment : BaseFragment() {
 		
 		findViews(parent = view)
 	}
+	// endregion
 	
+	// region load image Synchronous
 	private fun getImageSync() {
 		Log.d(TAG, "getImageSync")
 		coroutineScope.launch(exceptionHandler) {
+			
+			// runCatching {} is a Kotlin-style extension for a try-catch.
 			createGetImageCall().runCatching {
+				
+				// use {} is a Kotlin-style solution for a try-catch with resources.
+				// It's closes resources which is implements Closable interface but throws an Exception.
+				// As you remember we have to close the response instance.
 				this.execute().use { response ->
-					CatImageResult(
+					createCatImageResult(
 						statusCode = response.code,
 						headers = response.headers,
 						message = response.message,
-						jsonResponse = response.body?.string()
-					).also {
-						Log.d(TAG, "getImageSync catImageResult:$this")
-					}
+						
+						// string() returns the response as a String or throws IOException.
+						jsonResponseBody = response.body?.string()
+					)
 				}
 				
 			}.onFailure {
@@ -71,41 +81,66 @@ class WS01SolutionFragment : BaseFragment() {
 		}
 	}
 	
+	private fun createCatImageResult(
+		statusCode: Int,
+		headers: Headers,
+		message: String,
+		jsonResponseBody: String?
+	): CatImageResult {
+		
+		return CatImageResult(
+			statusCode = statusCode,
+			headers = headers,
+			message = message,
+			jsonResponse = jsonResponseBody
+		).also {
+			Log.d(TAG, "getImageSync catImageResult:$this")
+		}
+	}
+	// endregion
+	
+	// region load image Asynchronous
 	private fun getImageAsync() {
 		Log.d(TAG, "getImageAsync")
 		coroutineScope.launch(exceptionHandler) {
 			createGetImageCall().enqueue(object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
-					coroutineScope.launch(exceptionHandler) { handleCallError(e) }
+					asyncOnFailureFunction(e)
 				}
 				
 				override fun onResponse(call: Call, response: Response) {
-					coroutineScope.launch(exceptionHandler) {
-						response.use {
-							CatImageResult(
-								statusCode = response.code,
-								headers = response.headers,
-								message = response.message,
-								jsonResponse = response.body?.string()
-							).apply {
-								Log.d(TAG, "getImageAsync catImageResult:$this")
-								handleCallSuccess(this)
-							}
-						}
-					}
+					asyncOnResponseFunction(response)
 				}
 			})
 		}
 	}
 	
+	private fun asyncOnFailureFunction(e: Exception) {
+		coroutineScope.launch(exceptionHandler) { handleCallError(e) }
+	}
+	
+	private fun asyncOnResponseFunction(response: Response) {
+		coroutineScope.launch(exceptionHandler) {
+			response.use {
+				CatImageResult(
+					statusCode = response.code,
+					headers = response.headers,
+					message = response.message,
+					jsonResponse = response.body?.string()
+				).apply {
+					Log.d(TAG, "getImageAsync catImageResult:$this")
+					handleCallSuccess(this)
+				}
+			}
+		}
+	}
+	// endregion
+	
+	// region handle results
 	private suspend fun handleCallError(throwable: Throwable) {
 		val message = when (throwable) {
-			is IOException -> {
-				getString(R.string.ws01_results_internet_connection_error_text)
-			}
-			is IllegalStateException -> {
-				getString(R.string.ws01_results_wrong_arguments_error_text)
-			}
+			is IOException -> getString(R.string.ws01_results_internet_connection_error_text)
+			is IllegalStateException -> getString(R.string.ws01_results_wrong_arguments_error_text)
 			else -> getString(R.string.ws01_results_unknown_error_text)
 		}
 		showError(message, throwable)
@@ -147,6 +182,31 @@ class WS01SolutionFragment : BaseFragment() {
 		}
 	}
 	
+	private suspend fun showEmptyResult(message: String) = withContext(Dispatchers.Main) {
+		tvResults.text = message
+	}
+	
+	private suspend fun showError(
+		message: String,
+		throwable: Throwable
+	) = withContext(Dispatchers.Main) {
+		
+		Log.e(TAG, message, throwable)
+		tvResults.text = message
+	}
+	// endregion
+	
+	// region prepare http request
+	private fun createGetImageCall() = OkHttpClient().newCall(createGetImageRequest())
+	
+	private fun createGetImageRequest() = Request.Builder()
+		.get()
+		.addHeader(API_KEY_HEADER, getApiKey())
+		.url("${getBaseUrl()}$IMAGE_REQUEST_ENDPOINT")
+		.build()
+	// endregion
+	
+	// region handle views
 	private suspend fun bindViews(catsImages: List<CatImage>) = withContext(Dispatchers.Main) {
 		val randomCat = catsImages[Random.nextInt(catsImages.size - 1)]
 		Log.d(TAG, "bindViews cat:${randomCat}")
@@ -164,29 +224,6 @@ class WS01SolutionFragment : BaseFragment() {
 		)
 	}
 	
-	private suspend fun showEmptyResult(message: String) = withContext(Dispatchers.Main) {
-		tvResults.text = message
-	}
-	
-	private suspend fun showError(
-		message: String,
-		throwable: Throwable
-	) = withContext(Dispatchers.Main) {
-		
-		Log.e(TAG, message, throwable)
-		tvResults.text = message
-	}
-	
-	private fun createGetImageCall() = createOkHttpClient().newCall(createGetImageRequest())
-	
-	private fun createGetImageRequest() = Request.Builder()
-		.get()
-		.addHeader(API_KEY_HEADER, getApiKey())
-		.url("${getBaseUrl()}images/search?size=small&order=RANDOM&limit=5&format=json")
-		.build()
-	
-	private fun createOkHttpClient() = OkHttpClient()
-	
 	private fun findViews(parent: View) {
 		tvDownloadSyncButton = parent.findViewById<TextView>(R.id.tvDownloadSyncButton).apply {
 			setOnClickListener { getImageSync() }
@@ -197,10 +234,12 @@ class WS01SolutionFragment : BaseFragment() {
 		ivAvatar = parent.findViewById(R.id.ivAvatar)
 		tvResults = parent.findViewById(R.id.tvResults)
 	}
+	// endregion
 	
 	companion object {
-		private val TAG = WS01SolutionFragment::class.java.simpleName
 		private const val API_KEY_HEADER = "x-api-key"
+		private const val IMAGE_REQUEST_ENDPOINT = "images/search?size=small&order=RANDOM&limit=5&format=json"
+		private val TAG = WS01SolutionFragment::class.java.simpleName
 		
 		fun create() = WS01SolutionFragment()
 	}

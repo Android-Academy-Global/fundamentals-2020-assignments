@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     
         if (savedInstanceState == null) {
-            routeToWorkshop(Workshops.WS02_SOL) // <--- change fragment here
+            routeToWorkshop(Workshops.WS01) // <--- change fragment here
         }
     }
     
