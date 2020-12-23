@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.Fundamentals2020assignments" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.Fundamentals2020assignments" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
         <item name="colorAccent">@color/teal_200</item>

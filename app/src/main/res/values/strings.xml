@@ -17,11 +17,15 @@
     <!-- Workshop01 -->
 
     <!-- Workshop02 -->
-    <string name="ws02_hello_world_text">Hello world!</string>
+    <string name="ws02_results_internet_connection_error_text">Internet connection error. Try next time.</string>
+    <string name="ws02_results_parsing_error_text">Json parsing error. Please check logs.</string>
+    <string name="ws02_results_unexpected_error_text">Unexpected error happened. Please check logs.</string>
     <!-- Workshop02 -->
 
     <!-- Workshop03 -->
     <string name="ws03_hello_world_text">Hello world!</string>
+    <string name="load_cat_images">Load cat images</string>
+    <string name="cat_image">Cat image</string>
     <!-- Workshop03 -->
 
 </resources>
