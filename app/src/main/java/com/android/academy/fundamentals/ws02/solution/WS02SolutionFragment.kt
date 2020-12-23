@@ -20,6 +20,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import java.io.IOException
@@ -36,7 +37,7 @@ class WS02SolutionFragment : BaseFragment() {
         coroutineScope = createCoroutineScope()
 
         val errorTextId = when (throwable) {
-            is IOException -> R.string.ws02_results_internet_connection_error_text
+            is IOException, is HttpException -> R.string.ws02_results_internet_connection_error_text
             is SerializationException -> R.string.ws02_results_parsing_error_text
             else -> R.string.ws02_results_unexpected_error_text
         }
