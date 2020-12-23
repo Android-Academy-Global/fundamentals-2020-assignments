@@ -99,22 +99,23 @@ class WS02SolutionFragment : BaseFragment() {
 }
 
 @Serializable
-data class CatImage(
+private data class CatImage(
     val id: String,
     @SerialName("url")
     val imageUrl: String
 )
 
-interface CatsApi {
+private interface CatsApi {
     @GET("images/search?size=small&order=RANDOM&limit=5&format=json")
     suspend fun getCats(): List<CatImage>
 }
 
-internal object RetrofitModule {
+private object RetrofitModule {
     private val json = Json {
         ignoreUnknownKeys = true
     }
 
+    @Suppress("EXPERIMENTAL_API_USAGE")
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
