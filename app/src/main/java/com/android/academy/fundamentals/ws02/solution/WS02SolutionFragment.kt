@@ -22,6 +22,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.HttpException
 import retrofit2.Retrofit
+import retrofit2.create
 import retrofit2.http.GET
 import java.io.IOException
 import kotlin.random.Random
@@ -121,5 +122,5 @@ private object RetrofitModule {
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .build()
 
-    val catsApi: CatsApi = retrofit.create(CatsApi::class.java)
+    val catsApi: CatsApi = retrofit.create()
 }
