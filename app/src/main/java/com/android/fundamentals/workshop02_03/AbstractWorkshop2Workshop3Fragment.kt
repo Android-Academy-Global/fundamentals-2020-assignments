@@ -1,22 +1,21 @@
-package com.android.fundamentals.workshop03.solution
+package com.android.fundamentals.workshop02_03
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.fundamentals.LocationsAdapter
 import com.android.fundamentals.R
 import com.android.fundamentals.domain.location.Location
-import com.android.fundamentals.workshop03.LocationsAdapter
 
-class Workshop3SolutionFragment : Fragment(R.layout.fragment_workshop_3) {
+abstract class AbstractWorkshop2Workshop3Fragment : Fragment(R.layout.fragment_workshop_2_workshop_3) {
 
-    private val viewModel: Workshop3SolutionViewModel by viewModels { Workshop3SolutionViewModelFactory() }
+    protected abstract val viewModel: Workshop2Workshop3ViewModel
 
-    private val locationsAdapter = LocationsAdapter()
+    private val locationsAdapter by lazy { LocationsAdapter(viewModel::delete) }
 
     private var recycler: RecyclerView? = null
     private var addBtn: View? = null
@@ -48,9 +47,9 @@ class Workshop3SolutionFragment : Fragment(R.layout.fragment_workshop_3) {
     }
 
     private fun initViews(view: View) {
-        recycler = view.findViewById(R.id.fragment_workshop_3_recycler)
-        addBtn = view.findViewById(R.id.fragment_workshop_3_add_new)
-        loader = view.findViewById(R.id.fragment_workshop_3_loader)
+        recycler = view.findViewById(R.id.fragment_workshop_2_workshop_3_recycler)
+        addBtn = view.findViewById(R.id.fragment_workshop_2_workshop_3_add_new)
+        loader = view.findViewById(R.id.fragment_workshop_2_workshop_3_loader)
     }
 
     private fun setUpLocationsAdapter() {
@@ -63,12 +62,8 @@ class Workshop3SolutionFragment : Fragment(R.layout.fragment_workshop_3) {
             viewModel.addNew()
         }
     }
-    
+
     private fun updateAdapter(locations: List<Location>) {
         locationsAdapter.submitList(locations)
-    }
-
-    companion object {
-        fun newInstance(): Workshop3SolutionFragment = Workshop3SolutionFragment()
     }
 }

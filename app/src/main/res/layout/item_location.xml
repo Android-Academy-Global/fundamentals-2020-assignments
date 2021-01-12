@@ -18,24 +18,35 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/item_location_coordinates"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/item_location_image"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="232,111 - 121,000" />
-
-    <TextView
         android:id="@+id/item_location_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/item_location_delete"
         app:layout_constraintStart_toEndOf="@+id/item_location_image"
-        app:layout_constraintTop_toBottomOf="@+id/item_location_coordinates"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="28/09/2018" />
+
+    <TextView
+        android:id="@+id/item_location_coordinates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="@+id/item_location_title"
+        app:layout_constraintStart_toStartOf="@+id/item_location_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_location_title"
+        tools:text="232,111 - 121,000" />
+
+    <ImageView
+        android:id="@+id/item_location_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_delete_forever_24"
+        app:tint="?attr/colorError"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
