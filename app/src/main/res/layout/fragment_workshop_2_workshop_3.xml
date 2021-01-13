@@ -6,15 +6,15 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_workshop_3_recycler"
+        android:id="@+id/fragment_workshop_2_workshop_3_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_workshop_3_add_new"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_workshop_2_workshop_3_add_new"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_location" />
 
     <Button
-        android:id="@+id/fragment_workshop_3_add_new"
+        android:id="@+id/fragment_workshop_2_workshop_3_add_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -24,11 +24,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
-        android:id="@+id/fragment_workshop_3_loader"
+        android:id="@+id/fragment_workshop_2_workshop_3_loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_workshop_3_add_new"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_workshop_2_workshop_3_add_new"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
