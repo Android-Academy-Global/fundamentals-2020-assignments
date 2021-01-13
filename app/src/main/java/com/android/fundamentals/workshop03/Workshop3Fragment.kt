@@ -7,7 +7,7 @@ import com.android.fundamentals.workshop02_03.Workshop2Workshop3ViewModel
 class Workshop3Fragment : AbstractWorkshop2Workshop3Fragment() {
 
     override val viewModel: Workshop2Workshop3ViewModel by viewModels {
-        Workshop3ViewModelFactory()
+        Workshop3ViewModelFactory(applicationContext = requireContext().applicationContext)
     }
 
     companion object {
