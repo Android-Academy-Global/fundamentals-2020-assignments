@@ -15,9 +15,6 @@ class Workshop2LocationRepository(
     appContext: Context
 ) : LocationRepository {
 
-    private val defaultDispatcher: CoroutineDispatcher get() = Dispatchers.Default
-    private val ioDispatcher: CoroutineDispatcher get() = Dispatchers.IO
-
     private val random = Random(10)
 
     /** TODO 03: here you should create [Workshop2LocationsDbHelper] instance.
@@ -35,7 +32,7 @@ class Workshop2LocationRepository(
      */
     private val writableDatabase: SQLiteDatabase by lazy { TODO() }
 
-    override suspend fun getAllLocations(): List<Location> = withContext(ioDispatcher) {
+    override suspend fun getAllLocations(): List<Location> = withContext(Dispatchers.IO) {
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
         val projection = arrayOf(
@@ -96,7 +93,7 @@ class Workshop2LocationRepository(
     }
 
     private suspend fun generateNewLocationRequest(): NewLocationRequest =
-        withContext(defaultDispatcher) {
+        withContext(Dispatchers.Default) {
             delay(DELAY_MILLIS)
             NewLocationRequest(
                 latitude = random.nextDouble(),
@@ -105,7 +102,7 @@ class Workshop2LocationRepository(
             )
         }
 
-    private suspend fun saveNewLocation(request: NewLocationRequest) = withContext(ioDispatcher) {
+    private suspend fun saveNewLocation(request: NewLocationRequest) = withContext(Dispatchers.IO) {
         /** TODO 09, 10, 11: here you should uncomment try/finally block
          */
 
@@ -153,7 +150,7 @@ class Workshop2LocationRepository(
 //        }
     }
 
-    private suspend fun deleteById(id: Long) = withContext(ioDispatcher) {
+    private suspend fun deleteById(id: Long) = withContext(Dispatchers.IO) {
         writableDatabase.beginTransaction()
         try {
             // Define 'where' part of query.

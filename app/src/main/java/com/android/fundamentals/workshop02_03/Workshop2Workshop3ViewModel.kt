@@ -28,7 +28,7 @@ class Workshop2Workshop3ViewModel(
         startLoadingAndUpdateLocations { repository.deleteByIdAndGetUpdated(id = location.id) }
 
     private fun startLoadingAndUpdateLocations(block: suspend () -> List<Location>) {
-        val isLoadingNow = loadingState.value!!
+        val isLoadingNow = (loadingState.value ?: false)
         if (!isLoadingNow) {
             viewModelScope.launch {
                 _mutableLoadingState.setValue(true)
