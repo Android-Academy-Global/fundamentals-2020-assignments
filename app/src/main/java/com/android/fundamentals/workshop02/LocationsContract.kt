@@ -8,6 +8,7 @@ object LocationsContract {
 
         const val TABLE_NAME = "locations"
 
+        //COLUMNS:
         const val COLUMN_NAME_ID = BaseColumns._ID
 
         const val COLUMN_NAME_TITLE = "title"

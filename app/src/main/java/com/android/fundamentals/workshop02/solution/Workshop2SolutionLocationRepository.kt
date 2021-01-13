@@ -2,6 +2,7 @@ package com.android.fundamentals.workshop02.solution
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import com.android.fundamentals.domain.location.Location
 import com.android.fundamentals.domain.location.LocationRepository
 import com.android.fundamentals.workshop02.LocationsContract
@@ -20,10 +21,10 @@ class Workshop2SolutionLocationRepository(
 
     private val random = Random(10)
 
-    private val dbHelper = Workshop2SolutionLocationsDbHelper(appContext)
+    private val dbHelper: Workshop2SolutionLocationsDbHelper = Workshop2SolutionLocationsDbHelper(appContext)
 
-    private val readableDatabase by lazy { dbHelper.readableDatabase }
-    private val writableDatabase by lazy { dbHelper.writableDatabase }
+    private val readableDatabase: SQLiteDatabase by lazy { dbHelper.readableDatabase }
+    private val writableDatabase: SQLiteDatabase by lazy { dbHelper.writableDatabase }
 
     override suspend fun getAllLocations(): List<Location> = withContext(ioDispatcher) {
 
@@ -90,15 +91,15 @@ class Workshop2SolutionLocationRepository(
         writableDatabase.beginTransaction()
         try {
 
-            val values = ContentValues()
-            values.put(LocationsContract.LocationEntry.COLUMN_NAME_TITLE, request.title)
-            values.put(LocationsContract.LocationEntry.COLUMN_NAME_LATITUDE, request.latitude)
-            values.put(LocationsContract.LocationEntry.COLUMN_NAME_LONGITUDE, request.longitude)
+            val contentValues = ContentValues()
+            contentValues.put(LocationsContract.LocationEntry.COLUMN_NAME_TITLE, request.title)
+            contentValues.put(LocationsContract.LocationEntry.COLUMN_NAME_LATITUDE, request.latitude)
+            contentValues.put(LocationsContract.LocationEntry.COLUMN_NAME_LONGITUDE, request.longitude)
 
             writableDatabase.insert(
                 LocationsContract.LocationEntry.TABLE_NAME,
                 null,
-                values
+                contentValues
             )
 
             writableDatabase.setTransactionSuccessful()
