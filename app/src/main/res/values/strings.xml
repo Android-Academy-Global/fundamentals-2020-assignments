@@ -9,12 +9,13 @@
     <string name="workshop_3">Workshop 3</string>
 
     <!-- WS01-WS02 -->
-    <string name="ws01_ws02_user_name">User name</string>
-    <string name="ws01_ws02_password">Password</string>
-    <string name="ws01_ws02_login">Login</string>
-    <string name="ws01_ws02_user_name_error">User name error</string>
-    <string name="ws01_ws02_password_error">Password error</string>
-    <string name="ws01_ws02_login_success">Login success!!!</string>
+    <string name="ws01_user_name">User name</string>
+    <string name="ws01_password">Password</string>
+    <string name="ws01_login">Login</string>
+    <string name="ws01_logout">Logout</string>
+    <string name="ws01_user_name_error">User name error</string>
+    <string name="ws01_password_error">Password error</string>
+    <string name="ws01_login_success">Login success!!!</string>
     <!-- WS01-WS02 -->
 
     <!-- WS03 -->
