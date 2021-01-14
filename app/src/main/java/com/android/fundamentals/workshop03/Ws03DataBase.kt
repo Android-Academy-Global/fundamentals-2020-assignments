@@ -18,7 +18,7 @@ class Ws03DataBase {
 		//  It returns an instance of "Ws03DataBase".
 		//  To create a DB, we have to create "Room.databaseBuilder" with params:
 		//  (@NonNull Context context, @NonNull Class<T> klass, @NonNull String dbName).
-		//  Provide "applicationContext", "Ws03DataBase::class.java" and "DATABASE_NAME" from the "Ws03DbContract",
-		//  build() the Builder.
+		//  Provide "applicationContext", "Ws03DataBase::class.java" and "DATABASE_NAME" from the "Ws03DbContract".
+		//  Add ".fallbackToDestructiveMigration()", build() the Builder.
 	}
 }
