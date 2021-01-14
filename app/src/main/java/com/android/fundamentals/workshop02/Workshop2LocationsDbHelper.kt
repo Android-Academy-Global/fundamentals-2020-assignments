@@ -11,8 +11,10 @@ class Workshop2LocationsDbHelper(
     override fun onCreate(db: SQLiteDatabase) {
         /** TODO 01: here you should create database with tables.
          * SQL-request string for creating table is [SQL_CREATE_ENTRIES].
-         * To execute this SQL-request call [SQLiteDatabase.execSQL] on [db] instance and pass [SQL_CREATE_ENTRIES] as parameter: [db.execSQL(SQL_CREATE_ENTRIES)].
+         * To execute this SQL-request call [SQLiteDatabase.execSQL] on [db] instance and pass [SQL_CREATE_ENTRIES] as parameter.
          */
+
+//        db.execSQL(SQL_CREATE_ENTRIES)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -20,10 +22,13 @@ class Workshop2LocationsDbHelper(
          * We will not care about any data stored in DB.
          * So we can drop all and recreate empty database.
          * SQL-request string for clearing tables is [SQL_DELETE_ENTRIES].
-         * To execute this SQL-request call [SQLiteDatabase.execSQL] on [db] instance and pass [SQL_DELETE_ENTRIES] as parameter: [db.execSQL(SQL_DELETE_ENTRIES)].
+         * To execute this SQL-request call [SQLiteDatabase.execSQL] on [db] instance and pass [SQL_DELETE_ENTRIES] as parameter.
          * Now to recreate all we can just call same SQL-request that was used in [onCreate],
          * but as we already have it inside [onCreate], let just call [onCreate].
          */
+
+//        db.execSQL(SQL_DELETE_ENTRIES)
+//        onCreate(db)
     }
 
     companion object {
