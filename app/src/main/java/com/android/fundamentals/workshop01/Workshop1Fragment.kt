@@ -8,7 +8,7 @@ import com.android.fundamentals.R
 import com.android.fundamentals.domain.login.LoginInteractor
 import kotlinx.coroutines.Dispatchers
 
-class Workshop1Fragment : Fragment(R.layout.fragment_workshop_1_workshop_2), Workshop1View {
+class Workshop1Fragment : Fragment(R.layout.fragment_workshop_1), Workshop1View {
 
     // Creating presenter instance
     private val presenter = Workshop1Presenter(

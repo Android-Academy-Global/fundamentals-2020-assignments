@@ -10,7 +10,7 @@ import com.android.fundamentals.domain.login.LoginInteractor
 import com.android.fundamentals.workshop01.Workshop1View
 import kotlinx.coroutines.Dispatchers
 
-class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1_workshop_2), Workshop1View {
+class Workshop1SolutionFragment : Fragment(R.layout.fragment_workshop_1), Workshop1View {
 
     private val presenter = Workshop1SolutionPresenter(
         interactor = LoginInteractor(dispatcher = Dispatchers.Default),

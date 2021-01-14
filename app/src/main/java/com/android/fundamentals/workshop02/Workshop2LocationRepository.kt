@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.android.fundamentals.domain.location.Location
 import com.android.fundamentals.domain.location.LocationRepository
+import com.android.fundamentals.workshop02_03.NewLocationRequest
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -175,9 +176,3 @@ class Workshop2LocationRepository(
         private const val DELAY_MILLIS: Long = 1_000
     }
 }
-
-private class NewLocationRequest(
-    val latitude: Double,
-    val longitude: Double,
-    val title: String
-)
