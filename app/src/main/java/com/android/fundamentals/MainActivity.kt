@@ -8,7 +8,7 @@ import com.android.fundamentals.workshop01.Workshop1ProfileFragment
 import com.android.fundamentals.workshop01.Workshop1ViewModel
 import com.android.fundamentals.workshop01.Workshop1ViewModelFactory
 import com.android.fundamentals.workshop02.Workshop2Fragment
-import com.android.fundamentals.workshop03.Workshop3Fragment
+import com.android.fundamentals.workshop03.Ws03Fragment
 
 class MainActivity : AppCompatActivity(), Router {
 
@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity(), Router {
 
     override fun openWorkshop2() = openFragment(Workshop2Fragment.newInstance())
 
-    override fun openWorkshop3() = openFragment(Workshop3Fragment.newInstance())
+    // TODO: When WS03 is completed, replace with "Ws03BonusFragment" to run bonus fragment.
+    override fun openWorkshop3() = openFragment(Ws03Fragment.newInstance())
 
     private fun checkUserAndOpenFragment() {
         // TODO check userIsLoggedIn via Workshop1ViewModel

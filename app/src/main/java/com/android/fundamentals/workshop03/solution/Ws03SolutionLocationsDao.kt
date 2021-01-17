@@ -1,5 +1,6 @@
 package com.android.fundamentals.workshop03.solution
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -24,4 +25,8 @@ interface Ws03SolutionLocationsDao {
 	//  Add @Query annotation with "DELETE FROM locations_ws03 WHERE _id == :id" as param.
 	@Query("DELETE FROM locations_ws03 WHERE _id == :id")
 	suspend fun deleteById(id: Long)
+	
+	// Only for a final bonus part.
+	@Query("SELECT COUNT(_id) FROM locations_ws03")
+	fun getLocationsCount(): LiveData<Int>
 }

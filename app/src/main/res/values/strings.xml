@@ -18,8 +18,13 @@
     <string name="ws01_login_success">Login success!!!</string>
     <!-- WS01-WS02 -->
 
+    <!-- WS02 -->
+    <string name="ws02_add_new_location_button">Add New Location</string>
+    <!-- WS02 -->
+
     <!-- WS03 -->
-    <string name="add_new_location">Add New Location</string>
+    <string name="ws03_locations_counter_text">Total locations: %d</string>
+    <string name="ws03_add_new_location_button">Add New Location</string>
     <!-- WS03 -->
 
 </resources>
