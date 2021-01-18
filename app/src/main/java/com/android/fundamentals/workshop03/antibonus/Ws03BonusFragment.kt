@@ -1,4 +1,4 @@
-package com.android.fundamentals.workshop03.bonus
+package com.android.fundamentals.workshop03.antibonus
 
 import android.os.Bundle
 import android.view.View

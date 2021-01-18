@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.android.fundamentals.workshop02_03.Workshop2Workshop3ViewModel
-import com.android.fundamentals.workshop03.bonus.Ws03BonusLocationsRepositoryImpl
-import com.android.fundamentals.workshop03.bonus.Ws03BonusViewModel
+import com.android.fundamentals.workshop03.antibonus.Ws03BonusLocationsRepositoryImpl
+import com.android.fundamentals.workshop03.antibonus.Ws03BonusViewModel
 
 class Ws03ViewModelFactory(
     private val applicationContext: Context
