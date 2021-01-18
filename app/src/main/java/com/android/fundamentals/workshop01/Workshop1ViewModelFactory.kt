@@ -11,7 +11,7 @@ class Workshop1ViewModelFactory(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = when (modelClass) {
         Workshop1ViewModel::class.java -> {
-            val sharedPreferences = TODO() // create correct link to sharedPreferences
+            val sharedPreferences = TODO() // TODO 01: create correct link to sharedPreferences
             Workshop1ViewModel(sharedPreferences = sharedPreferences)
         }
         else -> throw IllegalArgumentException("$modelClass is not registered ViewModel")

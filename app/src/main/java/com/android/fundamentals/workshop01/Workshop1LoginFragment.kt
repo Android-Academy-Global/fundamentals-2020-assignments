@@ -77,7 +77,6 @@ class Workshop1LoginFragment : Fragment(R.layout.fragment_workshop_1_login) {
     private fun showSuccess() {
         loginBtn?.isVisible = false
 
-        // TODO Fix router's openWorkshop1 function to open correct fragment
         parentRouter?.openWorkshop1()
     }
 
