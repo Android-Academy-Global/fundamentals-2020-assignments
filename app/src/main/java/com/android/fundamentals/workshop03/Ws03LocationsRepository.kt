@@ -33,7 +33,7 @@ class Ws03LocationsRepository(applicationContext: Context) {
 	//  Pass the entity to the LocationDao "insert(...)".
 	//  Call "getAllLocations()" in the end.
 	
-	// TODO 15: override suspend fun deleteByIdAndGetUpdated(id: Long).
+	// TODO 16: override suspend fun deleteByIdAndGetUpdated(id: Long).
 	//  Call this function "withContext(Dispatchers.IO)".
 	//  Call LocationDao "deleteById(id)" to delete location entry.
 	//  Call "getAllLocations()" in the end.
@@ -44,7 +44,7 @@ class Ws03LocationsRepository(applicationContext: Context) {
 		lon = location.longitude
 	)
 
-	private fun toLocation(entity: Ws03LocationEntity): Location = Location(
+	private fun toLocation(entity: Ws03LocationEntity) = Location(
 		id = entity.id,
 		title = "${entity.title}, id:${entity.id}",
 		latitude = entity.lat,

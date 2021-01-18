@@ -59,7 +59,7 @@ class Ws03SolutionLocationsRepository(applicationContext: Context) : LocationRep
 		lon = location.longitude
 	)
 
-	private fun toLocation(entity: Ws03SolutionLocationEntity): Location = Location(
+	private fun toLocation(entity: Ws03SolutionLocationEntity) = Location(
 		id = entity.id,
 		title = "${entity.title}, id:${entity.id}",
 		latitude = entity.lat,
