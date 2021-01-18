@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.fundamentals.workshop01.Workshop1ProfileFragment
+import com.android.fundamentals.workshop01.Workshop1LoginFragment
 import com.android.fundamentals.workshop01.Workshop1ViewModel
 import com.android.fundamentals.workshop01.Workshop1ViewModelFactory
 import com.android.fundamentals.workshop02.Workshop2Fragment
@@ -27,20 +27,20 @@ class MainActivity : AppCompatActivity(), Router {
         }
     }
 
-    override fun openWorkshop1() = checkUserAndOpenFragment()
+    override fun openWorkshop1() = checkUserAndOpenFragmentForWS1()
 
     override fun openWorkshop2() = openFragment(Workshop2Fragment.newInstance())
 
     // TODO: When WS03 is completed, replace with "Ws03BonusFragment" to run bonus fragment.
     override fun openWorkshop3() = openFragment(Ws03Fragment.newInstance())
 
-    private fun checkUserAndOpenFragment() {
-        // TODO check userIsLoggedIn via Workshop1ViewModel
+    private fun checkUserAndOpenFragmentForWS1() {
+        // TODO 06 check userIsLoggedIn via Workshop1ViewModel
         val userIsLoggedIn = false
-        if (userIsLoggedIn) {
-            openFragment(Workshop1ProfileFragment.newInstance())
+        if (!userIsLoggedIn) {
+            openFragment(Workshop1LoginFragment.newInstance())
         } else {
-            //openFragment(Workshop1LoginFragment.newInstance())
+            //openFragment(Workshop1ProfileFragment.newInstance())
         }
     }
 
