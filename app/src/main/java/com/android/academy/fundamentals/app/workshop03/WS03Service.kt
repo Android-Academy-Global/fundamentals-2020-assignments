@@ -18,7 +18,8 @@ import kotlinx.coroutines.*
  * @author y.anisimov
  */
 class WS03Service : Service() {
-    private var coroutineScope = createCoroutineScope()
+    private var coroutineScope: CoroutineScope = createCoroutineScope()
+    private var payloadJob: Job? = null
 
     private val exceptionHandler: CoroutineExceptionHandler by lazy {
         CoroutineExceptionHandler { _, throwable ->
@@ -43,25 +44,25 @@ class WS03Service : Service() {
                 .setSmallIcon(R.drawable.ic_ws03_service_icon)
                 .build()
 
-            startForeground(WS03_SERVICE_STATUS, notification)
+            startForeground(NOTIFICATION_ID, notification)
         }
     }
 
     override fun onDestroy() {
-//        coroutineScope.cancel("It's time")
+        coroutineScope.cancel("It's time")
         super.onDestroy()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        coroutineScope.cancel()
-        coroutineScope.launch(context = exceptionHandler) {
-            delay(1_000)
-            createNotification("1").replace()
-            delay(1_000)
-            createNotification("2").replace()
-            delay(1_000)
-            createNotification("3").replace()
+        if (payloadJob?.isActive == true) {
+            payloadJob?.cancel()
+        }
+        payloadJob = coroutineScope.launch(context = exceptionHandler) {
+            for (i in 0..9) {
+                delay(1_000)
+                createNotification("$i").replace()
+            }
         }
         return START_NOT_STICKY
     }
@@ -100,7 +101,6 @@ class WS03Service : Service() {
     }
 
     companion object {
-        private const val WS03_SERVICE_STATUS = 1
         private const val NOTIFICATION_ID = 1
         private const val CHANNEL_ID = "ChannelId"
         private const val TAG = "WS03Service"
