@@ -38,6 +38,8 @@ class WS03Service : Service() {
         super.onCreate()
         initChannels(this)
 
+        // PShchahelski
+        // Я помню есть NotificationsCompat, а там нету для channel чего?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notification: Notification = Notification.Builder(this, CHANNEL_ID)
                 .setContentTitle(getText(R.string.ws03_service_title))
