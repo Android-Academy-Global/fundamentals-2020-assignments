@@ -68,6 +68,7 @@ class WS03Service : Service() {
 //                delay(1_000)
 //                createNotification("$i").replace()
 //            }
+            // todo how read file within coroutines
             val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open("test.jpg"))
             val output = blurBitmap(picture, this@WS03Service)
             writeBitmapToFile(this@WS03Service, output)
