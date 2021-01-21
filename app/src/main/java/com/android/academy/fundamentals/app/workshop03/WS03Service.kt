@@ -65,9 +65,17 @@ class WS03Service : Service() {
         }
         payloadJob = coroutineScope.launch(context = exceptionHandler) {
 
+            createNotification("Loading...").replace()
             val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open(DEFAULT_FILE_NAME))
+            delay(1_000)
+
+            createNotification("Processing...").replace()
             val output = blurBitmap(picture, this@WS03Service)
+            delay(1_000)
+
+            createNotification("Preparing...").replace()
             val resultFileUri = writeBitmapToFile(this@WS03Service, output)
+            delay(1_000)
 
             val notifyIntent = Intent(this@WS03Service, WS03ResultActivity::class.java).also {
                 it.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
