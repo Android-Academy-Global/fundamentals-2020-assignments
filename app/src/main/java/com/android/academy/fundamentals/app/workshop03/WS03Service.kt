@@ -6,12 +6,15 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import com.android.academy.fundamentals.app.R
+import com.android.academy.fundamentals.app.blurBitmap
+import com.android.academy.fundamentals.app.writeBitmapToFile
 import kotlinx.coroutines.*
 
 /**
@@ -61,10 +64,13 @@ class WS03Service : Service() {
             payloadJob?.cancel()
         }
         payloadJob = coroutineScope.launch(context = exceptionHandler) {
-            for (i in 0..9) {
-                delay(1_000)
-                createNotification("$i").replace()
-            }
+//            for (i in 0..9) {
+//                delay(1_000)
+//                createNotification("$i").replace()
+//            }
+            val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open("test.jpg"))
+            val output = blurBitmap(picture, this@WS03Service)
+            writeBitmapToFile(this@WS03Service, output)
         }
         return START_NOT_STICKY
     }
