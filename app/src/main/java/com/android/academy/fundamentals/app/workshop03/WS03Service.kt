@@ -4,16 +4,15 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
-import com.android.academy.fundamentals.app.R
-import com.android.academy.fundamentals.app.blurBitmap
+import com.android.academy.fundamentals.app.*
 import com.android.academy.fundamentals.app.workshop03.WS03ResultActivity
 import com.android.academy.fundamentals.app.workshop03.WS03ResultActivity.Companion.KEY_IMAGE_URI
-import com.android.academy.fundamentals.app.writeBitmapToFile
 import kotlinx.coroutines.*
 
 
@@ -31,31 +30,18 @@ class WS03Service : Service() {
         }
     }
 
+    // We don't provide binding, so return null
     override fun onBind(p0: Intent?): IBinder? = null
-    // permission
-    // manifest
-    // pending intent
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
-        initChannels(this)
-
-        // PShchahelski
-        // Я помню есть NotificationsCompat, а там нету для channel чего?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notification: Notification = Notification.Builder(this, CHANNEL_ID)
-                .setContentTitle(getText(R.string.ws03_service_title))
-                .setSmallIcon(R.drawable.ic_ws03_service_icon)
-                .build()
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(createChannel(this))
 
+            val notification = createNotification(this, getString(R.string.ws03_service_title))
             startForeground(NOTIFICATION_ID, notification)
         }
-    }
-
-    override fun onDestroy() {
-        coroutineScope.cancel("It's time")
-        super.onDestroy()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -64,18 +50,7 @@ class WS03Service : Service() {
             payloadJob?.cancel()
         }
         payloadJob = coroutineScope.launch(context = exceptionHandler) {
-
-            createNotification("Loading...").replace()
-            val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open(DEFAULT_FILE_NAME))
-            delay(1_000)
-
-            createNotification("Processing...").replace()
-            val output = blurBitmap(picture, this@WS03Service)
-            delay(1_000)
-
-            createNotification("Preparing...").replace()
-            val resultFileUri = writeBitmapToFile(this@WS03Service, output)
-            delay(1_000)
+            val resultFileUri = blurAndSaveToFile()
 
             val notifyIntent = Intent(this@WS03Service, WS03ResultActivity::class.java).also {
                 it.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -85,52 +60,37 @@ class WS03Service : Service() {
                 this@WS03Service, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
             )
 
-            createNotification("Done", notifyPendingIntent).replace()
+            val createNotification = createNotification(this@WS03Service, "Done", notifyPendingIntent)
+            NotificationManagerCompat.from(this@WS03Service).notify(NOTIFICATION_ID, createNotification)
         }
         return START_NOT_STICKY
     }
 
+    override fun onDestroy() {
+        coroutineScope.cancel("It's time")
+        super.onDestroy()
+    }
+
+    private suspend fun blurAndSaveToFile(): Uri {
+        updateNotification("Loading...")
+        val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open(DEFAULT_FILE_NAME))
+        updateNotification("Processing...")
+        val output = blurBitmap(picture, this@WS03Service)
+        updateNotification("Preparing...")
+        return writeBitmapToFile(this@WS03Service, output)
+    }
+
     private fun createCoroutineScope() = CoroutineScope(Job() + Dispatchers.IO)
 
-    private fun Notification.replace() {
-        NotificationManagerCompat.from(this@WS03Service).apply {
-            notify(NOTIFICATION_ID, this@replace)
-        }
-    }
+    private suspend fun updateNotification(title: String) {
+        val notification = createNotification(this, title)
+        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notification)
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun createNotification(title: String, pendingIntent: PendingIntent? = null): Notification {
-        return Notification.Builder(this, CHANNEL_ID)
-            .setContentTitle(title)
-            .setSmallIcon(R.drawable.ic_ws03_service_icon)
-            .also { notificationBuilder ->
-                if (pendingIntent != null) {
-                    notificationBuilder.setContentIntent(pendingIntent)
-                }
-            }
-            .build()
-    }
-
-    private fun initChannels(context: Context) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return
-        }
-        val notificationManager =
-            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channel = NotificationChannel(
-            CHANNEL_ID,
-            getString(R.string.ws03_service_channel_name),
-            NotificationManager.IMPORTANCE_DEFAULT
-        )
-        channel.description = getString(R.string.ws03_service_channel_description)
-        channel.setSound(null, null)
-        channel.enableVibration(false)
-        notificationManager.createNotificationChannel(channel)
+        delay(1_000)
     }
 
     companion object {
         private const val NOTIFICATION_ID = 1
-        private const val CHANNEL_ID = "ChannelId"
         private const val TAG = "WS03Service"
 
         private const val DEFAULT_FILE_NAME = "test.jpg"

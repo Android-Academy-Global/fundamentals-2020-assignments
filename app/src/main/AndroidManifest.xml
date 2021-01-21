@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".workshop03.WS03ResultActivity"/>
+
+        <activity android:name=".workshop03.WS03ResultActivity"
+            android:exported="false"/>
 
         <service
             android:name="com.android.academy.fundamentals.WS03Service"

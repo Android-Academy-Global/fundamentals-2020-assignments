@@ -27,16 +27,10 @@ class WS03Fragment : Fragment() {
 
         view.findViewById<Button>(R.id.start_service)?.apply {
             setOnClickListener {
-                // start service + PendingIntent to receive answer
-                // restarting
-                // stopping service with another start intent
-
                 val startServiceIntent = Intent(context, WS03Service::class.java)
-
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     context.startForegroundService(startServiceIntent)
                 } else {
-                    // not supported for API < 26
                     context.startService(startServiceIntent)
                 }
             }
