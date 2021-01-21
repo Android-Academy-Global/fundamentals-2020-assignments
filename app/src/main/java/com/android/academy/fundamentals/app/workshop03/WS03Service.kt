@@ -1,9 +1,6 @@
 package com.android.academy.fundamentals
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -14,8 +11,11 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import com.android.academy.fundamentals.app.R
 import com.android.academy.fundamentals.app.blurBitmap
+import com.android.academy.fundamentals.app.workshop03.WS03ResultActivity
+import com.android.academy.fundamentals.app.workshop03.WS03ResultActivity.Companion.KEY_IMAGE_URI
 import com.android.academy.fundamentals.app.writeBitmapToFile
 import kotlinx.coroutines.*
+
 
 /**
  * @author y.anisimov
@@ -64,14 +64,20 @@ class WS03Service : Service() {
             payloadJob?.cancel()
         }
         payloadJob = coroutineScope.launch(context = exceptionHandler) {
-//            for (i in 0..9) {
-//                delay(1_000)
-//                createNotification("$i").replace()
-//            }
-            // todo how read file within coroutines
-            val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open("test.jpg"))
+
+            val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open(DEFAULT_FILE_NAME))
             val output = blurBitmap(picture, this@WS03Service)
-            writeBitmapToFile(this@WS03Service, output)
+            val resultFileUri = writeBitmapToFile(this@WS03Service, output)
+
+            val notifyIntent = Intent(this@WS03Service, WS03ResultActivity::class.java).also {
+                it.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                it.putExtra(KEY_IMAGE_URI, resultFileUri)
+            }
+            val notifyPendingIntent = PendingIntent.getActivity(
+                this@WS03Service, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
+            )
+
+            createNotification("Done", notifyPendingIntent).replace()
         }
         return START_NOT_STICKY
     }
@@ -85,10 +91,15 @@ class WS03Service : Service() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun createNotification(title: String): Notification {
+    private fun createNotification(title: String, pendingIntent: PendingIntent? = null): Notification {
         return Notification.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
             .setSmallIcon(R.drawable.ic_ws03_service_icon)
+            .also { notificationBuilder ->
+                if (pendingIntent != null) {
+                    notificationBuilder.setContentIntent(pendingIntent)
+                }
+            }
             .build()
     }
 
@@ -113,5 +124,7 @@ class WS03Service : Service() {
         private const val NOTIFICATION_ID = 1
         private const val CHANNEL_ID = "ChannelId"
         private const val TAG = "WS03Service"
+
+        private const val DEFAULT_FILE_NAME = "test.jpg"
     }
 }

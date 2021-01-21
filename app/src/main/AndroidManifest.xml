@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.academy.fundamentals.app">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -18,11 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".workshop03.WS03ResultActivity"/>
 
         <service
             android:name="com.android.academy.fundamentals.WS03Service"
-            android:exported="false"/>
-
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -18,7 +18,6 @@ class WS03Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ws03, container, false)
     }
 
@@ -33,6 +32,7 @@ class WS03Fragment : Fragment() {
                 // stopping service with another start intent
 
                 val startServiceIntent = Intent(context, WS03Service::class.java)
+
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     context.startForegroundService(startServiceIntent)
                 } else {
