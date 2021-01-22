@@ -1,25 +1,22 @@
 package com.android.academy.fundamentals
 
-import android.app.*
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import com.android.academy.fundamentals.app.*
 import com.android.academy.fundamentals.app.workshop03.WS03ResultActivity
 import com.android.academy.fundamentals.app.workshop03.WS03ResultActivity.Companion.KEY_IMAGE_URI
 import kotlinx.coroutines.*
 
-
-/**
- * @author y.anisimov
- */
-class WS03Service : Service() {
+//TODO 01: Create new class which extends Service()
+class WS03Service {
     private var coroutineScope: CoroutineScope = createCoroutineScope()
     private var payloadJob: Job? = null
 
@@ -31,61 +28,68 @@ class WS03Service : Service() {
     }
 
     // We don't provide binding, so return null
-    override fun onBind(p0: Intent?): IBinder? = null
+    //TODO 02: Uncomment onBind callback
+//    override fun onBind(p0: Intent?): IBinder? = null
 
-    override fun onCreate() {
-        super.onCreate()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(createChannel(this))
+    //TODO 03: Uncomment onCreate callback
+//    override fun onCreate() {
+//        super.onCreate()
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//            notificationManager.createNotificationChannel(createChannel(this))
+//
+//            val notification = createNotification(this, getString(R.string.ws03_service_title))
+//            //TODO 04: Call startForeground, pass NOTIFICATION_ID and notification
+//        }
+//    }
 
-            val notification = createNotification(this, getString(R.string.ws03_service_title))
-            startForeground(NOTIFICATION_ID, notification)
-        }
-    }
+    //TODO 05: Uncomment startJob method
+//    private fun startJob() {
+//        if (payloadJob?.isActive == true) {
+//            payloadJob?.cancel()
+//        }
+//        payloadJob = coroutineScope.launch(context = exceptionHandler) {
+//            updateNotification(this@WS03Service, "Loading...")
+//            val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open(DEFAULT_FILE_NAME))
+//            updateNotification(this@WS03Service, "Processing...")
+//            val output = blurBitmap(picture, this@WS03Service)
+//            updateNotification(this@WS03Service, "Preparing...")
+//            val resultFileUri = writeBitmapToFile(this@WS03Service, output)
+//
+//            val notifyIntent = Intent(this@WS03Service, WS03ResultActivity::class.java).also {
+//                it.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                it.putExtra(KEY_IMAGE_URI, resultFileUri)
+//            }
+//
+//            val notifyPendingIntent = PendingIntent.getActivity(
+//                this@WS03Service,
+//                0,
+//                notifyIntent,
+//                PendingIntent.FLAG_UPDATE_CURRENT
+//            )
+//            val createNotification = createNotification(
+//                this@WS03Service,
+//                "Done",
+//                notifyPendingIntent
+//            )
+//            NotificationManagerCompat.from(this@WS03Service)
+//                .notify(NOTIFICATION_ID, createNotification)
+//        }
+//    }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (payloadJob?.isActive == true) {
-            payloadJob?.cancel()
-        }
-        payloadJob = coroutineScope.launch(context = exceptionHandler) {
-            val resultFileUri = blurAndSaveToFile()
+    //TODO 06: Implement onStartCommand callback to start new job. Method should return START_NOT_STICKY
+    // startJob()
 
-            val notifyIntent = Intent(this@WS03Service, WS03ResultActivity::class.java).also {
-                it.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                it.putExtra(KEY_IMAGE_URI, resultFileUri)
-            }
-            val notifyPendingIntent = PendingIntent.getActivity(
-                this@WS03Service, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
-            )
-
-            val createNotification = createNotification(this@WS03Service, "Done", notifyPendingIntent)
-            NotificationManagerCompat.from(this@WS03Service).notify(NOTIFICATION_ID, createNotification)
-        }
-        return START_NOT_STICKY
-    }
-
-    override fun onDestroy() {
-        coroutineScope.cancel("It's time")
-        super.onDestroy()
-    }
-
-    private suspend fun blurAndSaveToFile(): Uri {
-        updateNotification("Loading...")
-        val picture = BitmapFactory.decodeStream(this@WS03Service.assets.open(DEFAULT_FILE_NAME))
-        updateNotification("Processing...")
-        val output = blurBitmap(picture, this@WS03Service)
-        updateNotification("Preparing...")
-        return writeBitmapToFile(this@WS03Service, output)
-    }
+    // TODO 07: Implement onDestroy callback to cancel coroutines
+    // coroutineScope.cancel("It's time")
 
     private fun createCoroutineScope() = CoroutineScope(Job() + Dispatchers.IO)
 
-    private suspend fun updateNotification(title: String) {
-        val notification = createNotification(this, title)
-        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notification)
+    private suspend fun updateNotification(context: Context, title: String) {
+        val notification = createNotification(context, title)
+        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
 
+        // Just emulates long running task
         delay(1_000)
     }
 

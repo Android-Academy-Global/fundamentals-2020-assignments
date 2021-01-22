@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.academy.fundamentals.app" >
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- TODO 08: Request the foreground service permission -->
+<!--    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />-->
 
     <application
         android:theme="@style/Theme.Fundamentals2020assignments"
@@ -29,10 +30,10 @@
         <activity android:name=".workshop03.WS03ResultActivity"
             android:exported="false" />
 
-        <service
-            android:name="com.android.academy.fundamentals.WS03Service"
-            android:exported="false" />
-
+        <!-- TODO 09: Declare service in manifest file -->
+<!--        <service-->
+<!--            android:name="com.android.academy.fundamentals.WS03Service"-->
+<!--            android:exported="false" />-->
     </application>
 
 </manifest>
