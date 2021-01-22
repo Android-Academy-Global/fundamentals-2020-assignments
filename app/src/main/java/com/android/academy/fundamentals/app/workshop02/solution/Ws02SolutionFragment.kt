@@ -1,13 +1,9 @@
 package com.android.academy.fundamentals.app.workshop02.solution
 
-import android.Manifest
-import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
@@ -15,11 +11,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.app.R
 
-class Ws02Fragment : Fragment() {
+class Ws02SolutionFragment : Fragment() {
 	
 	private var boundIndicatorView: TextView? = null
 	private var reportView: TextView? = null
@@ -27,16 +22,15 @@ class Ws02Fragment : Fragment() {
 	private var unbindButton: View? = null
 	
 	private var isBound = false
-	private var service: Ws02BoundedService? = null
+	private var service: Ws02SolutionBoundedService? = null
 	private val serviceConnection: ServiceConnection = object : ServiceConnection {
 		override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
 			isBound = true
 			boundIndicatorView?.isEnabled = true
-			service = (binder as? Ws02BoundedService.Ws02Binder)?.getService()
+			service = (binder as? Ws02SolutionBoundedService.Ws02Binder)?.getService()
 			service?.observableData()?.observe(viewLifecycleOwner) { report ->
 				reportView?.text = report
 			}
-			service?.startWork(hasRecognitionPermission = checkRecognitionPermission(requireContext()))
 			Log.d(TAG, "onServiceConnected component:${name?.className}, iBinder:${binder?.javaClass}, service:${service?.javaClass}")
 		}
 		
@@ -47,8 +41,6 @@ class Ws02Fragment : Fragment() {
 			service = null
 		}
 	}
-	
-	private var isRecognitionReceiverRegistered = false
 	
 	override fun onAttach(context: Context) {
 		Log.d(TAG, "onAttach")
@@ -71,7 +63,6 @@ class Ws02Fragment : Fragment() {
 		
 		setupViews(view)
 		setupListeners()
-		startBoundedService()
 	}
 	
 	override fun onStart() {
@@ -98,7 +89,6 @@ class Ws02Fragment : Fragment() {
 	
 	override fun onDestroyView() {
 		Log.d(TAG, "onDestroyView")
-		stopBoundedService()
 		clearViews()
 		
 		super.onDestroyView()
@@ -123,13 +113,9 @@ class Ws02Fragment : Fragment() {
 	
 	private fun setupListeners() {
 		bindButton?.setOnClickListener {
-			val hasPermission = checkRecognitionPermission(it.context)
-			Log.d(TAG, "hasPermission:$hasPermission, isBound:$isBound")
-			if (hasPermission && !isBound) {
+			Log.d(TAG, "isBound:$isBound")
+			if (!isBound) {
 				bindToService()
-				
-			} else {
-				requestRecognitionPermission(requireActivity())
 			}
 		}
 		
@@ -141,16 +127,6 @@ class Ws02Fragment : Fragment() {
 		reportView = null
 		bindButton = null
 		unbindButton = null
-	}
-	
-	private fun startBoundedService() {
-		val res = context?.startService(getServiceIntent())
-		Log.d(TAG, "startBoundedService res:${res?.className}")
-	}
-	
-	private fun stopBoundedService() {
-		val res = context?.stopService(getServiceIntent())
-		Log.d(TAG, "stopBoundedService res:$res")
 	}
 	
 	private fun bindToService() {
@@ -167,34 +143,11 @@ class Ws02Fragment : Fragment() {
 		}
 	}
 	
-	private fun getServiceIntent() = Intent(requireContext(), Ws02BoundedService::class.java)
-	
-	private fun checkRecognitionPermission(context: Context) = if (isGreaterThanQ()) {
-		PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
-			context,
-			Manifest.permission.ACTIVITY_RECOGNITION
-		)
-		
-	} else {
-		true
-	}
-	
-	private fun requestRecognitionPermission(activity: Activity) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-			ActivityCompat.requestPermissions(
-				activity,
-				arrayOf(Manifest.permission.ACTIVITY_RECOGNITION),
-				PERMISSION_REQUEST_ACTIVITY_RECOGNITION
-			)
-		}
-	}
-	
-	private fun isGreaterThanQ() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+	private fun getServiceIntent() = Intent(requireContext(), Ws02SolutionBoundedService::class.java)
 	
 	companion object {
 		private const val TAG = "WS02::FRAGMENT"
-		private const val PERMISSION_REQUEST_ACTIVITY_RECOGNITION = 333
 		
-		fun create() = Ws02Fragment()
+		fun create() = Ws02SolutionFragment()
 	}
 }

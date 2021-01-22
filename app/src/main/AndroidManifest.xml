@@ -3,13 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.academy.fundamentals.app" >
 
-    <!-- Ws02 -->
-    <!-- Required for 28 and below. -->
-    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
-    <!-- Required for 29+. -->
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
-    <!-- Ws02 -->
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
@@ -29,7 +22,7 @@
         </activity>
 
         <service
-            android:name=".workshop02.solution.Ws02BoundedService"
+            android:name=".workshop02.solution.Ws02SolutionBoundedService"
             android:exported="false"
             />
 
