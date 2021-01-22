@@ -1,9 +1,18 @@
 package com.android.academy.fundamentals
 
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.Service
 import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.os.Build
+import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationManagerCompat
-import com.android.academy.fundamentals.app.createNotification
+import com.android.academy.fundamentals.app.*
+import com.android.academy.fundamentals.app.workshop03.WS03ResultActivity
+import com.android.academy.fundamentals.app.workshop03.WS03ResultActivity.Companion.KEY_IMAGE_URI
 import kotlinx.coroutines.*
 
 //TODO 01: Create new class which extends Service()
