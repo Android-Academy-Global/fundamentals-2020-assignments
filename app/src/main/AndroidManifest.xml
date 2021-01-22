@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.academy.fundamentals.app" >
 
-    <!-- TODO 08: Request the foreground service permission -->
+    <!-- TODO WS03 08: Request the foreground service permission -->
 <!--    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />-->
 
     <application
@@ -30,7 +30,7 @@
         <activity android:name=".workshop03.WS03ResultActivity"
             android:exported="false" />
 
-        <!-- TODO 09: Declare service in manifest file -->
+        <!-- TODO WS03 09: Declare service in manifest file -->
 <!--        <service-->
 <!--            android:name="com.android.academy.fundamentals.WS03Service"-->
 <!--            android:exported="false" />-->
