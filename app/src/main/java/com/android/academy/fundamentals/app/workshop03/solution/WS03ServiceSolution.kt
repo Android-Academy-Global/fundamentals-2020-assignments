@@ -84,11 +84,11 @@ class WS03ServiceSolution : Service() {
     }
 
     private suspend fun blurAndSaveToFile(): Uri {
-        updateNotification("Loading...")
+        updateNotification(this@WS03ServiceSolution, "Loading...")
         val picture = BitmapFactory.decodeStream(this@WS03ServiceSolution.assets.open(DEFAULT_FILE_NAME))
-        updateNotification("Processing...")
+        updateNotification(this@WS03ServiceSolution, "Processing...")
         val output = blurBitmap(picture, this@WS03ServiceSolution)
-        updateNotification("Preparing...")
+        updateNotification(this@WS03ServiceSolution, "Preparing...")
         return writeBitmapToFile(this@WS03ServiceSolution, output)
     }
 
@@ -96,7 +96,7 @@ class WS03ServiceSolution : Service() {
 
     private suspend fun updateNotification(context: Context, title: String) {
         val notification = createNotification(context, title)
-        NotificationManagerCompat.from(context).notify(WS03Service.NOTIFICATION_ID, notification)
+        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
 
         // Just emulates long running task
         delay(1_000)
