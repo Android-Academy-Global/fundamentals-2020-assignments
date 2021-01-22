@@ -1,10 +1,19 @@
 <resources>
+
     <string name="app_name">Ex 9 background</string>
+
+    <!-- Workshop 02 -->
+    <string name="ws02_header">Device activity</string>
+    <string name="ws02_activity_report_text">unknown</string>
+    <string name="ws02_logger_text">screen is initializing</string>
+    <string name="ws02_bind_service">Bind service</string>
+    <string name="ws02_unbind_service">Unbind service</string>
+    <!-- Workshop 02 -->
 
     <string name="ws03_start_service">Start service</string>
     <string name="ws03_stop_service">Stop service</string>
-
     <string name="ws03_service_channel_name">Channel</string>
     <string name="ws03_service_channel_description">Channel description</string>
     <string name="ws03_service_title">WS03 Service</string>
+
 </resources>

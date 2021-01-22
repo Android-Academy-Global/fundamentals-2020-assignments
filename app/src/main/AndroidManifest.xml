@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.academy.fundamentals.app">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.academy.fundamentals.app" >
+
+    <!-- Ws02 -->
+    <!-- Required for 28 and below. -->
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+    <!-- Required for 29+. -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <!-- Ws02 -->
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
+        android:theme="@style/Theme.Fundamentals2020assignments"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Fundamentals2020assignments">
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round" >
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,12 +28,18 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".workshop02.solution.Ws02BoundedService"
+            android:exported="false"
+            />
+
         <activity android:name=".workshop03.WS03ResultActivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <service
             android:name="com.android.academy.fundamentals.WS03Service"
             android:exported="false" />
+
     </application>
 
 </manifest>
