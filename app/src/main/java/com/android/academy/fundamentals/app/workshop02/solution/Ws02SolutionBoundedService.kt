@@ -20,9 +20,11 @@ class Ws02SolutionBoundedService : Service(), SensorEventListener {
 	private val accelerometerReading = FloatArray(3)
 	private val magnetometerReading = FloatArray(3)
 	private val rotationMatrix = FloatArray(9)
+	private var prevAzimuth = 0.0f
+	private var azimuthNoise = 0.01f
 	
-	private val _data = MutableLiveData("")
-	private val data: LiveData<String> get() = _data
+	private val _data = MutableLiveData(floatArrayOf(0.0f, 0.0f, 0.0f))
+	private val data: LiveData<FloatArray> get() = _data
 	
 	override fun onCreate() {
 		Log.d(TAG, "onCreate")
@@ -65,7 +67,7 @@ class Ws02SolutionBoundedService : Service(), SensorEventListener {
 					accelerometerReading.size
 				)
 				
-				updateOrientationAngles()
+				calculateOrientationAngles()
 			}
 			Sensor.TYPE_MAGNETIC_FIELD -> {
 				System.arraycopy(
@@ -76,7 +78,7 @@ class Ws02SolutionBoundedService : Service(), SensorEventListener {
 					magnetometerReading.size
 				)
 				
-				updateOrientationAngles()
+				calculateOrientationAngles()
 			}
 			null -> {
 			}
@@ -86,7 +88,7 @@ class Ws02SolutionBoundedService : Service(), SensorEventListener {
 	override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
 	}
 	
-	fun observableData(): LiveData<String> = data
+	fun observableData(): LiveData<FloatArray> = data
 	
 	private fun setupSensorManager() {
 		sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -115,7 +117,7 @@ class Ws02SolutionBoundedService : Service(), SensorEventListener {
 		sensorManager.unregisterListener(this)
 	}
 	
-	private fun updateOrientationAngles() {
+	private fun calculateOrientationAngles() {
 		val success = SensorManager.getRotationMatrix(
 			rotationMatrix,
 			null,
@@ -130,14 +132,18 @@ class Ws02SolutionBoundedService : Service(), SensorEventListener {
 		// values[0]: Azimuth, values[1]: Pitch, values[2]: Roll in radian
 		val calculated = FloatArray(3)
 		SensorManager.getOrientation(rotationMatrix, calculated)
-		_data.value = """Angle degrees
-			azimuth: ${calculated[0].toDegrees()}
-			pitch: ${calculated[1].toDegrees()}
-			roll: ${calculated[2].toDegrees()}
-		""".trim()
+		
+		handleOrientationUpdate(calculated)
 	}
 	
-	private fun Float.toDegrees() = (Math.toDegrees(this.toDouble()) * 100).toInt() / 100f
+	private fun handleOrientationUpdate(angles: FloatArray) {
+		val azimuth = angles[0]
+		if (azimuth < prevAzimuth - azimuthNoise || azimuth > prevAzimuth + azimuthNoise) {
+			_data.value = angles
+		}
+		
+		prevAzimuth = azimuth
+	}
 	
 	inner class Ws02Binder : Binder() {
 		fun getService(): Ws02SolutionBoundedService {

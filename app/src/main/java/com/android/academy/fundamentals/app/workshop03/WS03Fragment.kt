@@ -11,6 +11,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.WS03Service
 import com.android.academy.fundamentals.app.R
+import com.android.academy.fundamentals.app.workshop4.solution.WS04FragmentSolution
 import com.bumptech.glide.Glide
 
 class WS03Fragment : Fragment() {
@@ -54,5 +55,7 @@ class WS03Fragment : Fragment() {
 
     companion object {
         private const val DEFAULT_IMAGE_URI = "file:///android_asset/test.jpg"
+    
+        fun create() = WS03Fragment()
     }
 }

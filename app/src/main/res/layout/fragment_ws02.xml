@@ -36,12 +36,25 @@
     <TextView
         android:id="@+id/tvDeviceActivityReport"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="@string/ws02_activity_report_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:text="@string/ws02_activity_report_empty_text"
         app:layout_constraintTop_toBottomOf="@+id/tvDeviceActivityHeader"
-        app:layout_constraintBottom_toTopOf="@+id/btnBindService"
+        app:layout_constraintBottom_toTopOf="@+id/ivCompass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/ivCompass"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/img_compass_arrow"
+        app:layout_constraintTop_toBottomOf="@+id/tvDeviceActivityReport"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <Button

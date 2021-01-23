@@ -10,6 +10,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.app.R
@@ -18,6 +21,7 @@ class Ws02SolutionFragment : Fragment() {
 	
 	private var boundIndicatorView: TextView? = null
 	private var reportView: TextView? = null
+	private var compassImage: ImageView? = null
 	private var bindButton: View? = null
 	private var unbindButton: View? = null
 	
@@ -28,8 +32,8 @@ class Ws02SolutionFragment : Fragment() {
 			isBound = true
 			boundIndicatorView?.isEnabled = true
 			service = (binder as? Ws02SolutionBoundedService.Ws02Binder)?.getService()
-			service?.observableData()?.observe(viewLifecycleOwner) { report ->
-				reportView?.text = report
+			service?.observableData()?.observe(viewLifecycleOwner) { angles ->
+				updateViews(angles)
 			}
 			Log.d(TAG, "onServiceConnected component:${name?.className}, iBinder:${binder?.javaClass}, service:${service?.javaClass}")
 		}
@@ -41,6 +45,8 @@ class Ws02SolutionFragment : Fragment() {
 			service = null
 		}
 	}
+	
+	private var currentAzimuth = 0f
 	
 	override fun onAttach(context: Context) {
 		Log.d(TAG, "onAttach")
@@ -107,6 +113,7 @@ class Ws02SolutionFragment : Fragment() {
 	private fun setupViews(parent: View) {
 		boundIndicatorView = parent.findViewById(R.id.tvBoundIndicator)
 		reportView = parent.findViewById(R.id.tvDeviceActivityReport)
+		compassImage = parent.findViewById(R.id.ivCompass)
 		bindButton = parent.findViewById(R.id.btnBindService)
 		unbindButton = parent.findViewById(R.id.btnUnbindService)
 	}
@@ -125,6 +132,7 @@ class Ws02SolutionFragment : Fragment() {
 	private fun clearViews() {
 		boundIndicatorView = null
 		reportView = null
+		compassImage = null
 		bindButton = null
 		unbindButton = null
 	}
@@ -143,7 +151,35 @@ class Ws02SolutionFragment : Fragment() {
 		}
 	}
 	
+	// https://www.javacodegeeks.com/2013/09/android-compass-code-example.html
+	private fun updateViews(angles: FloatArray) {
+		val azimuth = angles[0].toDegrees()
+		
+		RotateAnimation(
+			currentAzimuth,
+			-azimuth,
+			Animation.RELATIVE_TO_SELF,
+			0.5f,
+			Animation.RELATIVE_TO_SELF,
+			0.5f
+		).apply {
+			duration - 300
+			fillAfter = true
+		}.let { compassImage?.startAnimation(it) }
+		
+		reportView?.text = getString(
+			R.string.ws02_activity_report_text,
+			azimuth,
+			angles[1].toDegrees(),
+			angles[2].toDegrees()
+		)
+		
+		currentAzimuth = -azimuth
+	}
+	
 	private fun getServiceIntent() = Intent(requireContext(), Ws02SolutionBoundedService::class.java)
+	
+	private fun Float.toDegrees() = (Math.toDegrees(this.toDouble()) * 100).toInt() / 100f
 	
 	companion object {
 		private const val TAG = "WS02::FRAGMENT"

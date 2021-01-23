@@ -4,7 +4,8 @@
 
     <!-- Workshop 02 -->
     <string name="ws02_header">Orientation to north</string>
-    <string name="ws02_activity_report_text">unknown</string>
+    <string name="ws02_activity_report_empty_text">unknown</string>
+    <string name="ws02_activity_report_text">Angle degrees, azimuth:%1$s, pitch:%2$s, roll:%3$s</string>
     <string name="ws02_logger_text">screen is initializing</string>
     <string name="ws02_bind_service">Bind service</string>
     <string name="ws02_unbind_service">Unbind service</string>
