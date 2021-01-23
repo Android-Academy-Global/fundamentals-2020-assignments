@@ -34,10 +34,10 @@ class Ws02Fragment : Fragment() {
 	private var isBound = false
 	private var service: Ws02BoundedService? = null
 	
-	// TODO 05: Replace TODO(). Initialize property as object of "ServiceConnection".
+	// TODO 09: Replace TODO(). Initialize property as object of "ServiceConnection".
 	//  Implement both "onServiceConnected" and "onServiceDisconnected" functions.
 	private val serviceConnection: ServiceConnection = TODO()
-		// TODO 06: Inside "onServiceConnected".
+		// TODO 10: Inside "onServiceConnected".
 		//  - Set "isBound" true;
 		//  - Set boundIndicatorView?.isEnabled = true;
 		//  - Set service from (binder as? Ws02BoundedService.YourBinderClass)?.yourGetServiceFun();
@@ -45,7 +45,7 @@ class Ws02Fragment : Fragment() {
 		//  - Add the following log as the final line:
 		//  Log.d(TAG, "onServiceConnected component:${name?.className}, iBinder:${binder?.javaClass}, service:${service?.javaClass}")
 		
-		// TODO 07: Inside "onServiceDisconnected".
+		// TODO 11: Inside "onServiceDisconnected".
 		//  - Add the following log as the first line:
 		//  Log.d(TAG, "onServiceDisconnected component:${name?.className}")
 		//  - Set "isBound" false;
@@ -132,7 +132,7 @@ class Ws02Fragment : Fragment() {
 	}
 	
 	private fun bindToService() {
-		// TODO 08: Replace TODO(). Bind service from "context?" with bindService(...) function.
+		// TODO 12: Replace TODO(). Bind service from "context?" with bindService(...) function.
 		//  - Pass as param intent from "getServiceIntent()";
 		//  - Pass as param "serviceConnection";
 		//  - Pass as param flag "Context.BIND_AUTO_CREATE".
@@ -142,14 +142,14 @@ class Ws02Fragment : Fragment() {
 	
 	private fun unbindFromService() {
 		Log.d(TAG, "unbindFromService isBound:$isBound")
-		// TODO 09: Do not unbind if the service have unbound already.
+		// TODO 13: Do not unbind if the service have unbound already.
 		//  Call "return" here if not "isBound".
 		if (!isBound) return
 		
 		isBound = false
 		boundIndicatorView?.isEnabled = false
 		
-		// TODO 10: Unbind service from "context?" with unbindService(...) function.
+		// TODO 14: Unbind service from "context?" with unbindService(...) function.
 		//  - Pass as param "serviceConnection".
 	}
 	

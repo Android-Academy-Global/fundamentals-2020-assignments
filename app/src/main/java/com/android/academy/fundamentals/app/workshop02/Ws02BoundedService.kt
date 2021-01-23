@@ -27,23 +27,26 @@ class Ws02BoundedService : Service() {
 	
 	override fun onBind(intent: Intent?): IBinder {
 		Log.d(TAG, "onBind intent:$intent")
-		registerSensors()
+		// TODO 04: Start work with "registerSensors()".
 		
-		// TODO 04: Replace TODO(). return created "binder" property.
+		// TODO 05: Replace TODO(). Return "enableRebind" flag.
 		return TODO()
 	}
 	
 	override fun onRebind(intent: Intent?) {
 		Log.d(TAG, "onRebind intent:$intent")
-		registerSensors()
+		
+		// TODO 06: Start work with "registerSensors()".
+		//  In the other situation it could be some "continuation" work.
 	}
 	
 	override fun onUnbind(intent: Intent?): Boolean {
 		Log.d(TAG, "onUnbind enableRebind:$enableRebind, intent:$intent")
 		
-		unregisterSensors()
+		// TODO 07: Stop work with "unregisterSensors()".
 		
-		return enableRebind
+		// TODO 08: Replace TODO(). Return created "binder" property.
+		return TODO()
 	}
 	
 	override fun onDestroy() {
