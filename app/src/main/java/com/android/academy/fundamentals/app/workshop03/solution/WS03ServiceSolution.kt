@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals
+package com.android.academy.fundamentals.app.workshop03.solution
 
 import android.app.*
 import android.content.Context

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.academy.fundamentals.app">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.academy.fundamentals.app" >
 
-    <!-- TODO 08: Request the foreground service permission -->
+    <!-- TODO WS03 08: Request the foreground service permission -->
 <!--    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />-->
 
     <application
+        android:theme="@style/Theme.Fundamentals2020assignments"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Fundamentals2020assignments">
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round" >
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +22,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".workshop03.WS03ResultActivity"
-            android:exported="false"/>
+        <service
+            android:name=".workshop02.solution.Ws02SolutionBoundedService"
+            android:exported="false"
+            />
 
-        <!-- TODO 09: Declare service in manifest file -->
+        <activity android:name=".workshop03.WS03ResultActivity"
+            android:exported="false" />
+
+        <!-- TODO WS03 09: Declare service in manifest file -->
 <!--        <service-->
 <!--            android:name="com.android.academy.fundamentals.WS03Service"-->
 <!--            android:exported="false" />-->

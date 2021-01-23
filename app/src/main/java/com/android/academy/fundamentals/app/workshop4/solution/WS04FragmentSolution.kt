@@ -18,4 +18,8 @@ class WS04FragmentSolution : Fragment(R.layout.fragment_ws04) {
         //NotTodo 4.8: Enqueue constrainedRequest with WorkManager
         WorkManager.getInstance(requireContext()).enqueue(workRepository.constrainedRequest)
     }
+    
+    companion object {
+        fun create() = WS04FragmentSolution()
+    }
 }

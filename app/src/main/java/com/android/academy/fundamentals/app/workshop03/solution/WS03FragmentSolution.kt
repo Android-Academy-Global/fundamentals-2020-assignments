@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals
+package com.android.academy.fundamentals.app.workshop03.solution
 
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.android.academy.fundamentals.WS03Service
 import com.android.academy.fundamentals.app.R
+import com.android.academy.fundamentals.app.workshop03.WS03Fragment
 import com.bumptech.glide.Glide
 
 class WS03FragmentSolution : Fragment() {
@@ -56,5 +58,7 @@ class WS03FragmentSolution : Fragment() {
 
     companion object {
         private const val DEFAULT_IMAGE_URI = "file:///android_asset/test.jpg"
+    
+        fun create() = WS03FragmentSolution()
     }
 }

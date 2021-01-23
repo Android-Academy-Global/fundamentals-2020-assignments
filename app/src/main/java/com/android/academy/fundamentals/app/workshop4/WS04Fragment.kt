@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.work.WorkManager
-import com.android.academy.fundamentals.WS03Service
 import com.android.academy.fundamentals.app.R
 import com.bumptech.glide.Glide
 
@@ -20,5 +19,9 @@ class WS04Fragment : Fragment(R.layout.fragment_ws04) {
         //Todo 4.4: Enqueue simpleRequest with WorkManager
         //Todo 4.6: Enqueue delayedRequest with WorkManager
         //Todo 4.8: Enqueue constrainedRequest with WorkManager
+    }
+    
+    companion object {
+        fun create() = WS04Fragment()
     }
 }
