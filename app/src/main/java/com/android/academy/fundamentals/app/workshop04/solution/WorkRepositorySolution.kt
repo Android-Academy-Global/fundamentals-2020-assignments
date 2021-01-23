@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals.app.workshop4.solution
+package com.android.academy.fundamentals.app.workshop04.solution
 
 import androidx.work.Constraints
 import androidx.work.NetworkType
