@@ -12,7 +12,9 @@ import kotlin.properties.Delegates
 
 class Ws02BoundedService : Service() {
 	
-	private val binder = Ws02Binder()
+	// TODO 03: Add a private property "binder".
+	//  Initialize it with Binder() class created in the TODO_02.
+	//	private val ...
 	private val enableRebind = true
 	
 	private var sensorManager: Ws02SensorManager by Delegates.notNull()
@@ -27,7 +29,8 @@ class Ws02BoundedService : Service() {
 		Log.d(TAG, "onBind intent:$intent")
 		registerSensors()
 		
-		return binder
+		// TODO 04: Replace TODO(). return created "binder" property.
+		return TODO()
 	}
 	
 	override fun onRebind(intent: Intent?) {
@@ -61,11 +64,9 @@ class Ws02BoundedService : Service() {
 	
 	fun observableData(): LiveData<FloatArray> = sensorManager.observableData()
 	
-	inner class Ws02Binder : Binder() {
-		fun getService(): Ws02BoundedService {
-			return this@Ws02BoundedService
-		}
-	}
+	// TODO 01: Add inner class "Ws02Binder" which is extends Binder().
+	// TODO 02: Add a public function "getService" which is returns "this@Ws02BoundedService".
+	// ... fun ...
 	
 	companion object {
 		private const val TAG = "WS02::SERVICE"
