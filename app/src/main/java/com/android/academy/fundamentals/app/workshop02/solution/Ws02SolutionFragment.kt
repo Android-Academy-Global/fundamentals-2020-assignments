@@ -4,6 +4,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
@@ -14,6 +15,7 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.app.R
 
@@ -24,6 +26,10 @@ class Ws02SolutionFragment : Fragment() {
 	private var compassImage: ImageView? = null
 	private var bindButton: View? = null
 	private var unbindButton: View? = null
+	
+	private var orientationState = Configuration.ORIENTATION_PORTRAIT
+	private var isPortrait = true
+		get() =  orientationState == Configuration.ORIENTATION_PORTRAIT
 	
 	private var isBound = false
 	private var service: Ws02SolutionBoundedService? = null
@@ -62,6 +68,7 @@ class Ws02SolutionFragment : Fragment() {
 		Log.d(TAG, "onViewCreated")
 		super.onViewCreated(view, savedInstanceState)
 		
+		detectOrientation()
 		setupViews(view)
 		setupListeners()
 	}
@@ -90,12 +97,19 @@ class Ws02SolutionFragment : Fragment() {
 		super.onDestroy()
 	}
 	
+	private fun detectOrientation() {
+		orientationState = resources.configuration.orientation
+		Log.d(TAG, "detectOrientation isPortrait:$isPortrait")
+	}
+	
 	private fun setupViews(parent: View) {
 		boundIndicatorView = parent.findViewById(R.id.tvBoundIndicator)
 		reportView = parent.findViewById(R.id.tvDeviceActivityReport)
 		compassImage = parent.findViewById(R.id.ivCompass)
 		bindButton = parent.findViewById(R.id.btnBindService)
 		unbindButton = parent.findViewById(R.id.btnUnbindService)
+		
+		compassImage?.isVisible = isPortrait
 	}
 	
 	private fun setupListeners() {
@@ -135,17 +149,19 @@ class Ws02SolutionFragment : Fragment() {
 	private fun updateViews(angles: FloatArray) {
 		val azimuth = angles[0].toDegrees()
 		
-		RotateAnimation(
-			currentAzimuth,
-			-azimuth,
-			Animation.RELATIVE_TO_SELF,
-			0.5f,
-			Animation.RELATIVE_TO_SELF,
-			0.5f
-		).apply {
-			duration - 300
-			fillAfter = true
-		}.let { compassImage?.startAnimation(it) }
+		if (isPortrait) {
+			RotateAnimation(
+				currentAzimuth,
+				-azimuth,
+				Animation.RELATIVE_TO_SELF,
+				0.5f,
+				Animation.RELATIVE_TO_SELF,
+				0.5f
+			).apply {
+				duration - 300
+				fillAfter = true
+			}.let { compassImage?.startAnimation(it) }
+		}
 		
 		reportView?.text = getString(
 			R.string.ws02_activity_report_text,
