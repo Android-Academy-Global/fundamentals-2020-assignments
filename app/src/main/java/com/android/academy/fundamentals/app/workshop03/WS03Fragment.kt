@@ -11,7 +11,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.WS03Service
 import com.android.academy.fundamentals.app.R
-import com.android.academy.fundamentals.app.workshop4.solution.WS04FragmentSolution
 import com.bumptech.glide.Glide
 
 class WS03Fragment : Fragment() {

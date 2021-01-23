@@ -48,11 +48,6 @@ class Ws02SolutionFragment : Fragment() {
 	
 	private var currentAzimuth = 0f
 	
-	override fun onAttach(context: Context) {
-		Log.d(TAG, "onAttach")
-		super.onAttach(context)
-	}
-	
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -76,16 +71,6 @@ class Ws02SolutionFragment : Fragment() {
 		super.onStart()
 	}
 	
-	override fun onResume() {
-		Log.d(TAG, "onResume")
-		super.onResume()
-	}
-	
-	override fun onPause() {
-		Log.d(TAG, "onPause")
-		super.onPause()
-	}
-	
 	override fun onStop() {
 		Log.d(TAG, "onStop")
 		unbindFromService()
@@ -103,11 +88,6 @@ class Ws02SolutionFragment : Fragment() {
 	override fun onDestroy() {
 		Log.d(TAG, "onDestroy")
 		super.onDestroy()
-	}
-	
-	override fun onDetach() {
-		Log.d(TAG, "onDetach")
-		super.onDetach()
 	}
 	
 	private fun setupViews(parent: View) {
@@ -144,11 +124,11 @@ class Ws02SolutionFragment : Fragment() {
 	
 	private fun unbindFromService() {
 		Log.d(TAG, "unbindFromService isBound:$isBound")
-		if (isBound) {
-			isBound = false
-			boundIndicatorView?.isEnabled = false
-			context?.unbindService(serviceConnection)
-		}
+		if (!isBound) return
+		
+		isBound = false
+		boundIndicatorView?.isEnabled = false
+		context?.unbindService(serviceConnection)
 	}
 	
 	// https://www.javacodegeeks.com/2013/09/android-compass-code-example.html

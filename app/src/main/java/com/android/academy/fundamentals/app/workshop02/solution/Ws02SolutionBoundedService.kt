@@ -7,24 +7,16 @@ import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.android.academy.fundamentals.app.workshop02.Ws02SensorManager
 import java.util.*
+import kotlin.properties.Delegates
 
-// https://developer.android.com/guide/topics/sensors/sensors_position?hl=en
-class Ws02SolutionBoundedService : Service(), SensorEventListener {
+class Ws02SolutionBoundedService : Service() {
 	
 	private val binder = Ws02Binder()
 	private val enableRebind = true
 	
-	private lateinit var sensorManager: SensorManager
-	private val accelerometerReading = FloatArray(3)
-	private val magnetometerReading = FloatArray(3)
-	private val rotationMatrix = FloatArray(9)
-	private var prevAzimuth = 0.0f
-	private var azimuthNoise = 0.01f
-	
-	private val _data = MutableLiveData(floatArrayOf(0.0f, 0.0f, 0.0f))
-	private val data: LiveData<FloatArray> get() = _data
+	private var sensorManager: Ws02SensorManager by Delegates.notNull()
 	
 	override fun onCreate() {
 		Log.d(TAG, "onCreate")
@@ -56,94 +48,19 @@ class Ws02SolutionBoundedService : Service(), SensorEventListener {
 		Log.d(TAG, "onDestroy")
 	}
 	
-	override fun onSensorChanged(event: SensorEvent?) {
-		when (event?.sensor?.type) {
-			Sensor.TYPE_ACCELEROMETER -> {
-				System.arraycopy(
-					event.values.clone(),
-					0,
-					accelerometerReading,
-					0,
-					accelerometerReading.size
-				)
-				
-				calculateOrientationAngles()
-			}
-			Sensor.TYPE_MAGNETIC_FIELD -> {
-				System.arraycopy(
-					event.values.clone(),
-					0,
-					magnetometerReading,
-					0,
-					magnetometerReading.size
-				)
-				
-				calculateOrientationAngles()
-			}
-			null -> {
-			}
-		}
-	}
-	
-	override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-	}
-	
-	fun observableData(): LiveData<FloatArray> = data
-	
 	private fun setupSensorManager() {
-		sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+		sensorManager = Ws02SensorManager(this)
 	}
 	
 	private fun registerSensors() {
-		sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)?.also { accelerometer ->
-			sensorManager.registerListener(
-				this,
-				accelerometer,
-				SensorManager.SENSOR_DELAY_UI,
-				SensorManager.SENSOR_DELAY_UI
-			)
-		}
-		sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)?.also { magneticField ->
-			sensorManager.registerListener(
-				this,
-				magneticField,
-				SensorManager.SENSOR_DELAY_UI,
-				SensorManager.SENSOR_DELAY_UI
-			)
-		}
+		sensorManager.registerSensors()
 	}
 	
 	private fun unregisterSensors() {
-		sensorManager.unregisterListener(this)
+		sensorManager.unregisterSensors()
 	}
 	
-	private fun calculateOrientationAngles() {
-		val success = SensorManager.getRotationMatrix(
-			rotationMatrix,
-			null,
-			accelerometerReading,
-			magnetometerReading
-		)
-		
-		if (!success) {
-			return
-		}
-		
-		// values[0]: Azimuth, values[1]: Pitch, values[2]: Roll in radian
-		val calculated = FloatArray(3)
-		SensorManager.getOrientation(rotationMatrix, calculated)
-		
-		handleOrientationUpdate(calculated)
-	}
-	
-	private fun handleOrientationUpdate(angles: FloatArray) {
-		val azimuth = angles[0]
-		if (azimuth < prevAzimuth - azimuthNoise || azimuth > prevAzimuth + azimuthNoise) {
-			_data.value = angles
-		}
-		
-		prevAzimuth = azimuth
-	}
+	fun observableData(): LiveData<FloatArray> = sensorManager.observableData()
 	
 	inner class Ws02Binder : Binder() {
 		fun getService(): Ws02SolutionBoundedService {
