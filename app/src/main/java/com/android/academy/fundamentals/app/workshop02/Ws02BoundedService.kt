@@ -29,7 +29,7 @@ class Ws02BoundedService : Service() {
 		Log.d(TAG, "onBind intent:$intent")
 		// TODO 04: Start work with "registerSensors()".
 		
-		// TODO 05: Replace TODO(). Return "enableRebind" flag.
+		// TODO 05: Replace TODO(). Return created "binder" property.
 		return TODO()
 	}
 	
@@ -45,7 +45,7 @@ class Ws02BoundedService : Service() {
 		
 		// TODO 07: Stop work with "unregisterSensors()".
 		
-		// TODO 08: Replace TODO(). Return created "binder" property.
+		// TODO 08: Replace TODO(). Return "enableRebind" flag.
 		return TODO()
 	}
 	
