@@ -2,7 +2,7 @@ package com.android.academy.fundamentals.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.android.academy.fundamentals.app.workshop02.solution.Ws02SolutionFragment
+import com.android.academy.fundamentals.app.workshop02.Ws02Fragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, Ws02SolutionFragment.create())
+                .replace(R.id.container, Ws02Fragment.create())
                 .commit()
         }
     }

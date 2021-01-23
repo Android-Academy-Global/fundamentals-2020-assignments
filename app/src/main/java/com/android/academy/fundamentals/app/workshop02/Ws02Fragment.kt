@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals.app.workshop02.solution
+package com.android.academy.fundamentals.app.workshop02
 
 import android.content.ComponentName
 import android.content.Context
@@ -19,7 +19,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.app.R
 
-class Ws02SolutionFragment : Fragment() {
+class Ws02Fragment : Fragment() {
 	
 	private var boundIndicatorView: TextView? = null
 	private var reportView: TextView? = null
@@ -32,25 +32,25 @@ class Ws02SolutionFragment : Fragment() {
 		get() =  orientationState == Configuration.ORIENTATION_PORTRAIT
 	
 	private var isBound = false
-	private var service: Ws02SolutionBoundedService? = null
-	private val serviceConnection: ServiceConnection = object : ServiceConnection {
-		override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-			isBound = true
-			boundIndicatorView?.isEnabled = true
-			service = (binder as? Ws02SolutionBoundedService.Ws02Binder)?.getService()
-			service?.observableData()?.observe(viewLifecycleOwner) { angles ->
-				updateViews(angles)
-			}
-			Log.d(TAG, "onServiceConnected component:${name?.className}, iBinder:${binder?.javaClass}, service:${service?.javaClass}")
-		}
+	private var service: Ws02BoundedService? = null
+	
+	// TODO 09: Replace TODO(). Initialize property as object of "ServiceConnection".
+	//  Implement both "onServiceConnected" and "onServiceDisconnected" functions.
+	private val serviceConnection: ServiceConnection = TODO()
+		// TODO 10: Inside "onServiceConnected".
+		//  - Set "isBound" true;
+		//  - Set boundIndicatorView?.isEnabled = true;
+		//  - Set service from (binder as? Ws02BoundedService.YourBinderClass)?.yourGetServiceFun();
+		//  - Observe service's "observableData()", updateViews(it) inside observer lambda;
+		//  - Add the following log as the final line:
+		//  Log.d(TAG, "onServiceConnected component:${name?.className}, iBinder:${binder?.javaClass}, service:${service?.javaClass}")
 		
-		override fun onServiceDisconnected(name: ComponentName?) {
-			Log.d(TAG, "onServiceDisconnected component:${name?.className}")
-			isBound = false
-			boundIndicatorView?.isEnabled = false
-			service = null
-		}
-	}
+		// TODO 11: Inside "onServiceDisconnected".
+		//  - Add the following log as the first line:
+		//  Log.d(TAG, "onServiceDisconnected component:${name?.className}")
+		//  - Set "isBound" false;
+		//  - Set boundIndicatorView?.isEnabled = false;
+		//  - Set "service" null.
 	
 	private var currentAzimuth = 0f
 	
@@ -132,17 +132,25 @@ class Ws02SolutionFragment : Fragment() {
 	}
 	
 	private fun bindToService() {
-		val result = context?.bindService(getServiceIntent(), serviceConnection, Context.BIND_AUTO_CREATE)
+		// TODO 12: Replace TODO(). Bind service from "context?" with bindService(...) function.
+		//  - Pass as param intent from "getServiceIntent()";
+		//  - Pass as param "serviceConnection";
+		//  - Pass as param flag "Context.BIND_AUTO_CREATE".
+		val result = TODO()
 		Log.d(TAG, "bindToService res:$result")
 	}
 	
 	private fun unbindFromService() {
 		Log.d(TAG, "unbindFromService isBound:$isBound")
+		// TODO 13: Do not unbind if the service have unbound already.
+		//  Call "return" here if not "isBound".
 		if (!isBound) return
 		
 		isBound = false
 		boundIndicatorView?.isEnabled = false
-		context?.unbindService(serviceConnection)
+		
+		// TODO 14: Unbind service from "context?" with unbindService(...) function.
+		//  - Pass as param "serviceConnection".
 	}
 	
 	// https://www.javacodegeeks.com/2013/09/android-compass-code-example.html
@@ -173,13 +181,13 @@ class Ws02SolutionFragment : Fragment() {
 		currentAzimuth = -azimuth
 	}
 	
-	private fun getServiceIntent() = Intent(requireContext(), Ws02SolutionBoundedService::class.java)
+	private fun getServiceIntent() = Intent(requireContext(), Ws02BoundedService::class.java)
 	
 	private fun Float.toDegrees() = (Math.toDegrees(this.toDouble()) * 100).toInt() / 100f
 	
 	companion object {
 		private const val TAG = "WS02::FRAGMENT"
 		
-		fun create() = Ws02SolutionFragment()
+		fun create() = Ws02Fragment()
 	}
 }
