@@ -16,16 +16,12 @@
 package com.example.android.people.data
 
 import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.WorkerThread
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.Person
-import androidx.core.app.RemoteInput
+import androidx.core.app.*
+import androidx.core.app.NotificationManagerCompat.IMPORTANCE_HIGH
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.net.toUri
 import com.example.android.people.MainActivity
@@ -56,19 +52,13 @@ class AndroidNotifications(private val context: Context) : Notifications {
         NotificationManagerCompat.from(context)
 
     override fun initialize() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            if (notificationManagerCompat.getNotificationChannel(CHANNEL_NEW_MESSAGES) == null) {
-                notificationManagerCompat.createNotificationChannel(
-                    NotificationChannel(
-                        CHANNEL_NEW_MESSAGES,
-                        context.getString(R.string.channel_new_messages),
-                        // The importance must be IMPORTANCE_HIGH to show Bubbles.
-                        NotificationManager.IMPORTANCE_HIGH
-                    ).apply {
-                        description = context.getString(R.string.channel_new_messages_description)
-                    }
-                )
-            }
+        if (notificationManagerCompat.getNotificationChannel(CHANNEL_NEW_MESSAGES) == null) {
+            notificationManagerCompat.createNotificationChannel(
+                NotificationChannelCompat.Builder(CHANNEL_NEW_MESSAGES, IMPORTANCE_HIGH)
+                    .setName(context.getString(R.string.channel_new_messages))
+                    .setDescription(context.getString(R.string.channel_new_messages_description))
+                    .build()
+            )
         }
     }
 
