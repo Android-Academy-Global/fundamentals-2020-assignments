@@ -28,12 +28,22 @@
             />
 
         <service
+            android:name=".workshop02.Ws02BoundedService"
+            android:exported="false"
+            />
+
+        <service
             android:name=".workshop02.solution.Ws02SolutionBoundedService"
             android:exported="false"
             />
 
         <activity android:name=".workshop03.WS03ResultActivity"
             android:exported="false" />
+
+        <service
+            android:name=".workshop03.solution.WS03ServiceSolution"
+            android:exported="false"
+            />
 
         <!-- TODO WS03 09: Declare service in manifest file -->
 <!--        <service-->
