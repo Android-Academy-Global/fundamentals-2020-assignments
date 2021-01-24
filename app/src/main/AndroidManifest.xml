@@ -23,6 +23,11 @@
         </activity>
 
         <service
+            android:name=".workshop01.solution.WS01StartedService"
+            android:exported="false"
+            />
+
+        <service
             android:name=".workshop02.solution.Ws02SolutionBoundedService"
             android:exported="false"
             />
