@@ -1,7 +1,16 @@
 package com.android.academy.fundamentals
 
+import android.app.Service
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.Build
+import android.os.IBinder
 import android.util.Log
+import com.android.academy.fundamentals.app.R
+import com.android.academy.fundamentals.app.blurBitmap
 import com.android.academy.fundamentals.app.workshop03.WS03NotificationManager
+import com.android.academy.fundamentals.app.writeBitmapToFile
 import kotlinx.coroutines.*
 
 private const val TAG = "WS03Service"
@@ -35,7 +44,7 @@ class WS03Service {
 //                getString(R.string.ws03_service_title)
 //            )
 //
-//            //TODO 04: Call startForeground, pass NOTIFICATION_ID and notification
+//            //TODO 04: Call startForeground, pass WS03NotificationManager.NOTIFICATION_ID and notification
 //        }
 //    }
 
@@ -48,7 +57,7 @@ class WS03Service {
 //            val resultFileUri = blurAndSaveToFile()
 //
 //            internalNotificationManager.createNotificationAfterJobDone(
-//                this@WS03ServiceSolution,
+//                this@WS03Service,
 //                resultFileUri
 //            )
 //        }

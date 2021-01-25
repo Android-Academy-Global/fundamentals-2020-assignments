@@ -10,7 +10,6 @@ import android.util.Log
 import com.android.academy.fundamentals.app.R
 import com.android.academy.fundamentals.app.blurBitmap
 import com.android.academy.fundamentals.app.workshop03.WS03NotificationManager
-import com.android.academy.fundamentals.app.workshop03.WS03NotificationManager.Companion.NOTIFICATION_ID
 import com.android.academy.fundamentals.app.writeBitmapToFile
 import kotlinx.coroutines.*
 
@@ -44,8 +43,8 @@ class WS03ServiceSolution : Service() {
                 this,
                 getString(R.string.ws03_service_title)
             )
-            //TODO 04: Call startForeground, pass NOTIFICATION_ID and notification
-            startForeground(NOTIFICATION_ID, notification)
+            //TODO 04: Call startForeground, pass WS03NotificationManager.NOTIFICATION_ID and notification
+            startForeground(WS03NotificationManager.NOTIFICATION_ID, notification)
         }
     }
 
