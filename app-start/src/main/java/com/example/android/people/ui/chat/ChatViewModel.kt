@@ -68,11 +68,6 @@ class ChatViewModel @JvmOverloads constructor(
      */
     val messages = chatId.switchMap { id -> repository.findMessages(id) }
 
-    /**
-     * Whether the "Show as Bubble" button should be shown.
-     */
-    val showAsBubbleVisible = chatId.map { id -> repository.canBubble(id) }
-
     fun setChatId(id: Long) {
         chatId.value = id
         if (foreground) {
@@ -89,12 +84,6 @@ class ChatViewModel @JvmOverloads constructor(
         }
         _photoUri.value = null
         _photoMimeType = null
-    }
-
-    fun showAsBubble() {
-        chatId.value?.let { id ->
-            repository.showAsBubble(id)
-        }
     }
 
     fun setPhoto(uri: Uri, mimeType: String) {

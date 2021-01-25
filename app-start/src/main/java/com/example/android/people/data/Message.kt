@@ -23,11 +23,12 @@ data class Message(
     val text: String,
     val photoUri: Uri?,
     val photoMimeType: String?,
-    val timestamp: Long
+    val timestamp: Long,
+    val isNew: Boolean
 ) {
 
     val isIncoming: Boolean
-        get() = sender != 0L
+        get() = sender != CURRENT_USER_ID
 
     class Builder {
         var id: Long? = null
@@ -36,6 +37,7 @@ data class Message(
         var photo: Uri? = null
         var photoMimeType: String? = null
         var timestamp: Long? = null
-        fun build() = Message(id!!, sender!!, text!!, photo, photoMimeType, timestamp!!)
+        var new = true
+        fun build() = Message(id!!, sender!!, text!!, photo, photoMimeType, timestamp!!, new)
     }
 }

@@ -16,29 +16,65 @@
 package com.example.android.people.data
 
 import androidx.core.net.toUri
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-abstract class Contact(
+data class Contact(
     val id: Long,
     val name: String,
-    val icon: String
+    val icon: String,
+    private val replyStrategy: Contact.(text: String) -> Flow<ChatUpdate>
 ) {
 
     companion object {
         val CONTACTS = listOf(
-            object : Contact(1L, "Cat", "cat.jpg") {
-                override fun reply(text: String) = buildReply().apply { this.text = "Meow" }
+            Contact(1L, "Cat", "cat.jpg") {
+                flow {
+                    emit(ChatUpdate.NewMessage(buildReply().apply { this.text = "Meow" }.build()))
+                }
             },
-            object : Contact(2L, "Dog", "dog.jpg") {
-                override fun reply(text: String) = buildReply().apply { this.text = "Woof woof!!" }
+            Contact(2L, "Dog", "dog.jpg") {
+                flow {
+                    val message = buildReply().apply { this.text = "Woooooof woof!!" }.build()
+                    emit(ChatUpdate.NewMessage(message))
+                    delay(2000)
+                    val updatedMessage = buildReply().apply {
+                        this.text = "Woof woof!!"
+                        this.id = message.id
+                    }.build()
+                    emit(ChatUpdate.UpdateMessage(updatedMessage))
+                }
             },
-            object : Contact(3L, "Parrot", "parrot.jpg") {
-                override fun reply(text: String) = buildReply().apply { this.text = text }
+            Contact(3L, "Parrot", "parrot.jpg") { mesageText ->
+                flow {
+                    emit(
+                        ChatUpdate.NewMessage(
+                            buildReply().apply { this.text = mesageText }.build()
+                        )
+                    )
+                    delay(1000)
+                    val messageToDelete1 = buildReply().apply { this.text = "co" }.build()
+                    emit(ChatUpdate.NewMessage(messageToDelete1))
+                    delay(1000)
+                    val messageToDelete2 = buildReply().apply { this.text = "co-co" }.build()
+                    emit(ChatUpdate.NewMessage(messageToDelete2))
+                    delay(1000)
+                    emit(ChatUpdate.RemoveMessage(messageToDelete2.id))
+                    delay(1000)
+                    emit(ChatUpdate.RemoveMessage(messageToDelete1.id))
+                }
             },
-            object : Contact(4L, "Sheep", "sheep.jpg") {
-                override fun reply(text: String) = buildReply().apply {
-                    this.text = "Look at me!"
-                    photo = "content://com.example.android.people/photo/sheep_full.jpg".toUri()
-                    photoMimeType = "image/jpeg"
+            Contact(4L, "Sheep", "sheep.jpg") {
+                flow {
+                    emit(
+                        ChatUpdate.NewMessage(buildReply().apply {
+                            this.text = "Look at me!"
+                            photo =
+                                "content://com.example.android.people/photo/sheep_full.jpg".toUri()
+                            photoMimeType = "image/jpeg"
+                        }.build())
+                    )
                 }
             }
         )
@@ -51,27 +87,8 @@ abstract class Contact(
     fun buildReply() = Message.Builder().apply {
         sender = this@Contact.id
         timestamp = System.currentTimeMillis()
+        id = MessagesIds.getNextMessageId()
     }
 
-    abstract fun reply(text: String): Message.Builder
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Contact
-
-        if (id != other.id) return false
-        if (name != other.name) return false
-        if (icon != other.icon) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = id.hashCode()
-        result = 31 * result + name.hashCode()
-        result = 31 * result + icon.hashCode()
-        return result
-    }
+    fun reply(text: String): Flow<ChatUpdate> = replyStrategy(text)
 }

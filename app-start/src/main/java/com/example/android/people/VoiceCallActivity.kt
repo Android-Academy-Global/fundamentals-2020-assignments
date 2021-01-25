@@ -35,8 +35,8 @@ class VoiceCallActivity : AppCompatActivity(R.layout.voice_call_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val name = intent.getStringExtra(EXTRA_NAME)
-        val icon = intent.getIntExtra(EXTRA_ICON, 0)
-        if (name == null || icon == 0) {
+        val icon = intent.getStringExtra(EXTRA_ICON)
+        if (name == null || icon == null) {
             finish()
             return
         }

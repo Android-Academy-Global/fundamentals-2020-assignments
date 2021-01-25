@@ -21,12 +21,29 @@ class Chat(val contact: Contact) {
 
     private val listeners = mutableListOf<ChatThreadListener>()
 
-    private val _messages = mutableListOf(
-        Message(1L, contact.id, "Send me a message", null, null, System.currentTimeMillis()),
-        Message(2L, contact.id, "I will reply in 5 seconds", null, null, System.currentTimeMillis())
-    )
-    val messages: List<Message>
-        get() = _messages
+    var messages: List<Message> = listOf(
+        Message(
+            MessagesIds.getNextMessageId(),
+            contact.id,
+            "Send me a message",
+            null,
+            null,
+            System.currentTimeMillis(),
+            true
+        ),
+        Message(
+            MessagesIds.getNextMessageId(),
+            contact.id,
+            "I will reply in 5 seconds",
+            null,
+            null,
+            System.currentTimeMillis(),
+            true
+        ))
+        private set(value) {
+            field = value
+            listeners.forEach { listener -> listener(value) }
+        }
 
     fun addListener(listener: ChatThreadListener) {
         listeners.add(listener)
@@ -36,9 +53,33 @@ class Chat(val contact: Contact) {
         listeners.remove(listener)
     }
 
-    fun addMessage(builder: Message.Builder) {
-        builder.id = _messages.last().id + 1
-        _messages.add(builder.build())
-        listeners.forEach { listener -> listener(_messages) }
+    fun addMessage(message: Message) {
+        messages = messages + listOf(message)
+    }
+
+    fun updateMessage(message: Message) {
+        val index = messages.indexOfFirst { it.id == message.id }
+        if (index != -1) {
+            val updated = messages.toMutableList()
+            updated[index] = message
+            messages = updated
+        }
+    }
+
+    fun markMessagesAsRead() {
+        messages = messages.map {
+            if (it.isNew) {
+                it.copy(isNew = false)
+            } else it
+        }
+    }
+
+    fun removeMessage(messageId: Long) {
+        val index = messages.indexOfFirst { it.id == messageId }
+        if (index != -1) {
+            val updated = messages.toMutableList()
+            updated.removeAt(index)
+            messages = updated
+        }
     }
 }

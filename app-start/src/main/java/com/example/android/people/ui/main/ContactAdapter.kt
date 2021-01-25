@@ -15,12 +15,12 @@
 
 package com.example.android.people.ui.main
 
-import android.graphics.drawable.Icon
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.android.people.R
 import com.example.android.people.data.Contact
 import com.example.android.people.databinding.ChatItemBinding
@@ -47,7 +47,11 @@ class ContactAdapter(
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact: Contact = getItem(position)
-        holder.binding.icon.setImageIcon(Icon.createWithAdaptiveBitmapContentUri(contact.iconUri))
+        Glide
+            .with(holder.itemView)
+            .load(contact.iconUri)
+            .circleCrop()
+            .into(holder.binding.icon)
         holder.binding.name.text = contact.name
     }
 }

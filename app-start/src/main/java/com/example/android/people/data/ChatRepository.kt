@@ -20,8 +20,15 @@ import android.net.Uri
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+
+internal const val CURRENT_USER_ID = 0L
 
 interface ChatRepository {
     fun getContacts(): LiveData<List<Contact>>
@@ -31,14 +38,11 @@ interface ChatRepository {
     fun updateNotification(id: Long)
     fun activateChat(id: Long)
     fun deactivateChat(id: Long)
-    fun showAsBubble(id: Long)
-    fun canBubble(id: Long): Boolean
 }
 
 class DefaultChatRepository internal constructor(
-    private val notificationHelper: NotificationHelper,
-    private val executor: Executor
-) : ChatRepository {
+    private val notifications: Notifications
+) : ChatRepository, CoroutineScope {
 
     companion object {
         private var instance: DefaultChatRepository? = null
@@ -46,14 +50,15 @@ class DefaultChatRepository internal constructor(
         fun getInstance(context: Context): DefaultChatRepository {
             return instance ?: synchronized(this) {
                 instance ?: DefaultChatRepository(
-                    NotificationHelper(context),
-                    Executors.newFixedThreadPool(4)
+                    AndroidNotifications(context)
                 ).also {
                     instance = it
                 }
             }
         }
     }
+
+    override val coroutineContext: CoroutineContext = Dispatchers.Main + SupervisorJob()
 
     private var currentChat: Long = 0L
 
@@ -62,7 +67,7 @@ class DefaultChatRepository internal constructor(
     }.toMap()
 
     init {
-        notificationHelper.setUpNotificationChannels()
+        notifications.initialize()
     }
 
     @MainThread
@@ -103,49 +108,43 @@ class DefaultChatRepository internal constructor(
     override fun sendMessage(id: Long, text: String, photoUri: Uri?, photoMimeType: String?) {
         val chat = chats.getValue(id)
         chat.addMessage(Message.Builder().apply {
-            sender = 0L // User
+            sender = CURRENT_USER_ID
             this.text = text
             timestamp = System.currentTimeMillis()
             this.photo = photoUri
             this.photoMimeType = photoMimeType
-        })
-        executor.execute {
-            // The animal is typing...
-            Thread.sleep(5000L)
-            // Receive a reply.
-            chat.addMessage(chat.contact.reply(text))
-            // Show notification if the chat is not on the foreground.
-            if (chat.contact.id != currentChat) {
-                notificationHelper.showNotification(chat, false)
+            this.id = MessagesIds.getNextMessageId()
+            this.new = false
+        }.build())
+        launch {
+            delay(5000) // The animal is typing...
+            chat.contact.reply(text).collect { chatUpdate ->
+                when (chatUpdate) {
+                    is ChatUpdate.NewMessage -> chat.addMessage(chatUpdate.message)
+                    is ChatUpdate.UpdateMessage -> chat.updateMessage(chatUpdate.message)
+                    is ChatUpdate.RemoveMessage -> chat.removeMessage(chatUpdate.messageId)
+                }
+                if (chat.contact.id != currentChat) {
+                    notifications.showNotification(chat)
+                }
             }
         }
     }
 
     override fun updateNotification(id: Long) {
         val chat = chats.getValue(id)
-        notificationHelper.showNotification(chat, false)
+        notifications.showNotification(chat)
     }
 
     override fun activateChat(id: Long) {
         currentChat = id
-        notificationHelper.dismissNotification(id)
+        chats.get(id)?.markMessagesAsRead()
+        notifications.dismissNotification(id)
     }
 
     override fun deactivateChat(id: Long) {
         if (currentChat == id) {
             currentChat = 0
         }
-    }
-
-    override fun showAsBubble(id: Long) {
-        val chat = chats.getValue(id)
-        executor.execute {
-            notificationHelper.showNotification(chat, true)
-        }
-    }
-
-    override fun canBubble(id: Long): Boolean {
-        val chat = chats.getValue(id)
-        return notificationHelper.canBubble(chat.contact)
     }
 }

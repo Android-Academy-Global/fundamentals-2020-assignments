@@ -46,10 +46,11 @@
             -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="android.example.com"
-                    android:pathPattern="/chat/*"
+                    android:pathPattern="/chat/.*"
                     android:scheme="https" />
             </intent-filter>
             <!--
@@ -61,32 +62,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
-            <!-- TODO 3: This activity handles our dynamic shortcuts. -->
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
 
-        <!--
-            The dummy voice-call screen.
-            This Activity can be launched from inside an expanded Bubble. Since this Activity is
-            launched as a new task, it is opened as a full Activity, rather than stacked inside
-            the expanded Bubble.
-        -->
         <activity
             android:name="com.example.android.people.VoiceCallActivity"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.People.Voice" />
-
-        <!-- TODO 6: This is our extended Bubble. -->
-        <activity
-            android:name="com.example.android.people.BubbleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="android.example.com"
-                    android:pathPattern="/chat/*"
-                    android:scheme="https" />
-            </intent-filter>
-        </activity>
 
         <receiver
             android:name="com.example.android.people.ReplyReceiver" />
