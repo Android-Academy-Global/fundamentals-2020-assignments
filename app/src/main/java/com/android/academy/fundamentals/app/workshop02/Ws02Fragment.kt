@@ -144,7 +144,7 @@ class Ws02Fragment : Fragment() {
 		Log.d(TAG, "unbindFromService isBound:$isBound")
 		// TODO 13: Do not unbind if the service have unbound already.
 		//  Call "return" here if not "isBound".
-		if (!isBound) return
+//		if (...) ...
 		
 		isBound = false
 		boundIndicatorView?.isEnabled = false
