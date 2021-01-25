@@ -13,6 +13,8 @@ import com.android.academy.fundamentals.WS03Service
 import com.android.academy.fundamentals.app.R
 import com.bumptech.glide.Glide
 
+private const val DEFAULT_IMAGE_URI = "file:///android_asset/test.jpg"
+
 class WS03Fragment : Fragment() {
 
     override fun onCreateView(
@@ -29,6 +31,7 @@ class WS03Fragment : Fragment() {
         view.findViewById<Button>(R.id.start_service)?.apply {
             setOnClickListener {
                 val startServiceIntent = Intent(context, WS03Service::class.java)
+
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     //TODO 10: Call context.startForegroundService and pass startServiceIntent
                 } else {
@@ -53,8 +56,6 @@ class WS03Fragment : Fragment() {
     }
 
     companion object {
-        private const val DEFAULT_IMAGE_URI = "file:///android_asset/test.jpg"
-    
         fun create() = WS03Fragment()
     }
 }

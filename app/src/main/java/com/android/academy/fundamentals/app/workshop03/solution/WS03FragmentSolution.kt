@@ -11,8 +11,9 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.WS03Service
 import com.android.academy.fundamentals.app.R
-import com.android.academy.fundamentals.app.workshop03.WS03Fragment
 import com.bumptech.glide.Glide
+
+private const val DEFAULT_IMAGE_URI = "file:///android_asset/test.jpg"
 
 class WS03FragmentSolution : Fragment() {
 
@@ -29,7 +30,8 @@ class WS03FragmentSolution : Fragment() {
 
         view.findViewById<Button>(R.id.start_service)?.apply {
             setOnClickListener {
-                val startServiceIntent = Intent(context, WS03Service::class.java)
+                val startServiceIntent = Intent(context, WS03ServiceSolution::class.java)
+
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     //TODO 10: Call context.startForegroundService and pass startServiceIntent
                     context.startForegroundService(startServiceIntent)
@@ -42,7 +44,7 @@ class WS03FragmentSolution : Fragment() {
 
         view.findViewById<Button>(R.id.stop_service)?.apply {
             setOnClickListener {
-                val intent = Intent(context, WS03Service::class.java)
+                val intent = Intent(context, WS03ServiceSolution::class.java)
                 //TODO 12: Call context.stopService and pass intent
                 context.stopService(intent)
             }
@@ -57,8 +59,6 @@ class WS03FragmentSolution : Fragment() {
     }
 
     companion object {
-        private const val DEFAULT_IMAGE_URI = "file:///android_asset/test.jpg"
-    
         fun create() = WS03FragmentSolution()
     }
 }
