@@ -1,16 +1,6 @@
-package com.android.academy.fundamentals
+package com.android.academy.fundamentals.app.workshop03
 
-import android.app.Service
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.net.Uri
-import android.os.Build
-import android.os.IBinder
 import android.util.Log
-import com.android.academy.fundamentals.app.R
-import com.android.academy.fundamentals.app.blurBitmap
-import com.android.academy.fundamentals.app.workshop03.WS03NotificationManager
-import com.android.academy.fundamentals.app.writeBitmapToFile
 import kotlinx.coroutines.*
 
 private const val TAG = "WS03Service"

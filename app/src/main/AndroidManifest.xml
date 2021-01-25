@@ -47,7 +47,7 @@
 
         <!-- TODO WS03 09: Declare service in manifest file -->
 <!--        <service-->
-<!--            android:name="com.android.academy.fundamentals.WS03Service"-->
+<!--            android:name="com.android.academy.fundamentals.app.workshop03.WS03Service"-->
 <!--            android:exported="false" />-->
     </application>
 

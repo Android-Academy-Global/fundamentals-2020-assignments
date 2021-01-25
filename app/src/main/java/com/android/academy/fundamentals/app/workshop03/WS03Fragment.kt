@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import com.android.academy.fundamentals.WS03Service
 import com.android.academy.fundamentals.app.R
 import com.bumptech.glide.Glide
 
