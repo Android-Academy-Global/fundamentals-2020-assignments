@@ -19,29 +19,20 @@ import android.net.Uri
 import android.os.Bundle
 import android.transition.Fade
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.android.people.R
-import com.example.android.people.databinding.PhotoFragmentBinding
 import com.example.android.people.getNavigationController
-import com.example.android.people.ui.viewBindings
 
 /**
  * Shows the specified [DrawableRes] as a full-screen photo.
  */
 class PhotoFragment : Fragment(R.layout.photo_fragment) {
-
-    companion object {
-        private const val ARG_PHOTO = "photo"
-
-        fun newInstance(photo: Uri) = PhotoFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(ARG_PHOTO, photo)
-            }
-        }
-    }
-
+    
+    private var ivPhoto: ImageView? = null
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enterTransition = Fade()
@@ -56,7 +47,25 @@ class PhotoFragment : Fragment(R.layout.photo_fragment) {
             return
         }
         getNavigationController().updateAppBar(hidden = true)
-        val binding by viewBindings(PhotoFragmentBinding::bind)
-        Glide.with(this).load(photo).into(binding.photo)
+        
+        ivPhoto = view.findViewById<ImageView>(R.id.photo)?.apply {
+            Glide.with(context).load(photo).into(this)
+        }
+    }
+    
+    override fun onDestroyView() {
+        ivPhoto = null
+        
+        super.onDestroyView()
+    }
+    
+    companion object {
+        private const val ARG_PHOTO = "photo"
+        
+        fun newInstance(photo: Uri) = PhotoFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable(ARG_PHOTO, photo)
+            }
+        }
     }
 }

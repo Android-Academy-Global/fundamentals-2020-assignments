@@ -17,45 +17,36 @@ package com.example.android.people.ui.chat
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.transition.TransitionInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.graphics.drawable.IconCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android.people.R
 import com.example.android.people.VoiceCallActivity
-import com.example.android.people.databinding.ChatFragmentBinding
 import com.example.android.people.getNavigationController
-import com.example.android.people.ui.viewBindings
 
 /**
  * The chat screen. This is used in the full app (MainActivity) as well as in the expanded Bubble
  * (BubbleActivity).
  */
 class ChatFragment : Fragment(R.layout.chat_fragment) {
-
-    companion object {
-        private const val ARG_ID = "id"
-        private const val ARG_FOREGROUND = "foreground"
-        private const val ARG_PREPOPULATE_TEXT = "prepopulate_text"
-
-        fun newInstance(id: Long, foreground: Boolean, prepopulateText: String? = null) =
-            ChatFragment().apply {
-                arguments = Bundle().apply {
-                    putLong(ARG_ID, id)
-                    putBoolean(ARG_FOREGROUND, foreground)
-                    putString(ARG_PREPOPULATE_TEXT, prepopulateText)
-                }
-            }
-    }
-
+    
+    private var rvMessages: RecyclerView? = null
+    private var etChatInput: ChatEditText? = null
+    private var ivPhoto: ImageView? = null
+    private var voiceCallButton: ImageButton? = null
+    private var sendButton: ImageButton? = null
+    
     private val viewModel: ChatViewModel by viewModels()
-    private val binding by viewBindings(ChatFragmentBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +54,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         enterTransition =
             TransitionInflater.from(context).inflateTransition(R.transition.slide_bottom)
     }
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val id = arguments?.getLong(ARG_ID)
         if (id == null) {
@@ -72,24 +63,26 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         }
         val prepopulateText = arguments?.getString(ARG_PREPOPULATE_TEXT)
         val navigationController = getNavigationController()
-
+        
         viewModel.setChatId(id)
-
+        
         val messageAdapter = MessageAdapter(view.context) { uri ->
             navigationController.openPhoto(uri)
         }
         val linearLayoutManager = LinearLayoutManager(view.context).apply {
             stackFromEnd = true
         }
-        binding.messages.run {
+        
+        rvMessages = view.findViewById<RecyclerView>(R.id.messagesRecycler).apply {
             layoutManager = linearLayoutManager
             adapter = messageAdapter
         }
-
+        
         viewModel.contact.observe(viewLifecycleOwner) { contact ->
             if (contact == null) {
                 Toast.makeText(view.context, "Contact not found", Toast.LENGTH_SHORT).show()
                 parentFragmentManager.popBackStack()
+                
             } else {
                 navigationController.updateAppBar { name, icon ->
                     name.text = contact.name
@@ -102,45 +95,58 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
                 }
             }
         }
-
+        
         viewModel.messages.observe(viewLifecycleOwner) { messages ->
             messageAdapter.submitList(messages) {
                 linearLayoutManager.scrollToPosition(messages.size - 1)
             }
         }
-
-        if (prepopulateText != null) {
-            binding.input.setText(prepopulateText)
-        }
-
-        binding.input.setOnImageAddedListener { contentUri, mimeType, label ->
-            viewModel.setPhoto(contentUri, mimeType)
-            if (binding.input.text.isNullOrBlank()) {
-                binding.input.setText(label)
+        
+        etChatInput = view.findViewById<ChatEditText>(R.id.input).apply {
+            if (prepopulateText != null) {
+                setText(prepopulateText)
+            }
+            
+            setOnImageAddedListener { contentUri, mimeType, label ->
+                viewModel.setPhoto(contentUri, mimeType)
+                if (text.isNullOrBlank()) {
+                    setText(label)
+                }
+            }
+            
+            setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    send(text)
+                    true
+                    
+                } else {
+                    false
+                }
             }
         }
-
+        
+        ivPhoto = view.findViewById(R.id.photo)
         viewModel.photo.observe(viewLifecycleOwner) { uri ->
             if (uri == null) {
-                binding.photo.visibility = View.GONE
+                ivPhoto?.visibility = View.GONE
+                
             } else {
-                binding.photo.visibility = View.VISIBLE
-                Glide.with(binding.photo).load(uri).into(binding.photo)
+                ivPhoto?.apply {
+                    visibility = View.VISIBLE
+                    Glide.with(context).load(uri).into(this)
+                }
             }
         }
-
-        binding.voiceCall.setOnClickListener {
-            voiceCall()
+        
+        voiceCallButton = view.findViewById<ImageButton>(R.id.voice_call).apply {
+            setOnClickListener {
+                voiceCall()
+            }
         }
-        binding.send.setOnClickListener {
-            send()
-        }
-        binding.input.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEND) {
-                send()
-                true
-            } else {
-                false
+        
+        sendButton = view.findViewById<ImageButton>(R.id.send).apply {
+            setOnClickListener {
+                send(etChatInput?.text)
             }
         }
     }
@@ -155,6 +161,21 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         super.onStop()
         viewModel.foreground = false
     }
+    
+    override fun onDestroyView() {
+        clearViews()
+        
+        super.onDestroyView()
+    }
+    
+    private fun clearViews() {
+        rvMessages?.adapter = null
+        rvMessages = null
+        etChatInput = null
+        ivPhoto = null
+        voiceCallButton = null
+        sendButton = null
+    }
 
     private fun voiceCall() {
         val contact = viewModel.contact.value ?: return
@@ -164,13 +185,28 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
                 .putExtra(VoiceCallActivity.EXTRA_ICON, contact.icon)
         )
     }
-
-    private fun send() {
-        binding.input.text?.let { text ->
-            if (text.isNotEmpty()) {
-                viewModel.send(text.toString())
-                text.clear()
+    
+    private fun send(text: Editable?) {
+        text?.let {
+            if (it.isNotEmpty()) {
+                viewModel.send(it.toString())
+                it.clear()
             }
         }
+    }
+    
+    companion object {
+        private const val ARG_ID = "id"
+        private const val ARG_FOREGROUND = "foreground"
+        private const val ARG_PREPOPULATE_TEXT = "prepopulate_text"
+        
+        fun newInstance(id: Long, foreground: Boolean, prepopulateText: String? = null) =
+            ChatFragment().apply {
+                arguments = Bundle().apply {
+                    putLong(ARG_ID, id)
+                    putBoolean(ARG_FOREGROUND, foreground)
+                    putString(ARG_PREPOPULATE_TEXT, prepopulateText)
+                }
+            }
     }
 }

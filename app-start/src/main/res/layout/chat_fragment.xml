@@ -24,7 +24,7 @@
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messages"
+        android:id="@+id/messagesRecycler"
         style="?attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:contentDescription="@string/description_voice_call"
-            android:tint="?attr/colorAccent"
+            app:tint="?attr/colorAccent"
             app:layout_constraintBottom_toBottomOf="@id/input"
             app:layout_constraintEnd_toStartOf="@id/input"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:contentDescription="@string/description_send"
-            android:tint="?attr/colorAccent"
+            app:tint="?attr/colorAccent"
             app:layout_constraintBottom_toBottomOf="@id/input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/input"
