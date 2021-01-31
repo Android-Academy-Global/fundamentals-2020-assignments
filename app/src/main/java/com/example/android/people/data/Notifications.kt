@@ -72,6 +72,7 @@ class AndroidNotifications(private val context: Context) : Notifications {
             .build()
 
         val builder = NotificationCompat.Builder(context, CHANNEL_NEW_MESSAGES)
+            .setGroup(chat.contact.id.toString())
             .setContentTitle(chat.contact.name)
             .setContentText(chat.messages.last().text)
             .setSmallIcon(R.drawable.ic_message)
@@ -131,7 +132,7 @@ class AndroidNotifications(private val context: Context) : Notifications {
                     }
                     .setGroupConversation(false)
             )
-        .setWhen(chat.messages.last().timestamp)
+            .setWhen(chat.messages.last().timestamp)
 
         notificationManagerCompat.notify("chat", chat.contact.id.toInt(), builder.build())
     }
