@@ -52,13 +52,15 @@ class AndroidNotifications(private val context: Context) : Notifications {
                 
                 #1 Create The Notification Channel
                  
-                a) Create `NotificationChannelCompat.Builder`
+                a) Create a `NotificationChannel` object:
+                   Create `NotificationChannelCompat.Builder`
                    with `CHANNEL_NEW_MESSAGES` as channel ID and `IMPORTANCE_HIGH` as 
                         a channel importance
                    use `R.string.channel_new_messages` as channel name
                    use `R.string.channel_new_messages_description` as channel description
                  
-                b) Pass built `NotificationChannelCompat` to the 
+                b) Create a notification channel in the Notification manager:
+                   Pass built `NotificationChannelCompat` to the 
                      `notificationManagerCompat.createNotificationChannel`
                      
                 Note: Don't forget we have context in the class already
@@ -75,7 +77,8 @@ class AndroidNotifications(private val context: Context) : Notifications {
                 
                 #2 Show The Notification
                 
-                a) Create `NotificationCompat.Builder`
+                a) Create the notification:
+                   Create `NotificationCompat.Builder`
                    with `CHANNEL_NEW_MESSAGES` as channel ID
                    use `chat.contact.name` as Group
                    use `chat.contact.name` as Content Title
@@ -84,10 +87,37 @@ class AndroidNotifications(private val context: Context) : Notifications {
                    use `IMPORTANCE_HIGH` as Priority
                    use last message timestamp as When
                    
-                b) Pass built notification to `notificationManagerCompat.notify`
+                b) Show notification:
+                   Pass built notification to `notificationManagerCompat.notify`
                    use `CHAT_TAG` as notification Tag
                    use `chat.contact.id` as notification ID
                    
+            """.trimIndent()
+        )
+
+        TODO(
+            """
+                
+                #4 Open Chat From The Notification
+                
+                a) Form deep link (`contentUri`): 
+                   Use string pattern `https://android.example.com/chat/$chat.contact.id`
+                   Use Android KTX method `String.toUri()` to convert it to Uri
+                 
+                b) Create Chat Intent (`chatIntent`):
+                   Create explicit intent for `MainActivity` class
+                   Set action view `Intent.ACTION_VIEW`
+                   Set `contentUri` as data
+                   
+                c) Create a Pending Intent (`pendingIntent`):
+                   Use `PendingIntent.getActivity()`
+                   Use `REQUEST_CONTENT` as Request Code
+                   Use `chatIntent` as Intent
+                   Use `PendingIntent.FLAG_UPDATE_CURRENT` as Flags
+                   
+                d) Pass pending intent to the notification builder:
+                   Pass `pendingIntent` to builder with `setContentIntent()` setter
+                
             """.trimIndent()
         )
     }
@@ -98,7 +128,7 @@ class AndroidNotifications(private val context: Context) : Notifications {
                 
                 #3 Cancel Chat Notification(s)
                 
-                Call `notificationManagerCompat.cancel` with `CHAT_TAG` as tag and `chatId` as 
+                Simply call `notificationManagerCompat.cancel` with `CHAT_TAG` as tag and `chatId` as 
                     notification ID
                     
             """.trimIndent()
