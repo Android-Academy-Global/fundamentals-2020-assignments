@@ -46,11 +46,11 @@ data class Contact(
                     emit(ChatUpdate.UpdateMessage(updatedMessage))
                 }
             },
-            Contact(3L, "Parrot", "parrot.jpg") { mesageText ->
+            Contact(3L, "Parrot", "parrot.jpg") { messageText ->
                 flow {
                     emit(
                         ChatUpdate.NewMessage(
-                            buildReply().apply { this.text = mesageText }.build()
+                            buildReply().apply { this.text = messageText }.build()
                         )
                     )
                     delay(1000)
