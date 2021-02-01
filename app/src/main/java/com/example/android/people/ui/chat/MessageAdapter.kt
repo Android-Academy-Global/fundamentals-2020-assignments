@@ -34,7 +34,6 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.android.people.R
 import com.example.android.people.data.Message
-import com.example.android.people.databinding.MessageItemBinding
 
 class MessageAdapter(
     context: Context,
@@ -76,7 +75,7 @@ class MessageAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
         val holder = MessageViewHolder(parent)
-        holder.binding.message.setOnClickListener {
+        holder.tvMessage.setOnClickListener {
             val photo = it.getTag(R.id.tag_photo) as Uri?
             if (photo != null) {
                 onPhotoClicked(photo)
@@ -87,9 +86,9 @@ class MessageAdapter(
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = getItem(position)
-        val lp = holder.binding.message.layoutParams as FrameLayout.LayoutParams
+        val lp = holder.tvMessage.layoutParams as FrameLayout.LayoutParams
         if (message.isIncoming) {
-            holder.binding.message.run {
+            holder.tvMessage.run {
                 setBackgroundResource(R.drawable.message_incoming)
                 ViewCompat.setBackgroundTintList(this, tint.incoming)
                 setPadding(
@@ -100,8 +99,9 @@ class MessageAdapter(
                     gravity = Gravity.START
                 }
             }
+            
         } else {
-            holder.binding.message.run {
+            holder.tvMessage.run {
                 setBackgroundResource(R.drawable.message_outgoing)
                 ViewCompat.setBackgroundTintList(this, tint.outgoing)
                 setPadding(
@@ -113,21 +113,27 @@ class MessageAdapter(
                 }
             }
         }
+        
         if (message.photoUri != null) {
-            holder.binding.message.setTag(R.id.tag_photo, message.photoUri)
-            Glide.with(holder.binding.message)
-                .load(message.photoUri)
-                .into(CompoundBottomTarget(holder.binding.message, photoSize, photoSize))
+            holder.tvMessage.run {
+                setTag(R.id.tag_photo, message.photoUri)
+                Glide.with(context)
+                    .load(message.photoUri)
+                    .into(CompoundBottomTarget(this, photoSize, photoSize))
+            }
+            
         } else {
-            holder.binding.message.setTag(R.id.tag_photo, null)
-            holder.binding.message.setCompoundDrawables(null, null, null, null)
+            holder.tvMessage.run {
+                setTag(R.id.tag_photo, null)
+                setCompoundDrawables(null, null, null, null)
+            }
         }
-        holder.binding.message.text = message.text
+        
+        holder.tvMessage.text = message.text
     }
 }
 
 private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Message>() {
-
     override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
         return oldItem.id == newItem.id
     }
@@ -135,13 +141,13 @@ private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Message>() {
     override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
         return oldItem == newItem
     }
-
 }
 
 class MessageViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.message_item, parent, false)
 ) {
-    val binding: MessageItemBinding = MessageItemBinding.bind(itemView)
+
+    val tvMessage: TextView = itemView.findViewById(R.id.message)
 }
 
 /**
@@ -157,15 +163,11 @@ private class CompoundBottomTarget(
         resource: Drawable,
         transition: Transition<in Drawable>?
     ) {
+
         view.setCompoundDrawablesWithIntrinsicBounds(null, null, null, resource)
     }
 
     override fun onLoadCleared(placeholder: Drawable?) {
-        view.setCompoundDrawablesWithIntrinsicBounds(
-            null,
-            null,
-            null,
-            placeholder
-        )
+        view.setCompoundDrawablesWithIntrinsicBounds(null, null, null, placeholder)
     }
 }
