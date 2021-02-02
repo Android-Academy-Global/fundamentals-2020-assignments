@@ -16,10 +16,13 @@
 package com.example.android.people.ui.chat
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -43,6 +46,9 @@ import com.bumptech.glide.Glide
 import com.example.android.people.R
 import com.example.android.people.VoiceCallActivity
 import com.example.android.people.getNavigationController
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+
 
 /**
  * The chat screen. This is used in the full app (MainActivity) as well as in the expanded Bubble
@@ -61,6 +67,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private val viewModel: ChatViewModel by viewModels()
     
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -69,12 +76,14 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                onLocationGranted()
+                onLocationPermissionGranted()
                 
             } else {
-                onLocationNotGranted()
+                onLocationPermissionNotGranted()
             }
         }
+    
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context as Activity)
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -250,7 +259,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         activity?.let {
             when {
                 ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED -> onLocationGranted()
+                        == PackageManager.PERMISSION_GRANTED -> onLocationPermissionGranted()
                 shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) ->
                     showLocationPermissionExplanationDialog()
                 shownRationale -> showLocationPermissionDeniedDialog()
@@ -276,26 +285,96 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     
     private fun startApplicationSettings() {
         context?.let {
-            val intent = Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.parse("package:" + it.packageName)
+//            val intent = Intent(
+//                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+//                Uri.parse("package:" + it.packageName)
+//            )
+//            intent.addCategory(Intent.CATEGORY_DEFAULT)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            startActivity(intent)
+            startActivity(
+                Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + it.packageName)
+                )
             )
-            intent.addCategory(Intent.CATEGORY_DEFAULT)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
         }
     }
     
-    private fun onLocationGranted() {
-        viewModel.sendLocation()
+    private fun onLocationPermissionGranted() {
         context?.let {
             Toast.makeText(context, R.string.ws04_permission_granted_text, Toast.LENGTH_SHORT).show()
+            checkLocationProviderEnabled(it)
         }
     }
     
-    private fun onLocationNotGranted() {
+    private fun onLocationPermissionNotGranted() {
         context?.let {
             Toast.makeText(context, R.string.ws04_permission_not_granted_text, Toast.LENGTH_SHORT).show()
+        }
+    }
+    
+    private fun onLocationRequestFailed(withException: Boolean) {
+        Toast.makeText(
+            context,
+            getString(R.string.ws04_permission_not_available_text, withException),
+            Toast.LENGTH_LONG
+        ).show()
+    }
+    
+    private fun checkLocationProviderEnabled(context: Context) {
+        val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+        if (lm == null) {
+            onLocationProviderDisabled(getString(R.string.ws04_location_manager_not_available_text))
+            return
+        }
+        
+        var gps_enabled = false
+        var network_enabled = false
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        
+        try {
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+            
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        // This way detects only if providers disabled.
+        // But ignore all others issues.
+        if (!gps_enabled && !network_enabled) {
+            showLocationProviderSettingsDialog()
+    
+        } else {
+            requestLastKnownLocation(context)
+        }
+    }
+    
+    // Not the best request type. Please read google recommendations:
+    // https://developer.android.com/training/location?hl=hi
+    private fun requestLastKnownLocation(context: Context) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+    
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    location?.let { location -> viewModel.onNewLocation(location) }
+                        ?: onLocationRequestFailed(withException = false)
+                }
+                .addOnFailureListener {
+                    onLocationRequestFailed(withException = true)
+                }
+        }
+    }
+    
+    private fun onLocationProviderDisabled(reason: String) {
+        context?.let {
+            Toast.makeText(context, reason, Toast.LENGTH_SHORT).show()
         }
     }
     
@@ -303,12 +382,12 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         context?.let {
             AlertDialog.Builder(it)
                 .setMessage(R.string.ws04_permission_dialog_explanation_text)
-                .setPositiveButton(R.string.ws04_permission_dialog_positive_button) { dialog, _ ->
+                .setPositiveButton(R.string.ws04_dialog_positive_button) { dialog, _ ->
                     requestLocationPermission()
                     shownRationale = true
                     dialog.dismiss()
                 }
-                .setNegativeButton(R.string.ws04_permission_dialog_negative_button) { dialog, _ ->
+                .setNegativeButton(R.string.ws04_dialog_negative_button) { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()
@@ -319,11 +398,26 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         context?.let {
             AlertDialog.Builder(it)
                 .setMessage(R.string.ws04_permission_dialog_denied_text)
-                .setPositiveButton(R.string.ws04_permission_dialog_positive_button) { dialog, _ ->
+                .setPositiveButton(R.string.ws04_dialog_positive_button) { dialog, _ ->
                     startApplicationSettings()
                     dialog.dismiss()
                 }
-                .setNegativeButton(R.string.ws04_permission_dialog_negative_button) { dialog, _ ->
+                .setNegativeButton(R.string.ws04_dialog_negative_button) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+    
+    private fun showLocationProviderSettingsDialog() {
+        context?.let {
+            AlertDialog.Builder(it)
+                .setMessage(R.string.ws04_location_provider_not_available_text)
+                .setPositiveButton(R.string.ws04_dialog_positive_button) { dialog, _ ->
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    dialog.dismiss()
+                }
+                .setNegativeButton(R.string.ws04_dialog_negative_button) { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()

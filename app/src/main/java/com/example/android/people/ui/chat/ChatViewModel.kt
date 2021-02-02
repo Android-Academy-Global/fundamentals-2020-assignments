@@ -16,12 +16,12 @@
 package com.example.android.people.ui.chat
 
 import android.app.Application
+import android.location.Location
 import android.net.Uri
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import com.example.android.people.data.ChatRepository
 import com.example.android.people.data.DefaultChatRepository
@@ -78,7 +78,7 @@ class ChatViewModel @JvmOverloads constructor(
         }
     }
     
-    fun sendLocation() {
+    fun onNewLocation(location: Location) {
     }
 
     fun send(text: String) {

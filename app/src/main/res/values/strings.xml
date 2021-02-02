@@ -31,12 +31,16 @@
 
     <!-- WS04_permissions -->
     <string name="ws04_send_button_description">Send current location button</string>
-    <string name="ws04_permission_dialog_positive_button">OK</string>
-    <string name="ws04_permission_dialog_negative_button">Cancel</string>
     <string name="ws04_permission_dialog_explanation_text">To continue please grant access to locations</string>
     <string name="ws04_permission_dialog_denied_text">This feature is not available without location permissions. Open app settings?</string>
     <string name="ws04_permission_granted_text">Location permission granted</string>
     <string name="ws04_permission_not_granted_text">Location permission not granted</string>
+    <string name="ws04_permission_not_available_text">Location is null, with exception:%1$s</string>
+    <string name="ws04_location_manager_not_available_text">Location manager is not available</string>
+    <string name="ws04_location_provider_not_available_text">Location providers disabled. Open device settings?</string>
+    <string name="ws04_start_location_provider_settings_text">To continue please enable location provider</string>
+    <string name="ws04_dialog_positive_button">OK</string>
+    <string name="ws04_dialog_negative_button">Cancel</string>
     <!-- WS04_permissions -->
 
 </resources>
