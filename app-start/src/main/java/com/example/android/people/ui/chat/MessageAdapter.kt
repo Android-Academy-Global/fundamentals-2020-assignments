@@ -34,114 +34,120 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.android.people.R
 import com.example.android.people.data.Message
-import com.example.android.people.databinding.MessageItemBinding
 
 class MessageAdapter(
     context: Context,
     private val onPhotoClicked: (photo: Uri) -> Unit
 ) : ListAdapter<Message, MessageViewHolder>(DIFF_CALLBACK) {
 
-    private val tint = object {
-        val incoming: ColorStateList = ColorStateList.valueOf(
+	private val tint = object {
+		val incoming: ColorStateList = ColorStateList.valueOf(
             ContextCompat.getColor(context, R.color.incoming)
         )
-        val outgoing: ColorStateList = ColorStateList.valueOf(
+		val outgoing: ColorStateList = ColorStateList.valueOf(
             ContextCompat.getColor(context, R.color.outgoing)
         )
-    }
+	}
 
-    private val padding = object {
-        val vertical: Int = context.resources.getDimensionPixelSize(
+	private val padding = object {
+		val vertical: Int = context.resources.getDimensionPixelSize(
             R.dimen.message_padding_vertical
         )
 
-        val horizontalShort: Int = context.resources.getDimensionPixelSize(
+		val horizontalShort: Int = context.resources.getDimensionPixelSize(
             R.dimen.message_padding_horizontal_short
         )
 
-        val horizontalLong: Int = context.resources.getDimensionPixelSize(
+		val horizontalLong: Int = context.resources.getDimensionPixelSize(
             R.dimen.message_padding_horizontal_long
         )
-    }
+	}
 
-    private val photoSize = context.resources.getDimensionPixelSize(R.dimen.photo_size)
+	private val photoSize = context.resources.getDimensionPixelSize(R.dimen.photo_size)
 
-    init {
-        setHasStableIds(true)
-    }
+	init {
+		setHasStableIds(true)
+	}
 
-    override fun getItemId(position: Int): Long {
-        return getItem(position).id
-    }
+	override fun getItemId(position: Int): Long {
+		return getItem(position).id
+	}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val holder = MessageViewHolder(parent)
-        holder.binding.message.setOnClickListener {
-            val photo = it.getTag(R.id.tag_photo) as Uri?
-            if (photo != null) {
-                onPhotoClicked(photo)
-            }
-        }
-        return holder
-    }
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+		val holder = MessageViewHolder(parent)
+		holder.tvMessage.setOnClickListener {
+			val photo = it.getTag(R.id.tag_photo) as Uri?
+			if (photo != null) {
+				onPhotoClicked(photo)
+			}
+		}
+		return holder
+	}
 
-    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-        val message = getItem(position)
-        val lp = holder.binding.message.layoutParams as FrameLayout.LayoutParams
-        if (message.isIncoming) {
-            holder.binding.message.run {
-                setBackgroundResource(R.drawable.message_incoming)
-                ViewCompat.setBackgroundTintList(this, tint.incoming)
-                setPadding(
+	override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
+		val message = getItem(position)
+		val lp = holder.tvMessage.layoutParams as FrameLayout.LayoutParams
+		if (message.isIncoming) {
+			holder.tvMessage.run {
+				setBackgroundResource(R.drawable.message_incoming)
+				ViewCompat.setBackgroundTintList(this, tint.incoming)
+				setPadding(
                     padding.horizontalLong, padding.vertical,
                     padding.horizontalShort, padding.vertical
                 )
-                layoutParams = lp.apply {
-                    gravity = Gravity.START
-                }
-            }
-        } else {
-            holder.binding.message.run {
-                setBackgroundResource(R.drawable.message_outgoing)
-                ViewCompat.setBackgroundTintList(this, tint.outgoing)
-                setPadding(
+				layoutParams = lp.apply {
+					gravity = Gravity.START
+				}
+			}
+			
+		} else {
+			holder.tvMessage.run {
+				setBackgroundResource(R.drawable.message_outgoing)
+				ViewCompat.setBackgroundTintList(this, tint.outgoing)
+				setPadding(
                     padding.horizontalShort, padding.vertical,
                     padding.horizontalLong, padding.vertical
                 )
-                layoutParams = lp.apply {
-                    gravity = Gravity.END
-                }
-            }
-        }
-        if (message.photoUri != null) {
-            holder.binding.message.setTag(R.id.tag_photo, message.photoUri)
-            Glide.with(holder.binding.message)
-                .load(message.photoUri)
-                .into(CompoundBottomTarget(holder.binding.message, photoSize, photoSize))
-        } else {
-            holder.binding.message.setTag(R.id.tag_photo, null)
-            holder.binding.message.setCompoundDrawables(null, null, null, null)
-        }
-        holder.binding.message.text = message.text
-    }
+				layoutParams = lp.apply {
+					gravity = Gravity.END
+				}
+			}
+		}
+		
+		if (message.photoUri != null) {
+			holder.tvMessage.run {
+				setTag(R.id.tag_photo, message.photoUri)
+				Glide.with(context)
+					.load(message.photoUri)
+					.into(CompoundBottomTarget(this, photoSize, photoSize))
+			}
+
+		} else {
+			holder.tvMessage.run {
+				setTag(R.id.tag_photo, null)
+				setCompoundDrawables(null, null, null, null)
+			}
+		}
+		
+		holder.tvMessage.text = message.text
+	}
 }
 
 private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Message>() {
+	override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
+		return oldItem.id == newItem.id
+	}
 
-    override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
-        return oldItem == newItem
-    }
-
+	override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
+		return oldItem == newItem
+	}
 }
 
 class MessageViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.message_item, parent, false)
 ) {
-    val binding: MessageItemBinding = MessageItemBinding.bind(itemView)
+
+	val tvMessage: TextView = itemView.findViewById(R.id.message)
 }
 
 /**
@@ -153,19 +159,15 @@ private class CompoundBottomTarget(
     height: Int
 ) : CustomTarget<Drawable>(width, height) {
 
-    override fun onResourceReady(
+	override fun onResourceReady(
         resource: Drawable,
         transition: Transition<in Drawable>?
     ) {
-        view.setCompoundDrawablesWithIntrinsicBounds(null, null, null, resource)
-    }
 
-    override fun onLoadCleared(placeholder: Drawable?) {
-        view.setCompoundDrawablesWithIntrinsicBounds(
-            null,
-            null,
-            null,
-            placeholder
-        )
-    }
+		view.setCompoundDrawablesWithIntrinsicBounds(null, null, null, resource)
+	}
+
+	override fun onLoadCleared(placeholder: Drawable?) {
+		view.setCompoundDrawablesWithIntrinsicBounds(null, null, null, placeholder)
+	}
 }
