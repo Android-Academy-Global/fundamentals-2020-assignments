@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Assignment #2: Add Button view and follow the steps in the document -->
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/ic_android_studio"
+    android:text="THIS IS MY FIRST BUTTON">
+</Button>

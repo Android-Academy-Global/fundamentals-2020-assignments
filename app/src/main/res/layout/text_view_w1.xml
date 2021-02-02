@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Assignment #2: Add TextView and follow the steps in the document -->
+<EditText
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:background="#FFC107"
+    android:layout_margin="24dp"
+    android:padding="16dp"
+    android:hint="mail@mail.com"
+    android:textColorHint="#FF2344"
+    android:inputType="textEmailAddress">
+</EditText>

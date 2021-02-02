@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Assignment #1: Add ImageView with fixed size in dp and then set vector drawable to it -->
+<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="100dp"
+    android:layout_width="100dp"
+    android:src="@drawable/ic_android_studio">
+</ImageView>
