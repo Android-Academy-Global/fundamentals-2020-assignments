@@ -28,6 +28,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.text.Editable
 import android.transition.TransitionInflater
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageButton
@@ -55,7 +56,10 @@ import com.google.android.gms.location.LocationServices
  * (BubbleActivity).
  */
 class ChatFragment : Fragment(R.layout.chat_fragment) {
-
+    
+    private val TAG = ChatFragment::class.java.simpleName
+    private val viewModel: ChatViewModel by viewModels()
+    
     private var rvMessages: RecyclerView? = null
     private var etChatInput: ChatEditText? = null
     private var ivPhoto: ImageView? = null
@@ -63,8 +67,6 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private var sendLocationButton: ImageButton? = null
     private var sendButton: ImageButton? = null
     private var shownRationale = false
-    
-    private val viewModel: ChatViewModel by viewModels()
     
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -363,8 +365,18 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                    location?.let { location -> viewModel.onNewLocation(location) }
-                        ?: onLocationRequestFailed(withException = false)
+                    location?.let { location ->
+                        Log.d(TAG, "Location:$location")
+                        val fixedAccuracy = (location.accuracy * 100).toInt() / 100
+                        viewModel.send(
+                            getString(
+                                R.string.ws04_message_with_location,
+                                location.latitude,
+                                location.longitude,
+                                fixedAccuracy
+                            )
+                        )
+                    } ?: onLocationRequestFailed(withException = false)
                 }
                 .addOnFailureListener {
                     onLocationRequestFailed(withException = true)

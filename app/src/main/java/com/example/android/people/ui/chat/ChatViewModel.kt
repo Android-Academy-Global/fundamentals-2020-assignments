@@ -16,9 +16,7 @@
 package com.example.android.people.ui.chat
 
 import android.app.Application
-import android.location.Location
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -76,9 +74,6 @@ class ChatViewModel @JvmOverloads constructor(
         } else {
             repository.deactivateChat(id)
         }
-    }
-    
-    fun onNewLocation(location: Location) {
     }
 
     fun send(text: String) {
