@@ -17,6 +17,7 @@ package com.example.android.people.ui.chat
 
 import android.Manifest
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -91,11 +92,8 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         }
         val prepopulateText = arguments?.getString(ARG_PREPOPULATE_TEXT)
         val navigationController = getNavigationController()
-    
-        shownRationale = savedInstanceState?.getBoolean(
-            KEY_LOCATION_PERMISSION_RATIONALE_SHOWN,
-            false
-        ) ?: false
+        
+        restorePreferencesData()
 
         viewModel.setChatId(id)
 
@@ -196,12 +194,6 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         viewModel.foreground = foreground
     }
     
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean(KEY_LOCATION_PERMISSION_RATIONALE_SHOWN, shownRationale)
-        
-        super.onSaveInstanceState(outState)
-    }
-    
     override fun onStop() {
         super.onStop()
         viewModel.foreground = false
@@ -209,6 +201,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     
     override fun onDestroyView() {
         clearViews()
+        savePreferencesData()
         
         super.onDestroyView()
     }
@@ -225,7 +218,23 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         etChatInput = null
         ivPhoto = null
         voiceCallButton = null
+        sendLocationButton = null
         sendButton = null
+    }
+    
+    private fun savePreferencesData() {
+        activity?.let {
+            it.getPreferences(MODE_PRIVATE).edit()
+                .putBoolean(KEY_LOCATION_PERMISSION_RATIONALE_SHOWN, shownRationale)
+                .apply()
+        }
+    }
+    
+    private fun restorePreferencesData() {
+        shownRationale = activity?.getPreferences(MODE_PRIVATE)?.getBoolean(
+            KEY_LOCATION_PERMISSION_RATIONALE_SHOWN,
+            false
+        ) ?: false
     }
 
     private fun voiceCall() {
