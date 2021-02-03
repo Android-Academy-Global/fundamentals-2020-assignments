@@ -113,6 +113,35 @@ class AndroidNotifications(private val context: Context) : Notifications {
                    Pass `pendingIntent` to builder with `setContentIntent()` setter
 */
 
+/*
+
+                #5 Style Notification as Chat (Optional)
+
+                a) Create a Person (person):
+                   With `Person.Builder`
+                   Use `chat.contact.name` as Name
+                   Use `IconCompat.createWithContentUri()` with `chat.contact.iconUri` as Icon
+                   Call `Builder.build()` to create person
+
+                b) Create a Messaging Style (style):
+                   Create `NotificationCompat.MessagingStyle` with `person`
+                   For every message in the `chat.message` create `Message` (message)
+                       Create `NotificationCompat.MessagingStyle.Message`
+                       Use `message.text` as Text
+                       Use `message.timestamp` as Timestamp
+                       Use `person` as Person if `message.isIncoming` otherwise null
+                       Call `setData` on `message` if `message.photoUri` is not null
+                         Use `message.photoMimeType` as Data Mime Type
+                         Use `message.photoUri` as Data Uri
+                       Call `addMessage` on `style` with `message` if `message.isNew`
+                         otherwise `addHistoricMessage`
+
+                c) Pass style to notification builder:
+                   Pass `style` to builder with `setStyle()` setter
+
+*/
+
+
     }
 
     override fun dismissNotification(chatId: Long) {
