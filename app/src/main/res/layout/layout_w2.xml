@@ -1,82 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
- To Run this layout:
- MainActivity -> onCreate() -> setContentView() -> replace: R.layout.activity_main with R.layout.layout_solution_w2
--->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/space_3x"
+    android:background="@color/colorMoonYellow"
     android:orientation="vertical"
-    android:background="@color/colorBackgroundContainer"
-    tools:context=".MainActivity"
-    >
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_3x"
-        android:padding="@dimen/space_4x"
-        android:gravity="center_vertical|center_horizontal"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:text="@string/solutions_box_one_text"
-        android:background="@color/colorMyGray"
-        />
+    android:weightSum="3">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        >
+        android:layout_margin="16dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorMyGray"
+            android:padding="16dp"
+            android:text="Box One"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/solution_two_content_box_height"
-            android:layout_margin="@dimen/space_3x"
-            android:padding="@dimen/space_3x"
+            android:layout_height="64dp"
             android:layout_gravity="end"
-            android:gravity="top"
-            android:textColor="@color/colorWhite"
-            android:text="@string/solutions_box_two_text"
+            android:layout_marginTop="16dp"
             android:background="@color/colorMyRed"
-            />
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="24dp"
+            android:text="Box Two"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/solution_two_content_box_height"
-            android:layout_margin="@dimen/space_3x"
-            android:padding="@dimen/space_3x"
-            android:layout_gravity="center"
-            android:gravity="center_vertical"
-            android:textColor="@color/colorWhite"
-            android:text="@string/solutions_box_three_text"
+            android:layout_height="64dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
             android:background="@color/colorMyYellow"
-            />
+            android:padding="16dp"
+            android:text="Box Three"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/solution_two_content_box_height"
-            android:layout_margin="@dimen/space_3x"
-            android:padding="@dimen/space_3x"
+            android:layout_height="64dp"
             android:layout_gravity="start"
-            android:gravity="bottom"
-            android:textColor="@color/colorWhite"
-            android:text="@string/solutions_box_three_text"
+            android:layout_marginTop="16dp"
             android:background="@color/colorMyGreen"
-            />
+            android:paddingStart="16dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="Box Three"
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/solution_two_bottom_menu_height"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:background="@color/colorMoonYellow"
+        android:orientation="horizontal"
+        android:weightSum="4">
 
         <TextView
             android:layout_weight="1"
