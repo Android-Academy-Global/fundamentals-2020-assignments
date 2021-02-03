@@ -76,7 +76,6 @@ class AndroidNotifications(private val context: Context) : Notifications {
                 a) Create the notification:
                    Create `NotificationCompat.Builder`
                    with `CHANNEL_NEW_MESSAGES` as channel ID
-                   use `chat.contact.name` as Group
                    use `chat.contact.name` as Content Title
                    use last message text from chat.messages as Content Text
                    use `R.drawable.ic_message` as Small Icon
