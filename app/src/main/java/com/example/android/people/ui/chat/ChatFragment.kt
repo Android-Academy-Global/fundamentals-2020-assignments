@@ -22,7 +22,6 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -47,9 +46,8 @@ import com.bumptech.glide.Glide
 import com.example.android.people.R
 import com.example.android.people.VoiceCallActivity
 import com.example.android.people.getNavigationController
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-
+import com.example.android.people.ui.MyLocationProvider
+import com.example.android.people.ui.MyLocationProviderListener
 
 /**
  * The chat screen. This is used in the full app (MainActivity) as well as in the expanded Bubble
@@ -69,7 +67,24 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private var shownRationale = false
     
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private val myLocationProvider = MyLocationProvider()
+    private val myLocationProviderListener = object : MyLocationProviderListener {
+        override fun onLocationManagerNotAvailable() {
+            showLocationManagerDisabled()
+        }
+    
+        override fun onLocationProviderDisabled() {
+            showLocationProviderSettingsDialog()
+        }
+    
+        override fun onLocationRequestSuccess(location: Location?) {
+            handleLocationRequestSuccess(location)
+        }
+    
+        override fun onLocationRequestFailure(withException: Boolean) {
+            handleLocationRequestFailure(withException)
+        }
+    }
     
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -85,7 +100,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
             }
         }
     
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context as Activity)
+        myLocationProvider.create(context as Activity, myLocationProviderListener)
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -219,6 +234,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     
     override fun onDetach() {
         requestPermissionLauncher.unregister()
+        myLocationProvider.destroy()
         
         super.onDetach()
     }
@@ -287,13 +303,6 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     
     private fun startApplicationSettings() {
         context?.let {
-//            val intent = Intent(
-//                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-//                Uri.parse("package:" + it.packageName)
-//            )
-//            intent.addCategory(Intent.CATEGORY_DEFAULT)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//            startActivity(intent)
             startActivity(
                 Intent(
                     Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
@@ -306,7 +315,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private fun onLocationPermissionGranted() {
         context?.let {
             Toast.makeText(context, R.string.ws04_permission_granted_text, Toast.LENGTH_SHORT).show()
-            checkLocationProviderEnabled(it)
+            myLocationProvider.checkLocationProviderEnabled(it)
         }
     }
     
@@ -316,7 +325,22 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         }
     }
     
-    private fun onLocationRequestFailed(withException: Boolean) {
+    private fun handleLocationRequestSuccess(location: Location?) {
+        location?.let { location ->
+            Log.d(TAG, "Location:$location")
+            val fixedAccuracy = (location.accuracy * 100).toInt() / 100
+            viewModel.send(
+                getString(
+                    R.string.ws04_message_with_location,
+                    location.latitude,
+                    location.longitude,
+                    fixedAccuracy
+                )
+            )
+        } ?: handleLocationRequestFailure(withException = false)
+    }
+    
+    private fun handleLocationRequestFailure(withException: Boolean) {
         Toast.makeText(
             context,
             getString(R.string.ws04_permission_not_available_text, withException),
@@ -324,69 +348,9 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         ).show()
     }
     
-    private fun checkLocationProviderEnabled(context: Context) {
-        val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-        if (lm == null) {
-            onLocationProviderDisabled(getString(R.string.ws04_location_manager_not_available_text))
-            return
-        }
-        
-        var gps_enabled = false
-        var network_enabled = false
-        try {
-            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
-            
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        
-        try {
-            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-            
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        // This way detects only if providers disabled.
-        // But ignore all others issues.
-        if (!gps_enabled && !network_enabled) {
-            showLocationProviderSettingsDialog()
-    
-        } else {
-            requestLastKnownLocation(context)
-        }
-    }
-    
-    // Not the best request type. Please read google recommendations:
-    // https://developer.android.com/training/location?hl=hi
-    private fun requestLastKnownLocation(context: Context) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED) {
-    
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    location?.let { location ->
-                        Log.d(TAG, "Location:$location")
-                        val fixedAccuracy = (location.accuracy * 100).toInt() / 100
-                        viewModel.send(
-                            getString(
-                                R.string.ws04_message_with_location,
-                                location.latitude,
-                                location.longitude,
-                                fixedAccuracy
-                            )
-                        )
-                    } ?: onLocationRequestFailed(withException = false)
-                }
-                .addOnFailureListener {
-                    onLocationRequestFailed(withException = true)
-                }
-        }
-    }
-    
-    private fun onLocationProviderDisabled(reason: String) {
+    private fun showLocationManagerDisabled() {
         context?.let {
-            Toast.makeText(context, reason, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.ws04_location_manager_not_available_text, Toast.LENGTH_SHORT).show()
         }
     }
     
