@@ -47,34 +47,30 @@ class AndroidNotifications(private val context: Context) : Notifications {
 
     override fun initialize() {
         if (notificationManagerCompat.getNotificationChannel(CHANNEL_NEW_MESSAGES) == null) {
-            TODO(
-                """
-                
+
+/*
                 #1 Create The Notification Channel
-                 
+
                 a) Create a `NotificationChannel` object:
                    Create `NotificationChannelCompat.Builder`
-                   with `CHANNEL_NEW_MESSAGES` as channel ID and `IMPORTANCE_HIGH` as 
+                   with `CHANNEL_NEW_MESSAGES` as channel ID and `IMPORTANCE_HIGH` as
                         a channel importance
                    use `R.string.channel_new_messages` as channel name
                    use `R.string.channel_new_messages_description` as channel description
-                 
+
                 b) Create a notification channel in the Notification manager:
-                   Pass built `NotificationChannelCompat` to the 
+                   Pass built `NotificationChannelCompat` to the
                      `notificationManagerCompat.createNotificationChannel`
-                     
+
                 Note: Don't forget we have context in the class already
-                
-                """.trimIndent()
-            )
+*/
         }
     }
 
     @WorkerThread
     override fun showNotification(chat: Chat) {
-        TODO(
-            """
-                
+/*
+
                 #2 Show The Notification
                 
                 a) Create the notification:
@@ -91,13 +87,11 @@ class AndroidNotifications(private val context: Context) : Notifications {
                    Pass built notification to `notificationManagerCompat.notify`
                    use `CHAT_TAG` as notification Tag
                    use `chat.contact.id` as notification ID
-                   
-            """.trimIndent()
-        )
 
-        TODO(
-            """
-                
+*/
+
+
+/*
                 #4 Open Chat From The Notification
                 
                 a) Form deep link (`contentUri`): 
@@ -117,21 +111,18 @@ class AndroidNotifications(private val context: Context) : Notifications {
                    
                 d) Pass pending intent to the notification builder:
                    Pass `pendingIntent` to builder with `setContentIntent()` setter
-                
-            """.trimIndent()
-        )
+*/
+
     }
 
     override fun dismissNotification(chatId: Long) {
-        TODO(
-            """
-                
+/*
+
                 #3 Cancel Chat Notification(s)
                 
                 Simply call `notificationManagerCompat.cancel` with `CHAT_TAG` as tag and `chatId` as 
                     notification ID
                     
-            """.trimIndent()
-        )
+*/
     }
 }
