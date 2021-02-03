@@ -46,6 +46,8 @@ class AndroidNotifications(private val context: Context) : Notifications {
         private const val CHANNEL_NEW_MESSAGES = "new_messages"
 
         private const val REQUEST_CONTENT = 1
+
+        private const val CHAT_TAG = "chat"
     }
 
     private val notificationManagerCompat: NotificationManagerCompat =
@@ -134,10 +136,10 @@ class AndroidNotifications(private val context: Context) : Notifications {
             )
             .setWhen(chat.messages.last().timestamp)
 
-        notificationManagerCompat.notify("chat", chat.contact.id.toInt(), builder.build())
+        notificationManagerCompat.notify(CHAT_TAG, chat.contact.id.toInt(), builder.build())
     }
 
     override fun dismissNotification(chatId: Long) {
-        notificationManagerCompat.cancel("chat", chatId.toInt())
+        notificationManagerCompat.cancel(CHAT_TAG, chatId.toInt())
     }
 }
