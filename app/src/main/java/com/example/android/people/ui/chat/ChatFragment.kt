@@ -137,8 +137,13 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
             }
         }
 
-        viewModel.errors.handle(viewLifecycleOwner) { error ->
-            Toast.makeText(view.context, getString(error), Toast.LENGTH_SHORT).show()
+        viewModel.events.handle(viewLifecycleOwner) { event ->
+            when (event) {
+                is ChatViewModel.Event.Error ->
+                    Toast.makeText(view.context, getString(event.textResource), Toast.LENGTH_SHORT)
+                        .show()
+                ChatViewModel.Event.LocationProviderDisabled -> showLocationProviderSettingsDialog()
+            }
         }
 
         etChatInput = view.findViewById<ChatEditText>(R.id.input).apply {
@@ -303,12 +308,6 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private fun onLocationPermissionNotGranted() {
         context?.let {
             Toast.makeText(context, R.string.ws04_permission_not_granted_text, Toast.LENGTH_SHORT).show()
-        }
-    }
-    
-    private fun showLocationManagerDisabled() {
-        context?.let {
-            Toast.makeText(context, R.string.ws04_location_manager_not_available_text, Toast.LENGTH_SHORT).show()
         }
     }
     

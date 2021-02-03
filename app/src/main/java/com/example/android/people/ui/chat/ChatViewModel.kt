@@ -47,7 +47,12 @@ class ChatViewModel @JvmOverloads constructor(
 
     private var _photoMimeType: String? = null
 
-    private val _errors = MutableLiveData<LiveDataEvent<Int>>()
+    private val _events = MutableLiveData<LiveDataEvent<Event>>()
+
+    sealed class Event {
+        object LocationProviderDisabled : Event()
+        data class Error(val textResource: Int) : Event()
+    }
 
     /**
      * We want to dismiss a notification when the corresponding chat screen is open. Setting this
@@ -80,7 +85,7 @@ class ChatViewModel @JvmOverloads constructor(
      */
     val messages = chatId.switchMap { id -> repository.findMessages(id) }
 
-    val errors: LiveData<LiveDataEvent<Int>> = _errors
+    val events: LiveData<LiveDataEvent<Event>> = _events
 
     fun setChatId(id: Long) {
         chatId.value = id
@@ -114,14 +119,12 @@ class ChatViewModel @JvmOverloads constructor(
                         fixedAccuracy
                     ))
                 }
-                is GetUserLocationResult.Failed -> {
-                    val error = when (getLocation) {
-                        GetUserLocationResult.Failed.LocationProviderIsDisabled -> R.string.ws04_location_provider_not_available_text
-                        GetUserLocationResult.Failed.LocationManagerNotAvailable -> R.string.ws04_location_manager_not_available_text
-                        GetUserLocationResult.Failed.OtherFailure -> R.string.ws04_error_getting_location
-                    }
-                    _errors.rise(error)
-                }
+                GetUserLocationResult.Failed.LocationProviderIsDisabled ->
+                    _events.rise(Event.LocationProviderDisabled)
+                GetUserLocationResult.Failed.LocationManagerNotAvailable ->
+                    _events.rise(Event.Error(R.string.ws04_location_manager_not_available_text))
+                GetUserLocationResult.Failed.OtherFailure ->
+                    _events.rise(Event.Error(R.string.ws04_error_getting_location))
             }
         }
     }
