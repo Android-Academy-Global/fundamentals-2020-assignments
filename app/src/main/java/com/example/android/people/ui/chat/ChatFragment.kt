@@ -16,17 +16,16 @@
 package com.example.android.people.ui.chat
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.text.Editable
 import android.transition.TransitionInflater
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageButton
@@ -34,6 +33,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -45,8 +45,7 @@ import com.bumptech.glide.Glide
 import com.example.android.people.R
 import com.example.android.people.VoiceCallActivity
 import com.example.android.people.getNavigationController
-import com.example.android.people.ui.MyLocationProvider
-import com.example.android.people.ui.MyLocationProviderListener
+import com.example.android.people.handle
 
 /**
  * The chat screen. This is used in the full app (MainActivity) as well as in the expanded Bubble
@@ -66,40 +65,20 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private var shownRationale = false
     
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
-    private val myLocationProvider = MyLocationProvider()
-    private val myLocationProviderListener = object : MyLocationProviderListener {
-        override fun onLocationManagerNotAvailable() {
-            showLocationManagerDisabled()
-        }
-    
-        override fun onLocationProviderDisabled() {
-            showLocationProviderSettingsDialog()
-        }
-    
-        override fun onLocationRequestSuccess(location: Location?) {
-            handleLocationRequestSuccess(location)
-        }
-    
-        override fun onLocationRequestFailure(withException: Boolean) {
-            handleLocationRequestFailure(withException)
-        }
-    }
-    
+
+    @SuppressLint("MissingPermission")
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        
         requestPermissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
                 onLocationPermissionGranted()
-                
+
             } else {
                 onLocationPermissionNotGranted()
             }
         }
-    
-        myLocationProvider.create(context, myLocationProviderListener)
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -157,12 +136,16 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
                 linearLayoutManager.scrollToPosition(messages.size - 1)
             }
         }
-    
+
+        viewModel.errors.handle(viewLifecycleOwner) { error ->
+            Toast.makeText(view.context, getString(error), Toast.LENGTH_SHORT).show()
+        }
+
         etChatInput = view.findViewById<ChatEditText>(R.id.input).apply {
             if (prepopulateText != null) {
                 setText(prepopulateText)
             }
-    
+
             setOnImageAddedListener { contentUri, mimeType, label ->
                 viewModel.setPhoto(contentUri, mimeType)
                 if (text.isNullOrBlank()) {
@@ -233,8 +216,6 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     
     override fun onDetach() {
         requestPermissionLauncher.unregister()
-        myLocationProvider.destroy()
-        
         super.onDetach()
     }
     
@@ -299,7 +280,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
         }
     }
-    
+
     private fun startApplicationSettings() {
         context?.let {
             startActivity(
@@ -310,41 +291,19 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
             )
         }
     }
-    
+
+    @RequiresPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
     private fun onLocationPermissionGranted() {
         context?.let {
             Toast.makeText(context, R.string.ws04_permission_granted_text, Toast.LENGTH_SHORT).show()
-            myLocationProvider.checkLocationProviderEnabled(it)
+            viewModel.sendLocation()
         }
     }
-    
+
     private fun onLocationPermissionNotGranted() {
         context?.let {
             Toast.makeText(context, R.string.ws04_permission_not_granted_text, Toast.LENGTH_SHORT).show()
         }
-    }
-    
-    private fun handleLocationRequestSuccess(location: Location?) {
-        location?.let { location ->
-            Log.d(TAG, "Location:$location")
-            val fixedAccuracy = (location.accuracy * 100).toInt() / 100
-            viewModel.send(
-                getString(
-                    R.string.ws04_message_with_location,
-                    location.latitude,
-                    location.longitude,
-                    fixedAccuracy
-                )
-            )
-        } ?: handleLocationRequestFailure(withException = false)
-    }
-    
-    private fun handleLocationRequestFailure(withException: Boolean) {
-        Toast.makeText(
-            context,
-            getString(R.string.ws04_permission_not_available_text, withException),
-            Toast.LENGTH_LONG
-        ).show()
     }
     
     private fun showLocationManagerDisabled() {

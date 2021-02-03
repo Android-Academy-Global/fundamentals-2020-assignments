@@ -35,7 +35,7 @@
     <string name="ws04_permission_dialog_denied_text">This feature is not available without location permissions. Open app settings?</string>
     <string name="ws04_permission_granted_text">Location permission granted</string>
     <string name="ws04_permission_not_granted_text">Location permission not granted</string>
-    <string name="ws04_permission_not_available_text">Location is null, with exception:$s</string>
+    <string name="ws04_error_getting_location">Error getting location</string>
     <string name="ws04_location_manager_not_available_text">Location manager is not available</string>
     <string name="ws04_location_provider_not_available_text">Location providers disabled. Open device settings?</string>
     <string name="ws04_start_location_provider_settings_text">To continue please enable location provider</string>
