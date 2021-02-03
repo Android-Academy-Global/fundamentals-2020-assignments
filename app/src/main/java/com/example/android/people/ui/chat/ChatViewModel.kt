@@ -20,7 +20,6 @@ import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import com.example.android.people.data.ChatRepository
 import com.example.android.people.data.DefaultChatRepository

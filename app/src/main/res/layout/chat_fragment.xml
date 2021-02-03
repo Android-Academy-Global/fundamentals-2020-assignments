@@ -65,7 +65,7 @@
             android:importantForAutofill="no"
             android:inputType="textCapSentences"
             app:layout_constraintBottom_toTopOf="@id/photo"
-            app:layout_constraintEnd_toStartOf="@id/send"
+            app:layout_constraintEnd_toStartOf="@id/sendLocationsButton"
             app:layout_constraintStart_toEndOf="@id/voice_call"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,17 +82,32 @@
             tools:visibility="visible" />
 
         <ImageButton
-            android:id="@+id/send"
             style="?attr/buttonBarNeutralButtonStyle"
+            android:id="@+id/sendLocationsButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:contentDescription="@string/description_send"
             app:tint="?attr/colorAccent"
-            app:layout_constraintBottom_toBottomOf="@id/input"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/input"
+            app:srcCompat="@drawable/ic_send_location"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_send" />
+            app:layout_constraintBottom_toBottomOf="@id/input"
+            app:layout_constraintStart_toEndOf="@id/input"
+            app:layout_constraintEnd_toStartOf="@+id/send"
+            />
+
+        <ImageButton
+            style="?attr/buttonBarNeutralButtonStyle"
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/description_send"
+            app:tint="?attr/colorAccent"
+            app:srcCompat="@drawable/ic_send"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/input"
+            app:layout_constraintStart_toEndOf="@id/sendLocationsButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

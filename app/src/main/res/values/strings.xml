@@ -19,7 +19,7 @@
     <string name="show_as_bubble">Show as Bubble</string>
     <string name="description_icon">Profile icon</string>
     <string name="description_voice_call">Make a voice call (dummy)</string>
-    <string name="description_send">Send</string>
+    <string name="description_send">Send button</string>
     <string name="sender_you">You</string>
     <string name="label_reply">Reply</string>
     <string name="description_photo">Photo</string>
@@ -28,4 +28,20 @@
     <string name="channel_new_messages_description">All new incoming messages.</string>
     <string name="chat_with_contact">Chat with %s</string>
     <string name="voice_call_explanation">This is a dummy voice call screen.</string>
+
+    <!-- WS04_permissions -->
+    <string name="ws04_send_button_description">Send current location button</string>
+    <string name="ws04_permission_dialog_explanation_text">To continue please grant access to locations</string>
+    <string name="ws04_permission_dialog_denied_text">This feature is not available without location permissions. Open app settings?</string>
+    <string name="ws04_permission_granted_text">Location permission granted</string>
+    <string name="ws04_permission_not_granted_text">Location permission not granted</string>
+    <string name="ws04_permission_not_available_text">Location is null, with exception:$s</string>
+    <string name="ws04_location_manager_not_available_text">Location manager is not available</string>
+    <string name="ws04_location_provider_not_available_text">Location providers disabled. Open device settings?</string>
+    <string name="ws04_start_location_provider_settings_text">To continue please enable location provider</string>
+    <string name="ws04_dialog_positive_button">OK</string>
+    <string name="ws04_dialog_negative_button">Cancel</string>
+    <string name="ws04_message_with_location">I am at location [lat:%1$f, lon:%2$f] with accuracy:%3$d m."</string>
+    <!-- WS04_permissions -->
+
 </resources>
