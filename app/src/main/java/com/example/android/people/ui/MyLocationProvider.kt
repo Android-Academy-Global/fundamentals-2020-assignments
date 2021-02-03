@@ -1,7 +1,6 @@
 package com.example.android.people.ui
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -15,8 +14,8 @@ class MyLocationProvider {
 	private var fusedLocationClient: FusedLocationProviderClient? = null
 	private var listener: MyLocationProviderListener? = null
 	
-	fun create(activity: Activity, listener: MyLocationProviderListener) {
-		this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+	fun create(context: Context, listener: MyLocationProviderListener) {
+		this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 		this.listener = listener
 	}
 	

@@ -16,7 +16,6 @@
 package com.example.android.people.ui.chat
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -100,7 +99,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
             }
         }
     
-        myLocationProvider.create(context as Activity, myLocationProviderListener)
+        myLocationProvider.create(context, myLocationProviderListener)
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
