@@ -1,0 +1,159 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/space_2x"
+    android:background="@color/colorBackgroundContainer"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvBoxOne"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/solution_three_title_height"
+        android:layout_margin="@dimen/space_2x"
+        android:padding="@dimen/space_4x"
+        android:gravity="center"
+        android:textSize="@dimen/space_4x"
+        android:textStyle="bold"
+        android:text="@string/solutions_box_one_text"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorMyGray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontalBoxTwoTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideVerticalMiddle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierHorizontalBoxTwoTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvBoxOne"
+        />
+
+    <TextView
+        android:id="@+id/tvBoxTwo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/space_2x"
+        android:padding="@dimen/space_2x"
+        android:gravity="center"
+        android:text="@string/solutions_box_two_text"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorMyYellow"
+        app:layout_constraintTop_toBottomOf="@+id/barrierHorizontalBoxTwoTop"
+        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontalBoxTwoBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideVerticalMiddle"
+        />
+
+    <TextView
+        android:id="@+id/tvBoxThree"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_2x"
+        android:padding="@dimen/space_2x"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorWhite"
+        android:text="@string/solutions_box_three_text"
+        android:background="@color/colorMyRed"
+        app:layout_constraintTop_toBottomOf="@+id/barrierHorizontalBoxTwoTop"
+        app:layout_constraintBottom_toTopOf="@+id/tvBoxFour"
+        app:layout_constraintStart_toEndOf="@+id/guideVerticalMiddle"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvBoxFour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_2x"
+        android:padding="@dimen/space_2x"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorWhite"
+        android:text="@string/solutions_box_four_text"
+        android:background="@color/colorMyGreen"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoxThree"
+        app:layout_constraintBottom_toTopOf="@+id/tvBoxFive"
+        app:layout_constraintStart_toEndOf="@+id/guideVerticalMiddle"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvBoxFive"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_2x"
+        android:padding="@dimen/space_2x"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorWhite"
+        android:text="@string/solutions_box_five_text"
+        android:background="@color/colorMyBlue"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoxFour"
+        app:layout_constraintBottom_toTopOf="@+id/barrierHorizontalBoxTwoBottom"
+        app:layout_constraintStart_toEndOf="@+id/guideVerticalMiddle"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierHorizontalBoxTwoBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvBoxTwo, tvBoxFive"
+        />
+
+    <TextView
+        android:id="@+id/tvRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_2x"
+        android:padding="@dimen/space_2x"
+        android:gravity="center"
+        android:text="@string/solutions_button_red_text"
+        android:background="@color/colorLightGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvYellow"
+        />
+
+    <TextView
+        android:id="@+id/tvYellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_2x"
+        android:padding="@dimen/space_2x"
+        android:gravity="center"
+        android:text="@string/solutions_button_yellow_text"
+        android:background="@color/colorLightGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvRed"
+        app:layout_constraintEnd_toStartOf="@+id/tvGreen"
+        />
+
+    <TextView
+        android:id="@+id/tvGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_2x"
+        android:padding="@dimen/space_2x"
+        android:gravity="center"
+        android:text="@string/solutions_button_green_text"
+        android:background="@color/colorLightGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvYellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
