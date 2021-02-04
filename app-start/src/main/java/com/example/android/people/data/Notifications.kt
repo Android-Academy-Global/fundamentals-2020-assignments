@@ -90,6 +90,7 @@ class AndroidNotifications(private val context: Context) : Notifications {
 */
 
 
+
 /*
                 #4 Open Chat From The Notification
                 
@@ -112,9 +113,39 @@ class AndroidNotifications(private val context: Context) : Notifications {
                    Pass `pendingIntent` to builder with `setContentIntent()` setter
 */
 
+
+
+/*              #5 Add reply action to notification
+
+                a) Create action
+                   With `NotificationCompat.Action.Builder`
+                   Use `IconCompat.createWithContentUri()` with `R.drawable.ic_send`
+                   Use `context.getString()` with `R.string.label_reply`
+
+                b) Create Reply Intent (`replyIntent`):
+                   Create explicit intent for `ReplyReceiver` class
+                   Set `contentUri` as data
+
+                c) Create a Pending Intent
+                   Use `PendingIntent.getBroadcast()`
+                   Use `REQUEST_CONTENT` as Request Code
+                   Use `replyIntent` as Intent
+                   Use `PendingIntent.FLAG_UPDATE_CURRENT` as Flags
+
+                d) Create remote input
+                   Create `RemoteInput.Builder` with `ReplyReceiver.KEY_TEXT_REPLY`
+                   Use `context.getString()` with `R.string.hint_input` as label
+                   Call `build` method
+
+                e) Add `Notification.Builder` `setAllowGeneratedReplies(true)` method
+
+*/
+
+
+
 /*
 
-                #5 Style Notification as Chat (Optional)
+                #6 Style Notification as Chat (Optional)
 
                 a) Create a Person (person):
                    With `Person.Builder`
