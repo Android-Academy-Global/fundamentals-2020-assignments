@@ -44,15 +44,16 @@
                 This is used as the content URI of notifications. It navigates directly to the
                 specified chat screen.
             -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data
+
+            <!-- TODO 1 Create Intent Filter
+                    set action VIEW
+                    set two categories DEFAULT and BROWSABLE
+                    set data (our future link)
                     android:host="android.example.com"
                     android:pathPattern="/chat/.*"
-                    android:scheme="https" />
-            </intent-filter>
+                    android:scheme="https"
+            -->
+
             <!--
                 This opens the chat screen with the message field filled with the passed text.
                 This is necessary for making our dynamic shortcuts appear in Direct Share.
