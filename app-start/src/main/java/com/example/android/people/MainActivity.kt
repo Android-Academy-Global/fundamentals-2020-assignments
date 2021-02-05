@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity(R.layout.main_activity), NavigationContro
     }
 
     override fun openChat(id: Long, prepopulateText: String?) {
-        /* TODO 2 Don't forget about stack
+        /* TODO 2: Setup initial back stack state. In case the user has already opened some chat, remove it.
              add this line
             supportFragmentManager.popBackStack(FRAGMENT_CHAT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
          */
