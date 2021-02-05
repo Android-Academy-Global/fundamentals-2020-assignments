@@ -114,9 +114,9 @@ class MainActivity : AppCompatActivity(R.layout.main_activity), NavigationContro
              add this line
             supportFragmentManager.popBackStack(FRAGMENT_CHAT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
          */
-        /* TODO 3 Add fragment
-            add to the stack
-            replace fragment ChatFragment with arguments id, true, prepopulateText
+        /* TODO 3 Open the chat screen.
+            Create chat fragment with arguments id, true, prepopulateText.
+            Open Chat screen using fragment manager. Hint: create transaction, replace fragment, and add to the back stack. 
          */
     }
 
