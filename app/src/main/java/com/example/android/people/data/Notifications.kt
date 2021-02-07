@@ -19,6 +19,7 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.annotation.WorkerThread
 import androidx.core.app.*
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_HIGH
@@ -90,26 +91,7 @@ class AndroidNotifications(private val context: Context) : Notifications {
                 )
             )
             // Direct Reply
-            .addAction(
-                NotificationCompat.Action
-                    .Builder(
-                        IconCompat.createWithResource(context, R.drawable.ic_send),
-                        context.getString(R.string.label_reply),
-                        PendingIntent.getBroadcast(
-                            context,
-                            REQUEST_CONTENT,
-                            Intent(context, ReplyReceiver::class.java).setData(contentUri),
-                            PendingIntent.FLAG_UPDATE_CURRENT
-                        )
-                    )
-                    .addRemoteInput(
-                        RemoteInput.Builder(ReplyReceiver.KEY_TEXT_REPLY)
-                            .setLabel(context.getString(R.string.hint_input))
-                            .build()
-                    )
-                    .setAllowGeneratedReplies(true)
-                    .build()
-            )
+            .addReplyAction(context,contentUri)
             .setStyle(
                 NotificationCompat.MessagingStyle(person)
                     .run {
@@ -141,4 +123,32 @@ class AndroidNotifications(private val context: Context) : Notifications {
     override fun dismissNotification(chatId: Long) {
         notificationManagerCompat.cancel(CHAT_TAG, chatId.toInt())
     }
+
+    private fun NotificationCompat.Builder.addReplyAction(
+            context: Context,
+            contentUri: Uri
+    ): NotificationCompat.Builder {
+        addAction(
+                NotificationCompat.Action
+                        .Builder(
+                                IconCompat.createWithResource(context, R.drawable.ic_send),
+                                context.getString(R.string.label_reply),
+                                PendingIntent.getBroadcast(
+                                        context,
+                                        REQUEST_CONTENT,
+                                        Intent(context, ReplyReceiver::class.java).setData(contentUri),
+                                        PendingIntent.FLAG_UPDATE_CURRENT
+                                )
+                        )
+                        .addRemoteInput(
+                                RemoteInput.Builder(ReplyReceiver.KEY_TEXT_REPLY)
+                                        .setLabel(context.getString(R.string.hint_input))
+                                        .build()
+                        )
+                        .setAllowGeneratedReplies(true)
+                        .build()
+        )
+        return this
+    }
+
 }
