@@ -3,7 +3,6 @@ package com.android.academy.fundamentals
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.academy.fundamentals.extra.StaticCoroutinesFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
