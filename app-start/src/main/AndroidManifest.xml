@@ -72,7 +72,7 @@
             android:launchMode="singleInstance"
             android:theme="@style/Theme.People.Voice" />
 
-        <!-- to work with broadcast you need register it on manifest
+        <!-- to work with broadcast you need to register it in manifest
              just uncomment this block of code
         <receiver
            android:name="com.example.android.people.ReplyReceiver" />

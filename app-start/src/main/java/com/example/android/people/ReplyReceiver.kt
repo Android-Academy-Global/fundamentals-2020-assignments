@@ -15,9 +15,11 @@
 
 package com.example.android.people
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import com.example.android.people.data.ChatRepository
+import com.example.android.people.data.DefaultChatRepository
 
 /**
  * Handles the "Reply" action in the chat notification.
@@ -29,7 +31,6 @@ class ReplyReceiver {
         const val KEY_TEXT_REPLY = "reply"
     }
     // Override `onReceive` method
-    // Create `chatRepository` via `DefaultChatRepository.getInstance(context)`
     // Get `value` from remoteInput via `RemoteInput.getResultsFromIntent(intent) ?: return`
     // Get `reply uri` from intent via `intent.data ?: return`
     // Call `updateNotification` method to send reply message
@@ -37,7 +38,8 @@ class ReplyReceiver {
     private fun updateNotification(
             result: Bundle,
             contentUri: Uri,
-            repository: ChatRepository) {
+            context: Context) {
+        val repository:ChatRepository = DefaultChatRepository.getInstance(context)
         val input = result.getCharSequence(KEY_TEXT_REPLY)?.toString()
         val chatId = contentUri.lastPathSegment?.toLong() ?: return
 
