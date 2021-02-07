@@ -15,30 +15,38 @@
 
 package com.example.android.people
 
-import android.app.RemoteInput
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import com.example.android.people.data.ChatRepository
-import com.example.android.people.data.DefaultChatRepository
 
 /**
  * Handles the "Reply" action in the chat notification.
  */
-
 // Extend `ReplyReceiver` from `BroadcastReceiver` class
 class ReplyReceiver {
 
     companion object {
         const val KEY_TEXT_REPLY = "reply"
     }
-            // Override `onReceive` method
-            // Create `chatRepository` via `DefaultChatRepository.getInstance(context)`
-            // Get `value` from remoteInput via `RemoteInput.getResultsFromIntent(intent) ?: return`
-            // Get user `reply message` from `value` via `results.getCharSequence(KEY_TEXT_REPLY)?.toString()`
-            // Get `reply uri` from intent via `intent.data ?: return`
-            // Parse replied chat id from `reply uri` via `uri.lastPathSegment?.toLong() ?: return`
-            // Check if chatId > 0 AND reply `reply message` TRUE
-            // Send `replied message` with `repository.sendMessage(chatId, input.toString(), null, null)`
-            // And update notification with ` repository.updateNotification(chatId)`
+    // Override `onReceive` method
+    // Create `chatRepository` via `DefaultChatRepository.getInstance(context)`
+    // Get `value` from remoteInput via `RemoteInput.getResultsFromIntent(intent) ?: return`
+    // Get `reply uri` from intent via `intent.data ?: return`
+    // Call `updateNotification` method to send reply message
+
+    private fun updateNotification(
+            result: Bundle,
+            contentUri: Uri,
+            repository: ChatRepository) {
+        val input = result.getCharSequence(KEY_TEXT_REPLY)?.toString()
+        val chatId = contentUri.lastPathSegment?.toLong() ?: return
+
+        if (chatId > 0 && !input.isNullOrBlank()) {
+            repository.sendMessage(chatId, input.toString(), null, null)
+            // We should update the notification so that the user can see that the reply has been
+            // sent.
+            repository.updateNotification(chatId)
+        }
+    }
 }
+

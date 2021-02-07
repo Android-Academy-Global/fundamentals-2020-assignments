@@ -16,9 +16,17 @@
 package com.example.android.people.data
 
 import android.app.Notification
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.annotation.WorkerThread
+import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.RemoteInput
+import androidx.core.graphics.drawable.IconCompat
+import com.example.android.people.R
+import com.example.android.people.ReplyReceiver
 
 /**
  * Handles all operations related to [Notification].
@@ -43,7 +51,7 @@ class AndroidNotifications(private val context: Context) : Notifications {
     }
 
     private val notificationManagerCompat: NotificationManagerCompat =
-        NotificationManagerCompat.from(context)
+            NotificationManagerCompat.from(context)
 
     override fun initialize() {
         if (notificationManagerCompat.getNotificationChannel(CHANNEL_NEW_MESSAGES) == null) {
@@ -90,7 +98,6 @@ class AndroidNotifications(private val context: Context) : Notifications {
 */
 
 
-
 /*
                 #4 Open Chat From The Notification
                 
@@ -113,38 +120,9 @@ class AndroidNotifications(private val context: Context) : Notifications {
                    Pass `pendingIntent` to builder with `setContentIntent()` setter
 */
 
-
-
-/*              #5 Add reply action to notification
-
-                a) Create action
-                   With `NotificationCompat.Action.Builder`
-                   Use `IconCompat.createWithContentUri()` with `R.drawable.ic_send`
-                   Use `context.getString()` with `R.string.label_reply`
-
-                b) Create Reply Intent (`replyIntent`):
-                   Create explicit intent for `ReplyReceiver` class
-                   Set `contentUri` as data
-
-                c) Create a Pending Intent
-                   Use `PendingIntent.getBroadcast()`
-                   Use `REQUEST_CONTENT` as Request Code
-                   Use `replyIntent` as Intent
-                   Use `PendingIntent.FLAG_UPDATE_CURRENT` as Flags
-
-                d) Create remote input
-                   Create `RemoteInput.Builder` with `ReplyReceiver.KEY_TEXT_REPLY`
-                   Use `context.getString()` with `R.string.hint_input` as label
-                   Call `build` method
-
-                e) Add `Notification.Builder` `setAllowGeneratedReplies(true)` method
-
-*/
-
-
+//              #5 Call on notification builder setReplyAction extension
 
 /*
-
                 #6 Style Notification as Chat (Optional)
 
                 a) Create a Person (person):
@@ -184,4 +162,33 @@ class AndroidNotifications(private val context: Context) : Notifications {
                     
 */
     }
+
+    private fun NotificationCompat.Builder.addReplyAction(
+            context: Context,
+            contentUri: Uri
+    ): NotificationCompat.Builder {
+        addAction(
+                NotificationCompat.Action
+                        .Builder(
+                                IconCompat.createWithResource(context, R.drawable.ic_send),
+                                context.getString(R.string.label_reply),
+                                PendingIntent.getBroadcast(
+                                        context,
+                                        REQUEST_CONTENT,
+                                        Intent(context, ReplyReceiver::class.java).setData(contentUri),
+                                        PendingIntent.FLAG_UPDATE_CURRENT
+                                )
+                        )
+                        .addRemoteInput(
+                                RemoteInput.Builder(ReplyReceiver.KEY_TEXT_REPLY)
+                                        .setLabel(context.getString(R.string.hint_input))
+                                        .build()
+                        )
+                        .setAllowGeneratedReplies(true)
+                        .build()
+        )
+        return this
+    }
 }
+
+
