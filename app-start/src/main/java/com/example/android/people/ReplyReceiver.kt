@@ -15,30 +15,33 @@
 
 package com.example.android.people
 
-import android.app.RemoteInput
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import com.example.android.people.data.ChatRepository
 import com.example.android.people.data.DefaultChatRepository
 
 /**
  * Handles the "Reply" action in the chat notification.
  */
-class ReplyReceiver : BroadcastReceiver() {
+// Extend `ReplyReceiver` from `BroadcastReceiver` class
+class ReplyReceiver {
 
     companion object {
         const val KEY_TEXT_REPLY = "reply"
     }
+    // Override `onReceive` method
+    // Get `result` from remoteInput via `RemoteInput.getResultsFromIntent(intent) ?: return`
+    // Get `reply uri` from intent via `intent.data ?: return`
+    // Call `updateNotification` method to send reply message
 
-    override fun onReceive(context: Context, intent: Intent) {
+    private fun updateNotification(
+        result: Bundle,
+        contentUri: Uri,
+        context: Context) {
         val repository: ChatRepository = DefaultChatRepository.getInstance(context)
-
-        val results = RemoteInput.getResultsFromIntent(intent) ?: return
-        // The message typed in the notification reply.
-        val input = results.getCharSequence(KEY_TEXT_REPLY)?.toString()
-        val uri = intent.data ?: return
-        val chatId = uri.lastPathSegment?.toLong() ?: return
+        val input = result.getCharSequence(KEY_TEXT_REPLY)?.toString()
+        val chatId = contentUri.lastPathSegment?.toLong() ?: return
 
         if (chatId > 0 && !input.isNullOrBlank()) {
             repository.sendMessage(chatId, input.toString(), null, null)
@@ -48,3 +51,4 @@ class ReplyReceiver : BroadcastReceiver() {
         }
     }
 }
+

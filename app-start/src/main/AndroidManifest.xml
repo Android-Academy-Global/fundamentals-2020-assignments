@@ -75,15 +75,17 @@
             android:launchMode="singleInstance"
             android:theme="@style/Theme.People.Voice" />
 
+        <!-- to work with broadcast you need to register it in manifest
+             just uncomment this block of code
         <receiver
-            android:name="com.example.android.people.ReplyReceiver" />
+           android:name="com.example.android.people.ReplyReceiver" />
+        -->
+       <provider
+           android:name="com.example.android.people.AssetFileProvider"
+           android:authorities="com.example.android.people"
+           android:exported="true"
+           tools:ignore="ExportedContentProvider" />
 
-        <provider
-            android:name="com.example.android.people.AssetFileProvider"
-            android:authorities="com.example.android.people"
-            android:exported="true"
-            tools:ignore="ExportedContentProvider" />
-
-    </application>
+   </application>
 
 </manifest>

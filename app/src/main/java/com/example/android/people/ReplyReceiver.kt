@@ -19,6 +19,8 @@ import android.app.RemoteInput
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import com.example.android.people.data.ChatRepository
 import com.example.android.people.data.DefaultChatRepository
 
@@ -32,13 +34,19 @@ class ReplyReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        val repository: ChatRepository = DefaultChatRepository.getInstance(context)
-
         val results = RemoteInput.getResultsFromIntent(intent) ?: return
-        // The message typed in the notification reply.
-        val input = results.getCharSequence(KEY_TEXT_REPLY)?.toString()
         val uri = intent.data ?: return
-        val chatId = uri.lastPathSegment?.toLong() ?: return
+        updateNotification(results,uri,context)
+    }
+
+    private fun updateNotification(
+            result: Bundle,
+            contentUri: Uri,
+            context: Context) {
+
+        val repository:ChatRepository = DefaultChatRepository.getInstance(context)
+        val input = result.getCharSequence(KEY_TEXT_REPLY)?.toString()
+        val chatId = contentUri.lastPathSegment?.toLong() ?: return
 
         if (chatId > 0 && !input.isNullOrBlank()) {
             repository.sendMessage(chatId, input.toString(), null, null)
@@ -47,4 +55,5 @@ class ReplyReceiver : BroadcastReceiver() {
             repository.updateNotification(chatId)
         }
     }
+
 }
