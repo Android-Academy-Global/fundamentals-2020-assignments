@@ -19,7 +19,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -31,10 +30,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -60,26 +57,19 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private var voiceCallButton: ImageButton? = null
     private var sendButton: ImageButton? = null
     
-    // Ws04_permissions:
+    // Ws04_permissions
     private var sendLocationButton: ImageButton? = null
-    private var shownRationale = false
+    private var isRationaleShown = false
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     
     @SuppressLint("MissingPermission")
     override fun onAttach(context: Context) {
         super.onAttach(context)
     
-        // TODO:
-        requestPermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                onLocationPermissionGranted()
-            
-            } else {
-                onLocationPermissionNotGranted()
-            }
-        }
+        // TODO Ws04_Permissions_02: Uncomment, register callback.
+        //  - If permission "isGranted", call [onLocationPermissionGranted()];
+        //  - If permission not granted, call [onLocationPermissionNotGranted()];
+        // requestPermissionLauncher =
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -219,10 +209,10 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         
         super.onDestroyView()
     }
-    
-    // TODO:_
+
     override fun onDetach() {
-        requestPermissionLauncher.unregister()
+        // TODO Ws04_Permissions_03: Uncomment, call "unregister()" function.
+        // requestPermissionLauncher...
         
         super.onDetach()
     }
@@ -258,13 +248,13 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private fun savePreferencesData() {
         activity?.let {
             it.getPreferences(Context.MODE_PRIVATE).edit()
-                .putBoolean(KEY_LOCATION_PERMISSION_RATIONALE_SHOWN, shownRationale)
+                .putBoolean(KEY_LOCATION_PERMISSION_RATIONALE_SHOWN, isRationaleShown)
                 .apply()
         }
     }
     
     private fun restorePreferencesData() {
-        shownRationale = activity?.getPreferences(Context.MODE_PRIVATE)?.getBoolean(
+        isRationaleShown = activity?.getPreferences(Context.MODE_PRIVATE)?.getBoolean(
             KEY_LOCATION_PERMISSION_RATIONALE_SHOWN,
             false
         ) ?: false
@@ -274,19 +264,20 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private fun onSendLocation() {
         activity?.let {
             when {
-                ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED -> onLocationPermissionGranted()
-                shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) ->
-                    showLocationPermissionExplanationDialog()
-                shownRationale -> showLocationPermissionDeniedDialog()
-                else -> requestLocationPermission()
+                // TODO Ws04_Permissions_04: Fill "when" operator with variants,
+                //  how to handle button click.
+                //  - Check permission and send location into chat;
+                //  - Otherwise check rationale shown, show dialog, memorize "isRationaleShown = true";
+                //  - Otherwise if "isRationaleShown = true", show permission denied dialog;
+                //  - Else, request permission.
             }
         }
     }
     
     private fun requestLocationPermission() {
         context?.let {
-            requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+            // TODO Ws04_Permissions_06: launch permission request from "requestPermissionLauncher".
+            // requestPermissionLauncher...
         }
     }
     
@@ -309,8 +300,12 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
             AlertDialog.Builder(it)
                 .setMessage(R.string.ws04_permission_dialog_explanation_text)
                 .setPositiveButton(R.string.ws04_dialog_positive_button) { dialog, _ ->
-                    requestLocationPermission()
-                    shownRationale = true
+                    // TODO Ws04_Permissions_05: Show rationale explanation dialog.
+                    //  On positive click:
+                    //  - memorize "isRationaleShown = true";
+                    //  - request location permission.
+                    // ...
+                    
                     dialog.dismiss()
                 }
                 .setNegativeButton(R.string.ws04_dialog_negative_button) { dialog, _ ->

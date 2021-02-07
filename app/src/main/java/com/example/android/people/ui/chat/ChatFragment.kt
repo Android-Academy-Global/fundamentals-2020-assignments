@@ -61,15 +61,18 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private var voiceCallButton: ImageButton? = null
     private var sendButton: ImageButton? = null
 
-    // Ws04_permissions:
+    // Ws04_permissions
     private var sendLocationButton: ImageButton? = null
-    private var shownRationale = false
+    private var isRationaleShown = false
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
     @SuppressLint("MissingPermission")
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        
+    
+        // TODO Ws04_Permissions_02: Uncomment, register callback.
+        //  - If permission "isGranted", call [onLocationPermissionGranted()];
+        //  - If permission not granted, call [onLocationPermissionNotGranted()];
         requestPermissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
@@ -221,6 +224,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     }
     
     override fun onDetach() {
+        // TODO Ws04_Permissions_03: Uncomment, call "unregister()" function.
         requestPermissionLauncher.unregister()
         
         super.onDetach()
@@ -257,13 +261,13 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private fun savePreferencesData() {
         activity?.let {
             it.getPreferences(MODE_PRIVATE).edit()
-                .putBoolean(KEY_LOCATION_PERMISSION_RATIONALE_SHOWN, shownRationale)
+                .putBoolean(KEY_LOCATION_PERMISSION_RATIONALE_SHOWN, isRationaleShown)
                 .apply()
         }
     }
     
     private fun restorePreferencesData() {
-        shownRationale = activity?.getPreferences(MODE_PRIVATE)?.getBoolean(
+        isRationaleShown = activity?.getPreferences(MODE_PRIVATE)?.getBoolean(
             KEY_LOCATION_PERMISSION_RATIONALE_SHOWN,
             false
         ) ?: false
@@ -272,11 +276,17 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     private fun onSendLocation() {
         activity?.let {
             when {
+                // TODO Ws04_Permissions_04: Fill "when" operator with variants,
+                //  how to handle button click.
+                //  - Check permission and send location into chat;
+                //  - Otherwise check rationale shown, show dialog, memorize "isRationaleShown = true";
+                //  - Otherwise if "isRationaleShown = true", show permission denied dialog;
+                //  - Else, request permission.
                 ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_COARSE_LOCATION)
                         == PackageManager.PERMISSION_GRANTED -> onLocationPermissionGranted()
                 shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) ->
                     showLocationPermissionExplanationDialog()
-                shownRationale -> showLocationPermissionDeniedDialog()
+                isRationaleShown -> showLocationPermissionDeniedDialog()
                 else -> requestLocationPermission()
             }
         }
@@ -284,6 +294,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     
     private fun requestLocationPermission() {
         context?.let {
+            // TODO Ws04_Permissions_06: launch permission request from "requestPermissionLauncher".
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
         }
     }
@@ -307,8 +318,12 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
             AlertDialog.Builder(it)
                 .setMessage(R.string.ws04_permission_dialog_explanation_text)
                 .setPositiveButton(R.string.ws04_dialog_positive_button) { dialog, _ ->
+                    // TODO Ws04_Permissions_05: Show rationale explanation dialog.
+                    //  On positive click:
+                    //  - memorize "isRationaleShown = true";
+                    //  - request location permission.
+                    isRationaleShown = true
                     requestLocationPermission()
-                    shownRationale = true
                     dialog.dismiss()
                 }
                 .setNegativeButton(R.string.ws04_dialog_negative_button) { dialog, _ ->
