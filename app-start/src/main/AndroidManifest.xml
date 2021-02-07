@@ -18,6 +18,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android.people">
 
+    <!-- TODO Ws04_Permissions_01: Add uses-permission with "ACCESS_COARSE_LOCATION" -->
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"

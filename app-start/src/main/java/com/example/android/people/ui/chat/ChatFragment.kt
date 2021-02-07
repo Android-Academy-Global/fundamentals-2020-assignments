@@ -15,8 +15,14 @@
 
 package com.example.android.people.ui.chat
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.transition.TransitionInflater
 import android.view.View
@@ -24,6 +30,11 @@ import android.view.inputmethod.EditorInfo
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresPermission
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -33,6 +44,7 @@ import com.bumptech.glide.Glide
 import com.example.android.people.R
 import com.example.android.people.VoiceCallActivity
 import com.example.android.people.getNavigationController
+import com.example.android.people.handle
 
 /**
  * The chat screen. This is used in the full app (MainActivity) as well as in the expanded Bubble
@@ -40,14 +52,36 @@ import com.example.android.people.getNavigationController
  */
 class ChatFragment : Fragment(R.layout.chat_fragment) {
     
+    private val viewModel: ChatViewModel by viewModels()
+    
     private var rvMessages: RecyclerView? = null
     private var etChatInput: ChatEditText? = null
     private var ivPhoto: ImageView? = null
     private var voiceCallButton: ImageButton? = null
     private var sendButton: ImageButton? = null
     
-    private val viewModel: ChatViewModel by viewModels()
-
+    // Ws04_permissions:
+    private var sendLocationButton: ImageButton? = null
+    private var shownRationale = false
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+    
+    @SuppressLint("MissingPermission")
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    
+        // TODO:
+        requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                onLocationPermissionGranted()
+            
+            } else {
+                onLocationPermissionNotGranted()
+            }
+        }
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -63,6 +97,8 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         }
         val prepopulateText = arguments?.getString(ARG_PREPOPULATE_TEXT)
         val navigationController = getNavigationController()
+    
+        restorePreferencesData()
         
         viewModel.setChatId(id)
         
@@ -99,6 +135,15 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         viewModel.messages.observe(viewLifecycleOwner) { messages ->
             messageAdapter.submitList(messages) {
                 linearLayoutManager.scrollToPosition(messages.size - 1)
+            }
+        }
+    
+        viewModel.events.handle(viewLifecycleOwner) { event ->
+            when (event) {
+                is ChatViewModel.Event.Error ->
+                    Toast.makeText(view.context, getString(event.textResource), Toast.LENGTH_SHORT)
+                        .show()
+                ChatViewModel.Event.LocationProviderDisabled -> showLocationProviderSettingsDialog()
             }
         }
         
@@ -143,6 +188,12 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
                 voiceCall()
             }
         }
+    
+        sendLocationButton = view.findViewById<ImageButton>(R.id.sendLocationsButton).apply {
+            setOnClickListener {
+                onSendLocation()
+            }
+        }
         
         sendButton = view.findViewById<ImageButton>(R.id.send).apply {
             setOnClickListener {
@@ -164,8 +215,16 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
     
     override fun onDestroyView() {
         clearViews()
+        savePreferencesData()
         
         super.onDestroyView()
+    }
+    
+    // TODO:_
+    override fun onDetach() {
+        requestPermissionLauncher.unregister()
+        
+        super.onDetach()
     }
     
     private fun clearViews() {
@@ -174,6 +233,7 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         etChatInput = null
         ivPhoto = null
         voiceCallButton = null
+        sendLocationButton = null
         sendButton = null
     }
 
@@ -195,10 +255,112 @@ class ChatFragment : Fragment(R.layout.chat_fragment) {
         }
     }
     
+    private fun savePreferencesData() {
+        activity?.let {
+            it.getPreferences(Context.MODE_PRIVATE).edit()
+                .putBoolean(KEY_LOCATION_PERMISSION_RATIONALE_SHOWN, shownRationale)
+                .apply()
+        }
+    }
+    
+    private fun restorePreferencesData() {
+        shownRationale = activity?.getPreferences(Context.MODE_PRIVATE)?.getBoolean(
+            KEY_LOCATION_PERMISSION_RATIONALE_SHOWN,
+            false
+        ) ?: false
+    }
+    
+    
+    private fun onSendLocation() {
+        activity?.let {
+            when {
+                ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED -> onLocationPermissionGranted()
+                shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) ->
+                    showLocationPermissionExplanationDialog()
+                shownRationale -> showLocationPermissionDeniedDialog()
+                else -> requestLocationPermission()
+            }
+        }
+    }
+    
+    private fun requestLocationPermission() {
+        context?.let {
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+        }
+    }
+    
+    @RequiresPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+    private fun onLocationPermissionGranted() {
+        context?.let {
+            Toast.makeText(context, R.string.ws04_permission_granted_text, Toast.LENGTH_SHORT).show()
+            viewModel.sendLocation()
+        }
+    }
+    
+    private fun onLocationPermissionNotGranted() {
+        context?.let {
+            Toast.makeText(context, R.string.ws04_permission_not_granted_text, Toast.LENGTH_SHORT).show()
+        }
+    }
+    
+    private fun showLocationPermissionExplanationDialog() {
+        context?.let {
+            AlertDialog.Builder(it)
+                .setMessage(R.string.ws04_permission_dialog_explanation_text)
+                .setPositiveButton(R.string.ws04_dialog_positive_button) { dialog, _ ->
+                    requestLocationPermission()
+                    shownRationale = true
+                    dialog.dismiss()
+                }
+                .setNegativeButton(R.string.ws04_dialog_negative_button) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+    
+    private fun showLocationPermissionDeniedDialog() {
+        context?.let {
+            AlertDialog.Builder(it)
+                .setMessage(R.string.ws04_permission_dialog_denied_text)
+                .setPositiveButton(R.string.ws04_dialog_positive_button) { dialog, _ ->
+                    startActivity(
+                        Intent(
+                            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                            Uri.parse("package:" + it.packageName)
+                        )
+                    )
+                    dialog.dismiss()
+                }
+                .setNegativeButton(R.string.ws04_dialog_negative_button) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+    
+    private fun showLocationProviderSettingsDialog() {
+        context?.let {
+            AlertDialog.Builder(it)
+                .setMessage(R.string.ws04_location_provider_not_available_text)
+                .setPositiveButton(R.string.ws04_dialog_positive_button) { dialog, _ ->
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    dialog.dismiss()
+                }
+                .setNegativeButton(R.string.ws04_dialog_negative_button) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+    
     companion object {
         private const val ARG_ID = "id"
         private const val ARG_FOREGROUND = "foreground"
         private const val ARG_PREPOPULATE_TEXT = "prepopulate_text"
+    
+        private const val KEY_LOCATION_PERMISSION_RATIONALE_SHOWN = "KEY_LOCATION_PERMISSION_RATIONALE_SHOWN_APP_START"
         
         fun newInstance(id: Long, foreground: Boolean, prepopulateText: String? = null) =
             ChatFragment().apply {
