@@ -48,6 +48,7 @@ class ChatViewModel @JvmOverloads constructor(
     private var _photoMimeType: String? = null
 
     private val _events = MutableLiveData<LiveDataEvent<Event>>()
+    val events: LiveData<LiveDataEvent<Event>> = _events
 
     sealed class Event {
         object LocationProviderDisabled : Event()
@@ -84,8 +85,6 @@ class ChatViewModel @JvmOverloads constructor(
      * The list of all the messages in this chat.
      */
     val messages = chatId.switchMap { id -> repository.findMessages(id) }
-
-    val events: LiveData<LiveDataEvent<Event>> = _events
 
     fun setChatId(id: Long) {
         chatId.value = id

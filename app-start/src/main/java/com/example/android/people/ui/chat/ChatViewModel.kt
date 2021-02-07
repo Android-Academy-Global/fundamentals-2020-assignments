@@ -15,19 +15,29 @@
 
 package com.example.android.people.ui.chat
 
+import android.Manifest
 import android.app.Application
 import android.net.Uri
+import androidx.annotation.RequiresPermission
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
+import com.example.android.people.LiveDataEvent
+import com.example.android.people.R
 import com.example.android.people.data.ChatRepository
 import com.example.android.people.data.DefaultChatRepository
+import com.example.android.people.data.FusedLocationProvider
+import com.example.android.people.data.GetUserLocationResult
+import com.example.android.people.data.LocationProvider
+import com.example.android.people.rise
+import kotlinx.coroutines.launch
 
 class ChatViewModel @JvmOverloads constructor(
     application: Application,
-    private val repository: ChatRepository = DefaultChatRepository.getInstance(application)
+    private val repository: ChatRepository = DefaultChatRepository.getInstance(application),
+    private val locationProvider: LocationProvider = FusedLocationProvider(application)
 ) : AndroidViewModel(application) {
 
     private val chatId = MutableLiveData<Long>()
@@ -36,7 +46,15 @@ class ChatViewModel @JvmOverloads constructor(
     val photo: LiveData<Uri?> = _photoUri
 
     private var _photoMimeType: String? = null
-
+    
+    private val _events = MutableLiveData<LiveDataEvent<Event>>()
+    val events: LiveData<LiveDataEvent<Event>> = _events
+    
+    sealed class Event {
+        object LocationProviderDisabled : Event()
+        data class Error(val textResource: Int) : Event()
+    }
+    
     /**
      * We want to dismiss a notification when the corresponding chat screen is open. Setting this
      * to `true` dismisses the current notification and suppresses further notifications.
@@ -84,6 +102,30 @@ class ChatViewModel @JvmOverloads constructor(
         }
         _photoUri.value = null
         _photoMimeType = null
+    }
+    
+    @RequiresPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+    fun sendLocation() {
+        viewModelScope.launch {
+            when (val getLocation = locationProvider.getUserLocation()) {
+                is GetUserLocationResult.Success -> {
+                    val location = getLocation.location
+                    val fixedAccuracy = (location.accuracy * 100).toInt() / 100
+                    send(getApplication<Application>().getString(
+                        R.string.ws04_message_with_location,
+                        location.latitude,
+                        location.longitude,
+                        fixedAccuracy
+                    ))
+                }
+                GetUserLocationResult.Failed.LocationProviderIsDisabled ->
+                    _events.rise(Event.LocationProviderDisabled)
+                GetUserLocationResult.Failed.LocationManagerNotAvailable ->
+                    _events.rise(Event.Error(R.string.ws04_location_manager_not_available_text))
+                GetUserLocationResult.Failed.OtherFailure ->
+                    _events.rise(Event.Error(R.string.ws04_error_getting_location))
+            }
+        }
     }
 
     fun setPhoto(uri: Uri, mimeType: String) {
