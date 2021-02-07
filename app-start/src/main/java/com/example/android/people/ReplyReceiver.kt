@@ -31,15 +31,15 @@ class ReplyReceiver {
         const val KEY_TEXT_REPLY = "reply"
     }
     // Override `onReceive` method
-    // Get `value` from remoteInput via `RemoteInput.getResultsFromIntent(intent) ?: return`
+    // Get `result` from remoteInput via `RemoteInput.getResultsFromIntent(intent) ?: return`
     // Get `reply uri` from intent via `intent.data ?: return`
     // Call `updateNotification` method to send reply message
 
     private fun updateNotification(
-            result: Bundle,
-            contentUri: Uri,
-            context: Context) {
-        val repository:ChatRepository = DefaultChatRepository.getInstance(context)
+        result: Bundle,
+        contentUri: Uri,
+        context: Context) {
+        val repository: ChatRepository = DefaultChatRepository.getInstance(context)
         val input = result.getCharSequence(KEY_TEXT_REPLY)?.toString()
         val chatId = contentUri.lastPathSegment?.toLong() ?: return
 
