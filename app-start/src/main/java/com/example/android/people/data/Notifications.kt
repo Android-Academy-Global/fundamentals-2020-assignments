@@ -120,7 +120,7 @@ class AndroidNotifications(private val context: Context) : Notifications {
                    Pass `pendingIntent` to builder with `setContentIntent()` setter
 */
 
-//              #5 Call on notification builder setReplyAction extension
+// TODO #1 from Workshop #3: Call on notification builder setReplyAction extension
 
 /*
                 #5 Style Notification as Chat (Optional)
@@ -190,4 +190,3 @@ class AndroidNotifications(private val context: Context) : Notifications {
         return this
     }
 }
-
