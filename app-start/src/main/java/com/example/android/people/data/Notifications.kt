@@ -123,7 +123,7 @@ class AndroidNotifications(private val context: Context) : Notifications {
 //              #5 Call on notification builder setReplyAction extension
 
 /*
-                #6 Style Notification as Chat (Optional)
+                #5 Style Notification as Chat (Optional)
 
                 a) Create a Person (person):
                    With `Person.Builder`
@@ -190,5 +190,4 @@ class AndroidNotifications(private val context: Context) : Notifications {
         return this
     }
 }
-
 
