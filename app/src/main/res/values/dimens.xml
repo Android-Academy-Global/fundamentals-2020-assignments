@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fire_size">30dp</dimen>
+    <dimen name="house_size">50dp</dimen>
+    <dimen name="rocket_size">100dp</dimen>
+</resources>

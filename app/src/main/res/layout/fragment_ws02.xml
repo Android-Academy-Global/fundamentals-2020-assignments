@@ -8,41 +8,41 @@
 
     <ImageView
         android:id="@+id/house1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/house_size"
+        android:layout_height="@dimen/house_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/house_blue" />
 
     <ImageView
         android:id="@+id/house2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/house_size"
+        android:layout_height="@dimen/house_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/house1"
         app:srcCompat="@drawable/house_green" />
 
     <ImageView
         android:id="@+id/house3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/house_size"
+        android:layout_height="@dimen/house_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/house2"
         app:srcCompat="@drawable/house_red" />
 
     <ImageView
         android:id="@+id/house4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/house_size"
+        android:layout_height="@dimen/house_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/house_blue" />
 
     <ImageView
         android:id="@+id/rocket"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="30dp"
+        android:layout_width="@dimen/rocket_size"
+        android:layout_height="@dimen/rocket_size"
+        android:layout_marginBottom="@dimen/fire_size"
         android:alpha="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/house4"
@@ -51,8 +51,8 @@
 
     <ImageView
         android:id="@+id/fire"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/fire_size"
+        android:layout_height="@dimen/fire_size"
         android:alpha="0"
         android:src="@drawable/fire"
         app:layout_constraintBottom_toBottomOf="parent"
