@@ -2,8 +2,8 @@ package com.android.academy.fundamentals
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import com.android.academy.fundamentals.workshop4.solution.FinalSplashFragment
+import com.android.academy.fundamentals.ws4.SplashFragment
+import com.android.academy.fundamentals.ws4.solution.FinalSplashFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

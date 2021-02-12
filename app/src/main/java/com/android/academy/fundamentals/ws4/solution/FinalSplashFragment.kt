@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals.workshop4.solution
+package com.android.academy.fundamentals.ws4.solution
 
 import android.os.Bundle
 import android.view.View

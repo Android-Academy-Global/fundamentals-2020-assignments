@@ -2,13 +2,16 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
+    <!--
+        TODO 04( do TODO 04_01 and TODO 04_02 and run app )
+    -->
+
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@+id/start"
-        motion:duration="1500">
+        motion:duration="3000">
 
         <KeyFrameSet>
-            <!-- Box -->
             <KeyAttribute
                 android:scaleX="0"
                 android:scaleY="0"
@@ -16,27 +19,28 @@
                 motion:framePosition="0"
                 motion:motionTarget="@id/box"
                 motion:transitionEasing="accelerate" />
+            <!--TODO 04_01 just uncomment -->
+            <!--
+                <KeyAttribute
+                    android:translationY="-300dp"
+                    motion:framePosition="20"
+                    motion:motionTarget="@id/box"
+                    motion:transitionEasing="accelerate" />
 
-            <KeyAttribute
-                android:translationY="-300dp"
-                motion:framePosition="20"
-                motion:motionTarget="@id/box"
-                motion:transitionEasing="accelerate" />
+                <KeyAttribute
+                    android:scaleX="0.4"
+                    android:scaleY="0.4"
+                    android:translationY="24dp"
+                    motion:framePosition="50"
+                    motion:motionTarget="@id/box"
+                    motion:transitionEasing="accelerate" />
 
-            <KeyAttribute
-                android:scaleX="0.4"
-                android:scaleY="0.4"
-                android:translationY="24dp"
-                motion:framePosition="50"
-                motion:motionTarget="@id/box"
-                motion:transitionEasing="accelerate" />
-
-            <KeyAttribute
-                android:translationY="0dp"
-                motion:framePosition="60"
-                motion:motionTarget="@id/box"
-                motion:transitionEasing="accelerate" />
-
+                <KeyAttribute
+                    android:translationY="0dp"
+                    motion:framePosition="60"
+                    motion:motionTarget="@id/box"
+                    motion:transitionEasing="accelerate" />
+            -->
             <KeyAttribute
                 android:scaleX="6"
                 android:scaleY="6"
@@ -44,45 +48,47 @@
                 motion:motionTarget="@id/box"
                 motion:transitionEasing="accelerate" />
 
-            <!-- Text View -->
-            <KeyAttribute
-                android:alpha="0"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
-                motion:framePosition="0"
-                motion:motionTarget="@id/view"
-                motion:transitionEasing="accelerate" >
-                <CustomAttribute
-                    motion:attributeName="textColor"
-                    motion:customColorValue="#222" />
-            </KeyAttribute>
 
-            <KeyAttribute
-                android:alpha="1"
-                android:scaleX="1"
-                android:scaleY="1"
-                motion:framePosition="15"
-                motion:motionTarget="@id/view"
-                motion:transitionEasing="accelerate" />
+            <!--TODO 04_02 just uncomment -->
+            <!--
+                <KeyAttribute
+                    android:alpha="0"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    motion:framePosition="0"
+                    motion:motionTarget="@id/view"
+                    motion:transitionEasing="accelerate" >
+                    <CustomAttribute
+                        motion:attributeName="textColor"
+                        motion:customColorValue="#222" />
+                </KeyAttribute>
 
-            <KeyAttribute
-                motion:framePosition="50"
-                motion:motionTarget="@id/view"
-                motion:transitionEasing="accelerate" >
-                <CustomAttribute
-                    motion:attributeName="textColor"
-                    motion:customColorValue="#222" />
-            </KeyAttribute>
+                <KeyAttribute
+                    android:alpha="1"
+                    android:scaleX="1"
+                    android:scaleY="1"
+                    motion:framePosition="15"
+                    motion:motionTarget="@id/view"
+                    motion:transitionEasing="accelerate" />
 
-            <KeyAttribute
-                motion:framePosition="80"
-                motion:motionTarget="@id/view"
-                motion:transitionEasing="accelerate" >
-                <CustomAttribute
-                    motion:attributeName="textColor"
-                    motion:customColorValue="#fff" />
-            </KeyAttribute>
+                <KeyAttribute
+                    motion:framePosition="50"
+                    motion:motionTarget="@id/view"
+                    motion:transitionEasing="accelerate" >
+                    <CustomAttribute
+                        motion:attributeName="textColor"
+                        motion:customColorValue="#222" />
+                </KeyAttribute>
 
+                <KeyAttribute
+                    motion:framePosition="80"
+                    motion:motionTarget="@id/view"
+                    motion:transitionEasing="accelerate" >
+                    <CustomAttribute
+                        motion:attributeName="textColor"
+                        motion:customColorValue="#fff" />
+                </KeyAttribute>
+            -->
         </KeyFrameSet>
     </Transition>
 
