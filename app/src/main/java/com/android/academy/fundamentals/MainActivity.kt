@@ -3,7 +3,7 @@ package com.android.academy.fundamentals
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.academy.fundamentals.extra.StaticCoroutinesFragment
+import com.android.academy.fundamentals.workshop4.solution.FinalSplashFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.fragment_container_view, Fragment())
+                .replace(R.id.fragment_container_view, FinalSplashFragment())
                 .commit()
         }
     }
