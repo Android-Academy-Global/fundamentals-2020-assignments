@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.academy.fundamentals.R
-import com.android.academy.fundamentals.workshop03.ColorItemAnimator
 import com.android.academy.fundamentals.workshop03.ColorsAdapter
 import com.android.academy.fundamentals.workshop03.ColorsHelper
 
@@ -54,7 +53,7 @@ class WS03SolutionFragment : Fragment() {
         }
         view.findViewById<CheckBox>(R.id.custom_animator).setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                mList.itemAnimator = ColorItemAnimator()
+                mList.itemAnimator = SolutionColorItemAnimator()
             } else mList.itemAnimator = DefaultItemAnimator()
         }
     }

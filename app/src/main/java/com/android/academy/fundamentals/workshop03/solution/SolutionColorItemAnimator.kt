@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals.workshop03
+package com.android.academy.fundamentals.workshop03.solution
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -9,22 +9,22 @@ import android.graphics.drawable.ColorDrawable
 import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
-import com.android.academy.fundamentals.workshop03.solution.SolutionColorItemAnimator
+import com.android.academy.fundamentals.workshop03.ColorsAdapter.ColorViewHolder
+import com.android.academy.fundamentals.workshop03.ObjectAnimatorHelper
 
-class ColorItemAnimator: DefaultItemAnimator() {
 
-    private val mAnimatorMap = HashMap<RecyclerView.ViewHolder, SolutionColorItemAnimator.AnimatorInfo>()
+class SolutionColorItemAnimator: DefaultItemAnimator() {
 
-    // TODO 03 reuse updated view holder
-    //  override canReuseUpdatedViewHolder(...)
-    //  return true value
+    private val mAnimatorMap = HashMap<RecyclerView.ViewHolder, AnimatorInfo>()
+
+    override fun canReuseUpdatedViewHolder(viewHolder: RecyclerView.ViewHolder): Boolean = true
 
     override fun obtainHolderInfo(): ItemHolderInfo {
         return ColorItemHolderInfo()
     }
 
     override fun animateChange(oldViewHolder: RecyclerView.ViewHolder, newViewHolder: RecyclerView.ViewHolder, preInfo: ItemHolderInfo, postInfo: ItemHolderInfo): Boolean {
-        val newHolder = newViewHolder as ColorsAdapter.ColorViewHolder
+        val newHolder = newViewHolder as ColorViewHolder
         val startColor = (preInfo as ColorItemHolderInfo).color
         val newColor = (postInfo as ColorItemHolderInfo).color
         val oldText = preInfo.text
@@ -32,14 +32,12 @@ class ColorItemAnimator: DefaultItemAnimator() {
         val fadeToBlack: ObjectAnimator = ObjectAnimatorHelper.ofArgb(newHolder.container, "backgroundColor", startColor, Color.BLACK)
         val fadeFromBlack: ObjectAnimator = ObjectAnimatorHelper.ofArgb(newHolder.container, "backgroundColor", Color.BLACK, newColor)
         val bgAnim = AnimatorSet()
-        // TODO 04 set up how to play background animation
-        //  use playSequentially(fadeToBlack, fadeFromBlack)
+        bgAnim.playSequentially(fadeToBlack, fadeFromBlack)
 
         val oldTextRotate = ObjectAnimator.ofFloat(newHolder.textView, View.ROTATION_X, 0f, 90f)
         val newTextRotate = ObjectAnimator.ofFloat(newHolder.textView, View.ROTATION_X, -90f, 0f)
         val textAnim = AnimatorSet()
-        // TODO 05 set up how to play text animation
-        //  use playSequentially(oldTextRotate, newTextRotate)
+        textAnim.playSequentially(oldTextRotate, newTextRotate)
 
         oldTextRotate.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationStart(animation: Animator) {
@@ -52,8 +50,7 @@ class ColorItemAnimator: DefaultItemAnimator() {
         })
 
         val changeAnim = AnimatorSet()
-        // TODO 06 set up playing two animations together
-        //  use playTogether(bgAnim, textAnim)
+        changeAnim.playTogether(bgAnim, textAnim)
         changeAnim.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 dispatchAnimationFinished(newHolder)
@@ -77,9 +74,8 @@ class ColorItemAnimator: DefaultItemAnimator() {
             }
         }
 
-        val runningAnimInfo = SolutionColorItemAnimator.AnimatorInfo(changeAnim, fadeToBlack, fadeFromBlack, oldTextRotate, newTextRotate)
+        val runningAnimInfo = AnimatorInfo(changeAnim, fadeToBlack, fadeFromBlack, oldTextRotate, newTextRotate)
         mAnimatorMap[newHolder] = runningAnimInfo
-        // TODO 07 start animation
         changeAnim.start()
 
         // No other transformations are required.
@@ -94,10 +90,17 @@ class ColorItemAnimator: DefaultItemAnimator() {
 
         override fun setFrom(viewHolder: RecyclerView.ViewHolder, @AdapterChanges flags: Int): ItemHolderInfo {
             super.setFrom(viewHolder, flags)
-            val holder = viewHolder as ColorsAdapter.ColorViewHolder
+            val holder = viewHolder as ColorViewHolder
             color = (holder.container.background as ColorDrawable).color
             text = holder.textView.text as String
             return this
         }
     }
+
+    data class AnimatorInfo(
+            var overallAnim: Animator,
+            var fadeToBlackAnim: ObjectAnimator,
+            var fadeFromBlackAnim: ObjectAnimator,
+            var oldTextRotator: ObjectAnimator,
+            var newTextRotator: ObjectAnimator)
 }
