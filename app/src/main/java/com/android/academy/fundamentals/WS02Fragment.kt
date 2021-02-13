@@ -39,7 +39,7 @@ class WS02Fragment : Fragment(R.layout.fragment_ws02) {
         //TODO 02: Inflate animator from R.animator.fire in the same way
         // and assign it to fireAnimator local variable
 
-        //TODO 03: Call <playTogether> method of rocketPrepareAndFireStartAnimatorSet
+        //TODO 03: Call <playSequentially> method of rocketPrepareAndFireStartAnimatorSet
         // and pass rocketPrepareAnimator and fireAnimator to arguments
 
         //TODO 04 Uncomment rocketPrepareAndFireAnimatorSet listener
