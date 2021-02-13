@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+        <!--
+              TODO 02( do TODO 02_01 and TODO 02_02 and run app )
+        -->
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="3000" />
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/view"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+
+            <!--
+                TODO 02_01(Set some color from @color/colorName e.g @color/black)
+            -->
+
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/black" />
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/view"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+
+            <!--
+                TODO 02_02(Set some another color from @color/colorName e.g @color/white)
+            -->
+
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/teal_200" />
+        </Constraint>
+
+    </ConstraintSet>
+</MotionScene>
