@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 
 /*
-* There are 4 TODOs in this workshop
+* There are 5 TODOs in this workshop
+* For TODO 00 just write animation start methods
 * For TODO 01 change inside fragment_splash layout app:layoutDescription="@xml/ws04_animation_todo_01"
 * For TODO 02 change inside fragment_splash layout app:layoutDescription="@xml/ws04_animation_todo_02"
 * For TODO 03 change inside fragment_splash layout app:layoutDescription="@xml/ws04_animation_todo_03"
@@ -27,10 +28,10 @@ class WS04Fragment : Fragment(R.layout.fragment_splash) {
         btnAnimate.setOnClickListener {
             if (!isTransitionToEnd) {
                 isTransitionToEnd = true
-                motionLayout.transitionToEnd()
+//              TODO 00_01 to reverse transition animation call `transitionToEnd()` method from motionLayout
             } else {
                 isTransitionToEnd = false
-                motionLayout.transitionToStart()
+//              TODO 00_02 to start transition animation call `transitionToStart()` method from motionLayout
             }
         }
     }
