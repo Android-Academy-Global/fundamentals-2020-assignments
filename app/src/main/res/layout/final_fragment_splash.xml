@@ -4,7 +4,7 @@
     android:id="@+id/motion_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/final_splash_animation">
+    app:layoutDescription="@xml/ws04_solution_animation">
 
     <View
         android:id="@+id/box"

@@ -9,13 +9,13 @@ import com.android.academy.fundamentals.R
 
 /*
 * There are 4 TODOs in this workshop
-* For TODO 01 change inside fragment_splash layout app:layoutDescription="@xml/splash_animation_01"
-* For TODO 02 change inside fragment_splash layout app:layoutDescription="@xml/splash_animation_02"
-* For TODO 03 change inside fragment_splash layout app:layoutDescription="@xml/splash_animation_03"
-* For TODO 01 change inside fragment_splash layout app:layoutDescription="@xml/splash_animation_04"
+* For TODO 01 change inside fragment_splash layout app:layoutDescription="@xml/ws04_animation_todo_01"
+* For TODO 02 change inside fragment_splash layout app:layoutDescription="@xml/ws04_animation_todo_02"
+* For TODO 03 change inside fragment_splash layout app:layoutDescription="@xml/ws04_animation_todo_03"
+* For TODO 01 change inside fragment_splash layout app:layoutDescription="@xml/ws04_animation_todo_04"
 */
 
-class SplashFragment : Fragment(R.layout.fragment_splash) {
+class WS04Fragment : Fragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

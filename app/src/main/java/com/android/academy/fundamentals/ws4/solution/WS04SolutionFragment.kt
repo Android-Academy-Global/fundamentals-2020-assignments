@@ -7,7 +7,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 
-class FinalSplashFragment : Fragment(R.layout.final_fragment_splash) {
+class WS04SolutionFragment : Fragment(R.layout.final_fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
