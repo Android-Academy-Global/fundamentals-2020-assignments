@@ -176,7 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="pivot_x"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_object_animator"
         app:layout_constraintEnd_toStartOf="@id/button_pivot_y"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -186,8 +186,18 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="pivot_y"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_object_animator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/button_pivot_x" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_object_animator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="object animation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,12 +11,10 @@ import com.android.academy.fundamentals.R
 class WS01Fragment : Fragment(R.layout.fragment_ws01) {
 
     companion object {
-
-        private const val DURATION = 2000L
+        // TODO add DURATION
     }
 
     private lateinit var image: ImageView
-
     // TODO 01 set rotation for Image
     // TODO 02 set rotationX for Image
     // TODO 03 set rotationY for Image
@@ -40,193 +38,88 @@ class WS01Fragment : Fragment(R.layout.fragment_ws01) {
     //  Example: ObjectAnimator.ofFloat(image, View.ROTATION, 0, 360f)
     //  don't forget about duration and call start() for animation
 
-    // TODO 18* call static method <loadAnimator> of AnimatorInflater
-    //  animation files are located in the folder res/anim
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         image = view.findViewById(R.id.image)
 
         view.findViewById<View>(R.id.button_rotation).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(360F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 01 set rotation
-                image.rotation = value
-            }
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 01 call method the animation(view, animator) using ValueAnimator for implementation rotation
         }
 
         view.findViewById<View>(R.id.button_rotation_x).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(360F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 02 set rotationX
-                image.rotationX = value
-            }
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 02 call method the animation(view, animator) using ValueAnimator implementation rotationX
         }
 
         view.findViewById<View>(R.id.button_rotation_y).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(360F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 03 set rotationY
-                image.rotationY = value
-            }
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 03 call method the animation(view, animator) using ValueAnimator implementation rotationY
         }
 
         view.findViewById<View>(R.id.button_scale).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(1F, 1.5F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 04 set scaleX and scaleY
-                image.scaleX = value
-                image.scaleY = value
-            }
-
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 04 call method the animation(view, animator) using ValueAnimator implementation scale
         }
 
         view.findViewById<View>(R.id.button_scale_x).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(1F, 1.5F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 05 set scaleX
-                image.scaleX = value
-            }
-
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 05 call method the animation(view, animator) using ValueAnimator implementation scaleX
         }
 
         view.findViewById<View>(R.id.button_scale_y).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(1F, 1.5F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 06 set scaleY
-                image.scaleY = value
-            }
-
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 06 call method the animation(view, animator) using ValueAnimator implementation scaleY
         }
 
         view.findViewById<View>(R.id.button_translation).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(0F, -200F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 07 set translationX and translationY
-                image.translationX = value
-                image.translationY = value
-            }
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 07 call method the animation(view, animator) using ValueAnimator implementation translation
         }
 
         view.findViewById<View>(R.id.button_translation_x).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(0F, -180F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 08 set translationX
-                image.translationX = value
-            }
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 08 call method the animation(view, animator) using ValueAnimator implementation translationX
         }
 
         view.findViewById<View>(R.id.button_translation_y).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(0F, -180F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 09 set translationY
-                image.translationY = value
-            }
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 09 call method the animation(view, animator) using ValueAnimator implementation translationY
         }
 
         view.findViewById<View>(R.id.button_alpha).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(0.5F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 10 set alpha
-                image.alpha = value
-            }
-
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 10 call method the animation(view, animator) using ValueAnimator implementation alpha
         }
 
         view.findViewById<View>(R.id.button_move_x).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(150F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 11 set x
-                image.x = value
-            }
-
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 11 call method the animation(view, animator) using ValueAnimator implementation move X position
         }
 
         view.findViewById<View>(R.id.button_move_y).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(150F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 12 set y
-                image.y = value
-            }
-
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 12 call method the animation(view, animator) using ValueAnimator implementation move Y position
         }
 
         view.findViewById<View>(R.id.button_pivot_x).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(50F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 13 set pivotX
-                image.pivotX = value
-            }
-
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 13 call method the animation(view, animator) using ValueAnimator implementation pivotX
         }
 
         view.findViewById<View>(R.id.button_pivot_y).setOnClickListener {
-            val valueAnimator = ValueAnimator.ofFloat(50F)
-            valueAnimator.addUpdateListener {
-                val value = it.animatedValue as Float
-                // TODO 14 set pivotY
-                image.pivotY = value
-            }
-
-            valueAnimator.duration = DURATION
-            valueAnimator.start()
+            // TODO 14 call method the animation(view, animator) using ValueAnimator implementation pivotY
         }
-        // TODO 17 replace animator to ObjectAnimator
-        //  use construction ObjectAnimator.ofFloat(view, Property<T, Float> property, varargs values)
-        //  Example: ObjectAnimator.ofFloat(image, View.ROTATION, 0, 360f)
-        //  don't forget about duration and call start() for animation
-//        ObjectAnimator.ofFloat(image, View.ROTATION, 360f).start()
-//        ObjectAnimator.ofFloat(image, View.ROTATION_X, 360f).start()
-//        ObjectAnimator.ofFloat(image, View.ROTATION_Y, 360f).start()
-//
-//        ObjectAnimator.ofFloat(image, View.SCALE_X, 1f).start()
-//        ObjectAnimator.ofFloat(image, View.SCALE_Y, 1f).start()
-//
-//        ObjectAnimator.ofFloat(image, View.TRANSLATION_X, 0f, -360f).start()
-//        ObjectAnimator.ofFloat(image, View.TRANSLATION_Y, 0f, -360f).start()
-//
-//        ObjectAnimator.ofFloat(image, View.ALPHA, 0.5f).start()
-//        ObjectAnimator.ofFloat(image, View.X, 150f).start()
-//        ObjectAnimator.ofFloat(image, View.Y, -150f).start()
+
+        view.findViewById<View>(R.id.button_object_animator).setOnClickListener{
+            // TODO 17 call method the objAnimation(animator) using ObjectAnimator
+        }
+    }
+
+    private fun animation(view: View, animator: ValueAnimator) {
+        // TODO add listener and action if you need
+        animator.apply {
+            // TODO 15 add interpolator for your animator
+            // TODO 16 add repeatMode and repeatCount for your animator
+            // TODO add duration for animator
+            // TODO start you animator
+        }
+    }
+
+    private fun objAnimation(animator: ObjectAnimator) {
+        animator.apply {
+            // TODO add interpolator if you needed
+            // TODO add repeatMode and repeatCount if you needed
+            // TODO add duration for animator
+            // TODO start you animator
+        }
     }
 }
