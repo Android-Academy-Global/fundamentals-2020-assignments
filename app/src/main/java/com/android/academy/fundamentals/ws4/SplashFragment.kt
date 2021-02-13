@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
 
 /*
-* In this workshop has 4 TODO
+* There are 4 TODOs in this workshop
 * For TODO 01 change inside fragment_splash layout app:layoutDescription="@xml/splash_animation_01"
 * For TODO 02 change inside fragment_splash layout app:layoutDescription="@xml/splash_animation_02"
 * For TODO 03 change inside fragment_splash layout app:layoutDescription="@xml/splash_animation_03"
