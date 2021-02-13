@@ -18,10 +18,6 @@
 
         </activity>
 
-        <!-- TODO Solution: Add a "SecondActivity" class into the manifest. Like this: -->
-<!--        <activity android:name=".MainActivity_Solution" />-->
-<!--        <activity android:name=".SecondActivity_Solution" />-->
-
     </application>
 
 </manifest>
