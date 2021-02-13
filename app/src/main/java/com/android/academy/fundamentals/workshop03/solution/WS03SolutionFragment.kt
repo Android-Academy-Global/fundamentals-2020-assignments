@@ -40,9 +40,9 @@ class WS03SolutionFragment : Fragment() {
         mAdapter = ColorsAdapter(context!!, colorsHelper.generateColors(40))
         mAdapter.mItemAction = View.OnClickListener {
             when (mOperationsRadioGroup.checkedRadioButtonId) {
-                R.id.add_color -> addItem(view)
-                R.id.change_color -> changeItem(view)
-                R.id.delete_color -> deleteItem(view)
+                R.id.add_color -> addItem(it)
+                R.id.change_color -> changeItem(it)
+                R.id.delete_color -> deleteItem(it)
             }
         }
         mList = view.findViewById(R.id.recycler_view)
