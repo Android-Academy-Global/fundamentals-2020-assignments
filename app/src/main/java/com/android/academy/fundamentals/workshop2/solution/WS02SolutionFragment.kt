@@ -42,32 +42,36 @@ class WS02SolutionFragment : Fragment(R.layout.fragment_ws02) {
         rocketPrepareAndFireAnimatorSet.playSequentially(rocketPrepareAnimator, fireAnimator)
 
         rocketPrepareAndFireAnimatorSet.addListener(onEnd = {
-            rocket.animate()
-                .x(0f)
-                .y(0f)
-                .setDuration(5000)
-                .start()
-
-            fire.animate()
-                .x((rocket.width - fire.width) / 2f)
-                .y(rocket.height.toFloat())
-                .setDuration(5000)
-                .start()
-
-            rocket.animate()
-                .alpha(0f)
-                .setStartDelay(4000)
-                .setDuration(1000)
-                .start()
-
-            fire.animate()
-                .alpha(0f)
-                .setStartDelay(4000)
-                .setDuration(1000)
-                .start()
+            startRocketFlyAnimation()
         })
 
         rocketPrepareAndFireAnimatorSet.start()
+    }
+
+    private fun startRocketFlyAnimation(){
+        rocket.animate()
+            .x(0f)
+            .y(0f)
+            .setDuration(5000)
+            .start()
+
+        fire.animate()
+            .x((rocket.width - fire.width) / 2f)
+            .y(rocket.height.toFloat())
+            .setDuration(5000)
+            .start()
+
+        rocket.animate()
+            .alpha(0f)
+            .setStartDelay(4000)
+            .setDuration(1000)
+            .start()
+
+        fire.animate()
+            .alpha(0f)
+            .setStartDelay(4000)
+            .setDuration(1000)
+            .start()
     }
 
     override fun onDestroy() {

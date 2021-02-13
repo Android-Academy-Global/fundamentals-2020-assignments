@@ -42,36 +42,38 @@ class WS02Fragment : Fragment(R.layout.fragment_ws02) {
         //TODO 03: Call <playSequentially> method of rocketPrepareAndFireStartAnimatorSet
         // and pass rocketPrepareAnimator and fireAnimator to arguments
 
-        //TODO 04 Uncomment rocketPrepareAndFireAnimatorSet listener
-        // We have already added listener
-        // Just uncomment code block (49-71 line numbers)
+        //TODO 04 Uncomment 49 - 51 lines
+        // In these lines we add listener for rocketPrepareAndFireAnimatorSet
+        // and call <startRocketFlyAnimation> method in onEnd(onAnimationEnd) callback
 
 //        rocketPrepareAndFireAnimatorSet.addListener(onEnd = {
-//
-//            //TODO 05: Create ViewPropertyAnimator by calling <animate> method of rocket view.
-//            // Use <x> method to set 0F
-//            // Use <y> method to set 0F
-//            // Use <setDuration> method to set 5000
-//            // Call <start> method to start animation
-//
-//            //TODO 06: Create ViewPropertyAnimator by calling <animate> method of fire view.
-//            // Use <x> method to set (rocket.width - fire.width) / 2F
-//            // Use <y> method to set rocket.height.toFloat()
-//            // Use <setDuration> method to set 5000
-//            // Call <start> method to start animation
-//
-//            //TODO 07: Create ViewPropertyAnimator by calling <animate> method of rocket view.
-//            // Use <alpha> method to set 0F
-//            // Use <setDuration> method to set 1000
-//            // Use <setStartDelay> method to set 4000
-//            // Call <start> method to start animation
-//
-//            //TODO 08: repeat TODO 08 for fire
-//
+//            startRocketFlyAnimation()
 //        })
 
         //TODO 09: Call <start> method of rocketPrepareAndFireAnimatorSet
 
+    }
+
+    private fun startRocketFlyAnimation() {
+        //TODO 05: Create ViewPropertyAnimator by calling <animate> method of rocket view.
+        // Use <x> method to set 0F
+        // Use <y> method to set 0F
+        // Use <setDuration> method to set 5000
+        // Call <start> method to start animation
+
+        //TODO 06: Create ViewPropertyAnimator by calling <animate> method of fire view.
+        // Use <x> method to set (rocket.width - fire.width) / 2F
+        // Use <y> method to set rocket.height.toFloat()
+        // Use <setDuration> method to set 5000
+        // Call <start> method to start animation
+
+        //TODO 07: Create ViewPropertyAnimator by calling <animate> method of rocket view.
+        // Use <alpha> method to set 0F
+        // Use <setDuration> method to set 1000
+        // Use <setStartDelay> method to set 4000
+        // Call <start> method to start animation
+
+        //TODO 08: repeat TODO 08 for fire
     }
 
     override fun onDestroy() {
