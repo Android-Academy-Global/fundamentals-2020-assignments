@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@id/barrier_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_android" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="button_rotation, button_rotation_x, button_rotation_y" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_rotation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="rotation"
+        app:layout_constraintBottom_toTopOf="@id/barrier_scale"
+        app:layout_constraintEnd_toStartOf="@id/button_rotation_x"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_rotation_x"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="rotation_x"
+        app:layout_constraintBottom_toTopOf="@id/barrier_scale"
+        app:layout_constraintEnd_toStartOf="@id/button_rotation_y"
+        app:layout_constraintStart_toEndOf="@id/button_rotation" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_rotation_y"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="rotation_y"
+        app:layout_constraintBottom_toTopOf="@id/barrier_scale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_rotation_x" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_scale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="button_scale, button_scale_x, button_scale_y" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_scale"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="scale"
+        app:layout_constraintBottom_toTopOf="@id/barrier_translation"
+        app:layout_constraintEnd_toStartOf="@id/button_scale_x"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_scale_x"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="scale_x"
+        app:layout_constraintBottom_toTopOf="@id/barrier_translation"
+        app:layout_constraintEnd_toStartOf="@id/button_scale_y"
+        app:layout_constraintStart_toEndOf="@id/button_scale" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_scale_y"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="scale_y"
+        app:layout_constraintBottom_toTopOf="@id/barrier_translation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_scale_x" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_translation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="button_translation, button_translation_x, button_translation_y" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_translation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="translation"
+        app:layout_constraintBottom_toTopOf="@id/barrier_alpha"
+        app:layout_constraintEnd_toStartOf="@id/button_translation_x"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_translation_x"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="translation_x"
+        app:layout_constraintBottom_toTopOf="@id/barrier_alpha"
+        app:layout_constraintEnd_toStartOf="@id/button_translation_y"
+        app:layout_constraintStart_toEndOf="@id/button_translation" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_translation_y"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="translation_y"
+        app:layout_constraintBottom_toTopOf="@id/barrier_alpha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_translation_x" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_alpha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="button_alpha, button_move_x, button_move_y" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_alpha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="alpha"
+        app:layout_constraintBottom_toTopOf="@id/barrier_pivot"
+        app:layout_constraintStart_toEndOf="@id/button_move_x"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_move_x"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Move X"
+        app:layout_constraintBottom_toTopOf="@id/barrier_pivot"
+        app:layout_constraintEnd_toStartOf="@id/button_move_y"
+        app:layout_constraintStart_toEndOf="@id/button_alpha" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_move_y"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Move Y"
+        app:layout_constraintBottom_toTopOf="@id/barrier_pivot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_move_x" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_pivot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="button_pivot_x, button_pivot_y" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_pivot_x"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="pivot_x"
+        app:layout_constraintBottom_toTopOf="@id/button_object_animator"
+        app:layout_constraintEnd_toStartOf="@id/button_pivot_y"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_pivot_y"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="pivot_y"
+        app:layout_constraintBottom_toTopOf="@id/button_object_animator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_pivot_x" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_object_animator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="object animation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
