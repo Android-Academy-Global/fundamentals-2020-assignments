@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .addToBackStack(null)
                 .replace(R.id.fragment_container_view, Fragment())
                 .commit()
         }
