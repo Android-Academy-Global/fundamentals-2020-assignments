@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FundamentalsAssignments</string>
+
+    <string name="predictive_animations">Predictive Animations</string>
+    <string name="custom_animator">Custom Animator</string>
+    <string name="change_color">Change</string>
+    <string name="add_color">Add</string>
+    <string name="delete_color">Delete</string>
+
+</resources>
