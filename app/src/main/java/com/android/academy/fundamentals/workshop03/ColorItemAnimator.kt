@@ -80,7 +80,6 @@ class ColorItemAnimator: DefaultItemAnimator() {
         val runningAnimInfo = SolutionColorItemAnimator.AnimatorInfo(changeAnim, fadeToBlack, fadeFromBlack, oldTextRotate, newTextRotate)
         mAnimatorMap[newHolder] = runningAnimInfo
         // TODO 07 start animation
-        changeAnim.start()
 
         // No other transformations are required.
         // return super.animateChange(oldViewHolder, newViewHolder, preInfo, postInfo);
