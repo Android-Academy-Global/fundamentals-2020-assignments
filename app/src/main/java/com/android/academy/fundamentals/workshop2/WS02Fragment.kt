@@ -1,4 +1,4 @@
-package com.android.academy.fundamentals
+package com.android.academy.fundamentals.workshop2
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.animation.addListener
 import androidx.fragment.app.Fragment
+import com.android.academy.fundamentals.R
 
 class WS02Fragment : Fragment(R.layout.fragment_ws02) {
 
