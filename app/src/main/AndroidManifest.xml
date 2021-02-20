@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.academy.fundamentals">
 
     <application
@@ -17,10 +16,6 @@
             </intent-filter>
 
         </activity>
-
-        <!-- TODO Solution: Add a "SecondActivity" class into the manifest. Like this: -->
-<!--        <activity android:name=".MainActivity_Solution" />-->
-<!--        <activity android:name=".SecondActivity_Solution" />-->
 
     </application>
 
